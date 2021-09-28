@@ -9,6 +9,8 @@ import { components } from "react-select";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col } from "antd";
 import {Dropdown} from 'react-bootstrap'
+import {ModuleExpandTickets} from './index';
+
 
 
 const Option = (props) => {
@@ -300,7 +302,7 @@ function ModuleExpandRankTracking() {
     const [fre,setfre] = useState(false);
     return (
         <>
-            <section class="outer-wrapper module-expand-site-uptime">
+            <section class="outer-wrapper module-expand-site-uptime module-rank">
             <div class="top-nav-bar">
                 <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span></div>
                 <div class="nav-bar-center">&nbsp;</div>
@@ -331,16 +333,20 @@ function ModuleExpandRankTracking() {
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
-                            <li><a href="module-expand-da">DA/ PA Checker</a></li>
+                        <li><a href="module-expand-da">DA/ PA Checker</a></li>
                             <li><a href="module-expand-google-trends">Google Trends</a></li>
-                            <li><a href="">Page Speed and Core Web Vitals</a></li>
-                            <li><a href="">Click Share</a></li>
-                            <li><a href="">Rank Tracking</a></li>
+                            <li><a href="module-expand-page-speed">Page Speed and Core Web Vitals</a></li>
+                            <li><a href="module-expand-click-share">Click Share</a></li>
+                            <li><a href="module-expand-rank-tracking">Rank Tracking</a></li>
                             <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
                             <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
-                            <li><a href="">Organic Research module</a></li>
-                            <li><a href="content-word-count">Content Word Count</a></li>
-                            <li><a href=""></a></li>
+                            <li><a href="module-expand-organic-research">Organic Research module</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="content-word-count">Content Word Count on a Page</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
+                            <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                         </ul>
                     </div>
                     <Tabs>
@@ -371,8 +377,8 @@ function ModuleExpandRankTracking() {
                             </div>
                             <br/>
                             <div className="row rank-tracking-top-select">
-                                <div className="col-md-4">
-                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Select Keywords</label>
+                                <div className="col-lg-4" style={{display:"flex"}}>
+                                    <label htmlFor="" style={{marginTop:5+'px'}}>Select Keywords</label>
                                     <ReactSelect
                                         className="da-pa-search"
                                         options={colourOptions}
@@ -389,8 +395,8 @@ function ModuleExpandRankTracking() {
                                         onInputChange={(e) => filterAllOptions(e)}
                                     />
                                 </div>
-                                <div className="col-md-4">
-                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Select Competitors</label>
+                                <div className="col-lg-4" style={{display:"flex"}}>
+                                    <label htmlFor="" style={{marginTop:5+'px'}}>Select Competitors</label>
                                     <ReactSelect
                                         className="da-pa-search"
                                         options={colourOptions1}
@@ -405,27 +411,26 @@ function ModuleExpandRankTracking() {
                                         value={optionSelected1}
                                     />
                                 </div>
-                            </div>
-                            <div className="row rank-tracking-top-select-1">
-                                <div className="col-md-4">
+                                <div className="col-lg-4">
                                     <label>Device Type</label>
-                                    <select name="" id="device-type">
+                                    <select name="" id="device-type" className="device-type-rank-choose"> 
                                         <option value="Mobile">Mobile</option>
                                         <option value="Desktop">Desktop</option>
                                         <option value="both">Both</option>
                                     </select>
                                 </div>
-                                <div className="col-md-4">
+                            </div>
+                            <div className="row rank-tracking-top-select">
+                                
+                                <div className="col-lg-4">
                                     <label>Location</label>
-                                    <select name="" id="device-type">
+                                    <select name="" id="device-type" className="device-type-rank-choose">
                                         <option value="Chennai">Chennai</option>
                                         <option value="Bangalore">Bangalore</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div className="row rank-tracking-top-select-2">
-                                <div className="col-md-4">
-                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Domain url</label>
+                                <div className="col-lg-4" style={{display:"flex"}}>
+                                    <label htmlFor="" style={{marginTop:5+'px'}}>Domain url</label>
                                     <ReactSelect
                                         className="da-pa-search"
                                         options={DomainUrlOption}
@@ -440,8 +445,8 @@ function ModuleExpandRankTracking() {
                                         value={DomainUrlSelected}
                                     />
                                 </div>
-                                <div className="col-md-4">
-                                    <button style={{marginLeft:24+"px", height:38+'px'}} class="outline-btn" onClick={generatereport1}>Generate</button>
+                                <div className="col-lg-4">
+                                    <button style={{ height:38+'px'}} class="outline-btn" onClick={generatereport1}>Generate</button>
                                 </div>
                             </div>
                             <br/>
@@ -476,7 +481,7 @@ function ModuleExpandRankTracking() {
                                                         <option value="https://www.myntra.com/">https://www.myntra.com/</option>
                                                         <option value="https://www.amazon.in/">https://www.amazon.in/</option>
                                                     </select>
-                                                    <button style={{marginLeft:24+"px", height:38+'px'}} class="outline-btn" onClick={generatereport2}>Generate Report</button>
+                                                    <button style={{marginLeft:24+"px", height:38+'px'}} class="outline-btn" onClick={generatereport2}>Generate</button>
                                                 </div>
                                                 {/* <div style={{display:"flex", marginTop:24+'px'}}>
                                                     <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Select Competitor</label>
@@ -541,7 +546,9 @@ function ModuleExpandRankTracking() {
                                     </>
                             }
                         </TabPanel>
-                        <TabPanel></TabPanel>
+                        <TabPanel>
+                            <ModuleExpandTickets/>
+                        </TabPanel>
                     </Tabs>
                 </div>
             </div>

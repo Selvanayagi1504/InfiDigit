@@ -1,9 +1,30 @@
-import React from "react";
-import Chart from "react-google-charts";
+// import { DatePicker } from "antd";
+import React, { useState, useEffect } from "react";
+import MultipleDatePicker from 'react-multiple-datepicker'
+
+
 
 function About() {
+  
+useEffect(()=>{
+  
+},[])
+
   return (
     <div className="about">
+     
+   
+
+<br/>
+
+            <MultipleDatePicker 
+    onSubmit={dates => console.log('selected date', dates)}
+  />
+
+  <br/>
+  
+
+      
       <div class="container">
         <div class="row align-items-center my-5">
           <div class="col-lg-7">
@@ -24,36 +45,10 @@ function About() {
           </div>
         </div>
       </div>
-      <Chart
-  width={'600px'}
-  height={'400px'}
-  chartType="LineChart"
-  loader={<div>Loading Chart</div>}
-  data={[
-    ['x', 'dogs'],
-    [0, 0],
-    [1, 10],
-    [2, 23],
-    [3, 17],
-    [4, 18],
-    [5, 9],
-    [6, 11],
-    [7, 27],
-    [8, 33],
-    [9, 40],
-    [10, 32],
-    [11, 35],
-  ]}
-  options={{
-    hAxis: {
-      title: 'Time',
-    },
-    vAxis: {
-      title: 'Popularity',
-    },
-  }}
-  rootProps={{ 'data-testid': '1' }}
-/>
+      
+
+  
+
     </div>
     
   );

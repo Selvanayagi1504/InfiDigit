@@ -8,6 +8,8 @@ import { components } from "react-select";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col } from "antd";
 import {Dropdown} from 'react-bootstrap'
+import {ModuleExpandTickets} from './index';
+
 
 
 const Option = (props) => {
@@ -126,6 +128,13 @@ function ModuleExpandGoogleTrends() {
         ];
         setcolor(color)
         setcolor1(color)
+        data = [
+            {key:"0",keywords:"Shoes", datetrend:"25"},
+            {key:"1",keywords:"Rainy Shoes", datetrend:"30"},
+            {key:"2",keywords:"Formal Shoes for Men", datetrend:"26"},
+            {key:"3",keywords:"Casual Shoes", datetrend:"40"},
+        ]
+        
         setteamList(data);
         var columns = [
             {
@@ -242,16 +251,20 @@ function ModuleExpandGoogleTrends() {
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
-                            <li><a href="module-expand-da">DA/ PA Checker</a></li>
-                            <li><a href="">Google Trends</a></li>
+                        <li><a href="module-expand-da">DA/ PA Checker</a></li>
+                            <li><a href="module-expand-google-trends">Google Trends</a></li>
                             <li><a href="module-expand-page-speed">Page Speed and Core Web Vitals</a></li>
-                            <li><a href="">Click Share</a></li>
+                            <li><a href="module-expand-click-share">Click Share</a></li>
                             <li><a href="module-expand-rank-tracking">Rank Tracking</a></li>
                             <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
                             <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
-                            <li><a href="">Organic Research module</a></li>
-                            <li><a href="content-word-count">Content Word Count</a></li>
-                            <li><a href=""></a></li>
+                            <li><a href="module-expand-organic-research">Organic Research module</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="content-word-count">Content Word Count on a Page</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
+                            <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                         </ul>
                     </div>
                     <Tabs>
@@ -276,7 +289,7 @@ function ModuleExpandGoogleTrends() {
                                     allowSelectAll={true}
                                     value={optionSelected}
                                 />
-                                <a href="#" style={{marginLeft:24+"px"}} class="outline-btn">Generate Report</a>
+                                <a href="#" style={{marginLeft:24+"px", height:40+'px'}} class="outline-btn">Generate Report</a>
                             </div>
                             
                             <div className="row">
@@ -445,7 +458,9 @@ function ModuleExpandGoogleTrends() {
                                 rootProps={{ 'data-testid': '1' }}
                                 /> */}
                         </TabPanel>
-                        <TabPanel></TabPanel>
+                        <TabPanel>
+                            <ModuleExpandTickets/>
+                        </TabPanel>
                     </Tabs>
                 </div>
             </div>

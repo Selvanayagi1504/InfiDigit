@@ -8,6 +8,7 @@ import { components } from "react-select";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col } from "antd";
 import {Dropdown} from 'react-bootstrap'
+import {ModuleExpandTickets} from './index';
 
 const Option = (props) => {
     return (
@@ -24,12 +25,11 @@ const Option = (props) => {
     );
   };
 
-const rowSelection = {
+  const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
     },
   };
-
 
 function ModuleExpandDAPA() {
     const [optionSelected, setoptionSelected] = useState(null);
@@ -55,6 +55,7 @@ function ModuleExpandDAPA() {
         var color=[];
         for(let i=1;i<6;i++){
             data.push({
+                key:i,
                 url:`www.myntra${i}.com`,
                 da:"28",
                 pa:"21",
@@ -176,15 +177,21 @@ function ModuleExpandDAPA() {
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
-                            <li><a href="">DA/ PA Checker</a></li>
+                        <li><a href="module-expand-da">DA/ PA Checker</a></li>
                             <li><a href="module-expand-google-trends">Google Trends</a></li>
                             <li><a href="module-expand-page-speed">Page Speed and Core Web Vitals</a></li>
-                            <li><a href="">Click Share</a></li>
+                            <li><a href="module-expand-click-share">Click Share</a></li>
                             <li><a href="module-expand-rank-tracking">Rank Tracking</a></li>
                             <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
                             <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
-                            <li><a href="">Organic Research module</a></li>
-                            <li><a href="content-word-count">Content Word Count</a></li>
+                            <li><a href="module-expand-organic-research">Organic Research module</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="content-word-count">Content Word Count on a Page</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
+                            <li><a href="module-expand-google-analytics">Google Analytics</a></li>
+
                         </ul>
                     </div>
                     <Tabs>
@@ -235,7 +242,7 @@ function ModuleExpandDAPA() {
                                             allowSelectAll={true}
                                             value={optionSelected}
                                         />
-                                        <a href="#" style={{marginLeft:24+"px"}} class="outline-btn">Generate Report</a>
+                                        <a href="#" style={{marginLeft:24+"px", height:40+'px'}} class="outline-btn">Generate Report</a>
 
                                     </div>
                                 </div>
@@ -252,6 +259,7 @@ function ModuleExpandDAPA() {
                             </div>
                             
                             <div>
+                                
                                 <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
                             </div>
                             <div class="row">
@@ -263,41 +271,40 @@ function ModuleExpandDAPA() {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-8">
+                                <div className="col-md-12" style={{display:"flex", marginBottom:24+'px'}}>
                                     <label htmlFor="" style={{marginRight:24+"px",marginTop:8+'px'}}>Select URL</label>
                                     <select name="" id="url-module-expand" placeholder="Select Url" style={{marginRight:48+'px'}}>
                                         <option value="">ww.myntra.com</option>
                                         <option value="">www.infi.com</option>
                                     </select>
-                                    <br/><br/>
+                                    
                                     <label htmlFor="" style={{marginRight:24+"px",marginTop:8+'px'}}>Select Competitor</label>
                                     <select name="" id="url-module-expand" placeholder="Select Url">
                                         <option value="">https://www.ezrankings.org/</option>
                                         <option value="">https://www.ezrankings.org/seo-packages.html</option>
                                     </select>
                                 </div>
-                                <div className="col-md-4">
-                                    <div className="score-maintain">
-                                    <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
-                                        <div className="pa-da">
-                                            <button class={chartoption == "da"?"blue":""} onClick={()=>{setchartoption("da")}}>DA Score</button>
-                                            <button class={chartoption == "pa"?"blue":""} onClick={()=>{setchartoption("pa")}}>PA Score</button>
-                                            <button class={chartoption == "spam"?"blue":""} onClick={()=>{setchartoption("spam")}}>Spam%</button>
-                                        </div>
-                                        
-                                        <Dropdown>
-                                            <Dropdown.Toggle id="dropdown-basic">
-                                            <i className="fa fa-download"></i>
-                                            </Dropdown.Toggle>
-
-                                            <Dropdown.Menu>
-                                                <Dropdown.Item href="">Download All Charts</Dropdown.Item>
-                                                <Dropdown.Item href="">Download this only</Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>
-                                    </div>
-                                </div>
+                                
                             </div>
+                            <div className="score-maintain">
+                                
+                                <div className="pa-da">
+                                    <button class={chartoption == "da"?"blue":""} onClick={()=>{setchartoption("da")}}>DA Score</button>
+                                    <button class={chartoption == "pa"?"blue":""} onClick={()=>{setchartoption("pa")}}>PA Score</button>
+                                    <button class={chartoption == "spam"?"blue":""} onClick={()=>{setchartoption("spam")}}>Spam%</button>
+                                </div>
+                                <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
+                                <Dropdown>
+                                    <Dropdown.Toggle id="dropdown-basic">
+                                    <i className="fa fa-download"></i>
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item href="">Download All Charts</Dropdown.Item>
+                                        <Dropdown.Item href="">Download this only</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                        </div>
                             {/* <Chart
                                 className="line-graph"
                                 width={'600px'}
@@ -373,7 +380,9 @@ function ModuleExpandDAPA() {
                                 rootProps={{ 'data-testid': '1' }}
                                 />
                         </TabPanel>
-                        <TabPanel></TabPanel>
+                        <TabPanel>
+                            <ModuleExpandTickets/>
+                        </TabPanel>
                     </Tabs>
                 </div>
             </div>

@@ -9,6 +9,8 @@ import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col } from "antd";
 import {Dropdown} from 'react-bootstrap'
 
+import {ModuleExpandTickets} from './index';
+
 
 const Option = (props) => {
     return (
@@ -260,6 +262,7 @@ function ModuleExpandSiteUptime() {
         var b= [];
         urlSelectbottom.map((i)=>{
             b.push({
+                key:i,
                 url:i.value,
                 aug1:"25",
                 aug2:"36",
@@ -334,16 +337,20 @@ function ModuleExpandSiteUptime() {
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
-                            <li><a href="module-expand-da">DA/ PA Checker</a></li>
+                        <li><a href="module-expand-da">DA/ PA Checker</a></li>
                             <li><a href="module-expand-google-trends">Google Trends</a></li>
-                            <li><a href="">Page Speed and Core Web Vitals</a></li>
-                            <li><a href="">Click Share</a></li>
+                            <li><a href="module-expand-page-speed">Page Speed and Core Web Vitals</a></li>
+                            <li><a href="module-expand-click-share">Click Share</a></li>
                             <li><a href="module-expand-rank-tracking">Rank Tracking</a></li>
-                            <li><a href="">Site Uptime Monitor</a></li>
+                            <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
                             <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
-                            <li><a href="">Organic Research module</a></li>
-                            <li><a href="content-word-count">Content Word Count</a></li>
-                            <li><a href=""></a></li>
+                            <li><a href="module-expand-organic-research">Organic Research module</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="content-word-count">Content Word Count on a Page</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
+                            <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                         </ul>
                     </div>
                     <Tabs>
@@ -363,12 +370,13 @@ function ModuleExpandSiteUptime() {
                                 </select>
                                 <i class="fa fa-edit" style={{marginTop:10+'px', marginRight:24+'px'}} onClick={()=>{document.getElementById('device-type').disabled=!fre;setfre(!fre)}}></i>
                                 <div>
-                                            <select id="export" name="export">
+                                            {/* <select id="export" name="export">
                                         <option value="Export">Export</option>
                                         <option value="PDF">Excel</option>
                                         <option value="WORD">CSV</option>
                                         <option value="Sheets">Sheets</option>
-                                    </select>
+                                    </select> */}
+                                    <button style={{marginLeft:24+"px", height:38+'px'}} class="outline-btn" >Export</button>
                                 </div>
                             </div>
                             <br/>
@@ -480,7 +488,7 @@ function ModuleExpandSiteUptime() {
                                                         allowSelectAll={true}
                                                         value={FiledselectBottom}
                                                     />
-                                                    <button style={{marginLeft:24+"px", height:38+'px'}} class="outline-btn" onClick={generatereport2}>Generate Report</button>
+                                                    <button style={{marginLeft:24+"px", height:38+'px'}} class="outline-btn" onClick={generatereport2}>Generate</button>
                                                 </div>
                                                 
                                             
@@ -534,7 +542,9 @@ function ModuleExpandSiteUptime() {
                                     </>
                             }
                         </TabPanel>
-                        <TabPanel></TabPanel>
+                        <TabPanel>
+                            <ModuleExpandTickets/>
+                        </TabPanel>
                     </Tabs>
                 </div>
             </div>

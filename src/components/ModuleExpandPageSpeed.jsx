@@ -8,6 +8,8 @@ import { components } from "react-select";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col } from "antd";
 import {Dropdown} from 'react-bootstrap'
+import {ModuleExpandTickets} from './index';
+
 
 
 const Option = (props) => {
@@ -65,6 +67,7 @@ function ModuleExpandPageSpeed() {
         if(a.length+1 == keytablelist.length-1){
             data = [
                 {
+                    key:0,
                     url:`${URL}`,
                     datatype:'Score',
                     aug1:"25",
@@ -77,6 +80,7 @@ function ModuleExpandPageSpeed() {
             ];
             for(let i=0;i<a.length;i++){
                 data.push({
+                    key:i,
                     url:`${URL}`,
                     datatype:`${a[i].value}`,
                     aug1:"25",
@@ -97,6 +101,7 @@ function ModuleExpandPageSpeed() {
         }
         else{
             data.push({
+                key:0,
                 url:`${URL}`,
                 datatype:`${a[a.length-1].value}`,
                 aug1:"25",
@@ -159,11 +164,11 @@ function ModuleExpandPageSpeed() {
         ]
         setkeytablelist(b)
         var data=[
-            {url:"https://www.infidigit.com/", fcp:"2.4", fid:"204", lcp:"3.1", cls:"0.07", performscore:"76"},
-            {url:"https://www.infidigit.com/seo-search-engine-optimization/", fcp:"2.6", fid:"1.5", lcp:"2.1", cls:"0.09", performscore:"65"},
-            {url:"https://www.infidigit.com/digital-marketing-services/", fcp:"3", fid:"204", lcp:"4.1", cls:"0.06", performscore:"54"},
-            {url:"https://www.ezrankings.org/", fcp:"3.4", fid:"164", lcp:"3.5", cls:"0.08", performscore:"89"},
-            {url:"https://www.ezrankings.org/seo-packages.html", fcp:"4", fid:"156", lcp:"2.1", cls:"0.05", performscore:"44"},
+            {key:0,url:"https://www.infidigit.com/", fcp:"2.4", fid:"204", lcp:"3.1", cls:"0.07", performscore:"76"},
+            {key:1,url:"https://www.infidigit.com/seo-search-engine-optimization/", fcp:"2.6", fid:"1.5", lcp:"2.1", cls:"0.09", performscore:"65"},
+            {key:2,url:"https://www.infidigit.com/digital-marketing-services/", fcp:"3", fid:"204", lcp:"4.1", cls:"0.06", performscore:"54"},
+            {key:3,url:"https://www.ezrankings.org/", fcp:"3.4", fid:"164", lcp:"3.5", cls:"0.08", performscore:"89"},
+            {key:4,url:"https://www.ezrankings.org/seo-packages.html", fcp:"4", fid:"156", lcp:"2.1", cls:"0.05", performscore:"44"},
         ];
         var color=[
             { value: "https://www.infidigit.com/", label: "https://www.infidigit.com/" },
@@ -297,9 +302,9 @@ function ModuleExpandPageSpeed() {
           ]
           setPageSpeedCol(columns);
           data = [
-              {url:"https://www.infidigit.com/", fcp:"5.6", speedindex:"14", timetointeract:"20.3", frstpaint:"1.3", totalblocktime:"109", serverresponse:"0.154"},
-              {url:"https://www.ezrankings.org/", fcp:"4.2", speedindex:"12", timetointeract:"18.6", frstpaint:"1.9", totalblocktime:"269", serverresponse:"0.256"},
-              {url:"https://www.infidigit.com/seo-search-engine-optimization/", fcp:"3.3", speedindex:"20", timetointeract:"17.3", frstpaint:"1.2", totalblocktime:"309", serverresponse:"0.354"},
+              {key:0,url:"https://www.infidigit.com/", fcp:"5.6", speedindex:"14", timetointeract:"20.3", frstpaint:"1.3", totalblocktime:"109", serverresponse:"0.154"},
+              {key:1,url:"https://www.ezrankings.org/", fcp:"4.2", speedindex:"12", timetointeract:"18.6", frstpaint:"1.9", totalblocktime:"269", serverresponse:"0.256"},
+              {key:2,url:"https://www.infidigit.com/seo-search-engine-optimization/", fcp:"3.3", speedindex:"20", timetointeract:"17.3", frstpaint:"1.2", totalblocktime:"309", serverresponse:"0.354"},
           ]
           setpagespeedtable(data)
           data=[
@@ -321,6 +326,7 @@ function ModuleExpandPageSpeed() {
         console.log(e.target.value)
         setkeytablelist([
             {
+                key:0,
                 url:e.target.value,
                 datatype:'Score',
                 aug1:"25",
@@ -346,7 +352,7 @@ function ModuleExpandPageSpeed() {
     }
     return (
         <>
-            <section class="outer-wrapper">
+            <section class="outer-wrapper page-speed-main">
             <div class="top-nav-bar">
                 <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span></div>
                 <div class="nav-bar-center">&nbsp;</div>
@@ -377,16 +383,20 @@ function ModuleExpandPageSpeed() {
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
-                            <li><a href="module-expand-da">DA/ PA Checker</a></li>
+                        <li><a href="module-expand-da">DA/ PA Checker</a></li>
                             <li><a href="module-expand-google-trends">Google Trends</a></li>
-                            <li><a href="">Page Speed and Core Web Vitals</a></li>
-                            <li><a href="">Click Share</a></li>
+                            <li><a href="module-expand-page-speed">Page Speed and Core Web Vitals</a></li>
+                            <li><a href="module-expand-click-share">Click Share</a></li>
                             <li><a href="module-expand-rank-tracking">Rank Tracking</a></li>
                             <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
                             <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
-                            <li><a href="">Organic Research module</a></li>
-                            <li><a href="content-word-count">Content Word Count</a></li>
-                            <li><a href=""></a></li>
+                            <li><a href="module-expand-organic-research">Organic Research module</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="content-word-count">Content Word Count on a Page</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
+                            <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                         </ul>
                     </div>
                     <Tabs>
@@ -417,7 +427,7 @@ function ModuleExpandPageSpeed() {
                                     <option value="Desktop">Desktop</option>
                                     <option value="both">Both</option>
                                 </select>
-                                <a href="#" style={{marginLeft:24+"px"}} class="outline-btn">Search</a>
+                                <a href="#" style={{marginLeft:24+"px", height:40+'px'}} class="outline-btn">Search</a>
                             </div>
                             
                             <hr />
@@ -488,7 +498,7 @@ function ModuleExpandPageSpeed() {
                             {/* {optionSelected1 && optionSelected1.length>0
                                 ?
                                     <> */}
-                                        <Table id="sample-module-expand" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
+                                        <Table id="sample-module-expand" className="page-speed-second" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
                                         <div className="row">
                                             <div className="col-md-6">
                                                 <Chart
@@ -573,7 +583,9 @@ function ModuleExpandPageSpeed() {
                                 rootProps={{ 'data-testid': '1' }}
                                 /> */}
                         </TabPanel>
-                        <TabPanel></TabPanel>
+                        <TabPanel>
+                            <ModuleExpandTickets/>
+                        </TabPanel>
                     </Tabs>
                 </div>
             </div>

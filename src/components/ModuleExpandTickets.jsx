@@ -12,6 +12,7 @@ import Barchart from "../components/barchart";
 import Filter from "./assets/funnel-fill.svg";
 import "antd/dist/antd.css";
 
+
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
     console.log(
@@ -46,7 +47,7 @@ function onChange1(date, dateString) {
   console.log(date, dateString);
 }
 
-function TicketsList() {
+function ModuleExpandTickets() {
   const [teamlist, setteamList] = useState([]);
   const [selectionType, setSelectionType] = useState("checkbox");
   const [teamcol, setteamcol] = useState([]);
@@ -402,7 +403,7 @@ function TicketsList() {
   return (
     <>
       <section class="outer-wrapper client-list">
-        <div class="top-nav-bar">
+        {/* <div class="top-nav-bar">
           <div class="logo">
             <a href="">
               <img src="images/infidigit-logo.png" />
@@ -465,9 +466,9 @@ function TicketsList() {
               </a>
             </li>
           </ul>
-        </div>
-        <div class="content-wrapper">
-          <div class="dashboard-wrapper">
+        </div> */}
+        {/* <div class="content-wrapper">
+          <div class="dashboard-wrapper"> */}
             <div class="row">
               <div class="col-sm-5 pad-lzero">
                 <div class="main-title">TICKET</div>
@@ -908,11 +909,11 @@ function TicketsList() {
                 // style={{ border: "2px solid grey" }}
               />
             </div>
-          </div>
-        </div>
+          {/* </div>
+        </div> */}
       </section>
     </>
   );
 }
 
-export default TicketsList;
+export default ModuleExpandTickets;

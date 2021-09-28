@@ -8,6 +8,8 @@ import { components } from "react-select";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col } from "antd";
 import {Dropdown} from 'react-bootstrap'
+import {ModuleExpandTickets} from './index';
+
 
 
 const Option = (props) => {
@@ -209,7 +211,7 @@ function ModuleExpandContentWordCount() {
 
     return (
         <>
-            <section class="outer-wrapper module-expand-site-uptime">
+            <section class="outer-wrapper module-expand-site-uptime content-word-count">
             <div class="top-nav-bar">
                 <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span></div>
                 <div class="nav-bar-center">&nbsp;</div>
@@ -240,15 +242,20 @@ function ModuleExpandContentWordCount() {
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
-                            <li><a href="module-expand-da">DA/ PA Checker</a></li>
+                        <li><a href="module-expand-da">DA/ PA Checker</a></li>
                             <li><a href="module-expand-google-trends">Google Trends</a></li>
                             <li><a href="module-expand-page-speed">Page Speed and Core Web Vitals</a></li>
-                            <li><a href="">Click Share</a></li>
+                            <li><a href="module-expand-click-share">Click Share</a></li>
                             <li><a href="module-expand-rank-tracking">Rank Tracking</a></li>
                             <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
                             <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
-                            <li><a href="">Organic Research module</a></li>
-                            <li><a href="content-word-count">Content Word Count</a></li>
+                            <li><a href="module-expand-organic-research">Organic Research module</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="content-word-count">Content Word Count on a Page</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
+                            <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                         </ul>
                     </div>
                     <Tabs>
@@ -303,7 +310,7 @@ function ModuleExpandContentWordCount() {
                             </div>
                             <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
                             <div className="chart-content-word-count">
-                                <div class="add-new-btnw">
+                                {/* <div class="add-new-btnw">
                                     <div className="score-maintain">
                                         <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
                                     
@@ -318,8 +325,8 @@ function ModuleExpandContentWordCount() {
                                             </Dropdown.Menu>
                                         </Dropdown>
                                     </div>
-                                </div>
-                                <Chart
+                                </div> */}
+                                {/* <Chart
                                     className="line-graph"
                                     width={'600px'}
                                     height={'400px'}
@@ -336,10 +343,12 @@ function ModuleExpandContentWordCount() {
                                         
                                     }}
                                     rootProps={{ 'data-testid': '1' }}
-                                />
+                                /> */}
                             </div>
                         </TabPanel>
-                        <TabPanel></TabPanel>
+                        <TabPanel>
+                            <ModuleExpandTickets/>
+                        </TabPanel>
                     </Tabs>
                 </div>
             </div>

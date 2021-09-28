@@ -33,11 +33,6 @@ const pieOptions = {
     ],
     legend: {
       position: "none",
-    //   alignment: "center",
-    //   textStyle: {
-    //     color: "233238",
-    //     fontSize: 1
-    //   }
     },
     tooltip: {
       showColorCode: true

@@ -10,6 +10,8 @@ import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col } from "antd";
 import {Dropdown} from 'react-bootstrap'
 import {DatePicker} from 'react-datepicker';
+import {ModuleExpandTickets} from './index';
+
 
 const Option = (props) => {
     return (
@@ -62,8 +64,18 @@ function ModuleExpandGSC() {
     const [chooseintoption, setchooseintoption] = useState("External");
     const [GSCmodal , setGSCmodal] = useState([{value:"1"}]);
     const [GSCmodallength, setGSCmodallength] = useState([]);
+    const [chartdataGSC, setchartdataGSC] = useState([]);
+    const [totalClicks, settotalClicks] = useState(true);
+    const [totalimp, settotalimp] = useState(false);
+    const [avgCTR, setavgCTR] = useState(false);
+    const [avgPos, setavgPos] = useState(false);
+    const [chartdataGSCSearch, setchartdataGSCSearch] = useState([]);
 
     useEffect(()=>{
+        settotalimp(false);
+        setavgPos(false);
+        setavgCTR(false);
+        settotalClicks(true)
         var data = [
             {label:"Query", value:"Query"},
             {label:"Page", value:"Page"},
@@ -74,6 +86,26 @@ function ModuleExpandGSC() {
         ];
         setDimensionsOptions(data);
         setQueryGSCTabOptions(data);
+        data=[
+            ['x', 'Performance'],
+            ["Sept 1", 0],
+            ["Sept 2", 10],
+            ["Sept 3", 23],
+            ["Sept 4", 17],
+            ["Sept 5", 18],
+        ];
+        setchartdataGSC(data);
+        data=[
+            ['x', 'TotalClicks'],
+            ["Sept 1", 0],
+            ["Sept 2", 10],
+            ["Sept 3", 23],
+            ["Sept 4", 17],
+            ["Sept 5", 18],
+            ["Sept 6", 30],
+            ["Sept 7", 20],
+        ];
+        setchartdataGSCSearch(data);
         var columns = [
             {
                 title:"Query",
@@ -104,6 +136,7 @@ function ModuleExpandGSC() {
         setGSCTableCol(columns);
         data = [
             {
+                key:1,
                 query:"Cult Fit",
                 clicks:"5174",
                 impression:"15750",
@@ -111,6 +144,7 @@ function ModuleExpandGSC() {
                 position:"1.0"
             },
             {
+                key:2,
                 query:"Curefit",
                 clicks:"1385",
                 impression:"5033",
@@ -118,6 +152,7 @@ function ModuleExpandGSC() {
                 position:"1.0"
             },
             {
+                key:3,
                 query:"cult",
                 clicks:"1384",
                 impression:"10731",
@@ -125,6 +160,7 @@ function ModuleExpandGSC() {
                 position:"2.1"
             },
             {
+                key:4,
                 query:"Gym near me",
                 clicks:"1326",
                 impression:"110531",
@@ -162,36 +198,42 @@ function ModuleExpandGSC() {
         setGSCQueryTableCol(columns);
         data = [
             {
+                key:0,
                 query:"Top google Searches 2021",
                 clicklast7:"120",
                 clickprev7:"104",
                 diff:"16"
             },
             {
+                key:1,
                 query:"InfiDigit",
                 clicklast7:"83",
                 clickprev7:"74",
                 diff:"9"
             },
             {
+                key:2,
                 query:"Most searched thing on Google 2021",
                 clicklast7:"72",
                 clickprev7:"57",
                 diff:"15"
             },
             {
+                key:3,
                 query:"Types of SEO",
                 clicklast7:"70",
                 clickprev7:"56",
                 diff:"14"
             },
             {
+                key:4,
                 query:"Most searched topics on Youtube 2021",
                 clicklast7:"63",
                 clickprev7:"77",
                 diff:"-14"
             },
             {
+                key:5,
                 query:"most Searched keywords on Youtube",
                 clicklast7:"60",
                 clickprev7:"39",
@@ -228,18 +270,21 @@ function ModuleExpandGSC() {
         setGSCPageTableCol(columns);
         data = [
             {
+                key:0,
                 pages:"https://www.infidigit.com/news/youtube-searches/",
                 clicklast7:"2649",
                 clickprev7:"1668",
                 diff:"681"
             },
             {
+                key:1,
                 pages:"https://www.infidigit.com/blog/google",
                 clicklast7:"632",
                 clickprev7:"452",
                 diff:"157"
             },
             {
+                key:2,
                 pages:"https://www.infidigit.com/blog/youtube-search",
                 clicklast7:"600",
                 clickprev7:"400",
@@ -258,6 +303,7 @@ function ModuleExpandGSC() {
         var data = JSON.parse(JSON.stringify(gsctabtable));
         dimensionsSelected.map((i)=>{
             data.push({
+                key:i,
                 query:i.value,
                 clicks:"1550",
                 impression:"102",
@@ -280,6 +326,44 @@ function ModuleExpandGSC() {
         console.log(a);
         document.getElementById(a).classList.add('none')
     }
+    function generateGSCChartSearchResults(tc,ti,ac,ap){
+        var data = [];
+        var b = ['x'];
+        var len = 0;
+        console.log(totalClicks + '  ' + totalimp +' '+avgPos + avgCTR);
+        if(tc){
+            b.push('totalClicks');
+            len += 1;
+        }
+        if(ti){
+            b.push('totalimp');
+            len += 1;
+        }
+        if(ac){
+            b.push('avgCtr');
+            len += 1;
+        }
+        if(ap){
+            b.push('avgpos');
+            len += 1;
+        }
+        data.push(b);
+        var vaxiz = [{value:"Sept 1"},{value:"Sept 2"},{value:"Sept 3"},{value:"Sept 4"},{value:"Sept 5"},{value:"Sept 6"},{value:"Sept 7"}];
+        vaxiz.map((i)=>{
+            b = [];
+            b.push(i.value);
+            for(let i=0;i<len;i++){
+                var total = ((i+1)*2/2000)*100;
+                b.push(total);
+            }
+            data.push(b);
+        })
+        setchartdataGSCSearch(data)   
+    }
+    useEffect(()=>{
+        generateGSCChartSearchResults(totalClicks, totalimp,avgCTR, avgPos)
+    },[totalimp, totalClicks, avgCTR, avgPos])
+    
     return (
         <>
             <section class="outer-wrapper module-expand-gsc">
@@ -313,16 +397,20 @@ function ModuleExpandGSC() {
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
-                            <li><a href="module-expand-da">DA/ PA Checker</a></li>
+                        <li><a href="module-expand-da">DA/ PA Checker</a></li>
                             <li><a href="module-expand-google-trends">Google Trends</a></li>
-                            <li><a href="">Page Speed and Core Web Vitals</a></li>
-                            <li><a href="">Click Share</a></li>
+                            <li><a href="module-expand-page-speed">Page Speed and Core Web Vitals</a></li>
+                            <li><a href="module-expand-click-share">Click Share</a></li>
                             <li><a href="module-expand-rank-tracking">Rank Tracking</a></li>
                             <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
-                            <li><a href="">GSC Data Extractor</a></li>
-                            <li><a href="">Organic Research module</a></li>
-                            <li><a href="content-word-count">Content Word Count</a></li>
-                            <li><a href=""></a></li>
+                            <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
+                            <li><a href="module-expand-organic-research">Organic Research module</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="content-word-count">Content Word Count on a Page</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
+                            <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                         </ul>
                     </div>
                     <Tabs>
@@ -338,26 +426,27 @@ function ModuleExpandGSC() {
                             
                             <div className="row" style={{marginBottom:24+'px'}}>
                                 <div className="col-md-3">
-                                    <label style={{marginRight:24+'px'}}>Website</label>
-                                    <input type="text"/>
+                                    <label>Website</label>
+                                    <input type="text" className="website-gsc-inp"/>
                                 </div>
-                                <div className="col-md-6">
-                                    <label style={{marginRight:24+'px'}}>Select Date Range</label>
-                                    <input style={{marginRight:24+'px'}} type="date"/>
-                                    <input type="date"/>
-                                </div>
+                               
                                 <div className="col-md-3">
-                                    <label style={{marginRight:24+'px'}}>Search Type</label>
+                                    <label>Search Type</label>
                                     <select>
                                         <option value="Web">Web</option>
                                         <option value="Video">Video</option>
                                         <option>Image</option>
                                     </select>
                                 </div>
+                                <div className="col-md-6">
+                                    <label style={{width:17+'%'}}>Select Date Range</label>
+                                    <input style={{marginRight:24+'px'}} type="date"/>
+                                    <input type="date"/>
+                                </div>
                             </div>
                             <div className="row">
                                 <div className="col-md-3" style={{display:"flex"}}>
-                                    <label style={{marginRight:24+'px'}}>Dimensions</label>
+                                    <label>Dimensions</label>
                                     <ReactSelect
                                         className="gsc-multiselect"
                                         options={DimensionsOptions}
@@ -373,7 +462,7 @@ function ModuleExpandGSC() {
                                     />
                                 </div>
                                 <div className="col-md-3">
-                                    <label style={{marginRight:24+'px'}}>Expression</label>
+                                    <label>Expression</label>
                                     <select>
                                         <option value="All">All</option>
                                         <option value="Contains">Contains</option>
@@ -382,23 +471,23 @@ function ModuleExpandGSC() {
                                         <option value="regex">Regex</option>
                       9              </select>
                                 </div>
-                                <div className="col-md-3" style={{display:"flex"}}>
+                                <div className="col-md-2" style={{display:"flex"}}>
                                 <label style={{marginRight:24+'px', marginTop:5+'px'}}>Filter</label>
-                                <button class="outline-btn" onClick={()=>handleModal()}>Filter</button>
+                                <button class="filter-btn-GSC" onClick={()=>handleModal()}>Filter <i class="fa fa-filter"></i></button>
                                 </div>
                             </div>
                             <div className="row" style={{marginTop:24+'px'}}>
-                                <div className="col-md-3">
-                                    <label style={{marginRight:24+'px'}}>Aggregation Type</label>
-                                    <select>
+                                <div className="col-md-4">
+                                    <label className="aggregation-type">Aggregation Type</label>
+                                    <select id="aggregation">
                                         <option value="By Property">By Property</option>
                                         <option value="By Page">By Page</option>
                                     </select>
                                 </div>
                                 <div className="col-md-3">
-                                    <button class="outline-btn" onClick={()=>generatereportgsc()}>Generate Report</button>
+                                    <button class="outline-btn generate-report" onClick={()=>generatereportgsc()}>Generate Report</button>
                                 </div>
-                                <div className="col-md-2">
+                                <div className="col-md-1">
                                     
                                 </div>
                                 <div className="col-md-4" style={{textAlign:"end"}}>
@@ -408,6 +497,113 @@ function ModuleExpandGSC() {
                             <div>
                                 <Table id="sample-module-expand" columns={GSCTableCol} dataSource={[...gsctabtable]} rowSelection={{type: selectionTypeGSCTab,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
                             </div>
+                                        
+                            <Tabs className="tabs-inner-page-speed">
+                                <TabList>
+                                    <Tab>Performance</Tab>
+                                    <Tab>Search Results</Tab>
+                                </TabList>
+                                <div className="score-maintain">   
+                                    <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
+                                    <Dropdown>
+                                        <Dropdown.Toggle id="dropdown-basic">
+                                        <i className="fa fa-download"></i>
+                                        </Dropdown.Toggle>
+
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item href="">Download All Charts</Dropdown.Item>
+                                            <Dropdown.Item href="">Download this only</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </div>
+                                <TabPanel>
+                                    <Chart
+                                        className="line-graph"
+                                        width={'600px'}
+                                        height={'400px'}
+                                        chartType="LineChart"
+                                        data={chartdataGSC}
+                                        
+                                        options={{
+                                            hAxis: {
+                                            title: "days",
+                                            },
+                                            vAxis: {
+                                            title: "",
+                                            },
+                                            
+                                        }}
+                                        rootProps={{ 'data-testid': '1' }}
+                                    />
+                                </TabPanel>
+                                <TabPanel>
+                                    <div className="search-results-gsc-main">
+                                        
+                                        <div className="search-results-gsc-innerbox" onClick={()=>{settotalClicks(!totalClicks);}}>
+                                            <div className={totalClicks?"blue-GSC":"search-box-GSC"}>
+                                                <span>
+                                                    {totalClicks ? <input type="checkbox" checked name="" id="" readOnly /> :<input type="checkbox" name="" id="" readOnly />}
+                                                    <p>Total Clicks</p>
+                                                </span>
+                                                
+                                                <h2>66.2K</h2>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="search-results-gsc-innerbox" onClick={()=>{settotalimp(!totalimp);}}>
+                                            <div className={totalimp?"blue-GSC":"search-box-GSC"}>
+                                                <span>
+                                                {totalimp ? <input type="checkbox" checked name="" id="" readOnly /> :<input type="checkbox" name="" id="" readOnly />}
+                                                    <p>Total Impressions</p>
+                                                </span>
+                                                
+                                                <h2>11.6M</h2>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="search-results-gsc-innerbox" onClick={()=>{setavgCTR(!avgCTR);}}>
+                                            <div className={avgCTR?"blue-GSC":"search-box-GSC"}>
+                                                <span>
+                                                    {avgCTR ? <input type="checkbox" checked name="" id="" readOnly /> :<input type="checkbox" name="" id="" readOnly />}     
+                                                    <p>Average CTR</p>
+                                                </span>
+                                                
+                                                <h2>0.6%</h2>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="search-results-gsc-innerbox" onClick={()=>{setavgPos(!avgPos);}}>
+                                            <div className={avgPos?"blue-GSC":"search-box-GSC"}>
+                                                <span>
+                                                    {avgPos ? <input type="checkbox" checked name="" id="" readOnly /> :<input type="checkbox" name="" id="" readOnly />}
+                                                    <p>Average Position</p>
+                                                </span>
+                                                
+                                                <h2>43.4</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <Chart
+                                        className="line-graph"
+                                        width={'600px'}
+                                        height={'400px'}
+                                        chartType="LineChart"
+                                        data={chartdataGSCSearch}
+                                        
+                                        options={{
+                                            hAxis: {
+                                            title: "days",
+                                            },
+                                            vAxis: {
+                                            title: "",
+                                            },
+                                            legend:{position:"none"}
+                                        }}
+                                        rootProps={{ 'data-testid': '1' }}
+                                    />
+                                </TabPanel>
+                            </Tabs>
+
                         </TabPanel>
                         <TabPanel>
                             <Tabs className="tabs-inner-page-speed">
@@ -629,7 +825,9 @@ function ModuleExpandGSC() {
                         <TabPanel>
                             <Enhancements />
                         </TabPanel>
-                        <TabPanel></TabPanel>
+                        <TabPanel>
+                            <ModuleExpandTickets/>
+                        </TabPanel>
                     </Tabs>
                 </div>
             </div>
@@ -638,7 +836,6 @@ function ModuleExpandGSC() {
             <Modal.Header closeButton>Filter</Modal.Header>  
             <Modal.Body>
                 {GSCmodal.map((i)=>{
-                    
                     return(
                         <div className="row" style={{marginBottom:24+'px'}}>
                             <div className="col-md-3" style={{display:"flex"}}>
@@ -777,13 +974,13 @@ function Enhancements(props){
                                         <h5>0</h5>
                                         <p>No issues</p>
                                     </Tab>
-                                    <Tab>
-                                        <p style={{marginTop:31+'px'}}>Invalid</p>
+                                    <Tab style={{top:-31+'px'}}>
+                                        <p >Invalid</p>
                                         <h5>92</h5>
                                         {/* <br /> */}
                                     </Tab>
-                                    <Tab>
-                                        <p style={{marginTop:32+'px'}}>Impressions</p>
+                                    <Tab style={{top:-32+'px'}}>
+                                        <p >Impressions</p>
                                         <br/>
                                     </Tab>
                                 </TabList>

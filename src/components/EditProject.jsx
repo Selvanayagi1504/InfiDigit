@@ -589,13 +589,15 @@ function EditProject() {
 
                             <div class="common-table">
                                 <div class="row">
-                                    <div class="col-md-5"></div>
+                                    <div class="col-md-5">
+                                    <div class="data-per-page">Data Per page</div>
+                                    </div>
                                     <div class="col-md-7">
                                         {/* <div class="row">
                                             <div class="col-md-4"></div>
                                             <div class="col-md-8"> */}
                                                 <div class="data-export">
-                                                    <span class="data-per-page">Data Per page</span>
+                                                    
                                                     <span class="count-drop" style={{width:100+'px'}}>
                                                     </span>
                                                     <span class="export">

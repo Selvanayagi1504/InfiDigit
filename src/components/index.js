@@ -30,15 +30,12 @@ export {default as ModuleExpandSiteUptime} from './ModuleExpandSiteUptime';
 export {default as ModuleExpandRankTracking} from './ModuleExpandRankTracking';
 export {default as ModuleExpandGSC} from './ModuleExpandGSC';
 export {default as ModuleExpandContentWordCount} from './ModuleExpandContentWordCount';
-
-
-
-
-
-
-
-
-
-
-
+export {default as ModuleExpandGoogleAnalytics} from './ModuleExpandGoogleAnalytics';
+export {default as ModuleExpandSEOVolatality} from './ModuleExpandSEOVolatality';
+export {default as ModuleExpandKeywordResearch} from "./ModuleExpandKeywordResearch";
+export {default as ModuleExpandClickShare} from "./ModuleExpandClickShare";
+export {default as ModuleExpandROI} from "./ModuleExpandROI";
+export {default as ModuleExpandBackLinks} from "./ModuleExpandBackLinks";
+export {default as ModuleExpandOrganicResearch} from "./ModuleExpandOrganicResearch";
+export {default as ModuleExpandTickets} from "./ModuleExpandTickets";
 

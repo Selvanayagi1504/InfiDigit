@@ -170,13 +170,12 @@ function ClientList() {
 
                 <div class="common-table" >
                     <div class="row">
-                        <div class="col-md-5"></div>
+                        <div class="col-md-5">
+                            <div class="data-per-page-client">Data Per page</div>
+                        </div>
                         <div class="col-md-7">
-                            {/* <div class="row">
-                                <div class="col-md-0"></div>
-                                <div class="col-md-12"> */}
                                     <div class="data-export-client">
-                                        <span class="data-per-page-client">Data Per page</span>
+                                        
                                         <span class="count-drop">
                                         </span>
                                         <span class="export-client">
