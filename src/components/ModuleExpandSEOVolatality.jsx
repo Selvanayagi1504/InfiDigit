@@ -7,7 +7,7 @@ import { Button,Modal} from 'react-bootstrap';
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 import "antd/dist/antd.css";
-import { Table, Input,  Row,  Col } from "antd";
+import { Table, Input,  Row,  Col,Breadcrumb } from "antd";
 import {Dropdown} from 'react-bootstrap'
 import Highcharts from 'highcharts';
 import {ModuleExpandTickets} from './index';
@@ -44,7 +44,7 @@ function ModuleExpandSEOVolatality() {
     const [chartdata, setchartdata] = useState([]);
     const [chartdataCompetitor, setchartdatacomp] = useState([]);
     const [series, setseries] = useState([{
-        name: "3.2",
+        name: <div>3.2 helo</div>,
         type: 'pie',
         innerSize: '60%',
         data: [
@@ -118,7 +118,7 @@ function ModuleExpandSEOVolatality() {
           title: {
             verticalAlign: 'middle',
             floating: true,
-            text: a,
+            text: `${a}`,
             align: 'center',
             y: 60,
             style:{
@@ -171,7 +171,29 @@ function ModuleExpandSEOVolatality() {
                 <div class="nav-bar-center">&nbsp;</div>
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
-                        <li><i class="fa fa-bell"></i></li>
+                    <li>
+                    <Dropdown id="notification-dropdown">
+                        <Dropdown.Toggle id="dropdown-basic">
+                        <i class="fa fa-bell"></i>
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - Welcome here!!</h4>
+                                    <p>21 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                            <hr />
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - You are</h4>
+                                    <p>8 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    </li>
 
                         <li class="dropdown">
                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
@@ -213,6 +235,15 @@ function ModuleExpandSEOVolatality() {
                             <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                         </ul>
                     </div>
+                    <Breadcrumb>
+                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <a href="/sub-projects">Projects</a>
+                        </Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <a href="/module-expand-seo-volatality">SEO Volatality</a>
+                        </Breadcrumb.Item>
+                    </Breadcrumb>
                     <Tabs>
                         <TabList>
                             <Tab>SEO Volatality</Tab>
@@ -263,8 +294,8 @@ function ModuleExpandSEOVolatality() {
                                     </div>
                                    <div className="row">
                                        <div className="col-md-4">
-                                       <div id="atmospheric-composition">
-                                    </div>
+                                            <div id="atmospheric-composition">
+                                            </div>
                                        </div>
                                        <div className="col-md-8">
                                             {enhancerating}

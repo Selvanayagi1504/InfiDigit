@@ -3,7 +3,7 @@ import {useState, useEffect} from "react";
 import { Button,Modal} from 'react-bootstrap';  
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "antd/dist/antd.css";
-import { Table, Input,  Row,  Col, Switch,Drawer } from "antd";
+import { Table, Input,  Row,  Col, Switch,Drawer, Breadcrumb } from "antd";
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 import {Dropdown} from 'react-bootstrap'
@@ -287,6 +287,18 @@ return (
         </div>
         <div class="content-wrapper">
             <div class="dashboard-wrapper">
+                <Breadcrumb>
+                    <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                    <a href="/client-list">Clients</a>
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                    <a href="/project-list">Projects</a>
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                    <a href="/view-client-details">Client Details</a>
+                    </Breadcrumb.Item>
+                </Breadcrumb>
                 <div class="row">
                     <div class="col-sm-5 pad-lzero">
                         <div class="main-title">CLIENT DETAILS</div>

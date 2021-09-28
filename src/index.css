@@ -2690,10 +2690,10 @@ label.aggregation-type {
   margin-top: 48px;
 }
 .module-expand-click-share  label{
-  width:36%;
+  width:43%;
 }
 .module-expand-click-share input[type="text"], .module-expand-click-share input[type="file"], .module-expand-click-share select{
-  width: 58%;
+  width: 52%;
 }
 .module-expand-click-share .website{
   float: right;
@@ -2701,7 +2701,11 @@ label.aggregation-type {
   justify-content:flex-end;
 }
 .website-main label {
-  width: 15% !important;
+  width: 20.5% !important;
+}
+.module-expand-click-share .row.website-main {
+  margin-top: 64px;
+  margin-bottom: 24px;
 }
 .website-main input[type="date"]{
   width: 24%;
@@ -2822,11 +2826,11 @@ margin-bottom: 24px;
     margin-right: 12px;
   }
   .module-expand-click-share  label{
-    width:42%;
+    width:47%;
     margin-right: 12px;
   }
   .module-expand-click-share input[type="text"], .module-expand-click-share input[type="file"], .module-expand-click-share select {
-    width: 49%;
+    width: 47%;
   }
   .module-expand-click-share .Click-Share-Keyword {
     width: 52%;
@@ -2838,8 +2842,16 @@ margin-bottom: 24px;
 .website-main label {
   width: 20% !important;
 }
+.dashboard-sales #atmospheric-composition {
+  margin-left: 0% !important;
+  margin-top: -156px;
+}
 }
 @media(max-width:1024px) {
+  .dashboard-sales #atmospheric-composition {
+    margin-left: 0% !important;
+    margin-top: -156px;
+  }
   .ROI input[type="text"], .ROI select {
     width: 61%;
     height: 40px;
@@ -2900,6 +2912,7 @@ margin-bottom: 24px;
   color: #ffffff !important;
     left: 21% !important;
     line-height: 26px;
+    font-size: 15px;
 }
 .uncontrolled .dropdown-menu.show button{
   color: #fff !important;
@@ -2907,7 +2920,7 @@ margin-bottom: 24px;
 .chart-legend-listing {
   display: flex;
   justify-content: space-around;
-  margin-top: 24px;
+  margin-top: 64px;
 }
 .chart-legend-listing hr:not([size]) {
   height: 2px;
@@ -2919,4 +2932,162 @@ margin-bottom: 24px;
 }
 .legend-list h1 {
   font-size: 28px;
+}
+.main-dashboard i.fa.fa-star {
+  color: goldenrod;
+  margin-right: 10px;
+}
+.audit-score-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+.full-report a {
+  margin-top: 24px;
+  color: blue !important;
+}
+.tickets .audit-score-title {
+  margin-top: 24px;
+}
+.tickets-heading{
+  margin-bottom: 32px;
+}
+.main-dashboard .high{
+  color:red;
+}
+.main-dashboard .Medium{
+  color: orange;
+}
+.main-dashboard .OverDue{
+  color: red;
+}
+.main-dashboard .Inprogress{
+  color:yellow
+}
+.main-dashboard .today{
+  color: green;
+}
+.ant-breadcrumb {
+  margin-bottom: 24px !important;
+}
+.main-dashboard .btn-check:active+.btn-secondary:focus, .btn-check:checked+.btn-secondary:focus, .btn-secondary.active:focus, .btn-secondary:active:focus, .show>.btn-secondary.dropdown-toggle:focus {
+  box-shadow: unset !important;
+}
+.main-dashboard .btn-check:focus+.btn-secondary, .btn-secondary:focus{
+  box-shadow: unset !important;
+}
+.full-report {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.legend-list-inner {
+  height: 77%;
+}
+.ModuleExpandDesignation .designation-box{
+  border-radius: 5px;
+  height: 130px;
+  background: #FFFFFF;
+  box-shadow:  20px 20px 60px #BEBEBE,-20px -20px 60px #FFFFFF;
+}
+.ModuleExpandDesignation select{
+  width: 180px;
+  height:40px;
+}
+.ModuleExpandDesignation .designation-box:hover{
+  border-radius: 5px;
+  
+  background: #F3F3F3;
+  box-shadow:  20px 20px 60px #BEBEBE,-20px -20px 60px #FFFFFF;
+}
+.designation-box h4 {
+  font-size: 20px;
+  font-weight: 500;
+}
+.ModuleExpandDesignation h2 {
+  font-size: 21px;
+  text-transform: uppercase;
+}
+div#full {
+  width: 100%;
+}
+.main-dashboard .charts-flex{
+  display: flex;
+  margin-bottom: 48px;
+}
+.charts-flex .charts-main-box {
+  box-shadow: 7px 20px 24px #bebebe, -47px -20px 60px #ffffff;
+  margin-right: 33px;
+}
+.charts-main-box {
+  box-shadow: 7px 20px 24px #bebebe, -47px -20px 60px #ffffff;
+  padding-bottom: 8px;
+  padding-left: 21px;
+  padding-top: 10px;
+  margin-bottom: 47px;
+}
+.charts-flex .full-report{
+  padding-left: 50px;
+}
+.dashboard-sales-chart1 {
+  display: flex;
+  margin-top: auto !important;
+    margin-bottom: auto;
+}
+.dashboard-sales-chart1-inner {
+  margin-right: 24px;
+  display: flex;
+  background-color: #fff;
+    border-color: hsl(0, 0%, 80%);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 8px 16px;
+}
+.dashboard-sales #atmospheric-composition {
+  margin-left: -43%;
+  margin-top: -156px;
+}
+.dashboard-sales-chart1-inner i {
+  margin-right: 17px;
+  font-size: 32px;
+  margin-top: 46%;
+}
+.salesRevenue .apexcharts-toolbar {
+  display: none;
+} 
+.dashboard-sales-legend {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+span.circle-legend {
+  width: 10px;
+  height: 10px;
+  background-color: #4e73df;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.dashboard-sales-legend div{
+  margin-right: 24px;
+}
+span.line-legend {
+  display: inline-block;
+  width: 19px;
+  height: 5px;
+  background-color: #a5c559;
+  margin-right: 10px;
+}
+.dashboard-sales .chart-legend-listing {
+  width: 51%;
+}
+span.square-legend {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
+}
+.dashboard-sales #wi-50{
+  width: 50%;
 }

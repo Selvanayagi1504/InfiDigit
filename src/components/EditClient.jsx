@@ -1,6 +1,9 @@
 import React from "react";
 import {useState} from "react";
 import $, { event } from 'jquery';
+import {Dropdown} from 'react-bootstrap'
+import {Breadcrumb} from 'antd'
+
 function EditClient() {
     const [sidenav,setsidenav] = useState(false);
     const [filelist,setfilelist] = useState([]);
@@ -27,7 +30,29 @@ return (
             <div class="nav-bar-center">&nbsp;</div>
             <div class="nav-bar-right">
                 <ul class="list-unstyled nav-right-menu">
-                    <li><i class="fa fa-bell"></i></li>
+                <li>
+                    <Dropdown id="notification-dropdown">
+                        <Dropdown.Toggle id="dropdown-basic">
+                        <i class="fa fa-bell"></i>
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - Welcome here!!</h4>
+                                    <p>21 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                            <hr />
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - You are</h4>
+                                    <p>8 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    </li>
 
                     <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
@@ -58,9 +83,18 @@ return (
         </div>
         <div class="content-wrapper">
             <div class="dashboard-wrapper">
+            <Breadcrumb>
+                <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+                <Breadcrumb.Item>
+                <a href="/client-list">Clients</a>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item>
+                <a href="/edit-client">Edit Client</a>
+                </Breadcrumb.Item>
+            </Breadcrumb>
                 <div class="row">
                     <div class="col-sm-5 pad-lzero">
-                        <div class="main-title">CREATE NEW CLIENT</div>
+                        <div class="main-title">EDIT CLIENT</div>
                     </div>
                     <div class="col-sm-7 add-new-btnw">
                     </div>

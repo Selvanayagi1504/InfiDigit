@@ -6,7 +6,7 @@ import { Button,Modal} from 'react-bootstrap';
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 import "antd/dist/antd.css";
-import { Table, Input,  Row,  Col } from "antd";
+import { Table, Input,  Row,  Col,Breadcrumb } from "antd";
 import {Dropdown} from 'react-bootstrap'
 import SearchBar from "./searchBar";
 import Collapse from 'react-bootstrap/Collapse'
@@ -220,7 +220,29 @@ function ModuleExpandKeywordResearch() {
                 <div class="nav-bar-center">&nbsp;</div>
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
-                        <li><i class="fa fa-bell"></i></li>
+                    <li>
+                    <Dropdown id="notification-dropdown">
+                        <Dropdown.Toggle id="dropdown-basic">
+                        <i class="fa fa-bell"></i>
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - Welcome here!!</h4>
+                                    <p>21 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                            <hr />
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - You are</h4>
+                                    <p>8 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    </li>
 
                         <li class="dropdown">
                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
@@ -265,6 +287,15 @@ function ModuleExpandKeywordResearch() {
                             <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                         </ul>
                     </div>
+                    <Breadcrumb>
+                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <a href="/sub-projects">Projects</a>
+                        </Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <a href="/module-expand-keyword-research">Keyword Research</a>
+                        </Breadcrumb.Item>
+                    </Breadcrumb>
                     <Tabs>
                         <TabList>
                             <Tab>Keyword Research</Tab>

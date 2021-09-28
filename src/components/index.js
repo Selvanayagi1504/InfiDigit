@@ -4,6 +4,8 @@ export { default as Home } from "./Home";
 export { default as About } from "./About";
 export { default as Contact } from "./Contact";
 export {default as Dashboard} from "./Dashboard";
+export {default as DashboardSEO} from "./DashboardSEO";
+export {default as DashboardSales} from "./DashboardSales";
 export {default as TeamMembers} from "./TeamMembers";
 export {default as SalesList} from "./SalesList";
 export {default as SubProjects} from "./SubProjects";
@@ -38,4 +40,6 @@ export {default as ModuleExpandROI} from "./ModuleExpandROI";
 export {default as ModuleExpandBackLinks} from "./ModuleExpandBackLinks";
 export {default as ModuleExpandOrganicResearch} from "./ModuleExpandOrganicResearch";
 export {default as ModuleExpandTickets} from "./ModuleExpandTickets";
+export {default as Designation} from "./Designation";
+
 

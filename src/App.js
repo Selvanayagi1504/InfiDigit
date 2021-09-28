@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.min.css";
-import { Home, About, Contact, Dashboard, SalesList, SubProjects, TeamMembers, EditEmployee, SalesNew, CreateProject, EditProject, ViewClientDetails, ClientList, ProjectList, CreateClient, EditClient, ModuleExpandDAPA, ModuleExpandGoogleTrends, ModuleExpandPageSpeed, TeamMembersSalesDir, ClinetsSalesDir, ProjectSalesDir, ViewClientDetailsSalesDir, ProjectsListSalesDir, Tickets, TicketsList, ModuleExpandSiteUptime, ModuleExpandRankTracking, ModuleExpandGSC, ModuleExpandContentWordCount, ModuleExpandGoogleAnalytics, ModuleExpandSEOVolatality, ModuleExpandKeywordResearch, ModuleExpandClickShare, ModuleExpandROI, ModuleExpandBackLinks, ModuleExpandOrganicResearch } from "./components";
+import { Home, About, Contact, Dashboard, DashboardSEO,DashboardSales, SalesList, SubProjects, TeamMembers, EditEmployee, SalesNew, CreateProject, EditProject, ViewClientDetails, ClientList, ProjectList, CreateClient, EditClient, ModuleExpandDAPA, ModuleExpandGoogleTrends, ModuleExpandPageSpeed, TeamMembersSalesDir, ClinetsSalesDir, ProjectSalesDir, ViewClientDetailsSalesDir, ProjectsListSalesDir, Tickets, TicketsList, ModuleExpandSiteUptime, ModuleExpandRankTracking, ModuleExpandGSC, ModuleExpandContentWordCount, ModuleExpandGoogleAnalytics, ModuleExpandSEOVolatality, ModuleExpandKeywordResearch, ModuleExpandClickShare, ModuleExpandROI, ModuleExpandBackLinks, ModuleExpandOrganicResearch,Designation } from "./components";
 function App() {
   return (
     <div className="App">
@@ -11,6 +11,8 @@ function App() {
           <Route path="/" exact component={() => <Home />} />
           <Route path="/About" exact component={() => <About />} />
           <Route path="/dashboard" exact component={() => <Dashboard />} />
+          <Route path="/dashboard-seo" exact component={() => <DashboardSEO />} />
+          <Route path="/dashboard-sales" exact component={() => <DashboardSales />} />
           <Route path="/team-members" exact component={() => <TeamMembers />} />
           <Route path="/sales-list" exact component={() => <SalesList />} />
           <Route path="/sub-projects" exact component={() => <SubProjects />} />
@@ -44,6 +46,7 @@ function App() {
           <Route path="/module-expand-roi" exact component={() => <ModuleExpandROI/>} />
           <Route path="/module-expand-backlinks" exact component={() => <ModuleExpandBackLinks/>} />
           <Route path="/module-expand-organic-research" exact component={() => <ModuleExpandOrganicResearch/>} />
+          <Route path="/designation" exact component={() => <Designation/>} />
         </Switch>
         {/* <Footer /> */}
       </Router>

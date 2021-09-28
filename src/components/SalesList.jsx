@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import {useHistory} from "react-router-dom";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col } from "antd";
+import {Dropdown} from 'react-bootstrap'
+
 
 
 const rowSelection = {
@@ -118,8 +120,29 @@ function SalesList() {
             <div class="nav-bar-center">&nbsp;</div>
             <div class="nav-bar-right">
                 <ul class="list-unstyled nav-right-menu">
-                    <li><i class="fa fa-bell"></i></li>
+                <li>
+                    <Dropdown id="notification-dropdown">
+                        <Dropdown.Toggle id="dropdown-basic">
+                        <i class="fa fa-bell"></i>
+                        </Dropdown.Toggle>
 
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - Welcome here!!</h4>
+                                    <p>21 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                            <hr />
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - You are</h4>
+                                    <p>8 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    </li>
                     <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>

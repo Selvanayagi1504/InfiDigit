@@ -6,7 +6,7 @@ import { Button,Modal} from 'react-bootstrap';
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 import "antd/dist/antd.css";
-import { Table, Input,  Row,  Col } from "antd";
+import { Table, Input,  Row,  Col, Breadcrumb } from "antd";
 import {Dropdown} from 'react-bootstrap'
 import Item from "antd/lib/list/Item";
 import {ModuleExpandTickets} from './index';
@@ -397,8 +397,29 @@ function ModuleExpandBackLinks() {
                 <div class="nav-bar-center">&nbsp;</div>
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
-                        <li><i class="fa fa-bell"></i></li>
+                    <li>
+                    <Dropdown id="notification-dropdown">
+                        <Dropdown.Toggle id="dropdown-basic">
+                        <i class="fa fa-bell"></i>
+                        </Dropdown.Toggle>
 
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - Welcome here!!</h4>
+                                    <p>21 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                            <hr />
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - You are</h4>
+                                    <p>8 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    </li>
                         <li class="dropdown">
                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                                 <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
@@ -422,6 +443,7 @@ function ModuleExpandBackLinks() {
             
             <div class="content-wrapper">
                 <div class="dashboard-wrapper">
+                
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
                             <li><a href="module-expand-da">DA/ PA Checker</a></li>
@@ -440,6 +462,15 @@ function ModuleExpandBackLinks() {
                             <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                         </ul>
                     </div>
+                    <Breadcrumb>
+                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <a href="/sub-projects">Projects</a>
+                        </Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <a href="/module-expand-backlinks">BackLinks</a>
+                        </Breadcrumb.Item>
+                    </Breadcrumb>
                     <Tabs>
                         <TabList>
                             <Tab>Count of Backlinks</Tab>

@@ -19,11 +19,10 @@ const rowSelection = {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
   },
 };
-function Dashboard() {
+function DashboardSEO() {
   const [sidenav,setsidenav] = useState(false);
   const [sidenavsales, setsidenavsales] = useState(false);
-  const [openproj, setopenproj] = useState(false);
-  const [proj,setproj] = useState('');
+  const [proj,setproj] = useState('Dashboard');
   const [chartdata, setchartdata] = useState([]);
   const [chartdataContentWordCount, setchartdataContentWordCount] = useState([]);
   const [healthaudit, sethealthaudit] = useState([]);
@@ -193,32 +192,29 @@ return (
       <div class="nav-bar-center">&nbsp;</div>
       <div class="nav-bar-right">
         <ul class="list-unstyled nav-right-menu">
-          
-          <li><a href="new-user.html" class="outline-btn ot-btn"><i class="fa fa-plus"></i> Add New User</a></li>
-          <li><a href="client-new.html" class="outline-btn"><i class="fa fa-plus"></i> Add New Client</a></li>
           <li>
-                    <Dropdown id="notification-dropdown">
-                        <Dropdown.Toggle id="dropdown-basic">
-                        <i class="fa fa-bell"></i>
-                        </Dropdown.Toggle>
+            <Dropdown id="notification-dropdown">
+                <Dropdown.Toggle id="dropdown-basic">
+                <i class="fa fa-bell"></i>
+                </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
-                                    <p>21 hours ago..</p>
-                                </div>
-                            </Dropdown.Item>
-                            <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
-                                    <p>8 hours ago..</p>
-                                </div>
-                            </Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    </li>
+                <Dropdown.Menu>
+                    <Dropdown.Item href="">
+                        <div className="notification-item">
+                            <h4>Raj - Welcome here!!</h4>
+                            <p>21 hours ago..</p>
+                        </div>
+                    </Dropdown.Item>
+                    <hr />
+                    <Dropdown.Item href="">
+                        <div className="notification-item">
+                            <h4>Raj - You are</h4>
+                            <p>8 hours ago..</p>
+                        </div>
+                    </Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+          </li>
           <li class="dropdown">
             <button onClick={()=>{setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
@@ -242,32 +238,19 @@ return (
     </div>
   <div class="sidebar-nav-bar">
     <ul class="list-unstyled side-menu">
-      <li onClick={()=>{setopenproj(false);}}><a href=""><i class="fa fa-columns"></i> Dashboard</a></li>
-      <li>
-        <Dropdown>
-          <Dropdown.Toggle id="dropdown-basic" className="drop-dire">
-          Sales <i class="fa fa-angle-right side-dropdown"  aria-hidden="true"></i>
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-              <Dropdown.Item href="team-members-sales-dir">Team Members</Dropdown.Item>
-              <Dropdown.Item href="clinets-sales-dir">Clients</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </li>
-      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
+      <li onClick={()=>{setproj("Dashboard")}}><a href=""><i class="fa fa-columns"></i> Dashboard</a></li>
       <li>
         <UncontrolledButtonDropdown className="uncontrolled">
           <DropdownToggle caret size="md" >
             Clients <i class="fa fa-angle-right"  aria-hidden="true"></i>
           </DropdownToggle>
           <DropdownMenu>
-            <span onClick={()=>{setopenproj(true);setproj("Myntra");}}> Myntra </span>
-            <DropdownItem onClick={()=>{setopenproj(true);setproj("Myntra - Myntra Shoes");}}>Myntra Shoes</DropdownItem>
-            <DropdownItem onClick={()=>{setopenproj(true);setproj("Myntra - Myntra Loafers");}}>Myntra Loafers</DropdownItem>
-            <span onClick={()=>{setopenproj(true);setproj("Amazon");}}> Amazon </span>
-            <DropdownItem onClick={()=>{setopenproj(true);setproj("Amazon - Fashion");}}>Fashion</DropdownItem>
-            <DropdownItem onClick={()=>{setopenproj(true);setproj("Amazon - Jewellery");}}>Jewellery</DropdownItem>
+            <span onClick={()=>{setproj("Myntra");}}> Myntra </span>
+            <DropdownItem onClick={()=>{setproj("Myntra - Myntra Shoes");}}>Myntra Shoes</DropdownItem>
+            <DropdownItem onClick={()=>{setproj("Myntra - Myntra Loafers");}}>Myntra Loafers</DropdownItem>
+            <span onClick={()=>{setproj("Amazon");}}> Amazon </span>
+            <DropdownItem onClick={()=>{setproj("Amazon - Fashion");}}>Fashion</DropdownItem>
+            <DropdownItem onClick={()=>{setproj("Amazon - Jewellery");}}>Jewellery</DropdownItem>
           </DropdownMenu>
         </UncontrolledButtonDropdown>
       </li>
@@ -282,9 +265,7 @@ return (
         </Breadcrumb.Item>
         
     </Breadcrumb>
-      {openproj 
-        ? 
-          <>
+      
             
             <div class="row">
               <div class="col-sm-5 pad-lzero">
@@ -453,91 +434,6 @@ return (
                 }
               </div>
             </div>
-
-          </>
-        :
-          <>
-            <div class="row">
-              <div class="col-sm-5 pad-lzero">
-                <div class="main-title">Dashboard</div>
-              </div>
-          
-            </div>
-            
-            <div class="row">
-              <div class="col-sm-3 col-6">
-                <div class="common-wcard resource-snap">
-                    <div class="rsnap-lft">
-                      <span class="rsnap-title">Clients</span>
-                      <span class="rsnap-count">100</span>
-                    </div>
-                    <div class="rsnap-rgt">
-                      
-                      <div class="text-success">+11%</div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-              </div>
-              <div class="col-sm-3 col-6">
-                <div class="common-wcard resource-snap">
-                  <div class="rsnap-lft">
-                    <span class="rsnap-title">Projects</span>
-                    <span class="rsnap-count">24</span>
-                  </div>
-                  <div class="rsnap-rgt">
-                    
-                    <div class="text-success">+11%</div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-              
-              <div class="col-sm-3 col-6">
-                <div class="common-wcard resource-snap">
-                  <div class="rsnap-lft">
-                    <span class="rsnap-title">Members</span>
-                    <span class="rsnap-count">54</span>
-                  </div>
-                  <div class="rsnap-rgt">
-                    
-                    <div class="text-success">+11%</div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-              <div class="col-sm-3 col-6">
-                <div class="common-wcard resource-snap">
-                  <div class="rsnap-lft">
-                    <span class="rsnap-title">Reports</span>
-                    <span class="rsnap-count">12</span>
-                  </div>
-                  <div class="rsnap-rgt">
-                    
-                    <div class="text-decline">+11%</div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-            <div class="col-sm-6 col-12">
-              <div class="common-wcard">
-                <div class="rd-title">Clients</div>
-                <img src="images/graph1.png" alt="" />
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="common-wcard">
-                <div class="rd-title">Reports</div>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <img src="images/graph2.png" alt="" />
-              </div>
-            </div>
-          </div>
-        </>
-      }
-      
     </div>
   </div>
 
@@ -558,4 +454,4 @@ function MyFDate() {
     <p>{newCurrentDate}</p>
   );
 }
-export default Dashboard;
+export default DashboardSEO;

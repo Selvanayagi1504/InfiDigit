@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
 import {useHistory} from "react-router-dom";
 import "antd/dist/antd.css";
-import { Table, Input,  Row,  Col, Switch } from "antd";
+import { Table, Input,  Row,  Col, Switch, Breadcrumb } from "antd";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { default as ReactSelect } from "react-select";
@@ -11,7 +11,9 @@ import { Button,Modal} from 'react-bootstrap';
 import $ from 'jquery';
 import { Select } from 'antd';
 import Chart from "react-google-charts";
-import { Breadcrumb } from 'antd';
+
+import {Dropdown} from 'react-bootstrap'
+
 
 
 
@@ -491,7 +493,29 @@ function EditProject() {
                 <div class="nav-bar-center">&nbsp;</div>
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
-                        <li><i class="fa fa-bell"></i></li>
+                        <li>
+                    <Dropdown id="notification-dropdown">
+                        <Dropdown.Toggle id="dropdown-basic">
+                        <i class="fa fa-bell"></i>
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - Welcome here!!</h4>
+                                    <p>21 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                            <hr />
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - You are</h4>
+                                    <p>8 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    </li>
 
                         <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
@@ -523,7 +547,15 @@ function EditProject() {
             <div class="content-wrapper">
                 <div class="dashboard-wrapper">
                
-            
+                <Breadcrumb>
+                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <a href="/sub-projects">Projects</a>
+                        </Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <a href="/edit-project">Edit Project</a>
+                        </Breadcrumb.Item>
+                    </Breadcrumb>
                     <Tabs>
                         <TabList>
                             <Tab>Team Members</Tab>

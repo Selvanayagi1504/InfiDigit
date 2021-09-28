@@ -9,6 +9,8 @@ import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col } from "antd";
 import {Dropdown} from 'react-bootstrap'
 import {ModuleExpandTickets} from './index';
+import { Breadcrumb } from 'antd';
+
 
 const Option = (props) => {
     return (
@@ -144,7 +146,29 @@ function ModuleExpandDAPA() {
                 <div class="nav-bar-center">&nbsp;</div>
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
-                        <li><i class="fa fa-bell"></i></li>
+                    <li>
+                    <Dropdown id="notification-dropdown">
+                        <Dropdown.Toggle id="dropdown-basic">
+                        <i class="fa fa-bell"></i>
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - Welcome here!!</h4>
+                                    <p>21 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                            <hr />
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Raj - You are</h4>
+                                    <p>8 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    </li>
 
                         <li class="dropdown">
                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
@@ -194,6 +218,15 @@ function ModuleExpandDAPA() {
 
                         </ul>
                     </div>
+                    <Breadcrumb>
+                        <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <a href="/sub-projects">Projects</a>
+                        </Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <a href="/module-expand-da">DA/ PA Checker</a>
+                        </Breadcrumb.Item>
+                    </Breadcrumb>
                     <Tabs>
                         <TabList>
                             <Tab>DA / PA Checker</Tab>

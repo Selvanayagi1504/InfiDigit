@@ -12,6 +12,8 @@ import {
 import Chart from "react-google-charts";
 import "antd/dist/antd.css";
 import { Table, Breadcrumb } from "antd";
+import Highcharts from 'highcharts';
+import ReactApexChart  from 'react-apexcharts'
 
 
 const rowSelection = {
@@ -19,11 +21,10 @@ const rowSelection = {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
   },
 };
-function Dashboard() {
+function DashboardSales() {
   const [sidenav,setsidenav] = useState(false);
   const [sidenavsales, setsidenavsales] = useState(false);
-  const [openproj, setopenproj] = useState(false);
-  const [proj,setproj] = useState('');
+  const [proj,setproj] = useState('Dashboard');
   const [chartdata, setchartdata] = useState([]);
   const [chartdataContentWordCount, setchartdataContentWordCount] = useState([]);
   const [healthaudit, sethealthaudit] = useState([]);
@@ -34,15 +35,16 @@ function Dashboard() {
   const [ticketscol, setticketscol] = useState([]);
   const [ticketstableWait, setticketstableWait] = useState([]);
   const [ticketscolWait, setticketscolWait] = useState([]);
-
+  // const [series, setseries] = useState([])
   useEffect(()=>{
+    highChartsRender(127);
     var data = [
-      ['x', 'totalClicks', 'totalImp','organicUsers', 'newUsers', 'organicSessions'],
-      ["24/1/2021", 0,10,20,30,40],
-      ["25/1/2021", 10,20,30,40,50],
-      ["26/1/2021", 23,33,43,53,63],
-      ["27/1/2021", 17,27,37,47,57],
-      ["28/1/2021", 18,28,38,48,58],
+      ['x', 'totalClicks', 'totalImp','organicUsers', 'newUsers'],
+      ["24/1/2021", 5,10,20,30],
+      ["25/1/2021", 10,20,30,40],
+      ["26/1/2021", 23,33,43,53],
+      ["27/1/2021", 17,27,37,47],
+      ["28/1/2021", 18,28,38,48],
     ]
     setchartdata(data);
     setchartdataContentWordCount(data);
@@ -184,18 +186,194 @@ function Dashboard() {
   function sidenavtoggle(){
     setsidenavsales(!sidenavsales)
   }
-  
+  function highChartsRender(a){
+    var value = a;
+    var value1= 1;
+    if(a>100){
+      value = 100;
+      value1 = 0;
+    }
+    else{
+      value = a;
+      value1 = 100-a;
+    }
+    Highcharts.chart({
+      chart: {
+        type: 'pie',
+        renderTo: 'atmospheric-composition',
+        height:'400px',
+      },
+      title: {
+        
+        floating: true,
+        text: `${a}%<hr/>`,
+        align: "center",
+        verticalAlign: "middle",
+        y: 80,
+      },
+      subtitle: {
+        text: "Congrats Tickets <br/>is met",
+        align: "center",
+        verticalAlign: "middle",
+        y: 110
+      },
+      plotOptions: {
+        pie: {
+          dataLabels: {
+              format: '{point.name}: {point.percentage:.1f} %',
+              enabled: false,
+                distance: -50,
+                style: {
+                    fontWeight: 'bold',
+                    color: 'white'
+                }
+          },
+          startAngle: -180,
+        endAngle: 180,
+        center: ['50%', '75%'],
+        size: '50%',
+        }
+      },
+      series: [
+        {
+          name: <div>3.2 helo</div>,
+          type: 'pie',
+          innerSize: '60%',
+          data: [
+              {
+                name: '',
+                y: value,
+                color: "#a5c559"
+              },
+              {
+                name: '',
+                y: value1,
+                color: '#edf3de'
+              },
+              
+          ]
+        }
+      ]
+  });
+  }
+  const [chartseries, setchartseries] = useState([
+		{
+			name: "Sales Revenue",
+			type: "column",
+			data: [100,200,300,400,500]
+		},
+		{
+			name: "Sales Target",
+			type: "line",
+			data: [10,20,30,40,50]
+		}
+	]);
+	const [chartoptions, setchartoptions] = useState({
+		chart: {
+			height: 350,
+			type: "line"
+		},
+		stroke: {
+			width: [0, 4]
+		},
+		title: {
+			text: ""
+		},
+		dataLabels: {
+			enabled: true,
+			enabledOnSeries: [1]
+		},
+		labels: [
+			"01 Jan 2001",
+			"02 Jan 2001",
+			"03 Jan 2001",
+			"04 Jan 2001",
+			"05 Jan 2001",
+		],
+		xaxis: {
+			type: "datetime"
+		},
+		yaxis: [
+			{
+				title: {
+					text: "Sales Revenue",
+				}
+			},
+			{
+				opposite: true,
+				title: {
+					text: "Sales Target"
+				}
+			}
+		],
+    legend: {
+      show: false
+    },
+    colors : ['#4e73df', '#a5c559'],
+	});
+  const [chartseriesSecond, setchartseriesSecond] = useState([
+		{
+			name: "Revenue Generated",
+			type: "column",
+			data: [100,200,300,400,500]
+		},
+		{
+			name: "Profitability",
+			type: "line",
+			data: [10,20,30,40,50]
+		}
+	]);
+	const [chartoptionsSecond, setchartoptionsSecond] = useState({
+		chart: {
+			height: 350,
+			type: "line"
+		},
+		stroke: {
+			width: [0, 4]
+		},
+		title: {
+			text: ""
+		},
+		dataLabels: {
+			enabled: true,
+			enabledOnSeries: [1]
+		},
+		labels: [
+			"01 Jan 2001",
+			"02 Jan 2001",
+			"03 Jan 2001",
+			"04 Jan 2001",
+			"05 Jan 2001",
+		],
+		xaxis: {
+			type: "datetime"
+		},
+		yaxis: [
+			{
+				title: {
+					text: "Revenue Generated",
+				}
+			},
+			{
+				opposite: true,
+				title: {
+					text: "Profitability"
+				}
+			}
+		],
+    legend: {
+      show: false
+    },
+    colors : ['#4e73df', '#a5c559'],
+	});
 return (
 <>
-<section class="outer-wrapper">
+<section class="outer-wrapper dashboard-sales">
   <div class="top-nav-bar">
       <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span></div>
       <div class="nav-bar-center">&nbsp;</div>
       <div class="nav-bar-right">
         <ul class="list-unstyled nav-right-menu">
-          
-          <li><a href="new-user.html" class="outline-btn ot-btn"><i class="fa fa-plus"></i> Add New User</a></li>
-          <li><a href="client-new.html" class="outline-btn"><i class="fa fa-plus"></i> Add New Client</a></li>
           <li>
                     <Dropdown id="notification-dropdown">
                         <Dropdown.Toggle id="dropdown-basic">
@@ -242,32 +420,19 @@ return (
     </div>
   <div class="sidebar-nav-bar">
     <ul class="list-unstyled side-menu">
-      <li onClick={()=>{setopenproj(false);}}><a href=""><i class="fa fa-columns"></i> Dashboard</a></li>
-      <li>
-        <Dropdown>
-          <Dropdown.Toggle id="dropdown-basic" className="drop-dire">
-          Sales <i class="fa fa-angle-right side-dropdown"  aria-hidden="true"></i>
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-              <Dropdown.Item href="team-members-sales-dir">Team Members</Dropdown.Item>
-              <Dropdown.Item href="clinets-sales-dir">Clients</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </li>
-      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
+      <li onClick={()=>{setproj("Dashboard")}}><a href=""><i class="fa fa-columns"></i> Dashboard</a></li>
       <li>
         <UncontrolledButtonDropdown className="uncontrolled">
-          <DropdownToggle caret size="md" >
+          <DropdownToggle caret size="md" onClick={()=>{setproj("All Clients");}}>
             Clients <i class="fa fa-angle-right"  aria-hidden="true"></i>
           </DropdownToggle>
           <DropdownMenu>
-            <span onClick={()=>{setopenproj(true);setproj("Myntra");}}> Myntra </span>
-            <DropdownItem onClick={()=>{setopenproj(true);setproj("Myntra - Myntra Shoes");}}>Myntra Shoes</DropdownItem>
-            <DropdownItem onClick={()=>{setopenproj(true);setproj("Myntra - Myntra Loafers");}}>Myntra Loafers</DropdownItem>
-            <span onClick={()=>{setopenproj(true);setproj("Amazon");}}> Amazon </span>
-            <DropdownItem onClick={()=>{setopenproj(true);setproj("Amazon - Fashion");}}>Fashion</DropdownItem>
-            <DropdownItem onClick={()=>{setopenproj(true);setproj("Amazon - Jewellery");}}>Jewellery</DropdownItem>
+            <span onClick={()=>{setproj("Myntra");}}> Myntra </span>
+            <DropdownItem onClick={()=>{setproj("Myntra - Myntra Shoes");}}>Myntra Shoes</DropdownItem>
+            <DropdownItem onClick={()=>{setproj("Myntra - Myntra Loafers");}}>Myntra Loafers</DropdownItem>
+            <span onClick={()=>{setproj("Amazon");}}> Amazon </span>
+            <DropdownItem onClick={()=>{setproj("Amazon - Fashion");}}>Fashion</DropdownItem>
+            <DropdownItem onClick={()=>{setproj("Amazon - Jewellery");}}>Jewellery</DropdownItem>
           </DropdownMenu>
         </UncontrolledButtonDropdown>
       </li>
@@ -282,9 +447,7 @@ return (
         </Breadcrumb.Item>
         
     </Breadcrumb>
-      {openproj 
-        ? 
-          <>
+      
             
             <div class="row">
               <div class="col-sm-5 pad-lzero">
@@ -319,92 +482,94 @@ return (
             <hr/>
             <div className="row">
               <div className="col-lg-7" id={!ticketmin?"full":""}>
-                
-                
                 <div class={!ticketmin?"charts-flex":""}>
                   <div class="charts-main-box">
-                    <div className="chart-legend-listing">
-                      <div className="legend-list">
-                        <div class="legend-list-inner">
-                        <p>Total Clicks</p>
-                        <h1>676</h1>
+                    <div className="row">
+                      <div className="col-lg-6 dashboard-sales-chart1">
+                        <div className="dashboard-sales-chart1-inner" style={{marginLeft:7+'%'}}>
+                          <span><i class="fa fa-user-plus"></i></span>
+                          <span>
+                            <h2>358</h2>
+                            <p>New Customers yet</p>
+                          </span>
                         </div>
-                        <hr style={{backgroundColor:"#4e73df"}}/>
+                        <div className="dashboard-sales-chart1-inner">
+                          <span><i class="fa fa-signal" aria-hidden="true"></i></span>
+                          <span>
+                            <h2>358</h2>
+                            <p>New Customers yet</p>
+                          </span>
+                        </div>
                       </div>
-                      <div className="legend-list">
-                        <div class="legend-list-inner">
-                        <p>Total Impressions</p>
-                        <h1>20,312</h1>
+                      <div className="col-lg-6 dashboard-sales-chart1">
+                        <div id="atmospheric-composition">
                         </div>
-                        <hr style={{backgroundColor:"#008000"}}/>
-                      </div>
-                      <div className="legend-list">
-                        <div class="legend-list-inner">
-                        <p>Organic Users</p>
-                        <h1>3.33%</h1>
-                        </div>
-                        <hr style={{backgroundColor:"#ffc107"}}/>
-                      </div>
-                      <div className="legend-list">
-                        <div class="legend-list-inner">
-                        <p>New Users</p>
-                        <h1>13.8</h1>
-                        </div>
-                        <hr style={{backgroundColor:"#5f9ea0"}}/>
-                      </div>
-                      <div className="legend-list">
-                        <div class="legend-list-inner">
-                        <p>Organic Sessions</p>
-                        <h1>676</h1>
-                        </div>
-                        <hr style={{backgroundColor:"#e9967a"}}/>
                       </div>
                     </div>
-                    <Chart
-                        className="line-graph"
-                        width={'800px'}
-                        height={'400px'}
-                        chartType="LineChart"
-                        data={chartdata}
-                        
-                        options={{colors:['#4e73df', '#008000', '#ffc107', '#5f9ea0', '#e9967a'],legend:{position:"none"}}}
-                        rootProps={{ 'data-testid': '1' }}
+                    <ReactApexChart
+                      options={chartoptions}
+                      series={chartseries}
+                      type="line"
+                      height={350}
+                      width={800}
+                      class="salesRevenue"
                     />
+                    <div className="dashboard-sales-legend">
+                        <div>
+                          <span className="circle-legend"></span>
+                          <span>Sales Revenue</span>
+                        </div>
+                        <div>
+                          <span className="line-legend"></span>
+                          <span>Sales Target</span>
+                        </div>
+                    </div>
                     <div className="full-report"><a>View full report</a></div>
                   </div>
                   <div class="charts-main-box">
-                    <div className="chart-legend-listing">
-                      <div className="legend-list">
-                        <div class="legend-list-inner">
-                        <p>Tickets Raised</p>
+                    <div className="row">
+                      <div className="col-lg-6 dashboard-sales-chart1">
+                      <div className="dashboard-sales-chart1-inner" style={{marginLeft:7+'%'}}>
+                          <span>
+                            <p>Total Clients</p>
+                            <h2>358</h2>
+                          </span>
                         </div>
-                        <hr style={{backgroundColor:"#4e73df"}}/>
+                        <div className="dashboard-sales-chart1-inner">
+                          <span>
+                            <p>Total Team 2</p>
+                            <h2>100</h2>
+                          </span>
+                        </div>
                       </div>
-                      <div className="legend-list">
-                        <div class="legend-list-inner">
-                        <p>Tickets Resolved</p>
-                        </div>
-                        <hr style={{backgroundColor:"#008000"}}/>
-                      </div>
-                      <div className="legend-list">
-                        <div class="legend-list-inner">
-                        <p>Tickets WIP</p>
-                        </div>
-                        <hr style={{backgroundColor:"#ffc107"}}/>
-                      </div>
-                      <div className="legend-list">
-                        <div class="legend-list-inner">
-                        <p>Tickets Not Started</p>
-                        </div>
-                        <hr style={{backgroundColor:"#5f9ea0"}}/>
-                      </div>
-                      <div className="legend-list">
-                        <div class="legend-list-inner">
-                        <p>Tickets on Hold</p>
-                        </div>
-                        <hr style={{backgroundColor:"#e9967a"}}/>
+                      <div className="col-lg-6 dashboard-sales-chart1">
+                        
                       </div>
                     </div>
+                    <ReactApexChart
+                      options={chartoptionsSecond}
+                      series={chartseriesSecond}
+                      type="line"
+                      height={350}
+                      width={800}
+                      class="salesRevenue"
+                    />
+                    <div className="dashboard-sales-legend">
+                        <div>
+                          <span className="circle-legend"></span>
+                          <span>Revenue Generated</span>
+                        </div>
+                        <div>
+                          <span className="line-legend"></span>
+                          <span>Profitability</span>
+                        </div>
+                    </div>
+                    <div className="full-report"><a>View full report</a></div>
+                  </div>
+                  
+                </div>
+                
+                <div class="charts-main-box" id={!ticketmin?"wi-50":""}>
                     <Chart
                       className="line-graph"
                       width={'800px'}
@@ -420,20 +585,32 @@ return (
                           title: "",
                           },
                           legend:{position:"none"},
-                          colors:['#4e73df', '#008000', '#ffc107', '#5f9ea0', '#e9967a']
+                          colors:['#4e73df', '#008000', '#ffc107', '#5f9ea0']
                       }}
                       rootProps={{ 'data-testid': '1' }}
                     />
+                    <div className="dashboard-sales-legend">
+                        <div>
+                          <span className="square-legend" style={{backgroundColor:"rgb(78, 115, 223)"}}></span>
+                          <span>East</span>
+                        </div>
+                        <div>
+                          <span className="square-legend" style={{backgroundColor:"rgb(0, 128, 0)"}}></span>
+                          <span>West</span>
+                        </div>
+                        <div>
+                          <span className="square-legend" style={{backgroundColor:"rgb(255, 193, 7)"}}></span>
+                          <span>North</span>
+                        </div>
+                        <div>
+                          <span className="square-legend" style={{backgroundColor:"rgb(95, 158, 160)"}}></span>
+                          <span>South</span>
+                        </div>
+                    </div>
                     <div className="full-report"><a>View full report</a></div>
                   </div>
-                </div>
-                
-                <div className="audit-score-title">
-                  Health Audit Score
-                </div>
-                <Table id="sample-module-expand" columns={healthauditcol} dataSource={healthaudit} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
-                <div className="full-report"><a>View full report</a></div>
               </div>
+
               <div className="col-lg-1"></div>
               <div className="col-lg-4 tickets">
                 
@@ -453,91 +630,6 @@ return (
                 }
               </div>
             </div>
-
-          </>
-        :
-          <>
-            <div class="row">
-              <div class="col-sm-5 pad-lzero">
-                <div class="main-title">Dashboard</div>
-              </div>
-          
-            </div>
-            
-            <div class="row">
-              <div class="col-sm-3 col-6">
-                <div class="common-wcard resource-snap">
-                    <div class="rsnap-lft">
-                      <span class="rsnap-title">Clients</span>
-                      <span class="rsnap-count">100</span>
-                    </div>
-                    <div class="rsnap-rgt">
-                      
-                      <div class="text-success">+11%</div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-              </div>
-              <div class="col-sm-3 col-6">
-                <div class="common-wcard resource-snap">
-                  <div class="rsnap-lft">
-                    <span class="rsnap-title">Projects</span>
-                    <span class="rsnap-count">24</span>
-                  </div>
-                  <div class="rsnap-rgt">
-                    
-                    <div class="text-success">+11%</div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-              
-              <div class="col-sm-3 col-6">
-                <div class="common-wcard resource-snap">
-                  <div class="rsnap-lft">
-                    <span class="rsnap-title">Members</span>
-                    <span class="rsnap-count">54</span>
-                  </div>
-                  <div class="rsnap-rgt">
-                    
-                    <div class="text-success">+11%</div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-              <div class="col-sm-3 col-6">
-                <div class="common-wcard resource-snap">
-                  <div class="rsnap-lft">
-                    <span class="rsnap-title">Reports</span>
-                    <span class="rsnap-count">12</span>
-                  </div>
-                  <div class="rsnap-rgt">
-                    
-                    <div class="text-decline">+11%</div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-            <div class="col-sm-6 col-12">
-              <div class="common-wcard">
-                <div class="rd-title">Clients</div>
-                <img src="images/graph1.png" alt="" />
-              </div>
-            </div>
-            <div class="col-sm-6 col-12">
-              <div class="common-wcard">
-                <div class="rd-title">Reports</div>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <img src="images/graph2.png" alt="" />
-              </div>
-            </div>
-          </div>
-        </>
-      }
-      
     </div>
   </div>
 
@@ -558,4 +650,4 @@ function MyFDate() {
     <p>{newCurrentDate}</p>
   );
 }
-export default Dashboard;
+export default DashboardSales;

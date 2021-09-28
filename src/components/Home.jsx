@@ -14,10 +14,10 @@ function Home() {
       history.push('/team-members');
     }
     if (strUser == "sales") {
-      history.push('/client-list');
+      history.push('/dashboard-sales');
     }
     if (strUser == "SEO") {
-      history.push('/sub-projects')
+      history.push('/dashboard-seo')
     }
   }
 return (
