@@ -2842,16 +2842,16 @@ margin-bottom: 24px;
 .website-main label {
   width: 20% !important;
 }
-.dashboard-sales #atmospheric-composition {
+/* .dashboard-sales #atmospheric-composition {
   margin-left: 0% !important;
   margin-top: -156px;
-}
+} */
 }
 @media(max-width:1024px) {
-  .dashboard-sales #atmospheric-composition {
+  /* .dashboard-sales #atmospheric-composition {
     margin-left: 0% !important;
     margin-top: -156px;
-  }
+  } */
   .ROI input[type="text"], .ROI select {
     width: 61%;
     height: 40px;
@@ -2902,15 +2902,17 @@ margin-bottom: 24px;
   background-color: unset !important;
   border: unset !important;
 }
-
+.uncontrolled a{
+  padding: unset;
+}
 .uncontrolled i.fa.fa-angle-right {
-  margin-left: 133%;
+  margin-left: 76%;
   font-size: 18px;
   font-weight: bolder;
 }
 .uncontrolled .dropdown-menu.show{
   color: #ffffff !important;
-    left: 21% !important;
+    left: 35% !important;
     line-height: 26px;
     font-size: 15px;
 }
@@ -3017,6 +3019,7 @@ div#full {
 .charts-flex .charts-main-box {
   box-shadow: 7px 20px 24px #bebebe, -47px -20px 60px #ffffff;
   margin-right: 33px;
+  width: 50%;
 }
 .charts-main-box {
   box-shadow: 7px 20px 24px #bebebe, -47px -20px 60px #ffffff;
@@ -3090,4 +3093,13 @@ span.square-legend {
 }
 .dashboard-sales #wi-50{
   width: 50%;
+}
+.daterangepicker .active{
+  padding: unset;
+}
+.uncontrolled.btn-group.show {
+  margin-bottom: 13em;
+}
+.uncontrolled .main {
+  margin-left: -15% !important;
 }

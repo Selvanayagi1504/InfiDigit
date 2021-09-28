@@ -2,8 +2,22 @@
 import React, { useState, useEffect } from "react";
 import MultipleDatePicker from 'react-multiple-datepicker'
 import ReactApexChart  from 'react-apexcharts'
-import { DateRangePicker } from 'rsuite';
 
+import DateRangePicker from "react-bootstrap-daterangepicker";
+import "bootstrap-daterangepicker/daterangepicker.css";
+import $ from 'jquery'
+import { customRanges } from "./functions";
+import moment from "moment";
+const datePickerHandler = (event, picker) => {
+    let value =
+      picker.startDate.format("DD-MM-YYYY") +
+      " to " +
+      picker.endDate.format("DD-MM-YYYY");
+    $("#date-picker").val(value);
+  };
+  const start = moment().subtract(1, "days");
+  const minDate = moment("01-01-2017", "DD-MM-YYYY");
+  const maxDate = moment();
 function About() {
 
   const [chartseries, setchartseries] = useState([
@@ -71,7 +85,8 @@ useEffect(()=>{
   return (
     <div className="about">
      
-     <ReactApexChart
+	  <br/>
+     {/* <ReactApexChart
 		options={chartoptions}
 		series={chartseries}
 		type="line"
@@ -86,8 +101,8 @@ useEffect(()=>{
     onSubmit={dates => console.log('selected date', dates)}
   />
 
-  <br/>
-  <DateRangePicker />
+  <br/> */}
+  {/* <DateRangePicker /> */}
 
       
       <div class="container">
@@ -112,7 +127,27 @@ useEffect(()=>{
       </div>
       
 
-  
+	  <DateRangePicker
+	  class="date-range"
+        showDropdowns
+        ranges={customRanges}
+        timePickerIncrement={1}
+		startDate={start}
+		endDate={maxDate}
+        minDate={minDate}
+        maxDate={maxDate}
+        opens="right"
+        format="DD-MM-YYYY"
+        autoUpdateInput={true}
+        alwaysShowCalendars={true}
+        linkedCalendars={true}
+        onApply={datePickerHandler}
+        autoApply={true}
+        applyClass="btn btn-sm btn-primary btn-raised"
+        cancelClass="btn btn-sm btn-flat"
+      >
+        <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
+      </DateRangePicker>
 
     </div>
     

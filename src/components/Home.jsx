@@ -17,7 +17,7 @@ function Home() {
       history.push('/dashboard-sales');
     }
     if (strUser == "SEO") {
-      history.push('/dashboard-seo')
+      history.push('/dashboard-seo?id=Myntra - Shoes')
     }
   }
 return (

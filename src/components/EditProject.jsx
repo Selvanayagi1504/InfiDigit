@@ -14,7 +14,13 @@ import Chart from "react-google-charts";
 
 import {Dropdown} from 'react-bootstrap'
 
-
+import {
+  
+    UncontrolledButtonDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem
+  } from "reactstrap";
 
 
 
@@ -539,9 +545,24 @@ function EditProject() {
 
             <div class="sidebar-nav-bar">
                 <ul class="list-unstyled side-menu">
-                    <li><a href="dashboard.html"><i class="fa fa-columns"></i> Dashboard</a></li>
+                    <li>
+                        <UncontrolledButtonDropdown className="uncontrolled">
+                            <DropdownToggle caret size="md" >
+                            Dashboard <i class="fa fa-angle-right"  aria-hidden="true"></i>
+                            </DropdownToggle>
+                            <DropdownMenu>
+                            <div className="main">Clients</div>
+                            <span><a href="dashboard-seo?id=Myntra"> Myntra </a></span>
+                            <DropdownItem href="dashboard-seo?id=Myntra-Shoes">Myntra Shoes</DropdownItem>
+                            <DropdownItem href="dashboard-seo?id=Myntra-Loafers">Myntra Loafers</DropdownItem>
+                            <span ><a href="dashboard-seo?id=Amazon"> Amazon </a></span>
+                            <DropdownItem href="dashboard-seo?id=Amazon - Fashion">Fashion</DropdownItem>
+                            <DropdownItem href="dashboard-seo?id=Amazon - Jewellery">Jewellery</DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledButtonDropdown>
+                    </li>
                     <li><a href="sub-projects"><i class="fa fa-tasks"></i> Projects</a></li>
-                    <li><a href="tickets.html"><i class="fa fa-ticket"></i>Tickets</a></li>
+                    <li><a href="ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
                 </ul>
             </div>
             <div class="content-wrapper">
@@ -549,6 +570,7 @@ function EditProject() {
                
                 <Breadcrumb>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
+                        <Breadcrumb.Item><a href="/dashboard-seo">Dashboard</a></Breadcrumb.Item>
                         <Breadcrumb.Item>
                         <a href="/sub-projects">Projects</a>
                         </Breadcrumb.Item>

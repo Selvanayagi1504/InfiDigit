@@ -173,15 +173,15 @@ function ClientList() {
 
         <div class="sidebar-nav-bar">
             <ul class="list-unstyled side-menu">
-                <li><a href="dashboard.html"><i class="fa fa-columns"></i> Dashboard</a></li>
-
-                <li><a href=""><i class="fa fa-users"></i> Customers</a></li>
+                <li><a href="dashboard-sales"><i class="fa fa-columns"></i> Dashboard</a></li>
+                <li><a href="client-list"><i class="fa fa-users"></i> Customers</a></li>
             </ul>
         </div>
         <div class="content-wrapper">
             <div class="dashboard-wrapper">
             <Breadcrumb>
                 <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+                <Breadcrumb.Item><a href="/dashboard-sales">Dashboard</a></Breadcrumb.Item>
                 <Breadcrumb.Item>
                 <a href="/client-list">Clients</a>
                 </Breadcrumb.Item>

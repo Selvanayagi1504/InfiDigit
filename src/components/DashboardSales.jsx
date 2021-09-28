@@ -421,7 +421,7 @@ return (
   <div class="sidebar-nav-bar">
     <ul class="list-unstyled side-menu">
       <li onClick={()=>{setproj("Dashboard")}}><a href=""><i class="fa fa-columns"></i> Dashboard</a></li>
-      <li>
+      {/* <li>
         <UncontrolledButtonDropdown className="uncontrolled">
           <DropdownToggle caret size="md" onClick={()=>{setproj("All Clients");}}>
             Clients <i class="fa fa-angle-right"  aria-hidden="true"></i>
@@ -435,7 +435,8 @@ return (
             <DropdownItem onClick={()=>{setproj("Amazon - Jewellery");}}>Jewellery</DropdownItem>
           </DropdownMenu>
         </UncontrolledButtonDropdown>
-      </li>
+      </li> */}
+      <li><a href="client-list"><i class="fa fa-users"></i> Customers</a></li>
     </ul>
   </div>
   <div class="content-wrapper">
@@ -490,14 +491,14 @@ return (
                           <span><i class="fa fa-user-plus"></i></span>
                           <span>
                             <h2>358</h2>
-                            <p>New Customers yet</p>
+                            <p>New Customers | YTQ</p>
                           </span>
                         </div>
                         <div className="dashboard-sales-chart1-inner">
                           <span><i class="fa fa-signal" aria-hidden="true"></i></span>
                           <span>
-                            <h2>358</h2>
-                            <p>New Customers yet</p>
+                            <h2>1180 357</h2>
+                            <p>Sales Revenue  | YTQ</p>
                           </span>
                         </div>
                       </div>
@@ -511,7 +512,7 @@ return (
                       series={chartseries}
                       type="line"
                       height={350}
-                      width={800}
+                      width={600}
                       class="salesRevenue"
                     />
                     <div className="dashboard-sales-legend">
@@ -551,7 +552,7 @@ return (
                       series={chartseriesSecond}
                       type="line"
                       height={350}
-                      width={800}
+                      width={600}
                       class="salesRevenue"
                     />
                     <div className="dashboard-sales-legend">
@@ -572,7 +573,7 @@ return (
                 <div class="charts-main-box" id={!ticketmin?"wi-50":""}>
                     <Chart
                       className="line-graph"
-                      width={'800px'}
+                      width={'600px'}
                       height={'400px'}
                       chartType="ColumnChart"
                       data={chartdataContentWordCount}

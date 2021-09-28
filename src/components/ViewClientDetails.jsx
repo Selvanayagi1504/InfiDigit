@@ -289,6 +289,7 @@ return (
             <div class="dashboard-wrapper">
                 <Breadcrumb>
                     <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+                    <Breadcrumb.Item><a href="/dashboard-seo">Dashboard</a></Breadcrumb.Item>
                     <Breadcrumb.Item>
                     <a href="/client-list">Clients</a>
                     </Breadcrumb.Item>

@@ -12,7 +12,23 @@ import {
 import Chart from "react-google-charts";
 import "antd/dist/antd.css";
 import { Table, Breadcrumb } from "antd";
+import {useLocation} from "react-router-dom";
 
+import DateRangePicker from "react-bootstrap-daterangepicker";
+import "bootstrap-daterangepicker/daterangepicker.css";
+import $ from 'jquery'
+import { customRanges } from "./functions";
+import moment from "moment";
+const datePickerHandler = (event, picker) => {
+    let value =
+      picker.startDate.format("DD-MM-YYYY") +
+      " to " +
+      picker.endDate.format("DD-MM-YYYY");
+    $("#date-picker").val(value);
+  };
+  const start = moment().subtract(1, "days");
+  const minDate = moment("01-01-2017", "DD-MM-YYYY");
+  const maxDate = moment();
 
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
@@ -20,9 +36,11 @@ const rowSelection = {
   },
 };
 function DashboardSEO() {
+  const search = useLocation().search;
+  const id = new URLSearchParams(search).get('id');
   const [sidenav,setsidenav] = useState(false);
   const [sidenavsales, setsidenavsales] = useState(false);
-  const [proj,setproj] = useState('Dashboard');
+  const [proj,setproj] = useState(id);
   const [chartdata, setchartdata] = useState([]);
   const [chartdataContentWordCount, setchartdataContentWordCount] = useState([]);
   const [healthaudit, sethealthaudit] = useState([]);
@@ -238,13 +256,16 @@ return (
     </div>
   <div class="sidebar-nav-bar">
     <ul class="list-unstyled side-menu">
-      <li onClick={()=>{setproj("Dashboard")}}><a href=""><i class="fa fa-columns"></i> Dashboard</a></li>
+      {/* <li>
+        <a href=""><i class="fa fa-columns"></i> Dashboard <i class="fa fa-angle-right"  aria-hidden="true"></i></a>
+      </li> */}
       <li>
         <UncontrolledButtonDropdown className="uncontrolled">
           <DropdownToggle caret size="md" >
-            Clients <i class="fa fa-angle-right"  aria-hidden="true"></i>
+            Dashboard <i class="fa fa-angle-right"  aria-hidden="true"></i>
           </DropdownToggle>
           <DropdownMenu>
+            <div className="main">Clients</div>
             <span onClick={()=>{setproj("Myntra");}}> Myntra </span>
             <DropdownItem onClick={()=>{setproj("Myntra - Myntra Shoes");}}>Myntra Shoes</DropdownItem>
             <DropdownItem onClick={()=>{setproj("Myntra - Myntra Loafers");}}>Myntra Loafers</DropdownItem>
@@ -254,6 +275,8 @@ return (
           </DropdownMenu>
         </UncontrolledButtonDropdown>
       </li>
+      <li><a href="sub-projects"><i class="fa fa-tasks"></i> Projects</a></li>
+      <li><a href="ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
     </ul>
   </div>
   <div class="content-wrapper">
@@ -276,8 +299,27 @@ return (
               <div className="col-lg-7">
                 <div className="add-new-btnw">
                   <label htmlFor="" style={{marginRight:24+'px'}}>Date Range</label>
-                  <input type="date" style={{marginRight:24+'px'}} />
-                  <input type="date" />
+                  <DateRangePicker
+                    class="date-range"
+                        showDropdowns
+                        ranges={customRanges}
+                        timePickerIncrement={1}
+                    startDate={start}
+                    endDate={maxDate}
+                        minDate={minDate}
+                        maxDate={maxDate}
+                        opens="right"
+                        format="DD-MM-YYYY"
+                        autoUpdateInput={true}
+                        alwaysShowCalendars={true}
+                        linkedCalendars={true}
+                        onApply={datePickerHandler}
+                        autoApply={true}
+                        applyClass="btn btn-sm btn-primary btn-raised"
+                        cancelClass="btn btn-sm btn-flat"
+                      >
+                        <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
+                    </DateRangePicker>
                 </div>
               </div>
               <div className="col-lg-1"></div>
@@ -343,7 +385,7 @@ return (
                     </div>
                     <Chart
                         className="line-graph"
-                        width={'800px'}
+                        width={'600px'}
                         height={'400px'}
                         chartType="LineChart"
                         data={chartdata}
@@ -388,7 +430,7 @@ return (
                     </div>
                     <Chart
                       className="line-graph"
-                      width={'800px'}
+                      width={'600px'}
                       height={'400px'}
                       chartType="ColumnChart"
                       data={chartdataContentWordCount}
