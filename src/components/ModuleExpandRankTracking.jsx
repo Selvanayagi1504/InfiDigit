@@ -313,23 +313,24 @@ function ModuleExpandRankTracking() {
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
                         <li class="dropdown">
@@ -341,7 +342,7 @@ function ModuleExpandRankTracking() {
 
 
                                 <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a href="">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
 
                                 <li><a href="/">Log Out</a></li>
                                 </ul>
@@ -408,7 +409,7 @@ function ModuleExpandRankTracking() {
                             </div>
                             <br/>
                             <div className="row rank-tracking-top-select">
-                                <div className="col-lg-4" style={{display:"flex"}}>
+                                <div className="col-lg-4 my-2 col-sm-6 col-md-6" style={{display:"flex"}}>
                                     <label htmlFor="" style={{marginTop:5+'px'}}>Select Keywords</label>
                                     <ReactSelect
                                         className="da-pa-search"
@@ -426,7 +427,7 @@ function ModuleExpandRankTracking() {
                                         onInputChange={(e) => filterAllOptions(e)}
                                     />
                                 </div>
-                                <div className="col-lg-4" style={{display:"flex"}}>
+                                <div className="col-lg-4 my-2 col-sm-6 col-md-6" style={{display:"flex"}}>
                                     <label htmlFor="" style={{marginTop:5+'px'}}>Select Competitors</label>
                                     <ReactSelect
                                         className="da-pa-search"
@@ -442,7 +443,7 @@ function ModuleExpandRankTracking() {
                                         value={optionSelected1}
                                     />
                                 </div>
-                                <div className="col-lg-4">
+                                <div className="col-lg-4 my-2 col-sm-6 col-md-6">
                                     <label>Device Type</label>
                                     <select name="" id="device-type" className="device-type-rank-choose"> 
                                         <option value="Mobile">Mobile</option>
@@ -453,14 +454,14 @@ function ModuleExpandRankTracking() {
                             </div>
                             <div className="row rank-tracking-top-select">
                                 
-                                <div className="col-lg-4">
+                                <div className="col-lg-4 my-2 col-sm-6 col-md-6">
                                     <label>Location</label>
                                     <select name="" id="device-type" className="device-type-rank-choose">
                                         <option value="Chennai">Chennai</option>
                                         <option value="Bangalore">Bangalore</option>
                                     </select>
                                 </div>
-                                <div className="col-lg-4" style={{display:"flex"}}>
+                                <div className="col-lg-4 my-2 col-sm-6 col-md-6" style={{display:"flex"}}>
                                     <label htmlFor="" style={{marginTop:5+'px'}}>Domain url</label>
                                     <ReactSelect
                                         className="da-pa-search"
@@ -476,7 +477,7 @@ function ModuleExpandRankTracking() {
                                         value={DomainUrlSelected}
                                     />
                                 </div>
-                                <div className="col-lg-4">
+                                <div className="col-lg-4 my-2 col-sm-6 col-md-6">
                                     <button style={{ height:38+'px'}} class="outline-btn" onClick={generatereport1}>Generate</button>
                                 </div>
                             </div>

@@ -9,6 +9,21 @@ import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col, Button, Menu,Checkbox, Dropdown as Drop,Breadcrumb } from "antd";
 import {Dropdown} from 'react-bootstrap'
 import {ModuleExpandTickets} from './index';
+import DateRangePicker from "react-bootstrap-daterangepicker";
+import "bootstrap-daterangepicker/daterangepicker.css";
+import $ from 'jquery'
+import { customRanges } from "./functions";
+import moment from "moment";
+const datePickerHandler = (event, picker) => {
+    let value =
+      picker.startDate.format("DD-MM-YYYY") +
+      " to " +
+      picker.endDate.format("DD-MM-YYYY");
+    $("#date-picker").val(value);
+  };
+  const start = moment().subtract(1, "days");
+  const minDate = moment("01-01-2017", "DD-MM-YYYY");
+  const maxDate = moment();
 
 
 const Option = (props) => {
@@ -252,35 +267,36 @@ function ModuleExpandClickShare() {
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
                         <li class="dropdown">
                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                                 <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                                <span class="profile-name">M.Subash</span>
+                                <span class="profile-name">SEO</span>
                             </button>
 
 
 
                                 <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a href="">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
 
                                 <li><a href="/">Log Out</a></li>
                                 </ul>
@@ -329,12 +345,12 @@ function ModuleExpandClickShare() {
                         </TabList>
 
                         <TabPanel>
-                            <div className="row" style={{marginBottom:24+'px'}}>
-                                <div className="col-lg-3">
+                            <div className="row common-mb-24">
+                                <div className="col-lg-3 col-md-6">
                                     <label>Organic Share %</label>
                                     <input type="text" />
                                 </div>
-                                <div className="col-lg-3">
+                                <div className="col-lg-3 col-md-6">
                                     <label htmlFor="">Frequency</label>
                                     <select name="" id="click-share-frequency">
                                         <option value="Daily">Daily</option>
@@ -342,7 +358,7 @@ function ModuleExpandClickShare() {
                                         <option value="Monthly">Monthly</option>
                                     </select>
                                 </div>
-                                <div className="col-lg-4" style={{display:"flex"}}>
+                                <div className="col-lg-4 col-md-6 common-flex-div">
                                 <label htmlFor="">Choose Keywords</label>
                                     <ReactSelect
                                         className="da-pa-search Click-Share-Keyword"
@@ -358,24 +374,35 @@ function ModuleExpandClickShare() {
                                         value={ClickShareKeywordSelected}
                                     />
                                 </div>
-                                <div className="col-lg-2 add-new-btnw">
+                                <div className="col-lg-2 col-md-6 add-new-btnw">
                                 <button class="outline-btn">Generate</button>
                                 </div>
                             </div>
-                            {/* <div className="row" style={{marginBottom:24+'px'}}>
-                                <div className="col-md-4" style={{display:"flex"}}>
-                                    
-                                </div>
-                                <div className="col-md-4">
-                                    
-                                </div>
-                                <div className="col-md-4"></div>
-                            </div> */}
+                            
                             <div className="row website-main">
                                 <div className="col-md-6">
                                     <label htmlFor="">Date Range</label>
-                                    <input type="date" />
-                                    <input type="date" />
+                                    <DateRangePicker
+                                        class="date-range"
+                                            showDropdowns
+                                            ranges={customRanges}
+                                            timePickerIncrement={1}
+                                        startDate={start}
+                                        endDate={maxDate}
+                                            minDate={minDate}
+                                            maxDate={maxDate}
+                                            opens="right"
+                                            format="DD-MM-YYYY"
+                                            autoUpdateInput={true}
+                                            alwaysShowCalendars={true}
+                                            linkedCalendars={true}
+                                            onApply={datePickerHandler}
+                                            autoApply={true}
+                                            applyClass="btn btn-sm btn-primary btn-raised"
+                                            cancelClass="btn btn-sm btn-flat"
+                                        >
+                                            <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
+                                    </DateRangePicker>
                                 </div>
                                 <div className="col-md-6 website">
                                     <label>Website</label>

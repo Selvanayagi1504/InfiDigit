@@ -74,7 +74,7 @@ const Option = (props) => {
     },
   };
 
-function EditProject() {
+function EditProjectDir() {
     
     const [optionSelected, setoptionSelected] = useState(null);
     function handleChange(selected){
@@ -546,24 +546,10 @@ function EditProject() {
 
             <div class="sidebar-nav-bar">
                 <ul class="list-unstyled side-menu">
-                    <li>
-                        <UncontrolledButtonDropdown className="uncontrolled">
-                            <DropdownToggle caret size="md" >
-                            Dashboard <i class="fa fa-angle-right"  aria-hidden="true"></i>
-                            </DropdownToggle>
-                            <DropdownMenu>
-                            <div className="main">Clients</div>
-                            <span><a href="dashboard-seo?id=Myntra"> Myntra </a></span>
-                            <DropdownItem href="dashboard-seo?id=Myntra-Shoes">Myntra Shoes</DropdownItem>
-                            <DropdownItem href="dashboard-seo?id=Myntra-Loafers">Myntra Loafers</DropdownItem>
-                            <span ><a href="dashboard-seo?id=Amazon"> Amazon </a></span>
-                            <DropdownItem href="dashboard-seo?id=Amazon - Fashion">Fashion</DropdownItem>
-                            <DropdownItem href="dashboard-seo?id=Amazon - Jewellery">Jewellery</DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledButtonDropdown>
-                    </li>
-                    <li><a href="sub-projects"><i class="fa fa-tasks"></i> Projects</a></li>
-                    <li><a href="ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
+                <li><a href="/dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
+      <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
+      <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
+      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
                 </ul>
             </div>
             <div class="content-wrapper">
@@ -1511,4 +1497,4 @@ function TableRowPS(props){
 }
 
 
-export default EditProject;
+export default EditProjectDir;

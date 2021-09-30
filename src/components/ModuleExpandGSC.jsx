@@ -12,7 +12,21 @@ import {Dropdown} from 'react-bootstrap'
 import {DatePicker} from 'react-datepicker';
 import {ModuleExpandTickets} from './index';
 
-
+import DateRangePicker from "react-bootstrap-daterangepicker";
+import "bootstrap-daterangepicker/daterangepicker.css";
+import $ from 'jquery'
+import { customRanges } from "./functions";
+import moment from "moment";
+const datePickerHandler = (event, picker) => {
+    let value =
+      picker.startDate.format("DD-MM-YYYY") +
+      " to " +
+      picker.endDate.format("DD-MM-YYYY");
+    $("#date-picker").val(value);
+  };
+  const start = moment().subtract(1, "days");
+  const minDate = moment("01-01-2017", "DD-MM-YYYY");
+  const maxDate = moment();
 const Option = (props) => {
     return (
       <div>
@@ -377,23 +391,24 @@ function ModuleExpandGSC() {
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
                         <li class="dropdown">
@@ -405,7 +420,7 @@ function ModuleExpandGSC() {
 
 
                                 <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a href="">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
 
                                 <li><a href="/">Log Out</a></li>
                                 </ul>
@@ -456,12 +471,12 @@ function ModuleExpandGSC() {
                         <TabPanel>
                             
                             <div className="row" style={{marginBottom:24+'px'}}>
-                                <div className="col-md-3">
+                                <div className="col-lg-4">
                                     <label>Website</label>
                                     <input type="text" className="website-gsc-inp"/>
                                 </div>
                                
-                                <div className="col-md-3">
+                                <div className="col-lg-4">
                                     <label>Search Type</label>
                                     <select>
                                         <option value="Web">Web</option>
@@ -469,14 +484,33 @@ function ModuleExpandGSC() {
                                         <option>Image</option>
                                     </select>
                                 </div>
-                                <div className="col-md-6">
-                                    <label style={{width:17+'%'}}>Select Date Range</label>
-                                    <input style={{marginRight:24+'px'}} type="date"/>
-                                    <input type="date"/>
+                                <div className="col-lg-4">
+                                    <label style={{width:27+'%'}}>Select Date Range</label>
+                                    <DateRangePicker
+                                        class="date-range"
+                                            showDropdowns
+                                            ranges={customRanges}
+                                            timePickerIncrement={1}
+                                        startDate={start}
+                                        endDate={maxDate}
+                                            minDate={minDate}
+                                            maxDate={maxDate}
+                                            opens="right"
+                                            format="DD-MM-YYYY"
+                                            autoUpdateInput={true}
+                                            alwaysShowCalendars={true}
+                                            linkedCalendars={true}
+                                            onApply={datePickerHandler}
+                                            autoApply={true}
+                                            applyClass="btn btn-sm btn-primary btn-raised"
+                                            cancelClass="btn btn-sm btn-flat"
+                                        >
+                                            <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
+                                    </DateRangePicker>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-3" style={{display:"flex"}}>
+                                <div className="col-lg-4" style={{display:"flex"}}>
                                     <label>Dimensions</label>
                                     <ReactSelect
                                         className="gsc-multiselect"
@@ -492,7 +526,7 @@ function ModuleExpandGSC() {
                                         value={dimensionsSelected}
                                     />
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-lg-4">
                                     <label>Expression</label>
                                     <select>
                                         <option value="All">All</option>
@@ -502,26 +536,24 @@ function ModuleExpandGSC() {
                                         <option value="regex">Regex</option>
                       9              </select>
                                 </div>
-                                <div className="col-md-2" style={{display:"flex"}}>
+                                <div className="col-lg-4" style={{display:"flex"}}>
                                 <label style={{marginRight:24+'px', marginTop:5+'px'}}>Filter</label>
                                 <button class="filter-btn-GSC" onClick={()=>handleModal()}>Filter <i class="fa fa-filter"></i></button>
                                 </div>
                             </div>
                             <div className="row" style={{marginTop:24+'px'}}>
-                                <div className="col-md-4">
+                                <div className="col-lg-4">
                                     <label className="aggregation-type">Aggregation Type</label>
                                     <select id="aggregation">
                                         <option value="By Property">By Property</option>
                                         <option value="By Page">By Page</option>
                                     </select>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-lg-4">
                                     <button class="outline-btn generate-report" onClick={()=>generatereportgsc()}>Generate Report</button>
                                 </div>
-                                <div className="col-md-1">
-                                    
-                                </div>
-                                <div className="col-md-4" style={{textAlign:"end"}}>
+                                
+                                <div className="col-lg-4" style={{textAlign:"end"}}>
                                     <button class="outline-btn">Export</button>
                                 </div>
                             </div>
@@ -1005,14 +1037,16 @@ function Enhancements(props){
                                         <h5>0</h5>
                                         <p>No issues</p>
                                     </Tab>
-                                    <Tab style={{top:-31+'px'}}>
+                                    <Tab>
                                         <p >Invalid</p>
                                         <h5>92</h5>
-                                        {/* <br /> */}
+                                       <p style={{visibility:"hidden"}}>hi</p>
                                     </Tab>
-                                    <Tab style={{top:-32+'px'}}>
+                                    <Tab >
                                         <p >Impressions</p>
-                                        <br/>
+                                        <h5 style={{visibility:"hidden"}}>hi</h5>
+                                        <p style={{visibility:"hidden"}}>hi</p>
+                                        
                                     </Tab>
                                 </TabList>
                                 <TabPanel>

@@ -347,23 +347,24 @@ function ModuleExpandOrganicResearch() {
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
                         <li class="dropdown">
@@ -375,7 +376,7 @@ function ModuleExpandOrganicResearch() {
 
 
                                 <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a href="">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
 
                                 <li><a href="/">Log Out</a></li>
                                 </ul>
@@ -421,7 +422,7 @@ function ModuleExpandOrganicResearch() {
                         </TabList>
                         <TabPanel>
                         <div className="row" style={{marginBottom:24+'px'}}>
-                                <div className="col-md-4">
+                                <div className="col-md-4 my-2">
                                     <label style={{marginRight:24+'px'}}>Search Type</label>
                                     <select style={{width:200+'px'}}>
                                         <option>URL</option>
@@ -430,36 +431,36 @@ function ModuleExpandOrganicResearch() {
                                         <option>*.domain/*</option>
                                     </select>
                                 </div>
-                                <div className="col-md-4">
-                                    <label style={{marginRight:24+'px'}}>Domain URL</label>
+                                <div className="col-md-4 my-2">
+                                    <label style={{marginRight:20+'px'}}>Domain URL</label>
                                     <input type="text" style={{width:200+'px'}}/>
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-md-4 mt-2">
                                     <label style={{marginRight:24+'px'}}>Device Type</label>
                                     <select style={{width:200+'px'}}>
                                         <option>Desktop</option>
                                         <option>Mobile</option>                                                                               
                                     </select>
                                 </div>                            
-                                
                             </div>
                             <div className="row">
-                                <div className="col-md-4">
-                                    <label style={{marginRight:24+'px'}}>  Currency  </label>
+                                <div className="col-md-4 my-2">
+                                    <label style={{marginRight:44+'px'}}>  Currency  </label>
                                     <select style={{width:200+'px'}}>
                                         <option>INR</option>
                                         <option>USD</option>                                                                               
                                     </select>
                                 </div>  
-                                <div className="col-md-4">
-                                    <label style={{marginRight:24+'px'}}>Select Date</label>
+                                <div className="col-md-4 my-2">
+                                    <label style={{marginRight:28+'px'}}>Select Date</label>
                                     <input style={{width:200+'px'}} type="date"/>
-                                    
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-md-4 my-2">
                                     <button style={{height:38+'px'}} class="outline-btn" onClick={{}}>GENERATE</button>
                                 </div>
                             </div>
+
+
                             <br />
                             <div class="add-new-btnw">
                                 <a href="#" class="outline-btn">EXPORT</a>

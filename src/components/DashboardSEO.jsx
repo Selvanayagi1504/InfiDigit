@@ -1,24 +1,21 @@
 import React, { useEffect } from "react";
 import {useState} from "react";
-import {Dropdown} from 'react-bootstrap'
+// import {Dropdown} from 'react-bootstrap'
 import { Link } from "react-router-dom";
-import {
-  
-  UncontrolledButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from "reactstrap";
+import { UncontrolledButtonDropdown,DropdownToggle,DropdownMenu,DropdownItem} from "reactstrap";
 import Chart from "react-google-charts";
 import "antd/dist/antd.css";
 import { Table, Breadcrumb } from "antd";
 import {useLocation} from "react-router-dom";
-
 import DateRangePicker from "react-bootstrap-daterangepicker";
 import "bootstrap-daterangepicker/daterangepicker.css";
 import $ from 'jquery'
 import { customRanges } from "./functions";
 import moment from "moment";
+import { NotificationSEO } from "./index";
+import 'rsuite/dist/rsuite.css';
+import Dashboard from '@rsuite/icons/legacy/Dashboard';
+import { Sidenav, Nav, Dropdown } from 'rsuite';
 const datePickerHandler = (event, picker) => {
     let value =
       picker.startDate.format("DD-MM-YYYY") +
@@ -80,7 +77,7 @@ function DashboardSEO() {
         key:"healthscore",
       },
       {
-        title:"Total Score",
+        title:"Toxic Score",
         dataIndex:"totalscore",
         key:"totalscore"
       }
@@ -111,7 +108,7 @@ function DashboardSEO() {
       {
         title:"Ticket #",
         dataIndex:"ticketno",
-        key:"ticketno"
+        key:"ticketno",
       },
       {
         title:"Status",
@@ -211,41 +208,40 @@ return (
       <div class="nav-bar-right">
         <ul class="list-unstyled nav-right-menu">
           <li>
-            <Dropdown id="notification-dropdown">
+            {/* <Dropdown id="notification-dropdown">
                 <Dropdown.Toggle id="dropdown-basic">
                 <i class="fa fa-bell"></i>
                 </Dropdown.Toggle>
-
                 <Dropdown.Menu>
                     <Dropdown.Item href="">
                         <div className="notification-item">
-                            <h4>Raj - Welcome here!!</h4>
+                            <h4>Notification 1!!</h4>
                             <p>21 hours ago..</p>
                         </div>
                     </Dropdown.Item>
                     <hr />
-                    <Dropdown.Item href="">
-                        <div className="notification-item">
-                            <h4>Raj - You are</h4>
+                    <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                        <div className="notification-item" >
+                            <h4>Notification 2!!</h4>
                             <p>8 hours ago..</p>
                         </div>
                     </Dropdown.Item>
                 </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
+        <NotificationSEO/>
+
           </li>
           <li class="dropdown">
             <button onClick={()=>{setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-            <span class="profile-name">M.Subash</span>
+            <span class="profile-name">SEO</span>
           </button>
             
               
               
               <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a href="">Profile</a></li>
-                <li><a href="myclients.html" data-target="myclients.html">My Clients</a></li>
-                <li><a href="myprojects.html" data-target="myprojects.html">My Projects</a></li>
-                <li><a href="">Change Password</a></li>
+                <li><a href="/profile">Profile</a></li>
+               
                 <li><a href="/">Log Out</a></li>
               </ul>
             
@@ -255,10 +251,8 @@ return (
       <div class="clearfix"></div>
     </div>
   <div class="sidebar-nav-bar">
-    <ul class="list-unstyled side-menu">
-      {/* <li>
-        <a href=""><i class="fa fa-columns"></i> Dashboard <i class="fa fa-angle-right"  aria-hidden="true"></i></a>
-      </li> */}
+    {/* <ul class="list-unstyled side-menu">
+     
       <li>
         <UncontrolledButtonDropdown className="uncontrolled">
           <DropdownToggle caret size="md" >
@@ -277,7 +271,40 @@ return (
       </li>
       <li><a href="sub-projects"><i class="fa fa-tasks"></i> Projects</a></li>
       <li><a href="ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
-    </ul>
+    </ul> */}
+    {/* <SideNavSEO/> */}
+    <Sidenav class="sidenav-seo">
+            <Sidenav.Body>
+            <Nav>
+                {/* <Nav.Item eventKey="1" >
+                Dashboard
+                </Nav.Item>
+                <Nav.Item eventKey="2" >
+                User Group
+                </Nav.Item> */}
+                <Dropdown eventKey="1" title="Dasboard" >
+                  <Dropdown.Menu eventKey="1-1" title="Clients">
+                      {/* <Dropdown.Item eventKey="1-1-1">Myntra</Dropdown.Item>
+                      <Dropdown.Item eventKey="1-1-2">Amazon</Dropdown.Item> */}
+                      <Dropdown.Menu eventKey="1-1-1" title="Myntra">
+                        <Dropdown.Item eventKey="1-1-1-1" onClick={()=>{setproj("Myntra - Myntra Shoes");}}>Myntra Shoes</Dropdown.Item>
+                        <Dropdown.Item eventKey="1-1-1-2" onClick={()=>{setproj("Myntra - Myntra Loafers");}}>Myntra Loafers</Dropdown.Item>
+                      </Dropdown.Menu>
+                      <Dropdown.Menu eventKey="1-1-2" title="Amazon">
+                        <Dropdown.Item eventKey="1-1-2-1" onClick={()=>{setproj("Amazon - Fashion");}}>Fashion</Dropdown.Item>
+                        <Dropdown.Item eventKey="1-1-2-2" onClick={()=>{setproj("Amazon - Jewellery");}}>Jewellery</Dropdown.Item>
+                      </Dropdown.Menu>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <Nav.Item eventKey="2" >
+                <i class="fa fa-tasks" style={{marginRight:8+'px'}}></i>Projects
+                </Nav.Item>
+                <Nav.Item eventKey="3" >
+                <i class="fa fa-ticket" style={{marginRight:8+'px'}}></i>Tickets
+                </Nav.Item>
+            </Nav>
+            </Sidenav.Body>
+        </Sidenav>
   </div>
   <div class="content-wrapper">
     <div class="dashboard-wrapper main-dashboard">
@@ -294,10 +321,16 @@ return (
               <div class="col-sm-5 pad-lzero">
                 <div class="main-title">{proj}</div>
               </div>
+              <div className="col-sm-7 add-new-btnw">
+                <button class="outline-btn">Customize</button>
+              </div>
+            </div>
+            <div className="add-new-btnw max-min">
+              {ticketmin?<i class="fa fa-window-minimize" aria-hidden="true" onClick={()=>setticketmin(!ticketmin)}></i>:<i class="fa fa-window-maximize" aria-hidden="true" onClick={()=>setticketmin(!ticketmin)}></i>}
             </div>
             <div className="row">
-              <div className="col-lg-7">
-                <div className="add-new-btnw">
+              <div className="col-lg-7" id={!ticketmin?"full":""}>
+              <div className="add-new-btnw" style={{marginBottom:64+'px'}}>
                   <label htmlFor="" style={{marginRight:24+'px'}}>Date Range</label>
                   <DateRangePicker
                     class="date-range"
@@ -321,28 +354,6 @@ return (
                         <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
                     </DateRangePicker>
                 </div>
-              </div>
-              <div className="col-lg-1"></div>
-              <div className="col-lg-4">
-                <div className="row tickets-heading">
-                  <div className="col-lg-5">
-                    <h4>Tickets</h4>
-                    <MyFDate />
-                  </div>
-                  <div className="col-lg-3">
-                    <a href ="ticketslist">View all Tickets</a>
-                  </div>
-                  <div className="col-lg-1"></div>
-                  <div className="col-lg-1">
-                    {ticketmin?<i class="fa fa-window-minimize" aria-hidden="true" onClick={()=>setticketmin(!ticketmin)}></i>:<i class="fa fa-window-maximize" aria-hidden="true" onClick={()=>setticketmin(!ticketmin)}></i>}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr/>
-            <div className="row">
-              <div className="col-lg-7" id={!ticketmin?"full":""}>
-                
                 
                 <div class={!ticketmin?"charts-flex":""}>
                   <div class="charts-main-box">
@@ -454,21 +465,31 @@ return (
                 <div className="audit-score-title">
                   Health Audit Score
                 </div>
-                <Table id="sample-module-expand" columns={healthauditcol} dataSource={healthaudit} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
+                <Table id="sample-module-expand" columns={healthauditcol} dataSource={healthaudit} pagination={{position:[]}} />
                 <div className="full-report"><a>View full report</a></div>
               </div>
-              <div className="col-lg-1"></div>
-              <div className="col-lg-4 tickets">
-                
+              
+              <div className="col-lg-5 tickets">
+              <div className="row tickets-heading">
+                  <div className="col-lg-5">
+                    <h4>Tickets</h4>
+                    <MyFDate />
+                  </div>
+                  <div className="col-lg-3">
+                    <a href ="ticketslist">View all Tickets</a>
+                  </div>
+                  <div className="col-lg-1"></div>
+                  
+                </div>
                 {
                   ticketmin
                   ?
                     <>
-                      <Table id="sample-module-expand" columns={ticketscol} dataSource={ticketstable} pagination={{position:[]}} />
+                      <Table id="sample" columns={ticketscol} dataSource={ticketstable} pagination={{position:[]}} />
                       <div className="audit-score-title">
                         Waiting for Approval
                       </div>
-                      <Table id="sample-module-expand" columns={ticketscolWait} dataSource={ticketstableWait} pagination={{position:[]}} />
+                      <Table id="sample" columns={ticketscolWait} dataSource={ticketstableWait} pagination={{position:[]}} />
                     </>
                   :
                     <>

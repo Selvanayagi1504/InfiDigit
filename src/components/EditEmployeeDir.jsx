@@ -48,7 +48,7 @@ const pieOptions = {
     },
   };
 
-function EditEmployee() {
+function EditEmployeeDir() {
 const search = useLocation().search;
 const id = new URLSearchParams(search).get('id');
  const [show,setshow]= useState(false);
@@ -193,7 +193,7 @@ return (
                     <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                            <span class="profile-name">M.Subash</span>
+                            <span class="profile-name">Director</span>
                         </button>
 
 
@@ -212,9 +212,10 @@ return (
 
         <div class="sidebar-nav-bar">
             <ul class="list-unstyled side-menu">
-                <li><a href="dashboard.html"><i class="fa fa-columns"></i> Dashboard</a></li>
-
-                <li><a href="/team-members"><i class="fa fa-users"></i> Team Members</a></li>
+            <li><a href="/dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
+      <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
+      <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
+      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
             </ul>
         </div>
 
@@ -223,10 +224,13 @@ return (
             <Breadcrumb>
                 <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
                 <Breadcrumb.Item>
-                <a href="/team-members">Team Members</a>
+                <a href="/dashboard">Dashboard</a>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                <a href="/edit-employee">Edit Team Members</a>
+                <a href="/team-members-sales-dir">Team Members</a>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item>
+                <a href="/edit-employee-dir">Edit Team Members</a>
                 </Breadcrumb.Item>
             </Breadcrumb>
                 <div class="row">
@@ -335,4 +339,4 @@ return (
 );
 }
 
-export default EditEmployee;
+export default EditEmployeeDir;

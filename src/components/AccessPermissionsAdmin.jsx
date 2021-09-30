@@ -1,19 +1,14 @@
 import React from "react";
-import Chart from "react-google-charts";
 import {useState, useEffect} from "react";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { Button,Modal} from 'react-bootstrap';  
-import { default as ReactSelect } from "react-select";
-import { components } from "react-select";
 import "antd/dist/antd.css";
-import { Table, Input,  Row,  Col, Checkbox } from "antd";
+import { Breadcrumb } from "antd";
 import {Dropdown} from 'react-bootstrap'
-import Item from "antd/lib/list/Item";
 
 
 
 
-function ModuleExpandDesignation() {
+
+function AccessPermissionsAdmin() {
     const [sidenav,setsidenav] = useState(false);
     const [option, setoption] = useState('Director');
     const [data,setData]= useState(
@@ -409,86 +404,90 @@ function ModuleExpandDesignation() {
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
-                            <li><a href="">DA/ PA Checker</a></li>
-                            <li><a href="module-expand-google-trends">Google Trends</a></li>
-                            <li><a href="module-expand-page-speed">Page Speed and Core Web Vitals</a></li>
-                            <li><a href="">Click Share</a></li>
-                            <li><a href="module-expand-rank-tracking">Rank Tracking</a></li>
-                            <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
-                            <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
-                            <li><a href="">Organic Research module</a></li>
-                            <li><a href="content-word-count">Content Word Count</a></li>
+                            <li><a href="/dashboard-admin"> Audit</a></li>
+                            <li><a href="">Access Permissions</a></li>
                         </ul>
                     </div>
-                    
-                            <div className="row ">
-                                <div className="col-md-3 my-3 my-md-0"><h2>Choose Designation</h2></div>
-                                <div className="col-md-6 "></div>
-                                <div className="col-md-2 my-3 my-md-0">
-                                    <select id="choose" onChange={()=>{setoption(document.getElementById('choose').value)}}>
-                                        <option value="Director">Director</option>
-                                        <option value="HR">HR</option>
-                                        <option value="Sales">Sales</option>
-                                        <option value="SEO">SEO</option>
-                                    </select>
-                                </div>
-                                <div className="col-md-1 my-3 my-md-0"><button className="outline-btn" onClick={checkbox}>Save</button></div>
+                    <Breadcrumb>
+                        <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <a href="/dashboard-admin">Audit</a>
+                        </Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <a href="/access-permissions-admin">Access Permissions</a>
+                        </Breadcrumb.Item>
+                    </Breadcrumb>
+                    <div className="row ">
+                        <div className="col-md-3 my-3 my-md-0"><h2>Access Permissions</h2></div>
+                        <div className="col-md-6 "></div>
+                        <div className="col-md-2 my-3 my-md-0">
+                            <select id="choose" onChange={()=>{setoption(document.getElementById('choose').value)}}>
+                                <option value="Director">Director</option>
+                                <option value="HR">HR</option>
+                                <option value="Sales">Sales</option>
+                                <option value="SEO">SEO</option>
+                            </select>
+                        </div>
+                        <div className="col-md-1 my-3 my-md-0"><button className="outline-btn" onClick={checkbox}>Save</button></div>
+                    </div>
+                    <div className="designation-box mt-5">
+                        <div className="row my-3 px-3 py-5 align-item-center justify-content-between">
+                            <div className="col-2 ">
+                                <h4>Client</h4>
                             </div>
-                            <div className="designation-box mt-5">
-                                <div className="row my-3 px-3 py-5 align-item-center justify-content-between">
-                                    <div className="col-2 ">
-                                        <h4>Client</h4>
-                                    </div>
+                    {
+                        data.map(item=>{
+                            if(item.designation==option){
+                                return(
+                                    item.clientDataFields.map(item=>{
+                                        return(
+                                        <div className="col-md-2">
+                                            <label><input defaultChecked={item.checked} onChange={()=>{item.checked=!item.checked}}  style={{ madginRight: "10px" }} type="checkbox" /> {item.field} </label>
+                                        
+                                        </div>
+                                        )
+                                    })     
+                                )     
+                            } 
+                        }) 
+                    }
+                    
+                    </div>
+                    </div>
+                    <div className="designation-box">
+
+                        <div className="row my-3 px-3 py-5 align-item-center justify-content-between">
+                            <div className="col-md-2 ">
+                                <h4>Team Member</h4>
+                            </div>
+                            {
+                        data.map(item=>{
+                            if(item.designation==option){
+                                return(
+                                    item.teamMemberDataFields.map(item=>{
+                                        return(
+                                        <div className="col-md-2">
+                                            <label><input defaultChecked={item.checked} onChange={()=>{item.checked=!item.checked}} style={{ madginRight: "10px" }} type="checkbox" /> {item.field} </label>
+                                        </div>
+                                        )
+                                    })     
+                                )     
+                            } 
+                        }) 
+                    }
+                        </div>
+                    </div>
+                    <div className="designation-box">
+
+                        <div className="row my-3 px-3 py-5 align-item-center justify-content-between">
+                            <div className="col-md-2 ">
+                                <h4>Modules</h4>
+                            </div>
                             {
                                 data.map(item=>{
                                     if(item.designation==option){
                                         return(
-                                            item.clientDataFields.map(item=>{
-                                                return(
-                                                <div className="col-md-2">
-                                                    <label><input defaultChecked={item.checked} onChange={()=>{item.checked=!item.checked}}  style={{ madginRight: "10px" }} type="checkbox" /> {item.field} </label>
-                                                
-                                                </div>
-                                                )
-                                            })     
-                                        )     
-                                    } 
-                                }) 
-                            }
-                            
-                            </div>
-                            </div>
-                            {/* <div className="designation-box">
-                                <div className="row my-3 px-3 py-4 align-item-center justify-content-between">
-                                    <div className="col-2 ">
-                                        <h4>Client</h4>
-                                    </div>
-                                    <div className="col-md-2">
-                                        <label><input style={{ marginRight: "10px" }} type="checkbox" /> Add </label>
-                                    </div>
-                                    <div className="col-md-2">
-                                        <label><input style={{ marginRight: "10px" }} type="checkbox" /> Update </label>
-                                    </div>
-                                    <div className="col-md-2">
-                                        <label><input style={{ marginRight: "10px" }} type="checkbox" /> Activate/Deactivate </label>
-                                    </div>
-                                    <div className="col-md-2">
-                                        <label><input style={{ marginRight: "10px" }} type="checkbox" /> View </label>
-                                    </div>
-                                </div>
-                            </div> */}
-                            
-                            <div className="designation-box">
-
-                                <div className="row my-3 px-3 py-5 align-item-center justify-content-between">
-                                    <div className="col-md-2 ">
-                                        <h4>Team Member</h4>
-                                    </div>
-                                    {
-                                data.map(item=>{
-                                    if(item.designation==option){
-                                        return(
-                                            item.teamMemberDataFields.map(item=>{
+                                            item.modulesDataFields.map(item=>{
                                                 return(
                                                 <div className="col-md-2">
                                                     <label><input defaultChecked={item.checked} onChange={()=>{item.checked=!item.checked}} style={{ madginRight: "10px" }} type="checkbox" /> {item.field} </label>
@@ -499,81 +498,58 @@ function ModuleExpandDesignation() {
                                     } 
                                 }) 
                             }
-                                </div>
-                            </div>
-                            <div className="designation-box">
+                        </div>
+                    </div>
+                    <div className="designation-box">
 
-                                <div className="row my-3 px-3 py-5 align-item-center justify-content-between">
-                                    <div className="col-md-2 ">
-                                        <h4>Modules</h4>
-                                    </div>
-                                    {
-                                        data.map(item=>{
-                                            if(item.designation==option){
-                                                return(
-                                                    item.modulesDataFields.map(item=>{
-                                                        return(
-                                                        <div className="col-md-2">
-                                                            <label><input defaultChecked={item.checked} onChange={()=>{item.checked=!item.checked}} style={{ madginRight: "10px" }} type="checkbox" /> {item.field} </label>
-                                                        </div>
-                                                        )
-                                                    })     
-                                                )     
-                                            } 
-                                        }) 
-                                    }
-                                </div>
+                        <div className="row my-3 px-3 py-5 align-item-center justify-content-between">
+                            <div className="col-md-2 ">
+                                <h4>Projects</h4>
                             </div>
-                            <div className="designation-box">
-
-                                <div className="row my-3 px-3 py-5 align-item-center justify-content-between">
-                                    <div className="col-md-2 ">
-                                        <h4>Projects</h4>
-                                    </div>
-                                    {
-                                        data.map(item=>{
-                                            if(item.designation==option){
+                            {
+                                data.map(item=>{
+                                    if(item.designation==option){
+                                        return(
+                                            item.projectsDataFields.map(item=>{
                                                 return(
-                                                    item.projectsDataFields.map(item=>{
-                                                        return(
-                                                        <div className="col-md-2">
-                                                            <label><input defaultChecked={item.checked} onChange={()=>{item.checked=!item.checked}} style={{ madginRight: "10px" }} type="checkbox" /> {item.field} </label>
-                                                        </div>
-                                                        )
-                                                    })     
-                                                )     
-                                            } 
-                                        }) 
-                                    }
-                                    <div className="col-md-2"></div>
-                                </div>
-                            </div>
-                            <div className="designation-box">
-
-                                <div className="row my-3 px-3 py-5 align-item-center justify-content-between">
-                                    <div className="col-md-2 ">
-                                        <h4>Project Configurations</h4>
-                                    </div>
-                                    {
-                                        data.map(item=>{
-                                            if(item.designation==option){
-                                                return(
-                                                    item.projectConfigDataFields.map(item=>{
-                                                        return(
-                                                        <div className="col-md-2">
-                                                            <label><input defaultChecked={item.checked} onChange={()=>{item.checked=!item.checked}} style={{ madginRight: "10px" }} type="checkbox" /> {item.field} </label>
-                                                        </div>
-                                                        )
-                                                    })     
-                                                )     
-                                            } 
-                                        }) 
+                                                <div className="col-md-2">
+                                                    <label><input defaultChecked={item.checked} onChange={()=>{item.checked=!item.checked}} style={{ madginRight: "10px" }} type="checkbox" /> {item.field} </label>
+                                                </div>
+                                                )
+                                            })     
+                                        )     
+                                    } 
+                                }) 
                             }
-                                <div className="col-md-2"></div>
-                                <div className="col-md-2"></div>
+                            <div className="col-md-2"></div>
+                        </div>
+                    </div>
+                    <div className="designation-box">
 
-                                </div>
+                        <div className="row my-3 px-3 py-5 align-item-center justify-content-between">
+                            <div className="col-md-2 ">
+                                <h4>Project Configurations</h4>
                             </div>
+                            {
+                                data.map(item=>{
+                                    if(item.designation==option){
+                                        return(
+                                            item.projectConfigDataFields.map(item=>{
+                                                return(
+                                                <div className="col-md-2">
+                                                    <label><input defaultChecked={item.checked} onChange={()=>{item.checked=!item.checked}} style={{ madginRight: "10px" }} type="checkbox" /> {item.field} </label>
+                                                </div>
+                                                )
+                                            })     
+                                        )     
+                                    } 
+                                }) 
+                    }
+                        <div className="col-md-2"></div>
+                        <div className="col-md-2"></div>
+
+                        </div>
+                    </div>
                            
                         
                 </div>
@@ -584,4 +560,4 @@ function ModuleExpandDesignation() {
     );
 }
 
-export default ModuleExpandDesignation;
+export default AccessPermissionsAdmin;

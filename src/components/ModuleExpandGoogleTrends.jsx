@@ -212,7 +212,7 @@ function ModuleExpandGoogleTrends() {
     }
     return (
         <>
-            <section class="outer-wrapper">
+            <section class="outer-wrapper module-expand-GT">
             <div class="top-nav-bar">
                 <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span></div>
                 <div class="nav-bar-center">&nbsp;</div>
@@ -223,23 +223,24 @@ function ModuleExpandGoogleTrends() {
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
                         <li class="dropdown">
@@ -251,7 +252,7 @@ function ModuleExpandGoogleTrends() {
 
 
                                 <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a href="">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
 
                                 <li><a href="/">Log Out</a></li>
                                 </ul>
@@ -320,11 +321,11 @@ function ModuleExpandGoogleTrends() {
                                     allowSelectAll={true}
                                     value={optionSelected}
                                 />
-                                <a href="#" style={{marginLeft:24+"px", height:40+'px'}} class="outline-btn">Generate Report</a>
+                                <a href="#" style={{marginLeft:24+"px", height:40+'px'}} class="outline-btn">Generate</a>
                             </div>
                             
                             <div className="row">
-                                <div className="col-md-4">
+                                <div className="col-lg-4" style={{paddingLeft:12+"px"}}>
                                     <div className="multiselect-google-trends">
                                         <label>Location</label>
                                         <select name="" id="">
@@ -333,7 +334,7 @@ function ModuleExpandGoogleTrends() {
                                         </select>
                                     </div>
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-lg-4" style={{paddingLeft:12+"px"}}>
                                     <div className="multiselect-google-trends">
                                         <label>Type of Search</label>
                                         <select name="" id="">
@@ -341,7 +342,7 @@ function ModuleExpandGoogleTrends() {
                                         </select>
                                     </div>
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-lg-4" style={{paddingLeft:12+"px"}}>
                                     <div className="multiselect-google-trends">
                                         <label>Category</label>
                                         <select name="" id="">

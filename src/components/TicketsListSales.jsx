@@ -51,7 +51,7 @@ function onChange1(date, dateString) {
   console.log(date, dateString);
 }
 
-function TicketsList() {
+function TicketsListSales() {
   const [teamlist, setteamList] = useState([]);
   const [selectionType, setSelectionType] = useState("checkbox");
   const [teamcol, setteamcol] = useState([]);
@@ -402,15 +402,95 @@ function TicketsList() {
   const [sidenav, setsidenav] = useState(false);
   const history = useHistory();
   const addticketnew = () => {
-    history.push("/Tickets");
+    history.push("/tickets-sales");
   };
   return (
     <>
       <section class="outer-wrapper client-list ticket-list">
+        <div class="top-nav-bar">
+          <div class="logo">
+            <a href="">
+              <img src="images/infidigit-logo.png" />
+            </a>{" "}
+            <span>Growth</span>
+          </div>
+          <div class="nav-bar-center">&nbsp;</div>
+          <div class="nav-bar-right">
+            <ul class="list-unstyled nav-right-menu">
+            <li>
+            <Dropdown id="notification-dropdown">
+                        <Dropdown.Toggle id="dropdown-basic">
+                        <i class="fa fa-bell"></i>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Notification 1!!</h4>
+                                    <p>21 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                            <hr />
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
+                                    <p>8 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
 
-      
-        
-         
+
+                    </li>
+
+              <li class="dropdown">
+                <button
+                  onClick={() => {
+                    console.log("hiii");
+                    setsidenav(!sidenav);
+                  }}
+                  class="btn btn-default dropdown-toggle"
+                  type="button"
+                  id="dropdownMenu1"
+                >
+                  <span class="profile-pic">
+                    <img src="images/profile-pic.jpeg" alt="" />
+                  </span>
+                  <span class="profile-name">SEO</span>
+                </button>
+
+                <ul
+                  style={{ display: sidenav ? "block" : "none" }}
+                  class="dropdown-menu"
+                  aria-labelledby="dropdownMenuLink"
+                >
+                  <li>
+                    <a href="/profile">Profile</a>
+                  </li>
+
+                  <li>
+                    <a href="/">Log Out</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="sidebar-nav-bar">
+          <ul class="list-unstyled side-menu">
+          <li><a href="dashboard-sales"><i class="fa fa-columns"></i> Dashboard</a></li>
+        <li><a href="client-list"><i class="fa fa-users"></i> Customers</a></li>
+          </ul>
+        </div>
+        <div class="content-wrapper">
+          <div class="dashboard-wrapper">
+          <Breadcrumb>
+              <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+              <Breadcrumb.Item><a href="/dashboard-sales">Dashboard</a></Breadcrumb.Item>
+              <Breadcrumb.Item><a href="/client-list">Customers</a></Breadcrumb.Item>
+              <Breadcrumb.Item><a href="/ticketslist-sales">Tickets</a></Breadcrumb.Item>
+          </Breadcrumb>
             <div class="row">
               <div class="col-sm-5 pad-lzero">
                 <div class="main-title">TICKET</div>
@@ -436,7 +516,7 @@ function TicketsList() {
               <label
                 style={{
                   
-                  
+                 
                   fontSize: "18px",
                   marginTop: "5px",
                   marginLeft: "5px",
@@ -727,10 +807,11 @@ function TicketsList() {
                 // style={{ border: "2px solid grey" }}
               />
             </div>
-          
+          </div>
+        </div>
       </section>
     </>
   );
 }
 
-export default TicketsList;
+export default TicketsListSales;

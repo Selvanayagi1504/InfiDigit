@@ -31,39 +31,40 @@ return (
             <div class="nav-bar-right">
                 <ul class="list-unstyled nav-right-menu">
                 <li>
-                    <Dropdown id="notification-dropdown">
+                <Dropdown id="notification-dropdown">
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
                     <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                            <span class="profile-name">M.Subash</span>
+                            <span class="profile-name">Sales</span>
                         </button>
 
 
 
                             <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a href="">Profile</a></li>
+                            <li><a href="/profile">Profile</a></li>
 
                             <li><a href="/">Log Out</a></li>
                             </ul>
@@ -76,7 +77,7 @@ return (
 
         <div class="sidebar-nav-bar">
             <ul class="list-unstyled side-menu">
-                <li><a href="dashboard.html"><i class="fa fa-columns"></i> Dashboard</a></li>
+                <li><a href="dashboard-sales"><i class="fa fa-columns"></i> Dashboard</a></li>
 
                 <li><a href="client-list"><i class="fa fa-users"></i> Customers</a></li>
             </ul>
@@ -87,20 +88,19 @@ return (
                 <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
                 <Breadcrumb.Item><a href="/dashboard-sales">Dashboard</a></Breadcrumb.Item>
                 <Breadcrumb.Item>
-                <a href="/client-list">Clients</a>
+                <a href="/client-list">Customers</a>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                <a href="/edit-client">Edit Client</a>
+                <a href="/edit-client">Edit Customers</a>
                 </Breadcrumb.Item>
             </Breadcrumb>
                 <div class="row">
                     <div class="col-sm-5 pad-lzero">
-                        <div class="main-title">EDIT CLIENT</div>
+                        <div class="main-title">EDIT CUSTOMERS</div>
                     </div>
                     <div class="col-sm-7 add-new-btnw">
                     </div>
                 </div>
-
                 <div class="common-wrapper">
 
                     <div class="common-wcard">
@@ -115,22 +115,22 @@ return (
 
                                 <div class="form-wrappers">
                                     <label>Client Code</label>
-                                    <input type="text" name="" placeholder="101" disabled />
+                                    <input type="text" name="" placeholder="10001" disabled />
                                 </div>
 
                                 <div class="form-wrappers">
                                     <label>Organization</label>
-                                    <input type="text" name="" placeholder="Myntra" />
+                                    <input type="text" name="" placeholder="Myntra" disabled />
                                 </div>
 
                                 <div class="form-wrappers">
                                     <label>Key Point of Contact</label>
-                                    <input type="text" name="" placeholder="Raj" />
+                                    <input type="text" name="" placeholder="Raj" disabled />
                                 </div>
 
                                 <div class="form-wrappers">
                                     <label>Status</label>
-                                    <select>
+                                    <select value="Active" disabled>
                                         <option>Active</option>
                                         <option>Lead</option>
                                         <option value="">Prospect</option>
@@ -139,26 +139,30 @@ return (
 
                                 <div class="form-wrappers">
                                     <label>Country</label>
-                                    <select>
-                                        <option>India</option>
-                                        <option>USA</option>
+                                    <select value="India" disabled >
+                                        <option value="India">India</option>
+                                        <option value="USA">USA</option>
                                     </select>
                                 </div>
 
                                 <div class="form-wrappers">
                                     <label>State</label>
-                                    <input type="text" name="" placeholder="Enter State" />
+                                    <input type="text" name="" placeholder="Karnataka" disabled />
                                 </div>
 
                                 <div class="form-wrappers">
                                     <label>City</label>
-                                    <input type="text" name="" placeholder="Enter City" />
+                                    <input type="text" name="" placeholder="Bangalore" disabled />
                                 </div>
 
 
                                 <div class="form-wrappers">
                                     <label>Phone Number</label>
-                                    <input type="text" name="" placeholder="Enter Phone Number" />
+                                    <br />
+                                    <div style={{display:"flex"}}>
+                                        <input type="text" value="+91" style={{width:10+'%', marginRight:16+'px'}} />
+                                        <input type="text" name="" placeholder="8905675841" disabled />
+                                    </div>
                                 </div>
 
                                 <div class="form-wrappers">
@@ -169,9 +173,17 @@ return (
                                 <div class="form-wrappers">
                                     <label>Document Upload</label>
                                     <br />
-                                    <input type="file" id="myfile" name="myfile" multiple onChange={updateList} />
+                                    <input type="file" id="myfile" name="myfile" multiple onChange={updateList} /><label id="fileLabel">{filelist.length>0?`${filelist.length} files`:""}</label>
                                 </div>
-                                <div id="fileList"></div>
+                                <div id="fileList">
+                                    <ul>
+                                    {filelist && filelist.map((i, index)=>{
+                                        return(
+                                            <li id={i}>{i} <i class="fa fa-trash" onClick={()=>{removeItem(i)}}></i></li>
+                                        )
+                                    })}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -182,6 +194,7 @@ return (
                         <li><a href="#" class="outline-btn">Save</a></li>
                     </ul>
                 </div>
+               
             </div>
         </div>
     </section>

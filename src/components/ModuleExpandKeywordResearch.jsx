@@ -14,7 +14,21 @@ import  Card  from "react-bootstrap/Card";
 import { DropDownTreeComponent,CheckBoxSelection, Inject,MultiSelectComponent } from '@syncfusion/ej2-react-dropdowns';
 import {ModuleExpandTickets} from './index';
 
-
+import DateRangePicker from "react-bootstrap-daterangepicker";
+import "bootstrap-daterangepicker/daterangepicker.css";
+import $ from 'jquery'
+import { customRanges } from "./functions";
+import moment from "moment";
+const datePickerHandler = (event, picker) => {
+    let value =
+      picker.startDate.format("DD-MM-YYYY") +
+      " to " +
+      picker.endDate.format("DD-MM-YYYY");
+    $("#date-picker").val(value);
+  };
+  const start = moment().subtract(1, "days");
+  const minDate = moment("01-01-2017", "DD-MM-YYYY");
+  const maxDate = moment();
 
 const Option = (props) => {
     return (
@@ -88,7 +102,18 @@ function ModuleExpandKeywordResearch() {
         setchartdatacomp(data)
         setSearched(search)
         
-        
+        data = [];
+        teamlist.map((i)=>{
+            var l = search.filter(item => item.keyword == i.keyword)
+            
+            if(l.length != 1){
+                data.push(i)
+            }
+            else{
+               
+            }
+        })
+        setteamlistnew(data)
     };
     
     
@@ -101,9 +126,11 @@ function ModuleExpandKeywordResearch() {
     // table
     const [teamlist, setteamList] = useState([]);
     const [selectionType, setSelectionType] = useState('checkbox');
+    const [selectionTypenew, setSelectionTypenew] = useState('checkbox');
+
     const [teamcol,setteamcol] = useState([]);
     const [teamcolHidden,setteamcolHidden] = useState([]);
-
+    const [teamlistnew, setteamlistnew] = useState([])
 
     const [chartdata, setchartdata] = useState([]);
     const [chartdataCompetitor, setchartdatacomp] = useState([]);
@@ -117,17 +144,17 @@ function ModuleExpandKeywordResearch() {
             competition: "Low",
             bids: "₹1.38"
         },{
-            keyword:"Shoe for men",
+            keyword:"Women Slippers",
             volume: 6000,
             competition: "High",
             bids: "₹5.42"
         },{
-            keyword:"Mens shoes",
+            keyword:"Mens sandals",
             volume: 9000,
             competition: "Medium",
             bids: "₹2.84"
         },{
-            keyword:"Comfortable shoes for men",
+            keyword:"Casual wears",
             volume: 3500,
             competition: "High",
             bids: "₹10.38"
@@ -138,9 +165,8 @@ function ModuleExpandKeywordResearch() {
         setteamList(data);
         const columnsHidden = [
             {
-            //   title: "KEYWORD",
+            
               dataIndex: "keyword",
-            //   key: "keyword"
             },
             {
             //   title: "SEARCH VOLUME",
@@ -225,23 +251,24 @@ function ModuleExpandKeywordResearch() {
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
                         <li class="dropdown">
@@ -253,7 +280,7 @@ function ModuleExpandKeywordResearch() {
 
 
                                 <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a href="">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
 
                                 <li><a href="/">Log Out</a></li>
                                 </ul>
@@ -264,9 +291,6 @@ function ModuleExpandKeywordResearch() {
                 <div class="clearfix"></div>
             </div>
 
-
-
-{/* //////////////////////////////////////////// */}
             <div class="content-wrapper">
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
@@ -306,7 +330,7 @@ function ModuleExpandKeywordResearch() {
                             
                         
                            
-                            <div class="row da-pa-top-select">
+                        <div class="row da-pa-top-select">
                                 <div class="col-sm-5 pad-lzero" style={{display:"flex"}}>
                                         <span class="main-title">Keyword Research Details</span>
                                         <span style={{width:50+'%',marginLeft:24+'px'}}>
@@ -314,33 +338,23 @@ function ModuleExpandKeywordResearch() {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-3 my-2">
-                                        <div style={{display:"flex"}} class="add-new-btnw float-left">
-                                            
-                                            <label style={{marginRight:24+'px'}}>Search</label>
-                                                
-                                            <SearchBar onSearch={setSearchValue} value={searchValue} />
-                                            
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3 my-2">
-                                        <div style={{display:"flex"}} class="add-new-btnw float-left">
-                                            
-                                        <label htmlFor="" style={{marginRight:24+'px'}}>Location</label>
-                                            <select>
-                                                <option value="All">All</option>
-                                                <option value="Contains">Bangalore</option>
-                                                <option>Coimbatore</option>
-                                                <option>Chennai</option>
-                                                <option value="regex">Mumbai</option>
-                                            </select>
-                                            
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3 my-2">
-                                        <div style={{display:"flex"}} class="add-new-btnw float-left">
-                                            
-                                        <label htmlFor="" style={{marginRight:24+'px'}}>Language</label>
+                                <div className="col-lg-3 my-2">
+                                    <label style={{marginRight:52+'px'}}>Search</label>
+                                    <SearchBar class="input" onSearch={setSearchValue} value={searchValue} />
+                                    {/* <i className="fa fa-search icon input_img " ></i> */}
+                                </div>
+                                <div className="col-lg-3 my-2">
+                                    <label htmlFor="" style={{marginRight:52+'px'}}>Location</label>
+                                    <select>
+                                        <option value="All">All</option>
+                                        <option value="Contains">Bangalore</option>
+                                        <option>Coimbatore</option>
+                                        <option>Chennai</option>
+                                        <option value="regex">Mumbai</option>
+                                    </select>
+                                </div>
+                                <div className="col-lg-3 my-2">
+                                <label htmlFor="" style={{marginRight:52+'px'}}>Language</label>
                                             <select>
                                                 <option value="All">All</option>
                                                 <option value="Contains">English</option>
@@ -348,70 +362,70 @@ function ModuleExpandKeywordResearch() {
                                                 <option>Hindi</option>
                                                 <option value="regex">Telugu</option>
                                             </select>
-                                            
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3 my-2">
-                                            <div style={{display:"flex"}} class="add-new-btnw float-left">
-                                                
-                                            <label htmlFor="" style={{marginRight:24+'px'}}>Data Source</label>
-                                            <select>
-                                                <option value="All">All</option>
-                                                <option value="Contains">Contains</option>
-                                                <option>Does not Contain</option>
-                                                <option>Exact match</option>
-                                                <option value="regex">Regex</option>
-                                             </select>
-                                                
-                                            </div>
-                                        </div>
-                                   
-                                            
-                                        
-                                
-                                
+                                </div>
+                                <div className="col-lg-3 my-2">
+                                    <label htmlFor="" style={{marginRight:52+'px'}}>Data Source</label>
+                                    <select>
+                                        <option value="All">All</option>
+                                        <option value="Contains">Contains</option>
+                                        <option>Does not Contain</option>
+                                        <option>Exact match</option>
+                                        <option value="regex">Regex</option>
+                                    </select>
+                                </div>
                             </div>
-                           
+                            {/* /////////////////////////////////// */}
                             <div className="row">
-                                        
-                                        <div className="col-md-3 my-2">
-                                            <div style={{display:"flex"}} class="add-new-btnw">
-                                            <label style={{marginRight:24+'px'}}>Select Date Range</label>
-                                                <input style={{marginRight:24+'px'}} type="date"/>
-                                                
-                                                <input type="date"/>
-                                                
-                                            </div>
-                                        </div>
-                                        <div className="col-md-3 my-2 ms-3">
-                                            <div style={{display:"flex"}} class="add-new-btnw">
-                                            <button className="outline-btn-boderless"
+                                <div className="col-lg-3 my-2">
+                                    <label style={{marginRight:24+'px'}}>Select Date Range</label>
+                                    {/* <input style={{marginRight:24+'px'}} type="date"/>    */}
+                                    {/* <input  type="date"/>    */}
+                                    <DateRangePicker
+                    class="date-range"
+                        showDropdowns
+                        ranges={customRanges}
+                        timePickerIncrement={1}
+                    startDate={start}
+                    endDate={maxDate}
+                        minDate={minDate}
+                        maxDate={maxDate}
+                        opens="right"
+                        format="DD-MM-YYYY"
+                        autoUpdateInput={true}
+                        alwaysShowCalendars={true}
+                        linkedCalendars={true}
+                        onApply={datePickerHandler}
+                        autoApply={true}
+                        applyClass="btn btn-sm btn-primary btn-raised"
+                        cancelClass="btn btn-sm btn-flat"
+                      >
+                        <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
+                    </DateRangePicker>
+                                </div>
+                                <div className="col-lg-3 my-2">
+                                    <label htmlFor="" style={{marginRight:52+'px'}}>Condition</label>
+                                        <button className="outline-btn-boderless"
                                                 onClick={() => setOpen(!open)}
                                                 // aria-controls="example-collapse-text"
                                                 // aria-expanded={open}
                                             >
                                                 Add Condition &nbsp; &nbsp; &nbsp;   <i class="fa fa-chevron-down drop"></i>
                                             </button>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-1 my-2 keyword-filter">
-                                            <div style={{display:"flex"}} class="add-new-btnw float-left">
-                                            {/* <div className="row"> */}
-                                                {/* <div className="col-6"> */}
-                                                <label style={{marginRight:24+'px'}}>Filter</label>
-                                                {/* </div> */}
-                                                {/* <div className="col-3 "> */}
+                                </div>
+                                <div className="col-lg-3 my-2">
+                                    {/* <div style={{display:"flex"}} class=""> */}
+                                            <div className="row">
+                                                <div className="col-2 col-lg-1" style={{minWidth:100+'px'}}>
+                                                <label style={{marginRight:22+'px'}}>Filter</label>
+                                                </div>
+                                                <div className="col-lg-6 ms-sm-5" style={{width:205+'px'}}>
                                                 <MultiSelectComponent id="mtselement" popupHeight='200px' fields={fields} dataSource={productData} placeholder="Select  Keywords" mode="CheckBox" enableGroupCheckBox="true" allowFiltering="true" showSelectAll="true" filterBarPlaceholder="Search keywords">
                                                     <Inject services={[CheckBoxSelection]} />
                                                 </MultiSelectComponent>
-                                                {/* </div> */}
                                             </div>
-                                            
-                                            
-                                            {/* </div> */}
-                                        </div>
-                                        
-                                    </div>
+                                            </div>
+                                </div>
+                            </div>
                             
                             
                             <br/>
@@ -426,35 +440,45 @@ function ModuleExpandKeywordResearch() {
                                         <div >
                                             {/* <Collapse in={open} dimension="width"> */}
                                             {open?<><div id="example-collapse-text">
-                                                <Card body className="keyword-card text-center " style={{width: '800px'}}>
-                                                <label htmlFor="" className=" me-5">Metric Type</label>
-                                                <select>
-                                                        <option value="All">All</option>
-                                                        <option value="Contains">Bangalore</option>
-                                                        <option>Coimbatore</option>
-                                                        <option>Chennai</option>
-                                                        <option value="regex">Mumbai</option>
-                                                </select>
-                                                <label htmlFor="" className="ms-5 me-5">Expression</label>
-                                                <select>
-                                                        <option value="All">All</option>
-                                                        <option value="Contains">Bangalore</option>
-                                                        <option>Coimbatore</option>
-                                                        <option>Chennai</option>
-                                                        <option value="regex">Mumbai</option>
-                                                </select>
-                                                <br />
-                                                <br />
-                                                <label className=" me-5">Value</label>
-                                                    <input type="text" placeholder="enter value"/>
-                                                <label htmlFor="" className="ms-5 me-5">Type of match</label>
-                                                <select>
-                                                        <option value="All">All</option>
-                                                        <option value="Contains">Bangalore</option>
-                                                        <option>Coimbatore</option>
-                                                        <option>Chennai</option>
-                                                        <option value="regex">Mumbai</option>
-                                                </select>
+                                            <Card body className="keyword-card text-center mt-5" style={{width: "70%",minWidth: "250px"}}>
+                                                    <div className="row">
+                                                        <div className="col-md-6 my-2">
+                                                        <label htmlFor="" className=" me-2">Metric Type</label>
+                                                        <select>
+                                                                <option value="All">All</option>
+                                                                <option value="Contains">Bangalore</option>
+                                                                <option>Coimbatore</option>
+                                                                <option>Chennai</option>
+                                                                <option value="regex">Mumbai</option>
+                                                        </select>
+                                                        </div>
+                                                        <div className="col-md-6 my-2">
+                                                        <label htmlFor="" className=" me-2">Expression</label>
+                                                        <select>
+                                                                <option value="All">All</option>
+                                                                <option value="Contains">Bangalore</option>
+                                                                <option>Coimbatore</option>
+                                                                <option>Chennai</option>
+                                                                <option value="regex">Mumbai</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                    <div className="row">
+                                                        <div className="col-md-6 my-2">
+                                                            <label className=" me-2">Value</label>
+                                                            <input type="text" placeholder="enter value"/>
+                                                        </div>
+                                                        <div className="col-md-6 my-2">
+                                                        <label htmlFor="" className=" me-2 ">Type of match</label>
+                                                        <select>
+                                                                <option value="All">All</option>
+                                                                <option value="Contains">Bangalore</option>
+                                                                <option>Coimbatore</option>
+                                                                <option>Chennai</option>
+                                                                <option value="regex">Mumbai</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
                                                 </Card>
                                             </div></>:<></>}
                                             
@@ -488,7 +512,7 @@ function ModuleExpandKeywordResearch() {
                                 </div>
                                 <Chart
                                 className="line-graph mt-5"
-                                width={'1200px'}
+                                width={'600px'}
                                 height={'400px'}
                                 chartType="LineChart"
                                 data={chartdataCompetitor}
@@ -515,7 +539,7 @@ function ModuleExpandKeywordResearch() {
                                         </div>
                                         </>
                                 } 
-                                <h2 className="mt-4">Keyword Ideas</h2>
+                                <h2 className="mt-4 keyword-idea-title">Keyword Ideas</h2>
                                 {
                                         searched.length===0?<>
                                         <div>
@@ -526,7 +550,7 @@ function ModuleExpandKeywordResearch() {
                                         <>
                                         <div>
                                             
-                                            <Table id="sample-module-expand" columns={teamcolHidden} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
+                                            <Table id="sample-module-expand-hidden" columns={teamcolHidden} dataSource={teamlistnew} rowSelection={{type: selectionTypenew,...rowSelection,}} pagination={{position:["bottomRight"]}} />
                                         </div>
                                          </>
                                 }

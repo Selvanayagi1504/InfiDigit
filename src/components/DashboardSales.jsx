@@ -15,6 +15,21 @@ import { Table, Breadcrumb } from "antd";
 import Highcharts from 'highcharts';
 import ReactApexChart  from 'react-apexcharts'
 
+import DateRangePicker from "react-bootstrap-daterangepicker";
+import "bootstrap-daterangepicker/daterangepicker.css";
+import $ from 'jquery'
+import { customRanges } from "./functions";
+import moment from "moment";
+const datePickerHandler = (event, picker) => {
+    let value =
+      picker.startDate.format("DD-MM-YYYY") +
+      " to " +
+      picker.endDate.format("DD-MM-YYYY");
+    $("#date-picker").val(value);
+  };
+  const start = moment().subtract(1, "days");
+  const minDate = moment("01-01-2017", "DD-MM-YYYY");
+  const maxDate = moment();
 
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
@@ -118,31 +133,31 @@ function DashboardSales() {
     setticketscolWait(data);
     data = [
       {
-        ticketno: <Link to={{pathname: "/Tickets",search: `?id=1`,state: { detail: "1" },}}>1</Link>,
+        ticketno: <Link to={{pathname: "/tickets-sales",search: `?id=1`,state: { detail: "1" },}}>1</Link>,
         status:"open",
         priority:<div class="high">High</div>,
         raisedon:<div class="today">Today</div>
       },
       {
-        ticketno:<Link to={{pathname: "/Tickets",search: `?id=2`,state: { detail: "2" },}}>2</Link>,
+        ticketno:<Link to={{pathname: "/tickets-sales",search: `?id=2`,state: { detail: "2" },}}>2</Link>,
         status:"open",
         priority:<div class="Low">Low</div>,
         raisedon:<div class="today">Today</div>
       },
       {
-        ticketno:<Link to={{pathname: "/Tickets",search: `?id=3`,state: { detail: "3" },}}>3</Link>,
+        ticketno:<Link to={{pathname: "/tickets-sales",search: `?id=3`,state: { detail: "3" },}}>3</Link>,
         status:"open",
         priority:<div class="Medium">Medium</div>,
         raisedon:<div>20-09-2021</div>
       },
       {
-        ticketno:<Link to={{pathname: "/Tickets",search: `?id=4`,state: { detail: "4" },}}>4</Link>,
+        ticketno:<Link to={{pathname: "/tickets-sales",search: `?id=4`,state: { detail: "4" },}}>4</Link>,
         status:<div class="OverDue">OverDue</div>,
         priority:<div class="Medium">Medium</div>,
         raisedon:<div>18-09-2021</div>
       },
       {
-        ticketno:<Link to={{pathname: "/Tickets",search: `?id=5`,state: { detail: "5" },}}>5</Link>,
+        ticketno:<Link to={{pathname: "/tickets-sales",search: `?id=5`,state: { detail: "5" },}}>5</Link>,
         status:<div class="Inprogress">Inprogress</div>,
         priority:<div class="Low">Low</div>,
         raisedon:<div>15-09-2021</div>
@@ -151,31 +166,31 @@ function DashboardSales() {
     setticketstable(data);
     data = [
       {
-        ticketno: <Link to={{pathname: "/Tickets",search: `?id=11`,state: { detail: "11" },}}>11</Link>,
+        ticketno: <Link to={{pathname: "/tickets-sales",search: `?id=11`,state: { detail: "11" },}}>11</Link>,
         status:"open",
         priority:<div class="high">High</div>,
         raisedon:<div class="today">Today</div>
       },
       {
-        ticketno:<Link to={{pathname: "/Tickets",search: `?id=12`,state: { detail: "12" },}}>12</Link>,
+        ticketno:<Link to={{pathname: "/tickets-sales",search: `?id=12`,state: { detail: "12" },}}>12</Link>,
         status:"open",
         priority:<div class="Low">Low</div>,
         raisedon:<div class="today">Today</div>
       },
       {
-        ticketno:<Link to={{pathname: "/Tickets",search: `?id=13`,state: { detail: "13" },}}>13</Link>,
+        ticketno:<Link to={{pathname: "/tickets-sales",search: `?id=13`,state: { detail: "13" },}}>13</Link>,
         status:"open",
         priority:<div class="Medium">Medium</div>,
         raisedon:<div>20-09-2021</div>
       },
       {
-        ticketno:<Link to={{pathname: "/Tickets",search: `?id=14`,state: { detail: "14" },}}>14</Link>,
+        ticketno:<Link to={{pathname: "/tickets-sales",search: `?id=14`,state: { detail: "14" },}}>14</Link>,
         status:<div class="OverDue">OverDue</div>,
         priority:<div class="Medium">Medium</div>,
         raisedon:<div>18-09-2021</div>
       },
       {
-        ticketno:<Link to={{pathname: "/Tickets",search: `?id=15`,state: { detail: "15" },}}>15</Link>,
+        ticketno:<Link to={{pathname: "/tickets-sales",search: `?id=15`,state: { detail: "15" },}}>15</Link>,
         status:<div class="Inprogress">Inprogress</div>,
         priority:<div class="Medium">Medium</div>,
         raisedon:<div>15-09-2021</div>
@@ -375,41 +390,39 @@ return (
       <div class="nav-bar-right">
         <ul class="list-unstyled nav-right-menu">
           <li>
-                    <Dropdown id="notification-dropdown">
+          <Dropdown id="notification-dropdown">
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
           <li class="dropdown">
             <button onClick={()=>{setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-            <span class="profile-name">M.Subash</span>
+            <span class="profile-name">Sales</span>
           </button>
             
               
               
               <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a href="">Profile</a></li>
-                <li><a href="myclients.html" data-target="myclients.html">My Clients</a></li>
-                <li><a href="myprojects.html" data-target="myprojects.html">My Projects</a></li>
-                <li><a href="">Change Password</a></li>
+                <li><a href="/profile">Profile</a></li>
                 <li><a href="/">Log Out</a></li>
               </ul>
             
@@ -454,35 +467,46 @@ return (
               <div class="col-sm-5 pad-lzero">
                 <div class="main-title">{proj}</div>
               </div>
+              <div className="col-sm-7 add-new-btnw">
+                <button class="outline-btn">Customize</button>
+              </div>
             </div>
             <div className="row">
               <div className="col-lg-7">
-                <div className="add-new-btnw">
-                  <label htmlFor="" style={{marginRight:24+'px'}}>Date Range</label>
-                  <input type="date" style={{marginRight:24+'px'}} />
-                  <input type="date" />
-                </div>
+                
               </div>
               <div className="col-lg-1"></div>
-              <div className="col-lg-4">
-                <div className="row tickets-heading">
-                  <div className="col-lg-5">
-                    <h4>Tickets</h4>
-                    <MyFDate />
-                  </div>
-                  <div className="col-lg-3">
-                    <a href ="ticketslist">View all Tickets</a>
-                  </div>
-                  <div className="col-lg-1"></div>
-                  <div className="col-lg-1">
-                    {ticketmin?<i class="fa fa-window-minimize" aria-hidden="true" onClick={()=>setticketmin(!ticketmin)}></i>:<i class="fa fa-window-maximize" aria-hidden="true" onClick={()=>setticketmin(!ticketmin)}></i>}
-                  </div>
-                </div>
+              <div className="col-lg-4 add-new-btnw">
+              {ticketmin?<i class="fa fa-window-minimize" aria-hidden="true" onClick={()=>setticketmin(!ticketmin)}></i>:<i class="fa fa-window-maximize" aria-hidden="true" onClick={()=>setticketmin(!ticketmin)}></i>}
               </div>
             </div>
-            <hr/>
+            
             <div className="row">
               <div className="col-lg-7" id={!ticketmin?"full":""}>
+              <div className="add-new-btnw" style={{marginBottom:64+'px'}}>
+                  <label htmlFor="" style={{marginRight:24+'px'}}>Date Range</label>
+                  <DateRangePicker
+                    class="date-range"
+                        showDropdowns
+                        ranges={customRanges}
+                        timePickerIncrement={1}
+                    startDate={start}
+                    endDate={maxDate}
+                        minDate={minDate}
+                        maxDate={maxDate}
+                        opens="right"
+                        format="DD-MM-YYYY"
+                        autoUpdateInput={true}
+                        alwaysShowCalendars={true}
+                        linkedCalendars={true}
+                        onApply={datePickerHandler}
+                        autoApply={true}
+                        applyClass="btn btn-sm btn-primary btn-raised"
+                        cancelClass="btn btn-sm btn-flat"
+                      >
+                        <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
+                    </DateRangePicker>
+                </div>
                 <div class={!ticketmin?"charts-flex":""}>
                   <div class="charts-main-box">
                     <div className="row">
@@ -612,9 +636,18 @@ return (
                   </div>
               </div>
 
-              <div className="col-lg-1"></div>
-              <div className="col-lg-4 tickets">
-                
+              
+              <div className="col-lg-5 tickets">
+              <div className="row tickets-heading">
+                  <div className="col-lg-5">
+                    <h4>Tickets</h4>
+                    <MyFDate />
+                  </div>
+                  <div className="col-lg-7 add-new-btnw">
+                    <a href ="ticketslist-sales">View all Tickets</a>
+                  </div>
+                  
+                </div>
                 {
                   ticketmin
                   ?

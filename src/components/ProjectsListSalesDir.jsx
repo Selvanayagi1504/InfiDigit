@@ -28,63 +28,55 @@ function ProjectsListSalesDir() {
         var filterservice=[], filterprojtype=[], filterprojassigned=[], filterclient=[];
         data.push({
             key: 0,
-            projcode:`proj 0`,
-            client:`Myn`,
+            projcode:<a href="edit-project-dir">Proj 0</a>,
+            client:`Myntra`,
             projpoc:"Rahul",
             contractstart: "03/05/2020",
             contractend:"03/05/2021",
             status:"completed",
-            edit:<div><a href="view-client-sales-dir"><i class="fa fa-cog"></i></a><a style={{marginLeft:24+'px'}} href="/module-expand-da">View Report</a></div>
+            edit:<div><a href="/module-expand-da">View Report</a></div>
         });
-        filterprojtype.push({
-          text:"Seller",
-          value:"Seller"
-        })
-        filterprojassigned.push({
-          text:`Ankit`,
-          value:`Ankit`
-      })
-        filterservice.push({
-            text:`website`,
-            value:`website`
-        })
         filterclient.push({
-            text:"Myn",
-            value:"Myn"
+            text:"Myntra",
+            value:"Myntra"
         })
-        for (let i = 1; i < 100; i++) {
+        data.push({
+          key: 0,
+          projcode:<a href="view-client-sales-dir">Proj 1</a>,
+          client:`Myntra`,
+          projpoc:"Rahul",
+          contractstart: "03/05/2020",
+          contractend:"03/05/2021",
+          status:"Lead",
+          edit:<div></div>
+        });
+        data.push({
+          key: 0,
+          projcode:<a href="view-client-sales-dir">Proj 2</a>,
+          client:`Myntra`,
+          projpoc:"Rahul",
+          contractstart: "03/05/2020",
+          contractend:"03/05/2021",
+          status:"Prospect",
+          edit:<div></div>
+      });
+        for (let i = 3; i < 100; i++) {
         data.push({
             key: i,
-            projcode:`proj ${i}`,
-            client:`Myntra ${i}`,
+            projcode:<a href="edit-project-dir">proj {i}</a>,
+            client:`Cultfit`,
             projpoc:"Rahul",
             contractstart: "03/05/2020",
             contractend:"03/05/2021",
             status:"active",
-            edit:<div><a href="view-client-sales-dir"><i class="fa fa-cog"></i></a><a style={{marginLeft:24+'px'}} href="/module-expand-da">View Report</a></div>
+            edit:<div><a href="/module-expand-da">View Report</a></div>
 
         });
-        filterprojtype.push({
-          text:"Retainer",
-          value:"Retainer"
-        })
-        filterprojassigned.push({
-          text:`Ankit ${i}`,
-          value:`Ankit ${i}`
-        })
-        filterservice.push({
-            text:`website ${i}`,
-            value:`website ${i}`
-        })
         filterclient.push({
-            text:`Myntra ${i}`,
-            value:`Myntra ${i}`
+            text:`CultFit`,
+            value:`CultFit`
         })
         }
-        // [...new Map(array.map((x) => [x[key], x])).values()];
-        filterservice = [... new Set(filterservice.map(JSON.stringify))].map(JSON.parse)
-        filterprojtype = [... new Set(filterprojtype.map(JSON.stringify))].map(JSON.parse)
-        filterprojassigned = [... new Set(filterprojassigned.map(JSON.stringify))].map(JSON.parse)
         filterclient = [... new Set(filterclient.map(JSON.stringify))].map(JSON.parse)
 
 
@@ -123,7 +115,7 @@ function ProjectsListSalesDir() {
                 title:"Status",
                 dataIndex:"status",
                 key:"status",
-                filters:[{text:"active", value:"active"},{text:"completed",value:"completed"},{text:"unallocated",value:"unallocated"}],
+                filters:[{text:"active", value:"active"},{text:"completed",value:"completed"},{text:"Lead",value:"Lead"},{text:"Prospect",value:"Prospect"}],
                 filterSearch: true,
                 onFilter: (value, record) => record.status.indexOf(value) === 0
             },
@@ -145,27 +137,28 @@ const [sidenav,setsidenav] = useState(false);
           <div class="nav-bar-right">
             <ul class="list-unstyled nav-right-menu">
             <li>
-                    <Dropdown id="notification-dropdown">
+            <Dropdown id="notification-dropdown">
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
               <li class="dropdown">
@@ -177,7 +170,7 @@ const [sidenav,setsidenav] = useState(false);
 
 
                 <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a href="">Profile</a></li>
+                  <li><a href="/profile">Profile</a></li>
 
                   <li><a href="/">Log Out</a></li>
                 </ul>
@@ -190,20 +183,10 @@ const [sidenav,setsidenav] = useState(false);
 
         <div class="sidebar-nav-bar">
           <ul class="list-unstyled side-menu">
-            <li><a href=""><i class="fa fa-columns"></i> Dashboard</a></li>
-            <li>
-                <Dropdown>
-                <Dropdown.Toggle id="dropdown-basic" className="drop-dire">
-                Sales <i class="fa fa-angle-right side-dropdown"  aria-hidden="true"></i>
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                    <Dropdown.Item href="team-members-sales-dir">Team Members</Dropdown.Item>
-                    <Dropdown.Item href="clinets-sales-dir">Clients</Dropdown.Item>
-                </Dropdown.Menu>
-                </Dropdown>
-            </li>
-            <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
+          <li><a href="/dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
+      <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
+      <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
+      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
 
           </ul>
         </div>
@@ -212,10 +195,10 @@ const [sidenav,setsidenav] = useState(false);
           <Breadcrumb>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>
-              <a href="/edit-project">SEO</a>
+              <a href="/dashboard">Dashboard</a>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
-              <a href="/module-expand-da">View Report</a>
+              <a href="/project-list-sales-dir">Projects</a>
               </Breadcrumb.Item>
           </Breadcrumb>
 
@@ -244,26 +227,31 @@ const [sidenav,setsidenav] = useState(false);
 
             <div class="common-table">
               <div class="row">
-                <div class="col-md-5"></div>
+                <div class="col-md-5">
+                <span class="data-per-page">Data Per page</span>
+                </div>
                 <div class="col-md-7">
                   {/* <div class="row">
                     <div class="col-md-4"></div>
                     <div class="col-md-8"> */}
                       <div class="data-export">
-                        <span class="data-per-page">Data Per page</span>
+                       
                         <span class="count-drop" style={{width:100+'px'}}>
                         </span>
                         <span class="export">
-                          <select id="export" name="export">
-                            <option value="Export">Export</option>
-                            <option value="PDF">Excel</option>
-                            <option value="WORD">CSV</option>
-                            <option value="Sheets">Sheets</option>
-                          </select>
-                        </span>
-                        <span>
+                                        
+                                                <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Export
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-content" href="#">Excel</a>
+                                                    <a class="dropdown-content" href="#">CSV</a>
+                                                    <a class="dropdown-content" href="#">Sheets</a>
+                                                </div>
+                                        
+                                    </span>
                           {/* <button class="Import">Import</button> */}
-                        </span>
+                        
                       {/* </div>
                     </div> */}
                   </div>

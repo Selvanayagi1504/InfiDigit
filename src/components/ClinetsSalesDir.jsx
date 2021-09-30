@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
 import {useHistory} from "react-router-dom";
 import "antd/dist/antd.css";
-import { Table, Input,  Row,  Col } from "antd";
+import { Table, Input,  Row,  Col,Breadcrumb } from "antd";
 import {Dropdown} from 'react-bootstrap'
 
 
@@ -25,15 +25,15 @@ function ClinetsSalesDir() {
         var filtercity=[], filterstatus=[];
         data.push({
           key: 0,
-          id:0,
-          name:<Link to={{pathname: '/edit-client', search: `?id=0`,state: { detail: "1" }}}> Myntra 0 </Link>,
+        //   id:0,
+          name:<Link to={{pathname: '/edit-client-dir', search: `?id=0`,state: { detail: "1" }}}> Myntra 0 </Link>,
           clientid:`100`,
           poc:`Raj 0`,
           date: "03/05/2020",
           city: "Chennai",
           status:`Lead`,
           actde:<label class="switch"><input type="checkbox" /><span class="slider round"></span></label>,
-            view:<div><i class="fa fa-trash" style={{marginRight:24+'px', color:"#0d6efd"}}></i><a href="project-sales-dir">View Project</a></div>
+            view:<div><i class="fa fa-trash" style={{marginRight:24+'px', color:"#0d6efd"}}></i></div>
         });
         filtercity.push({
             text:"Chennai",
@@ -46,15 +46,15 @@ function ClinetsSalesDir() {
         for (let i = 1; i < 100; i++) {
         data.push({
             key: i,
-            id:i,
-            name:<Link to={{pathname: '/edit-client', search: `?id=${i}`,state: { detail: "1" }}}> Myntra {i} </Link>,
+            // id:i,
+            name:<Link to={{pathname: '/edit-client-dir', search: `?id=${i}`,state: { detail: "1" }}}> Myntra {i} </Link>,
             clientid:`10${i}`,
             poc:`Raj ${i}`,
             date: "03/05/2020",
             city: "Bangalore",
-            status:`Laed${i}`,
+            status:`Lead${i}`,
             actde:<label class="switch"><input type="checkbox" /><span class="slider round"></span></label>,
-            view:<div><i class="fa fa-trash" style={{marginRight:24+'px', color:"#0d6efd"}}></i><a href="project-sales-dir">View Project</a></div>
+            view:<div><i class="fa fa-trash" style={{marginRight:24+'px', color:"#0d6efd"}}></i></div>
         });
         filtercity.push({
           text:"Bangalore",
@@ -71,11 +71,7 @@ function ClinetsSalesDir() {
         setsearch(data);
         setteamList(data);
         const columns = [
-            {
-              title: "#",
-              dataIndex: "id",
-              key: "id"
-            },
+            
             {
               title: "Name",
               dataIndex: "name",
@@ -135,39 +131,40 @@ function ClinetsSalesDir() {
             <div class="nav-bar-right">
                 <ul class="list-unstyled nav-right-menu">
                 <li>
-                    <Dropdown id="notification-dropdown">
+                <Dropdown id="notification-dropdown">
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
                     <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                            <span class="profile-name">M.Subash</span>
+                            <span class="profile-name">Director</span>
                         </button>
 
 
 
                         <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a href="">Profile</a></li>
+                            <li><a href="/profile">Profile</a></li>
 
                             <li><a href="/">Log Out</a></li>
                         </ul>
@@ -180,7 +177,7 @@ function ClinetsSalesDir() {
 
         <div class="sidebar-nav-bar">
             <ul class="list-unstyled side-menu">
-                <li><a href="dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
+                {/* <li><a href="dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
                 <li>
         <Dropdown>
           <Dropdown.Toggle id="dropdown-basic" className="drop-dire">
@@ -193,17 +190,28 @@ function ClinetsSalesDir() {
           </Dropdown.Menu>
         </Dropdown>
       </li>
+      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li> */}
+      <li><a href="/dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
+      <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
+      <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
       <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
             </ul>
         </div>
         <div class="content-wrapper">
             <div class="dashboard-wrapper">
+            <Breadcrumb>
+                <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+                <Breadcrumb.Item><a href="/dashboard">Dashboard</a></Breadcrumb.Item>
+                <Breadcrumb.Item>
+                <a href="/client-list-dir">Clients</a>
+                </Breadcrumb.Item>
+            </Breadcrumb>
                 <div class="row">
                     <div class="col-sm-5 pad-lzero">
                         <div class="main-title">CLIENTS</div>
                     </div>
                     <div class="col-sm-7 add-new-btnw">
-                        <a href="create-client" class="outline-btn">Add New</a>
+                        <a href="edit-client-dir" class="outline-btn">Add New</a>
                     </div>
                 </div>
 
@@ -212,24 +220,18 @@ function ClinetsSalesDir() {
 
                 <div class="common-table" >
                     <div class="row">
-                        <div class="col-md-5"></div>
+                        <div class="col-md-5">
+                        <span class="data-per-page-client">Data Per page</span>
+                        </div>
                         <div class="col-md-7">
                             {/* <div class="row">
                                 <div class="col-md-0"></div>
                                 <div class="col-md-12"> */}
                                     <div class="data-export-client">
-                                        <span class="data-per-page-client">Data Per page</span>
+                                        
                                         <span class="count-drop">
                                         </span>
-                                        <span class="export-client">
-                                            <select id="export-client" name="export">
-                                                <option value="Export">Export</option>
-                                                <option value="PDF">Excel</option>
-                                                <option value="WORD">CSV</option>
-                                                <option value="Sheets">Sheets</option>
-                                            </select>
-                                        </span>
-                                        <span>
+                                        <span style={{marginRight:24+'px'}}>
                                             <Input.Search
                                             allowClear
                                             placeholder="Search By name"
@@ -243,6 +245,19 @@ function ClinetsSalesDir() {
                                             id="input-s"
                                             />
                                         </span>
+                                        <span class="export">
+                                        
+                                                <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Export
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-content" href="#">Excel</a>
+                                                    <a class="dropdown-content" href="#">CSV</a>
+                                                    <a class="dropdown-content" href="#">Sheets</a>
+                                                </div>
+                                        
+                                    </span>
+                                        
                                     </div>
                                 {/* </div>
                             </div> */}

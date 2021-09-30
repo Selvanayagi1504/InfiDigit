@@ -745,7 +745,7 @@ function ModuleExpandGoogleAnalytics() {
     }
     return (
         <>
-            <section class="outer-wrapper">
+            <section class="outer-wrapper module-expand-ga">
             <div class="top-nav-bar">
                 <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span></div>
                 <div class="nav-bar-center">&nbsp;</div>
@@ -756,23 +756,24 @@ function ModuleExpandGoogleAnalytics() {
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
                         <li class="dropdown">
@@ -781,7 +782,7 @@ function ModuleExpandGoogleAnalytics() {
                                 <span class="profile-name">M.Subash</span>
                             </button>
                                 <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a href="">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
 
                                 <li><a href="/">Log Out</a></li>
                                 </ul>
@@ -835,11 +836,11 @@ function ModuleExpandGoogleAnalytics() {
                                             <label>URL</label>
                                         </div>
                                         <div className="col-md-10">
-                                            <input type="text" value="wwww.myntra.com" disabled />
+                                            <input style={{width:93+'%'}} type="text" value="wwww.myntra.com" disabled />
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-8">
                                     <div className="row">
                                         <div className="col-2">
                                             <label htmlFor="">Date Range</label>
@@ -865,7 +866,7 @@ function ModuleExpandGoogleAnalytics() {
                                 </div>
                             </div>
                             <div className="row google-analytics-top-label">
-                                <div className="col-md-4">
+                                <div className="col-md-6">
                                     <div className="row">
                                         <div className="col-md-2">
                                             <label>Segment</label>
@@ -887,10 +888,10 @@ function ModuleExpandGoogleAnalytics() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-6">
-                                    <button class="outline-btn" onClick={()=>generatereportga()}>Generate Report</button>
+                                <div className="col-md-3">
+                                    <button class="outline-btn" style={{marginLeft:-23+'%'}} onClick={()=>generatereportga()}>Generate Report</button>
                                 </div>
-                                <div className="col-md-2 add-new-btnw">
+                                <div className="col-md-3 add-new-btnw">
                                     <button class="outline-btn">Export</button>
                                 </div>
                             </div>

@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { default as ReactSelect } from "react-select";
-import { components } from "react-select";
 import {Dropdown} from 'react-bootstrap'
-
 import { Table, Input, Row, Col, Space, Tag } from "antd";
 import { Select } from "antd";
 import { DatePicker } from "antd";
-
 import Barchart from "../components/barchart";
 import Filter from "./assets/funnel-fill.svg";
 import "antd/dist/antd.css";
+import { Breadcrumb } from 'antd';
+import {
+  
+  UncontrolledButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
 
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
@@ -402,7 +406,7 @@ function TicketsList() {
   };
   return (
     <>
-      <section class="outer-wrapper client-list">
+      <section class="outer-wrapper client-list ticket-list">
         <div class="top-nav-bar">
           <div class="logo">
             <a href="">
@@ -414,27 +418,28 @@ function TicketsList() {
           <div class="nav-bar-right">
             <ul class="list-unstyled nav-right-menu">
             <li>
-                    <Dropdown id="notification-dropdown">
+            <Dropdown id="notification-dropdown">
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
               <li class="dropdown">
@@ -450,7 +455,7 @@ function TicketsList() {
                   <span class="profile-pic">
                     <img src="images/profile-pic.jpeg" alt="" />
                   </span>
-                  <span class="profile-name">M.Subash</span>
+                  <span class="profile-name">SEO</span>
                 </button>
 
                 <ul
@@ -459,7 +464,7 @@ function TicketsList() {
                   aria-labelledby="dropdownMenuLink"
                 >
                   <li>
-                    <a href="">Profile</a>
+                    <a href="/profile">Profile</a>
                   </li>
 
                   <li>
@@ -474,21 +479,35 @@ function TicketsList() {
 
         <div class="sidebar-nav-bar">
           <ul class="list-unstyled side-menu">
-            <li>
-              <a href="dashboard.html">
-                <i class="fa fa-columns"></i> Dashboard
-              </a>
+          <li>
+              <UncontrolledButtonDropdown className="uncontrolled">
+                <DropdownToggle caret size="md" >
+                  Dashboard <i class="fa fa-angle-right"  aria-hidden="true"></i>
+                </DropdownToggle>
+                <DropdownMenu>
+                  <div className="main">Clients</div>
+                  <span><a href="dashboard-seo?id=Myntra"> Myntra </a></span>
+                  <DropdownItem href="dashboard-seo?id=Myntra-Shoes">Myntra Shoes</DropdownItem>
+                  <DropdownItem href="dashboard-seo?id=Myntra-Loafers">Myntra Loafers</DropdownItem>
+                  <span ><a href="dashboard-seo?id=Amazon"> Amazon </a></span>
+                  <DropdownItem href="dashboard-seo?id=Amazon - Fashion">Fashion</DropdownItem>
+                  <DropdownItem href="dashboard-seo?id=Amazon - Jewellery">Jewellery</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledButtonDropdown>
             </li>
-
-            <li>
-              <a href="client-list">
-                <i class="fa fa-users"></i> Customers
-              </a>
-            </li>
+            <li><a href="sub-projects"><i class="fa fa-tasks"></i> Projects</a></li>
+            <li><a href="ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
           </ul>
         </div>
         <div class="content-wrapper">
           <div class="dashboard-wrapper">
+          <Breadcrumb>
+              <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+              <Breadcrumb.Item><a href="/dashboard-seo">Dashboard</a></Breadcrumb.Item>
+              <Breadcrumb.Item>
+              <a href="/ticketslist">Tickets</a>
+              </Breadcrumb.Item>
+          </Breadcrumb>
             <div class="row">
               <div class="col-sm-5 pad-lzero">
                 <div class="main-title">TICKET</div>
@@ -501,7 +520,7 @@ function TicketsList() {
               <div class="col-sm-7 add-new-btnw">
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  class="outline-btn"
                   onClick={addticketnew}
                 >
                   Add New Ticket
@@ -510,19 +529,11 @@ function TicketsList() {
             </div>
             <div
               class="top-ticket-frame"
-              style={{
-                display: "flex",
-                border: "2px solid grey",
-                borderRadius: "5px",
-                paddingBottom: "5px",
-
-                // padding: "5px",
-              }}
             >
               <label
                 style={{
-                  // margin: "10px",
-                  marginRight: "40%",
+                  
+                  
                   fontSize: "18px",
                   marginTop: "5px",
                   marginLeft: "5px",
@@ -532,7 +543,7 @@ function TicketsList() {
               </label>
               <span
                 class="export-client"
-                style={{ marginLeft: "13%", marginTop: "5px" }}
+                style={{ marginLeft: "3%", marginTop: "5px" }}
               >
                 <select id="export-client" name="export">
                   <option value="Export">Export</option>
@@ -541,24 +552,6 @@ function TicketsList() {
                   <option value="Sheets">Sheets</option>
                 </select>
               </span>
-              {/* <input type="text" id="newticket" style={{}} /> */}
-              {/* <select
-                
-                style={{
-                  height: "10px",
-                  padding: "17px",
-                  width: "15%",
-                  marginLeft: "12px",
-                  // marginRight: "20px",
-                  marginTop: "5px",
-                }}
-              >
-                
-                <option>Emp 1</option>
-                <option>Emp 2</option>
-                <option>Emp 3</option>
-                <option>Emp 4</option>
-              </select> */}
               <select
                 style={{ width: "15%", marginTop: "5px", marginLeft: "10px" }}
               >
@@ -572,25 +565,15 @@ function TicketsList() {
 
               <button
                 type="button"
-                class="btn btn-primary"
+                class="outline-btn"
                 onClick={addticket}
-                // style={{
-                //   marginLeft: "10px",
-                //   height: "10px",
-                //   marginBottom: "0px",
-                //   marginTop: "5px",
-                //   padding: "15px",
-                //   top: "0",
-                //   bottom: "0",
-                //   textAlign: "center",
-                //   width: "15%",
-                // }}
+               
                 style={{
-                  backgroundColor: "#0000FF",
+                  
                   marginLeft: "15px",
 
                   width: "8%",
-                  height: "36px",
+                  height: "40px",
                   marginTop: "5px",
                 }}
               >
@@ -605,46 +588,11 @@ function TicketsList() {
             </div>
             <br />
 
-            {/* <Chart
-              width={"600px"}
-              height={"400px"}
-              chartType="ColumnChart"
-              isStacked={true}
-              loader={<div>Loading Chart</div>}
-              data={[
-                ["x", "tickets"],
-                [0, 0],
-                [1, 10],
-                [2, 23],
-                [3, 17],
-                [4, 18],
-                [5, 9],
-                [6, 11],
-                [7, 27],
-                [8, 33],
-                [9, 40],
-                [10, 32],
-                [11, 35],
-              ]}
-              options={{
-                hAxis: {
-                  title: "Status",
-                },
-                vAxis: {
-                  title: "Total",
-                },
-              }}
-              rootProps={{ "data-testid": "1" }}
-            /> */}
 
             {showApplyFilter && (
               <div className="apply-filter">
                 <div>
-                  <div class="main-title-filter">
-                    {" "}
-                    <img src={Filter} alt="filter" class="applyfilterimg" />
-                    Apply filter
-                  </div>
+                  
                 </div>
                 <span>
                   <Input.Search
@@ -844,6 +792,9 @@ function TicketsList() {
                     id="input-s"
                   />
                 </span>
+                <div class="add-new-btnw" style={{marginRight:10+'px',marginBottom:10+'px'}}>
+                    <button class="outline-btn" onClick={() => setShowApplyFilter((prev) => !prev)}>Apply</button>
+                </div>
               </div>
             )}
             <br />
@@ -851,72 +802,16 @@ function TicketsList() {
               <Barchart />
             </div>
 
-            {/* 
-            <div class="row">
-              <div class="col-sm-5 pad-lzero">
-                <div class="main-title">ASSIGN TEAM MEMBERS</div>
-              </div>
-              <div class="col-sm-7 add-new-btnw"></div>
-            </div>
-            <div className="row">
-              <div className="col-md-3">
-                <ReactSelect
-                  options={colourOptions}
-                  isMulti
-                  closeMenuOnSelect={false}
-                  hideSelectedOptions={false}
-                  components={{
-                    Option,
-                  }}
-                  onChange={handleChange}
-                  allowSelectAll={true}
-                  value={optionSelected}
-                />
-              </div>
-              <div className="col-md-3">
-                <button onClick={() => assign()} class="outline-btn">
-                  Assign
-                </button>
-              </div>
-            </div>
-            <hr /> */}
+           
             <div class="common-table">
               <div class="row">
-                <div class="col-md-5"></div>
+                <div class="col-md-5">
+                  <div class="data-per-page">Data Per page</div>
+                </div>
                 <div class="col-md-7">
-                  {/* <div class="row">
-                                <div class="col-md-0"></div>
-                                <div class="col-md-12"> */}
-                  <div class="data-export-client">
-                    {/* <span class="data-per-page-client">Data Per page</span>
-                    <span class="count-drop"></span>
-                    <span class="export-client">
-                      <select id="export-client" name="export">
-                        <option value="Export">Export</option>
-                        <option value="PDF">Excel</option>
-                        <option value="WORD">CSV</option>
-                        <option value="Sheets">Sheets</option>
-                      </select>
-                    </span> */}
-                    {/* input search */}
-                    {/* <span>
-                      <Input.Search
-                        allowClear
-                        placeholder="Search By name"
-                        onSearch={(nameSearch) => {
-                          setteamList(
-                            searchdata.filter((person) =>
-                              person.name.includes(nameSearch)
-                            )
-                          );
-                          console.log(nameSearch);
-                        }}
-                        id="input-s"
-                      />
-                    </span> */}
+                  <div class="add-new-btnw">
+                    <button class="outline-btn">Export</button>
                   </div>
-                  {/* </div>
-                            </div> */}
                 </div>
               </div>
 

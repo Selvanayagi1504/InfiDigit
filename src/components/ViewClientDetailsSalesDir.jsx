@@ -211,23 +211,24 @@ return (
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
                     <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
@@ -238,7 +239,7 @@ return (
 
 
                             <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a href="">Profile</a></li>
+                            <li><a href="/profile">Profile</a></li>
 
                             <li><a href="/">Log Out</a></li>
                             </ul>
@@ -251,19 +252,9 @@ return (
 
         <div class="sidebar-nav-bar">
             <ul class="list-unstyled side-menu">
-                <li><a href="dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
-                <li>
-        <Dropdown>
-          <Dropdown.Toggle id="dropdown-basic" className="drop-dire">
-          Sales <i class="fa fa-angle-right side-dropdown"  aria-hidden="true"></i>
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-              <Dropdown.Item href="team-members-sales-dir">Team Members</Dropdown.Item>
-              <Dropdown.Item href="clinets-sales-dir">Clients</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </li>
+            <li><a href="/dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
+      <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
+      <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
       <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
             </ul>
         </div>
@@ -290,21 +281,6 @@ return (
                                             <label>Client</label>
                                             <input type="text" name="" placeholder="Enter Client" value="Myntra" disabled />
                                         </div>
-
-                                        
-
-                                        {/* <div class="form-wrappers">
-                                            <label>Organization</label>
-                                            <input type="text" name="" placeholder="Enter Organization" value="Myntra" disabled />
-                                        </div> */}
-
-                                        {/* <div class="form-wrappers">
-                                            <label>Assign Team Member</label>
-                                            <select>
-                                                <option>Lead</option>
-                                                <option>Infi</option>
-                                            </select>
-                                        </div> */}
                                     </div>
                                 </div>
                             </div>
@@ -318,29 +294,13 @@ return (
                                 <div class="common-form-fields">
 
                                     <div class="add-user">
-                                        {/* <div class="form-wrappers">
-                                            <label>Phone Number</label>
-                                            <input type="text" name="" placeholder="Enter Phone Number" value="9005678412" disabled />
-                                        </div> */}
+                                      
                                         <div class="form-wrappers">
                                             <label>Client Code</label>
                                             <input type="text" name="" placeholder="Enter Client Code" value="10020" disabled />
                                         </div>
 
-                                        {/* <div class="form-wrappers">
-                                            <label>POC</label>
-                                            <input type="text" name="" placeholder="Enter POC" value="Raj" disabled />
-                                        </div> */}
-
-                                        {/* <div class="form-wrappers">
-                                            <label>Location</label>
-                                            <input type="text" name="" placeholder="Enter Location" value="Bangalore" disabled />
-                                        </div> */}
-
-                                        {/* <div class="form-wrappers">
-                                            <label>Schedule Remainder</label>
-                                            <label class="switch"><input type="checkbox" id="toggle2" onClick={()=>{setactive(!active)}} /><span class="slider round"></span></label>
-                                        </div> */}
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -354,10 +314,7 @@ return (
                                 <div class="common-form-fields">
 
                                     <div class="add-user">
-                                        {/* <div class="form-wrappers">
-                                            <label>Phone Number</label>
-                                            <input type="text" name="" placeholder="Enter Phone Number" value="9005678412" disabled />
-                                        </div> */}
+                                    
                                         
 
                                         <div class="form-wrappers">
@@ -365,27 +322,20 @@ return (
                                             <input type="text" name="" placeholder="Enter POC" value="Raj" disabled />
                                         </div>
 
-                                        {/* <div class="form-wrappers">
-                                            <label>Location</label>
-                                            <input type="text" name="" placeholder="Enter Location" value="Bangalore" disabled />
-                                        </div> */}
-
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div> 
                     </div>
                     
-                        {/* <a href="">Edit Client</a> */}
-                    
-                        {/* <a style={{color:"#0d6efd"}} onClick={()=>handleModal()}>View / Add Notes</a> */}
                 </div>
 
                 <Tabs className="tabs-inner-page-speed">
                     <TabList style={{padding:"unset",marginBottom:24+'px'}}>
                         <Tab>Project Details</Tab>
                         <Tab>Team Members</Tab>
-                        {/* <Tab>Report Generator</Tab> */}
+                        
                     </TabList>
                     <TabPanel>
                         <div class="row">
@@ -573,14 +523,19 @@ return (
                                                         {/* <span class="data-per-page">Data Per page</span>
                                                         <span class="count-drop" style={{width:100+'px'}}>
                                                         </span> */}
-                                                        <span class="export">
-                                                        <select id="export" name="export">
-                                                            <option value="Export">Export</option>
-                                                            <option value="PDF">Excel</option>
-                                                            <option value="WORD">CSV</option>
-                                                            <option value="Sheets">Sheets</option>
-                                                        </select>
-                                                        </span>
+                                                         <span class="export">
+                                        
+                                        <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Export
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-content" href="#">Excel</a>
+                                            <a class="dropdown-content" href="#">CSV</a>
+                                            <a class="dropdown-content" href="#">Sheets</a>
+                                        </div>
+                                
+                            </span>
+                            
                                                         <span>
                                                         </span>
                                                     </div>

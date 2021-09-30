@@ -194,44 +194,43 @@ return (
       <div class="nav-bar-right">
         <ul class="list-unstyled nav-right-menu">
           
-          <li><a href="new-user.html" class="outline-btn ot-btn"><i class="fa fa-plus"></i> Add New User</a></li>
-          <li><a href="client-new.html" class="outline-btn"><i class="fa fa-plus"></i> Add New Client</a></li>
+          {/* <li><a href="new-user.html" class="outline-btn ot-btn"><i class="fa fa-plus"></i> Add New User</a></li>
+          <li><a href="client-new.html" class="outline-btn"><i class="fa fa-plus"></i> Add New Client</a></li> */}
           <li>
-                    <Dropdown id="notification-dropdown">
-                        <Dropdown.Toggle id="dropdown-basic">
-                        <i class="fa fa-bell"></i>
-                        </Dropdown.Toggle>
+            <Dropdown id="notification-dropdown">
+              <Dropdown.Toggle id="dropdown-basic">
+              <i class="fa fa-bell"></i>
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                  <Dropdown.Item href="">
+                      <div className="notification-item">
+                          <h4>Notification 1!!</h4>
+                          <p>21 hours ago..</p>
+                      </div>
+                  </Dropdown.Item>
+                  <hr />
+                  <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                      <div className="notification-item" >
+                          <h4>Notification 2!!</h4>
+                          <p>8 hours ago..</p>
+                      </div>
+                  </Dropdown.Item>
+              </Dropdown.Menu>
+          </Dropdown>
 
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
-                                    <p>21 hours ago..</p>
-                                </div>
-                            </Dropdown.Item>
-                            <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
-                                    <p>8 hours ago..</p>
-                                </div>
-                            </Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    </li>
+
+          </li>
           <li class="dropdown">
             <button onClick={()=>{setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-            <span class="profile-name">M.Subash</span>
+            <span class="profile-name">Director</span>
           </button>
             
               
               
               <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a href="">Profile</a></li>
-                <li><a href="myclients.html" data-target="myclients.html">My Clients</a></li>
-                <li><a href="myprojects.html" data-target="myprojects.html">My Projects</a></li>
-                <li><a href="">Change Password</a></li>
+                <li><a href="/profile">Profile</a></li>
+                
                 <li><a href="/">Log Out</a></li>
               </ul>
             
@@ -243,7 +242,7 @@ return (
   <div class="sidebar-nav-bar">
     <ul class="list-unstyled side-menu">
       <li onClick={()=>{setopenproj(false);}}><a href=""><i class="fa fa-columns"></i> Dashboard</a></li>
-      <li>
+      {/* <li>
         <Dropdown>
           <Dropdown.Toggle id="dropdown-basic" className="drop-dire">
           Sales <i class="fa fa-angle-right side-dropdown"  aria-hidden="true"></i>
@@ -254,9 +253,11 @@ return (
               <Dropdown.Item href="clinets-sales-dir">Clients</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-      </li>
+      </li> */}
+      <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
+      <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
       <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
-      <li>
+      {/* <li>
         <UncontrolledButtonDropdown className="uncontrolled">
           <DropdownToggle caret size="md" >
             Clients <i class="fa fa-angle-right"  aria-hidden="true"></i>
@@ -270,7 +271,7 @@ return (
             <DropdownItem onClick={()=>{setopenproj(true);setproj("Amazon - Jewellery");}}>Jewellery</DropdownItem>
           </DropdownMenu>
         </UncontrolledButtonDropdown>
-      </li>
+      </li> */}
     </ul>
   </div>
   <div class="content-wrapper">

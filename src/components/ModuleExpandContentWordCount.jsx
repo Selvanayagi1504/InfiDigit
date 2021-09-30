@@ -222,23 +222,24 @@ function ModuleExpandContentWordCount() {
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
                         <li class="dropdown">
@@ -250,7 +251,7 @@ function ModuleExpandContentWordCount() {
 
 
                                 <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a href="">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
 
                                 <li><a href="/">Log Out</a></li>
                                 </ul>
@@ -296,8 +297,8 @@ function ModuleExpandContentWordCount() {
                         </TabList>
                         <TabPanel>
                             <div className="row rank-tracking-top-select">
-                                <div className="col-md-4">
-                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Select Url</label>
+                                <div className="col-md-5">
+                                    <label htmlFor="" style={{marginTop:5+'px'}}>Select Url</label>
                                     <ReactSelect
                                         className="da-pa-search"
                                         options={colourOptions1}
@@ -315,8 +316,8 @@ function ModuleExpandContentWordCount() {
                                     />
                                     
                                 </div>
-                                <div className="col-md-4">
-                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Select Keywords</label>
+                                <div className="col-md-5">
+                                    <label htmlFor="" style={{marginTop:5+'px'}}>Select Keywords</label>
                                     <ReactSelect
                                         className="da-pa-search"
                                         options={colourOptions}
@@ -332,7 +333,7 @@ function ModuleExpandContentWordCount() {
                                         
                                     />
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-md-2">
                                     <button style={{marginLeft:24+"px", height:38+'px'}} class="outline-btn" onClick={generatereport1}>Generate</button>
                                 </div>
                             </div>

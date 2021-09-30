@@ -154,12 +154,12 @@ function ModuleExpandSiteUptime() {
         }])
         setkeytablelist([{
             url:"https://www.infidigit.com/",
-            aug1:"25",
-            aug2:"36",
-            aug3:"47",
-            aug4:"32",
-            aug5:"20",
-            aug6:"57"
+            aug1:"0",
+            aug2:"1",
+            aug3:"1",
+            aug4:"0",
+            aug5:"0",
+            aug6:"1"
         }])
         setDisplayTable(true);
     },[])
@@ -218,7 +218,11 @@ function ModuleExpandSiteUptime() {
             data.map((i,index)=>{
                 optionSelected.map((j)=>{
                     var x = j.value; 
-                    data[index][x] = "5";
+                    console.log(i.fields + "index")
+                    if(i.fields == "Meta Title")
+                     data[index][x] = "Shoes For Men";
+                    else if(i.fields == "Meta Description")
+                    data[index][x] = "Men Shoes";
                 })  
             })
             console.log(data)
@@ -264,12 +268,12 @@ function ModuleExpandSiteUptime() {
             b.push({
                 key:i,
                 url:i.value,
-                aug1:"25",
-                aug2:"36",
-                aug3:"47",
-                aug4:"32",
-                aug5:"20",
-                aug6:"57"
+                aug1:"1",
+                aug2:"0",
+                aug3:"0",
+                aug4:"1",
+                aug5:"0",
+                aug6:"1"
             });
         })
         setkeytablelist(b);
@@ -317,23 +321,24 @@ function ModuleExpandSiteUptime() {
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
                         <li class="dropdown">
@@ -345,7 +350,7 @@ function ModuleExpandSiteUptime() {
 
 
                                 <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a href="">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
 
                                 <li><a href="/">Log Out</a></li>
                                 </ul>

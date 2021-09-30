@@ -11,6 +11,21 @@ import { Table, Input,  Row,  Col,Breadcrumb } from "antd";
 import {Dropdown} from 'react-bootstrap'
 import Highcharts from 'highcharts';
 import {ModuleExpandTickets} from './index';
+import DateRangePicker from "react-bootstrap-daterangepicker";
+import "bootstrap-daterangepicker/daterangepicker.css";
+import $ from 'jquery'
+import { customRanges } from "./functions";
+import moment from "moment";
+const datePickerHandler = (event, picker) => {
+    let value =
+      picker.startDate.format("DD-MM-YYYY") +
+      " to " +
+      picker.endDate.format("DD-MM-YYYY");
+    $("#date-picker").val(value);
+  };
+  const start = moment().subtract(1, "days");
+  const minDate = moment("01-01-2017", "DD-MM-YYYY");
+  const maxDate = moment();
 
 const Option = (props) => {
     return (
@@ -176,23 +191,24 @@ function ModuleExpandSEOVolatality() {
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
 
                         <li class="dropdown">
@@ -204,7 +220,7 @@ function ModuleExpandSEOVolatality() {
 
 
                                 <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a href="">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
 
                                 <li><a href="/">Log Out</a></li>
                                 </ul>
@@ -264,14 +280,14 @@ function ModuleExpandSEOVolatality() {
                                 </div>
                                 <div className="col-md-10 seo-right">
                                     <div className="row">
-                                        <div className="col-md-3">
+                                        <div className="col-md-4">
                                             <label htmlFor="">Location</label>
                                             <select name="" id="">
                                                 <option value="">Bangalore</option>
                                                 <option value="">Chennai</option>
                                             </select>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-md-4">
                                             <label htmlFor="">Device Type</label>
                                             <select name="" id="">
                                                 <option value="">Mobile</option>
@@ -279,10 +295,29 @@ function ModuleExpandSEOVolatality() {
                                                 <option value="">Both</option>
                                             </select>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-md-4">
                                             <label htmlFor="">Date Range</label>
-                                            <span><input type="date" /></span>
-                                            <span><input type="date" /></span>
+                                            <DateRangePicker
+                                                class="date-range"
+                                                    showDropdowns
+                                                    ranges={customRanges}
+                                                    timePickerIncrement={1}
+                                                startDate={start}
+                                                endDate={maxDate}
+                                                    minDate={minDate}
+                                                    maxDate={maxDate}
+                                                    opens="right"
+                                                    format="DD-MM-YYYY"
+                                                    autoUpdateInput={true}
+                                                    alwaysShowCalendars={true}
+                                                    linkedCalendars={true}
+                                                    onApply={datePickerHandler}
+                                                    autoApply={true}
+                                                    applyClass="btn btn-sm btn-primary btn-raised"
+                                                    cancelClass="btn btn-sm btn-flat"
+                                                >
+                                                    <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
+                                            </DateRangePicker>
 
                                         </div>
                                     </div>

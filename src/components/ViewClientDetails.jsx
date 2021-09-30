@@ -240,34 +240,35 @@ return (
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+
+
                     </li>
                     <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                            <span class="profile-name">M.Subash</span>
+                            <span class="profile-name">Sales</span>
                         </button>
 
 
 
                             <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a href="">Profile</a></li>
+                            <li><a href="/profile">Profile</a></li>
 
                             <li><a href="/">Log Out</a></li>
                             </ul>
@@ -280,7 +281,7 @@ return (
 
         <div class="sidebar-nav-bar">
             <ul class="list-unstyled side-menu">
-                <li><a href="dashboard.html"><i class="fa fa-columns"></i> Dashboard</a></li>
+                <li><a href="dashboard-sales"><i class="fa fa-columns"></i> Dashboard</a></li>
 
                 <li><a href="client-list"><i class="fa fa-users"></i> Customers</a></li>
             </ul>
@@ -291,7 +292,7 @@ return (
                     <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
                     <Breadcrumb.Item><a href="/dashboard-seo">Dashboard</a></Breadcrumb.Item>
                     <Breadcrumb.Item>
-                    <a href="/client-list">Clients</a>
+                    <a href="/client-list">Customers</a>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item>
                     <a href="/project-list">Projects</a>
@@ -573,10 +574,10 @@ return (
                                 ? 
                                     <>
                                         <div class="add-new-btnw" style={{textAlign:"left"}}>
-                                            <button  class="outline-btn">Edit</button>
+                                            {/* <button  class="outline-btn">Edit</button> */}
                                         </div>
 
-                                        <div class="search" style={{marginTop:-67+'px'}}>
+                                        <div class="search" >
                                             <div class="input-group">
                                                 <Row type="flex" gutter={10} style={{ marginBottom: 10 }}>
                                                     <Col>
@@ -633,10 +634,10 @@ return (
                             </span>
                         </div>
                         <div className="row" style={{marginBottom:24+'px'}}>
-                            <div className="col-sm-9">
-                                <div style={{display:"flex"}} class="add-new-btnw">
+                            <div className="col-lg-9">
+                                <div style={{display:"flex"}} class="add-new-btnw view-client-tab-3">
                                 <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Select Module</label>
-                                <div style={{width:25+"em"}}>
+                                <div>
                                 <ReactSelect
                                         
                                         placeholder="Select or search module"
@@ -657,11 +658,11 @@ return (
                                 <div style={{display:"flex"}} class="add-new-btnw">
                                     <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Url</label>
                                     <input type="text" placeholder="Enter Url" id="inputurl-view-clinet" />
-                                    <a onClick={handleurlInput} href="#" style={{marginLeft:24+"px"}} class="outline-btn">Generate Report</a>
+                                    <a onClick={handleurlInput} href="#" style={{marginLeft:24+"px", height:38+'px'}} class="outline-btn">Generate Report</a>
 
                                 </div>
                             </div>
-                            <div class="col-sm-3 add-new-btnw">
+                            <div class="col-lg-3 add-new-btnw">
                                 <a href="#" style={{marginRight:24+"px"}} class="outline-btn">Export</a>
                             </div>
                         </div>

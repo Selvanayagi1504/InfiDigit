@@ -9,7 +9,7 @@
 // import { Table, Input, Row, Col, Space, Tag } from "antd";
 // import { FilePicker } from "react-file-picker";
 
-// function Tickets() {
+// function TicketsSales() {
 //   const [startDate, setStartDate] = useState(new Date());
 //   const [phonecode, setphonecode] = useState("+91");
 //   const [countrycodes, setcountrycodes] = useState([]);
@@ -161,7 +161,7 @@
 //             <div class="common-wrapper">
 //               <div class="common-wcard">
 //                 <div class="common-form-fields">
-//                   <div class="add-user-tickets">
+//                   <div class="add-user-ticketsSales">
 //                     <div style={{ display: "flex" }}>
 //                       <div class="form-wrappers">
 //                         <label>Ticket Type</label>
@@ -469,7 +469,7 @@
 //   );
 // }
 
-// export default Tickets;
+// export default TicketsSales;
 
 
 
@@ -492,7 +492,7 @@ import {
   DropdownItem
 } from "reactstrap";
 
-function Tickets() {
+function TicketsSales() {
   const [startDate, setStartDate] = useState(new Date());
   const [phonecode, setphonecode] = useState("+91");
   const [countrycodes, setcountrycodes] = useState([]);
@@ -654,41 +654,26 @@ const [notes,setnotes] = useState([]);
 
         <div class="sidebar-nav-bar">
           <ul class="list-unstyled side-menu">
-          <li>
-              <UncontrolledButtonDropdown className="uncontrolled">
-                <DropdownToggle caret size="md" >
-                  Dashboard <i class="fa fa-angle-right"  aria-hidden="true"></i>
-                </DropdownToggle>
-                <DropdownMenu>
-                  <div className="main">Clients</div>
-                  <span><a href="dashboard-seo?id=Myntra"> Myntra </a></span>
-                  <DropdownItem href="dashboard-seo?id=Myntra-Shoes">Myntra Shoes</DropdownItem>
-                  <DropdownItem href="dashboard-seo?id=Myntra-Loafers">Myntra Loafers</DropdownItem>
-                  <span ><a href="dashboard-seo?id=Amazon"> Amazon </a></span>
-                  <DropdownItem href="dashboard-seo?id=Amazon - Fashion">Fashion</DropdownItem>
-                  <DropdownItem href="dashboard-seo?id=Amazon - Jewellery">Jewellery</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledButtonDropdown>
-            </li>
-            <li><a href="sub-projects"><i class="fa fa-tasks"></i> Projects</a></li>
-            <li><a href="ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
+          <li><a href="dashboard-sales"><i class="fa fa-columns"></i> Dashboard</a></li>
+                <li><a href="client-list"><i class="fa fa-users"></i> Customers</a></li>
           </ul>
         </div>
         <div class="content-wrapper">
           <div class="dashboard-wrapper">
           <Breadcrumb>
               <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
-              <Breadcrumb.Item><a href="/dashboard-seo">Dashboard</a></Breadcrumb.Item>
+              <Breadcrumb.Item><a href="/dashboard-sales">Dashboard</a></Breadcrumb.Item>
+              <Breadcrumb.Item><a href="/client-list">Customers</a></Breadcrumb.Item>
               <Breadcrumb.Item>
-              <a href="/ticketslist">Tickets</a>
+              <a href="/ticketslist-sales">Tickets</a>
               </Breadcrumb.Item>
               {!ticketid ? 
               <Breadcrumb.Item>
-              <a href="/tickets">Create New Tickets</a>
+              <a href="/tickets-sales">Create New Tickets</a>
               </Breadcrumb.Item>
               :
               <Breadcrumb.Item>
-              <a href="/tickets">Edit Tickets</a>
+              <a href="/tickets-sales">Edit Tickets</a>
               </Breadcrumb.Item>
               }
           </Breadcrumb>
@@ -1000,4 +985,4 @@ const [notes,setnotes] = useState([]);
   );
 }
 
-export default Tickets;
+export default TicketsSales;

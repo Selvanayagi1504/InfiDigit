@@ -6,7 +6,7 @@ import {Dropdown} from 'react-bootstrap'
 import {Link} from 'react-router-dom';
 import {useHistory} from "react-router-dom";
 import "antd/dist/antd.css";
-import { Table, Input,  Row,  Col } from "antd";
+import { Table, Input,  Row,  Col, Breadcrumb } from "antd";
 
 
 const rowSelection = {
@@ -26,74 +26,52 @@ function TeamMembersSalesDir() {
         var k="N/A";
         data.push({
             key: 0,
-            name: <Link to={{pathname: '/project-sales-dir', state: { detail: "1" }}}>Edrward 0</Link>,
+            name: <Link to={{pathname: '/edit-employee-dir', state: { detail: "1" }}}>Edrward 0</Link>,
             tmcode:0,
             tmdesignation: `Man 0`,
-            dob:"sample",
-            phone:"samp",
-            email:"samp",
+            department:"SEO"
+        });
+        data.push({
+            key: 1,
+            name: "Edrward 1",
+            tmcode:1,
+            tmdesignation: `Man 1`,
+            department:"HR"
         });
         filterdesig.push({
             text:"SEO",
             value:"SEO"
         })
-        filterdpmt.push({
-            text:"Operations",
-            value:"Operations"
-        })
-        filtersupervisor.push({
-            text:"Ravi",
-            value:"Ravi"
-        })
-        filtersrsupervisor.push({
-            text:"Kiran",
-            value:"Kiran"
-        })
-        for (let i = 1; i < 100; i++) {
+        for (let i = 2; i < 100; i++) {
           var  k=<input type="date" value="2021-08-26" />;
         data.push({
             key: i,
             name: <Link to={{pathname: '/project-sales-dir', search: `?id=${i}`,state: { detail: "1" }}}>Edrward {i}</Link>,
             tmcode:i,
             tmdesignation: `Man ${i}`,
-            dob:"sample",
-            phone:"samp",
-            email:"samp",
+            department:"Sales"
+           
         });
         filterdesig.push({
             text:`Man ${i}`,
             value:`Man ${i}`
         })
-        filterdpmt.push({
-            text:`department ${i}`,
-            value:`department ${i}`
-        })
-        filtersupervisor.push({
-            text:"Kiran",
-            value:"Kiran"
-        })
-        filtersrsupervisor.push({
-            text:"Kaushal",
-            value:"kaushal"
-        })
         }
-        // [...new Map(array.map((x) => [x[key], x])).values()];
-        filterdesig = [... new Set(filterdesig.map(JSON.stringify))].map(JSON.parse)
-        filterdpmt = [... new Set(filterdpmt.map(JSON.stringify))].map(JSON.parse)
-        filtersupervisor = [... new Set(filtersupervisor.map(JSON.stringify))].map(JSON.parse)
-        filtersrsupervisor = [... new Set(filtersrsupervisor.map(JSON.stringify))].map(JSON.parse)
+        filterdesig = [... new Set(filterdesig.map(JSON.stringify))].map(JSON.parse);
         setsearch(data);
         setteamList(data);
         const columns = [
             {
                 title: "Name",
                 dataIndex: "name",
-                key: "name"
+                key: "name",
+                width:"10%"
             },
             {
               title: "Emp Code",
               dataIndex: "tmcode",
-              key: "tmcode"
+              key: "tmcode",
+              width:"10%"
             },
             {
                 title:"TM Designation",
@@ -101,23 +79,24 @@ function TeamMembersSalesDir() {
                 key:"tmdesignation",
                 filters:filterdesig,
                 filterSearch: true,
-                onFilter: (value, record) => record.tmdesignation.indexOf(value) === 0
+                onFilter: (value, record) => record.tmdesignation.indexOf(value) === 0,
+                width:"15%"
+            },
+            {
+                title:"Deparrment",
+                dataIndex:"department",
+                key:"department",
+                filters:[{text:"SEO",value:"SEO"},{text:"Sales",value:"Sales"},{text:"HR",value:"HR"}],
+                filterSearch: true,
+                onFilter: (value, record) => record.department.indexOf(value) === 0,
+                width:"10%"
             },
             {
                 title:"",
-                dataIndex:"dob",
-                key:"dob"
-            },
-            {
-                title:"",
-                dataIndex:"phone",
-                key:"phone"
-            },
-            {
-                title:"",
-                dataIndex:"email",
-                key:"email"
-            },
+                dataIndex:"",
+                key:"",
+                width:"50%"
+            }
 
           ];
           setteamcol(columns);
@@ -142,22 +121,21 @@ return (
             <div class="nav-bar-right">
                 <ul class="list-unstyled nav-right-menu">
                 <li>
-                    <Dropdown id="notification-dropdown">
+                <Dropdown id="notification-dropdown">
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item href="">
                                 <div className="notification-item">
-                                    <h4>Raj - Welcome here!!</h4>
+                                    <h4>Notification 1!!</h4>
                                     <p>21 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
                             <hr />
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Raj - You are</h4>
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
                                     <p>8 hours ago..</p>
                                 </div>
                             </Dropdown.Item>
@@ -168,13 +146,13 @@ return (
                     <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                            <span class="profile-name">M.Subash</span>
+                            <span class="profile-name">Director</span>
                         </button>
 
 
 
                         <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a href="">Profile</a></li>
+                            <li><a href="/profile">Profile</a></li>
 
                             <li><a href="/">Log Out</a></li>
                         </ul>
@@ -187,20 +165,10 @@ return (
 
         <div class="sidebar-nav-bar">
             <ul class="list-unstyled side-menu">
-                <li><a href="dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
-                <li>
-                    <Dropdown>
-                    <Dropdown.Toggle id="dropdown-basic" className="drop-dire">
-                    Sales <i class="fa fa-angle-right side-dropdown"  aria-hidden="true"></i>
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                        <Dropdown.Item href="team-members-sales-dir">Team Members</Dropdown.Item>
-                        <Dropdown.Item href="clinets-sales-dir">Clients</Dropdown.Item>
-                    </Dropdown.Menu>
-                    </Dropdown>
-                </li>
-                <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
+            <li><a href="/dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
+      <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
+      <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
+      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
             </ul>
         </div>
         <div class="content-wrapper">
@@ -224,7 +192,16 @@ return (
             </AutoComplete>
           </Col>
         </Row> */}
-            
+            <Breadcrumb>
+                <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+                <Breadcrumb.Item>
+                <a href="/dashboard">Dashboard</a>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item>
+                <a href="/team-members-sales-dir">Team Members</a>
+                </Breadcrumb.Item>
+               
+            </Breadcrumb>
                 <div class="row">
                     <div class="col-sm-5 pad-lzero">
                         <div class="main-title">TEAM MEMBERS</div>
@@ -262,25 +239,31 @@ return (
 
                 <div class="common-table" >
                 <div class="row">
-                    <div class="col-md-5"></div>
+                    <div class="col-md-5">
+                    <span class="data-per-page">Data Per page</span>
+                    </div>
                     <div class="col-md-7">
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-8">
                                 <div class="data-export">
-                                    <span class="data-per-page">Data Per page</span>
+                                    
                                     <span class="count-drop" style={{width:100+'px'}}>
                                     </span>
                                     <span class="export">
-                                        <select id="export" name="export">
-                                            <option value="Export">Export</option>
-                                            <option value="PDF">Excel</option>
-                                            <option value="WORD">CSV</option>
-                                            <option value="Sheets">Sheets</option>
-                                        </select>
+                                        <button class="ms-5 outline-btn ">Import</button>
                                     </span>
-                                    <span>
-                                        <button class="Import">Import</button>
+                                    <span class="export">
+                                        
+                                                <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Export
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-content" href="#">Excel</a>
+                                                    <a class="dropdown-content" href="#">CSV</a>
+                                                    <a class="dropdown-content" href="#">Sheets</a>
+                                                </div>
+                                        
                                     </span>
                                 </div>
                             </div>

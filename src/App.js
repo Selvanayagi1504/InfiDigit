@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.min.css";
-import { Home, About, Contact, Dashboard, DashboardSEO,DashboardSales, SalesList, SubProjects, TeamMembers, EditEmployee, SalesNew, CreateProject, EditProject, ViewClientDetails, ClientList, ProjectList, CreateClient, EditClient, ModuleExpandDAPA, ModuleExpandGoogleTrends, ModuleExpandPageSpeed, TeamMembersSalesDir, ClinetsSalesDir, ProjectSalesDir, ViewClientDetailsSalesDir, ProjectsListSalesDir, Tickets, TicketsList, ModuleExpandSiteUptime, ModuleExpandRankTracking, ModuleExpandGSC, ModuleExpandContentWordCount, ModuleExpandGoogleAnalytics, ModuleExpandSEOVolatality, ModuleExpandKeywordResearch, ModuleExpandClickShare, ModuleExpandROI, ModuleExpandBackLinks, ModuleExpandOrganicResearch,Designation } from "./components";
+import { ModuleExpandSEOAudit, ProjectDetailsDir,EditEmployeeDir,EditProjectDir,EditClientDir,Profile,Home, About, Contact, Dashboard, DashboardSEO,DashboardSales, SalesList, SubProjects, TeamMembers, EditEmployee, SalesNew, CreateProject, EditProject, ViewClientDetails, ClientList, ProjectList, CreateClient, EditClient, ModuleExpandDAPA, ModuleExpandGoogleTrends, ModuleExpandPageSpeed, TeamMembersSalesDir, ClinetsSalesDir, ProjectSalesDir, ViewClientDetailsSalesDir, ProjectsListSalesDir, Tickets, TicketsList,TicketsSales, TicketsListSales, ModuleExpandSiteUptime, ModuleExpandRankTracking, ModuleExpandGSC, ModuleExpandContentWordCount, ModuleExpandGoogleAnalytics, ModuleExpandSEOVolatality, ModuleExpandKeywordResearch, ModuleExpandClickShare, ModuleExpandROI, ModuleExpandBackLinks, ModuleExpandOrganicResearch,Designation, DashboardAdmin, AccessPermissionsAdmin, AdminAuditUpdate } from "./components";
 function App() {
   return (
     <div className="App">
@@ -9,6 +9,7 @@ function App() {
         {/* <Navigation /> */}
         <Switch>
           <Route path="/" exact component={() => <Home />} />
+          <Route path="/profile" exact component={() => <Profile/>} />
           <Route path="/About" exact component={() => <About />} />
           <Route path="/dashboard" exact component={() => <Dashboard />} />
           <Route path="/dashboard-seo" exact component={() => <DashboardSEO />} />
@@ -17,14 +18,18 @@ function App() {
           <Route path="/sales-list" exact component={() => <SalesList />} />
           <Route path="/sub-projects" exact component={() => <SubProjects />} />
           <Route path="/edit-employee" exact component={() => <EditEmployee/>} />
+          <Route path="/edit-employee-dir" exact component={() => <EditEmployeeDir/>} />
+          <Route path="/project-details-dir" exact component={() => <ProjectDetailsDir/>} />
           <Route path="/sales-new" exact component={() => <SalesNew/>} />
           <Route path="/create-project" exact component={() => <CreateProject/>} />
           <Route path="/edit-project" exact component={() => <EditProject/>} />
+          <Route path="/edit-project-dir" exact component={() => <EditProjectDir/>} />
           <Route path="/view-client-details" exact component={() => <ViewClientDetails/>} />
           <Route path="/client-list" exact component={() => <ClientList/>} />
           <Route path="/project-list" exact component={() => <ProjectList/>} />
           <Route path="/create-client" exact component={() => <CreateClient/>} />
           <Route path="/edit-client" exact component={() => <EditClient/>} />
+          <Route path="/edit-client-dir" exact component={() => <EditClientDir/>} />
           <Route path="/module-expand-da" exact component={() => <ModuleExpandDAPA/>} />
           <Route path="/module-expand-google-trends" exact component={() => <ModuleExpandGoogleTrends/>} />
           <Route path="/module-expand-page-speed" exact component={() => <ModuleExpandPageSpeed/>} />
@@ -35,6 +40,8 @@ function App() {
           <Route path="/project-list-sales-dir" exact component={() => <ProjectsListSalesDir/>} />
           <Route path="/tickets" exact component={() => <Tickets />} />
           <Route path="/ticketslist" exact component={() => <TicketsList />} />
+          <Route path="/tickets-sales" exact component={() => <TicketsSales />} />
+          <Route path="/ticketslist-sales" exact component={() => <TicketsListSales />} />
           <Route path="/module-expand-site-uptime" exact component={()=> <ModuleExpandSiteUptime />} />
           <Route path="/module-expand-rank-tracking" exact component={()=> <ModuleExpandRankTracking />} />
           <Route path="/module-expand-gsc" exact component={()=> <ModuleExpandGSC />} />
@@ -47,6 +54,10 @@ function App() {
           <Route path="/module-expand-backlinks" exact component={() => <ModuleExpandBackLinks/>} />
           <Route path="/module-expand-organic-research" exact component={() => <ModuleExpandOrganicResearch/>} />
           <Route path="/designation" exact component={() => <Designation/>} />
+          <Route path="/dashboard-admin" exact component={() => <DashboardAdmin/>} />
+          <Route path="/access-permissions-admin" exact component={() => <AccessPermissionsAdmin/>} />
+          <Route path="/admin-audit-update" exact component={() => <AdminAuditUpdate/>} />
+          <Route path="/module-expand-seo-audit" exact component={() => <ModuleExpandSEOAudit/>} />
         </Switch>
         {/* <Footer /> */}
       </Router>
