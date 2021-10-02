@@ -485,7 +485,31 @@ function Configuration() {
       handleModal1();
   }
   function addmodule(){
-
+  }
+  const [ClientsList, setClientsList] = useState([
+    { value: "Myntra", label: "Myntra" },
+    { value: "CureFit", label: "CureFit" },
+    { value: "CultFit", label: "CultFit" },
+  ])
+  const [ClientsSelected, setClientsSelected] = useState({ value: "Myntra", label: "Myntra" });
+  function handleChangeClients(selected){
+    setClientsSelected(selected);
+    var a = selected.value;
+    var data = [];
+    for(let i=0;i<5;i++){
+      data.push({value:`${a} Project ${i}`, label:`${a} Project ${i}`})
+    }
+    setClientsProjectChosenSelected(data)
+  }
+  const [ClientsProjectChosen, setClientsProjectChosen] = useState([
+    { value: "Myntra Project 1", label: "Myntra Project 1" },
+    { value: "Myntra Project 2", label: "Myntra Project 2" },
+    { value: "Myntra Project 3", label: "Myntra Project 3" },
+    { value: "Myntra Project 4", label: "Myntra Project 4" },
+  ])
+  const [ClientsProjectChosenSelected, setClientsProjectChosenSelected] = useState({ value: "Myntra Project 1", label: "Myntra Project 1" });
+  function handleChangeClientsProjects(selected){
+    setClientsProjectChosenSelected(selected);
   }
   return (
     <>
@@ -541,392 +565,409 @@ function Configuration() {
             </Breadcrumb>
 
             <div className="custom-row">
-              <div className="custom-column-33 custom-borrig" id="main-col-1">
-                <i className="fa fa-angle-left none" id="angle-1" onClick={()=>closeTabs()}></i>
-                <select name="" id="clients" onChange={()=>{changeclient()}}>
-                  <option value="Myntra">Myntra</option>
-                  <option value="CultFit">CultFit</option>
-                  <option value="CureFit">CureFit</option>
-                </select>
-                <ul class="configuration-tab-list">
-                  <li>
-                    <a onClick={()=>{openTab('account-settings',1)}}>Account Settings</a>
-                  </li>
-                  <li>
-                    <a onClick={()=>{openTab('profile',1)}}>Profile</a>
-                  </li>
-                  <li>
-                    <a onClick={()=>{openTab('admin',1)}}>Admin</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="custom-column-33 custom-borrig" id="main-col-2">
-              <i className="fa fa-angle-left none" id="angle-2" onClick={()=>closeTabs()}></i>
-                <select name="" id="client-proj" onChange={()=>{changechoseclientproj()}}>
-                  {clientproj.map((i)=>{
-                    return(
-                      <option value={i.value}>{i.value}</option>
-                    )
-                  })}
-                </select>
-                <ul class="configuration-tab-list">
-                  <li>
-                    <a onClick={()=>{openTab('team-members',2)}}>Team Members</a>
-                  </li>
-                  <li>
-                    <a onClick={()=>{openTab('modules',2)}}>Modules</a>
-                  </li>
-                  <li>
-                    <a onClick={()=>{openTab('url-comp',2)}}>Url and Competitors</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="custom-column-33" id="main-col-3">
-                <i className="fa fa-angle-left none" id="angle-3" onClick={()=>closeTabs()}></i>
-                hiii
-              </div>
-
-              {/* Team Members Expand */}
-              <div className="custom-column-70 none" id="team-members">
-                <div class="row">
-                  <div class="col-sm-5 pad-lzero">
-                      <div class="main-title">ASSIGN TEAM MEMBERS</div>
-                  </div>
-                  <div class="col-sm-7 add-new-btnw">
-                      
-                  </div>
+    
+                <div className="custom-column-33 custom-borrig" id="main-col-1">
+                <i className="fa fa-arrow-left none" id="angle-1" onClick={()=>closeTabs()}></i>
+                    {/* <select name="" id="clients" onChange={()=>{changeclient()}}>
+                    <option value="Myntra">Myntra</option>
+                    <option value="CultFit">CultFit</option>
+                    <option value="CureFit">CureFit</option>
+                    </select> */}
+                    <ReactSelect
+                        className="SearchSelectMain"
+                        placeholder="Select or search module"
+                        options={ClientsList}
+                        closeMenuOnSelect={true}
+                        onChange={handleChangeClients}
+                        value={ClientsSelected}
+                    />
+                    <ul class="configuration-tab-list">
+                    <li>
+                        <a onClick={()=>{openTab('account-settings',1)}}>Account Settings</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('profile',1)}}>Profile</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('admin',1)}}>Admin</a>
+                    </li>
+                    </ul>
                 </div>
-                <div className="row">
-                  <div className="col-md-3">
-                      <ReactSelect
-                          options={colourOptions}
-                          isMulti
-                          closeMenuOnSelect={false}
-                          hideSelectedOptions={false}
-                          components={{
-                              Option
-                          }}
-                          onChange={handleChange}
-                          allowSelectAll={true}
-                          value={optionSelected}
-                      />
-                  </div>
-                  <div className="col-md-3">
-                  <button onClick={()=>assign()}  class="outline-btn">Assign</button>
-                  </div>
+                <div className="custom-column-33 custom-borrig" id="main-col-2">
+                <i className="fa fa-arrow-left none" id="angle-2" onClick={()=>closeTabs()}></i>
+                    {/* <select name="" id="client-proj" onChange={()=>{changechoseclientproj()}}>
+                    {clientproj.map((i)=>{
+                        return(
+                        <option value={i.value}>{i.value}</option>
+                        )
+                    })}
+                    </select> */}
+                    <ReactSelect
+                        className="SearchSelectMain"
+                        placeholder="Select or search module"
+                        options={ClientsProjectChosen}
+                        closeMenuOnSelect={true}
+                        onChange={handleChangeClientsProjects}
+                        value={ClientsProjectChosenSelected}
+                    />
+                    <ul class="configuration-tab-list">
+                    <li>
+                        <a onClick={()=>{openTab('team-members',2)}}>Team Members</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('modules',2)}}>Modules</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('url-comp',2)}}>Url and Competitors</a>
+                    </li>
+                    </ul>
+                </div>
+                <div className="custom-column-33" id="main-col-3">
+                    <i className="fa fa-arrow-left none" id="angle-3" onClick={()=>closeTabs()}></i>
+                    hiii
+                </div>
+
+                {/* Team Members Expand */}
+                <div className="custom-column-70 none" id="team-members">
+                    <div class="row">
+                    <div class="col-sm-5 pad-lzero">
+                        <div class="main-title">ASSIGN TEAM MEMBERS</div>
+                    </div>
+                    <div class="col-sm-7 add-new-btnw">
+                        
+                    </div>
+                    </div>
+                    <div className="row">
+                    <div className="col-md-3">
+                        <ReactSelect
+                            options={colourOptions}
+                            isMulti
+                            closeMenuOnSelect={false}
+                            hideSelectedOptions={false}
+                            components={{
+                                Option
+                            }}
+                            onChange={handleChange}
+                            allowSelectAll={true}
+                            value={optionSelected}
+                        />
+                    </div>
+                    <div className="col-md-3">
+                    <button onClick={()=>assign()}  class="outline-btn">Assign</button>
+                    </div>
+                    </div>
+                    <hr />
+                    <div class="add-new-btnw" style={{textAlign:"left"}}>
+                    <button onClick={()=>assign1()}  class="outline-btn">Edit</button>
+                    </div>
+
+                    <div className="row">
+                    <div className="col-sm-5"></div>
+                    <div className="col-sm-7 add-new-btnw">
+                        <div class="search" style={{marginLeft:0+'px', width:100+'%'}}>
+                        <div class="input-group" style={{display:"block"}}>
+                            <Input.Search
+                            allowClear
+                            placeholder="Search By name"
+                            onSearch={nameSearch =>
+                                {setteamList(
+                                    searchdata.filter(person =>
+                                    person.name.includes(nameSearch)
+                                    )
+                                );console.log(nameSearch)}
+                            }
+                            id="input-s"
+                            />
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    
+
+                    <div class="common-table">
+                    <div class="row">
+                        <div class="col-md-5">
+                        {/* <div class="data-per-page">Data Per page</div> */}
+                        </div>
+                        <div class="col-md-7">        
+                        <div class="data-export">
+                            <span class="export" style={{marginRight:0+'px'}}>
+                            <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Export
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-content" href="#">Excel</a>
+                                <a class="dropdown-content" href="#">CSV</a>
+                                <a class="dropdown-content" href="#">Sheets</a>
+                            </div>
+                            </span>
+                        </div>
+                                
+                        </div>
+                    </div>
+                    <Table id="sample" columns={teamcol} dataSource={teamlist}
+                    rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[ "bottomRight"]}} />
+                    </div>
+                </div>
+
+                {/* Modules Expand */}
+                <div className="custom-column-70 none" id="modules">
+                    <div class="row">
+                    <div class="col-sm-5 pad-lzero">
+                        <div class="main-title">UPDATE MODULES</div>
+                    </div>
+                    <div class="col-sm-7 add-new-btnw">
+                        
+                    </div>
+                    </div>
+                    <div className="row">
+                    <div className="col-md-3">
+                        <ReactSelect
+                            placeholder="Select or search module"
+                            options={colourOptionsmodule}
+                            isMulti
+                            closeMenuOnSelect={false}
+                            hideSelectedOptions={true}
+                            components={{
+                                Option
+                            }}
+                            onChange={handleChangemodule}
+                            allowSelectAll={true}
+                            value={optionSelectedmodule}
+                        />
+                    </div>
+                    <div className="col-md-3">
+                    <button onClick={()=>addmodule()}  class="outline-btn">ADD MODULE</button>
+                    </div>
+                    </div>
+                    <div class="common-table tab-panel-module">
+                    <table class="edit-project-modules">
+                        <thead>
+                            <tr>
+                            <th width="1%">#</th>
+                            <th width="9%">Module Name</th>
+                            <th width="90%" style={{textAlign:"end"}}>Action</th>
+                            <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {modulelisr.map((i)=>{
+                                return(
+                                    <>
+                                        {
+                                            i.modulename== "DA/PA Checker"?<><TableRowDAPA id={i.id} modulename={i.modulename} OptionsURL={OptionsURL} optionSelectedURL={optionSelectedURL} optionSelectedComp={optionSelectedComp} OptionsComp={OptionsComp}  /></>:<></>
+                                        }   
+                                        {
+                                            i.modulename== "Google Trends"?<><TableRowGT id={i.id} modulename={i.modulename} KeywordsGT={KeywordsGT} KeywordGoogleTrendsSelected={KeywordGoogleTrendsSelected}  /></>:<></>
+                                        }
+                                        {
+                                            i.modulename== "Page Speed"?<><TableRowPS id={i.id} modulename={i.modulename} UrlPSList={UrlPSList} UrlPSSelected={UrlPSSelected}  /></>:<></>
+                                        }
+                                    </>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+
+                {/* Url and Competitors Expand */}
+                <div className="custom-column-70 none" id="url-comp">
+                    <div className="row tab-panel-url">
+                    <div className="col-md-2">
+                        <select name="" id="select-type" value={maindropselection} onChange={()=>{setmaindropselection(document.getElementById('select-type').value)}}>
+                            <option value="URL">URL</option>
+                            <option value="Competitors">Competitors</option>
+                            <option value="Keywords">Keywords</option>
+                        </select>
+                    </div>
+                    <div className="col-md-10">
+                        {maindropselection == "URL" ? 
+                            <>
+                                <div style={{display:"inline-block",width:100+"%"}}>
+                                    <span style={{marginRight:24+"px"}}>
+                                        <input style={{height:40+'px'}} type="text" placeholder="Enter URL" />
+                                    </span>
+                                    <span>
+                                        <button class="outline-btn">Add</button>
+                                    </span>
+                                </div>
+                            </> 
+                            : 
+                            <>
+                            </>
+                        }
+                        {maindropselection == "Competitors" ?
+                            <>
+                                <div style={{display:"inline-block",width:100+"%"}}>
+                                    <span style={{marginRight:24+"px"}}>
+                                        <input style={{height:40+'px'}} type="text" placeholder="Enter Competitors" />
+                                    </span>
+                                    <span>
+                                        <button class="outline-btn">Add</button>
+                                    </span>
+                                </div>
+                            </>
+                            :
+                            <></>
+                        }
+                        {maindropselection == "Keywords" ?
+                            <>
+                                <div style={{display:"inline-block",width:100+"%"}}>
+                                    <span style={{marginRight:24+"px"}}>
+                                        <input style={{height:40+'px'}} type="text" placeholder="Enter Keywords" />
+                                    </span>
+                                    <span>
+                                        <button class="outline-btn">Add</button>
+                                    </span>
+                                </div>
+                            </>
+                            :
+                            <></>
+                        }
+                    </div>
                 </div>
                 <hr />
-                <div class="add-new-btnw" style={{textAlign:"left"}}>
-                  <button onClick={()=>assign1()}  class="outline-btn">Edit</button>
-                </div>
-
-                <div className="row">
-                  <div className="col-sm-5"></div>
-                  <div className="col-sm-7 add-new-btnw">
-                    <div class="search" style={{marginLeft:0+'px', width:100+'%'}}>
-                      <div class="input-group" style={{display:"block"}}>
-                        <Input.Search
-                          allowClear
-                          placeholder="Search By name"
-                          onSearch={nameSearch =>
-                              {setteamList(
-                                  searchdata.filter(person =>
-                                  person.name.includes(nameSearch)
-                                  )
-                              );console.log(nameSearch)}
-                          }
-                          id="input-s"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-
-                <div class="common-table">
-                  <div class="row">
-                    <div class="col-md-5">
-                      {/* <div class="data-per-page">Data Per page</div> */}
-                    </div>
-                    <div class="col-md-7">        
-                      <div class="data-export">
-                        <span class="export" style={{marginRight:0+'px'}}>
-                          <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Export
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-content" href="#">Excel</a>
-                              <a class="dropdown-content" href="#">CSV</a>
-                              <a class="dropdown-content" href="#">Sheets</a>
-                          </div>
+                {tabledropselection == "URL"
+                    ?
+                    <>
+                        <div className="tab-panel-url-options">
+                            <span>
+                                <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
+                                    {settaburlList(
+                                    searchdataURLTab.filter(person =>
+                                    person.url.includes(nameSearch)
+                                    )
+                                    );console.log(nameSearch)}
+                                    }
+                                    id="input-s"
+                                />
+                            </span>
+                            <span>
+                                <select name="" id="select-type-table" value={tabledropselection} onChange={()=>{settabledropselection(document.getElementById('select-type-table').value)}}>
+                                    <option value="URL">URL</option>
+                                    <option value="Competitors">Competitors</option>
+                                    <option value="Keywords">Keywords</option>
+                                    
+                                </select>
+                            </span>
+                            <span class="export">
+                            <button class="outline-btn ">Import</button>
                         </span>
-                      </div>
-                               
-                    </div>
-                  </div>
-                  <Table id="sample" columns={teamcol} dataSource={teamlist}
-                  rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[ "bottomRight"]}} />
-                </div>
-              </div>
-
-              {/* Modules Expand */}
-              <div className="custom-column-70 none" id="modules">
-                <div class="row">
-                  <div class="col-sm-5 pad-lzero">
-                      <div class="main-title">UPDATE MODULES</div>
-                  </div>
-                  <div class="col-sm-7 add-new-btnw">
-                      
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-3">
-                      <ReactSelect
-                          placeholder="Select or search module"
-                          options={colourOptionsmodule}
-                          isMulti
-                          closeMenuOnSelect={false}
-                          hideSelectedOptions={true}
-                          components={{
-                              Option
-                          }}
-                          onChange={handleChangemodule}
-                          allowSelectAll={true}
-                          value={optionSelectedmodule}
-                      />
-                  </div>
-                  <div className="col-md-3">
-                  <button onClick={()=>addmodule()}  class="outline-btn">ADD MODULE</button>
-                  </div>
-                </div>
-                <div class="common-table tab-panel-module">
-                  <table class="edit-project-modules">
-                      <thead>
-                          <tr>
-                          <th width="1%">#</th>
-                          <th width="9%">Module Name</th>
-                          <th width="90%" style={{textAlign:"end"}}>Action</th>
-                          <th></th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          {modulelisr.map((i)=>{
-                              return(
-                                  <>
-                                      {
-                                          i.modulename== "DA/PA Checker"?<><TableRowDAPA id={i.id} modulename={i.modulename} OptionsURL={OptionsURL} optionSelectedURL={optionSelectedURL} optionSelectedComp={optionSelectedComp} OptionsComp={OptionsComp}  /></>:<></>
-                                      }   
-                                      {
-                                          i.modulename== "Google Trends"?<><TableRowGT id={i.id} modulename={i.modulename} KeywordsGT={KeywordsGT} KeywordGoogleTrendsSelected={KeywordGoogleTrendsSelected}  /></>:<></>
-                                      }
-                                      {
-                                          i.modulename== "Page Speed"?<><TableRowPS id={i.id} modulename={i.modulename} UrlPSList={UrlPSList} UrlPSSelected={UrlPSSelected}  /></>:<></>
-                                      }
-                                  </>
-                              )
-                          })}
-                      </tbody>
-                  </table>
-                </div>
-              </div>
-
-              {/* Url and Competitors Expand */}
-              <div className="custom-column-70 none" id="url-comp">
-                <div className="row tab-panel-url">
-                  <div className="col-md-2">
-                      <select name="" id="select-type" value={maindropselection} onChange={()=>{setmaindropselection(document.getElementById('select-type').value)}}>
-                          <option value="URL">URL</option>
-                          <option value="Competitors">Competitors</option>
-                          <option value="Keywords">Keywords</option>
-                      </select>
-                  </div>
-                  <div className="col-md-10">
-                      {maindropselection == "URL" ? 
-                          <>
-                              <div style={{display:"inline-block",width:100+"%"}}>
-                                  <span style={{marginRight:24+"px"}}>
-                                      <input style={{height:40+'px'}} type="text" placeholder="Enter URL" />
-                                  </span>
-                                  <span>
-                                      <button class="outline-btn">Add</button>
-                                  </span>
-                              </div>
-                          </> 
-                          : 
-                          <>
-                          </>
-                      }
-                      {maindropselection == "Competitors" ?
-                          <>
-                              <div style={{display:"inline-block",width:100+"%"}}>
-                                  <span style={{marginRight:24+"px"}}>
-                                      <input style={{height:40+'px'}} type="text" placeholder="Enter Competitors" />
-                                  </span>
-                                  <span>
-                                      <button class="outline-btn">Add</button>
-                                  </span>
-                              </div>
-                          </>
-                          :
-                          <></>
-                      }
-                      {maindropselection == "Keywords" ?
-                          <>
-                              <div style={{display:"inline-block",width:100+"%"}}>
-                                  <span style={{marginRight:24+"px"}}>
-                                      <input style={{height:40+'px'}} type="text" placeholder="Enter Keywords" />
-                                  </span>
-                                  <span>
-                                      <button class="outline-btn">Add</button>
-                                  </span>
-                              </div>
-                          </>
-                          :
-                          <></>
-                      }
-                  </div>
-              </div>
-              <hr />
-              {tabledropselection == "URL"
-                  ?
-                  <>
-                      <div className="tab-panel-url-options">
-                          <span>
-                              <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
-                                  {settaburlList(
-                                  searchdataURLTab.filter(person =>
-                                  person.url.includes(nameSearch)
-                                  )
-                                  );console.log(nameSearch)}
-                                  }
-                                  id="input-s"
-                              />
-                          </span>
-                          <span>
-                              <select name="" id="select-type-table" value={tabledropselection} onChange={()=>{settabledropselection(document.getElementById('select-type-table').value)}}>
-                                  <option value="URL">URL</option>
-                                  <option value="Competitors">Competitors</option>
-                                  <option value="Keywords">Keywords</option>
-                                  
-                              </select>
-                          </span>
-                          <span class="export">
-                          <button class="outline-btn ">Import</button>
-                      </span>
-                      <span class="export" style={{marginRight:0+'px'}}>
-                          
-                        <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Export
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-content" href="#">Excel</a>
-                            <a class="dropdown-content" href="#">CSV</a>
-                            <a class="dropdown-content" href="#">Sheets</a>
+                        <span class="export" style={{marginRight:0+'px'}}>
+                            
+                            <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Export
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-content" href="#">Excel</a>
+                                <a class="dropdown-content" href="#">CSV</a>
+                                <a class="dropdown-content" href="#">Sheets</a>
+                            </div>
+                            
+                        </span>
                         </div>
-                          
-                      </span>
-                      </div>
-                      <Table id="url" columns={URLTabcol} dataSource={taburllist}
-                      rowSelection={{type: selectionTypeURLTab,...rowSelection,}} pagination={{position:["bottomRight"]}} />
-                  </>
-                  :
-                  <>
-                  </>
-              }
-              {tabledropselection == "Competitors" ? 
-                  <>
-                      <div className="tab-panel-url-options">
-                          <span>
-                              <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
-                                  {settabcompList(
-                                  searchdataCompTab.filter(person =>
-                                  person.comp.includes(nameSearch)
-                                  )
-                                  );console.log(nameSearch)}
-                                  }
-                                  id="input-s"
-                              />
-                          </span>
-                          <span>
-                              <select name="" id="select-type-table" value={tabledropselection} onChange={()=>{settabledropselection(document.getElementById('select-type-table').value)}}>
-                                  <option value="URL">URL</option>
-                                  <option value="Competitors">Competitors</option>
-                                  <option value="Keywords">Keywords</option>
-                              </select>
-                          </span>
-                          <span class="export">
-                          <button class="outline-btn ">Import</button>
-                      </span>
-                      <span class="export" style={{marginRight:0+'px'}}>
-                          
-                                  <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Export
-                                  </button>
-                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-content" href="#">Excel</a>
-                                      <a class="dropdown-content" href="#">CSV</a>
-                                      <a class="dropdown-content" href="#">Sheets</a>
-                                  </div>
-                          
-                      </span>
-                      </div>
-                      <Table id="url" columns={CompTabcol} dataSource={tabcomplist}
-                      rowSelection={{type: selectionTypeCompTab,...rowSelection,}} pagination={{position:["bottomRight"]}} />
-                  </>
-                  :
-                  <></>
-              }
-              {
-                  tabledropselection == "Keywords" ? <>
-                  <div className="tab-panel-url-options">
-                          <span>
-                              <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
-                                  {settabkeywordList(
-                                  searchdataKeywordTab.filter(person =>
-                                  person.keyword.includes(nameSearch)
-                                  )
-                                  );console.log(nameSearch)}
-                                  }
-                                  id="input-s"
-                              />
-                          </span>
-                          <span>
-                              <select name="" id="select-type-table" value={tabledropselection} onChange={()=>{settabledropselection(document.getElementById('select-type-table').value)}}>
-                                  <option value="URL">URL</option>
-                                  <option value="Competitors">Competitors</option>
-                                  <option value="Keywords">Keywords</option>
-                              </select>
-                          </span>
-                          <span class="export">
-                          <button class="outline-btn ">Import</button>
-                      </span>
-                      <span class="export" style={{marginRight:0+'px'}}>
-                          
-                                  <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Export
-                                  </button>
-                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-content" href="#">Excel</a>
-                                      <a class="dropdown-content" href="#">CSV</a>
-                                      <a class="dropdown-content" href="#">Sheets</a>
-                                  </div>
-                          
-                      </span>
-                      </div>
-                      <Table id="url" columns={KeywordTabcol} dataSource={tabkeywordlist}
-                      rowSelection={{type: selectionTypeKeywordTab,...rowSelection,}} pagination={{position:["bottomRight"]}} />
-                  </> :<></>
-              }
-              </div>
-              <div className="custom-column-70 none" id="account-settings">
-                  Account Settings
-              </div>
-              <div className="custom-column-70 none" id="profile">
-                  Profile
-              </div>
-              <div className="custom-column-70 none" id="admin">
-                  Admin
-              </div>
+                        <Table id="url" columns={URLTabcol} dataSource={taburllist}
+                        rowSelection={{type: selectionTypeURLTab,...rowSelection,}} pagination={{position:["bottomRight"]}} />
+                    </>
+                    :
+                    <>
+                    </>
+                }
+                {tabledropselection == "Competitors" ? 
+                    <>
+                        <div className="tab-panel-url-options">
+                            <span>
+                                <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
+                                    {settabcompList(
+                                    searchdataCompTab.filter(person =>
+                                    person.comp.includes(nameSearch)
+                                    )
+                                    );console.log(nameSearch)}
+                                    }
+                                    id="input-s"
+                                />
+                            </span>
+                            <span>
+                                <select name="" id="select-type-table" value={tabledropselection} onChange={()=>{settabledropselection(document.getElementById('select-type-table').value)}}>
+                                    <option value="URL">URL</option>
+                                    <option value="Competitors">Competitors</option>
+                                    <option value="Keywords">Keywords</option>
+                                </select>
+                            </span>
+                            <span class="export">
+                            <button class="outline-btn ">Import</button>
+                        </span>
+                        <span class="export" style={{marginRight:0+'px'}}>
+                            
+                                    <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Export
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-content" href="#">Excel</a>
+                                        <a class="dropdown-content" href="#">CSV</a>
+                                        <a class="dropdown-content" href="#">Sheets</a>
+                                    </div>
+                            
+                        </span>
+                        </div>
+                        <Table id="url" columns={CompTabcol} dataSource={tabcomplist}
+                        rowSelection={{type: selectionTypeCompTab,...rowSelection,}} pagination={{position:["bottomRight"]}} />
+                    </>
+                    :
+                    <></>
+                }
+                {
+                    tabledropselection == "Keywords" ? <>
+                    <div className="tab-panel-url-options">
+                            <span>
+                                <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
+                                    {settabkeywordList(
+                                    searchdataKeywordTab.filter(person =>
+                                    person.keyword.includes(nameSearch)
+                                    )
+                                    );console.log(nameSearch)}
+                                    }
+                                    id="input-s"
+                                />
+                            </span>
+                            <span>
+                                <select name="" id="select-type-table" value={tabledropselection} onChange={()=>{settabledropselection(document.getElementById('select-type-table').value)}}>
+                                    <option value="URL">URL</option>
+                                    <option value="Competitors">Competitors</option>
+                                    <option value="Keywords">Keywords</option>
+                                </select>
+                            </span>
+                            <span class="export">
+                            <button class="outline-btn ">Import</button>
+                        </span>
+                        <span class="export" style={{marginRight:0+'px'}}>
+                            
+                                    <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Export
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-content" href="#">Excel</a>
+                                        <a class="dropdown-content" href="#">CSV</a>
+                                        <a class="dropdown-content" href="#">Sheets</a>
+                                    </div>
+                            
+                        </span>
+                        </div>
+                        <Table id="url" columns={KeywordTabcol} dataSource={tabkeywordlist}
+                        rowSelection={{type: selectionTypeKeywordTab,...rowSelection,}} pagination={{position:["bottomRight"]}} />
+                    </> :<></>
+                }
+                </div>
+                <div className="custom-column-70 none" id="account-settings">
+                    Account Settings
+                </div>
+                <div className="custom-column-70 none" id="profile">
+                    Profile
+                </div>
+                <div className="custom-column-70 none" id="admin">
+                    Admin
+                </div>
             </div>
 
           </div>

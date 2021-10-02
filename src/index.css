@@ -3354,6 +3354,7 @@ span.progress-bar-customer {
 .custom-column-33{
   width: 33.33%;
   padding: 10px 16px;
+  height: 100vh;
 }
 .custom-borrig{
   border-right: 1px solid grey;
@@ -3361,12 +3362,15 @@ span.progress-bar-customer {
 .custom-column-30{
   width: 30%;
   padding: 10px 16px;
+  border-left: 1px solid gray;
+  height: 100vh;
 }
 .custom-column-70{
   width: 70%;
   padding: 10px 16px;
+  height: 100vh;
 }
-.configuration select, .configuration select:focus-visible {
+.configuration select#clients, .configuration select#clients:focus-visible, .configuration select#client-proj, .configuration select#client-proj:focus-visible {
   width: 100%;
   border: unset !important;
   border-bottom: 1px solid hsl(0, 0%, 80%) !important;
@@ -3380,12 +3384,28 @@ ul.configuration-tab-list {
   padding: 10px 0px;
   cursor: pointer;
 }
-.configuration .fa.fa-angle-left {
-  border: 1px solid lightgray;
-  padding: 5px 10px;
-  cursor: pointer;
+.configuration .fa.fa-arrow-left {
+  border: 1px solid gray;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: lightgray;
+    margin-left: -6%;
+    margin-right: 11%;
+    border-radius: 2px;
 }
-
+.configuration .SearchSelectMain .css-yk16xz-control, .configuration .SearchSelectMain .css-1pahdxg-control {
+  width: 100%;
+  border: unset !important;
+  border-bottom: 1px solid hsl(0, 0%, 80%) !important;
+  box-shadow: unset;
+}
+.css-1pahdxg-control{
+  box-shadow: unset !important;
+  border: 1px solid hsl(0, 0%, 80%) !important;
+}
+.configuration .SearchSelectMain input:focus-visible{
+  border: unset !important;
+}
 @media(max-width:1440px) and (min-width:1025px){
   #atmospheric-composition {
     margin-left: -83px  !important;
