@@ -194,6 +194,12 @@ return (
                                     <input type="text" name="" placeholder="Rahul" disabled />
                                 </div>
 
+                                <div className="form-wrappers">
+                                            <label>Account Activation</label>
+                                            <br />
+                                            <label  class="switch"><input data-onstyle="success" type="checkbox" /><span  class="slider round"></span></label>
+                                        </div>
+
                                 <div class="form-wrappers">
                                     <label>Document Upload</label>
                                     <br />

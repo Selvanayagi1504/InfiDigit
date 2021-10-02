@@ -433,7 +433,9 @@ function TicketsList() {
             <div
               class="top-ticket-frame"
             >
-              <label
+<div className="row">
+                <div className="col-sm-3">
+                <label
                 style={{
                   
                   
@@ -444,9 +446,11 @@ function TicketsList() {
               >
                 Ticket - 25
               </label>
-              <span
+                </div>
+                <div className="col-sm-9 add-new-btnw">
+                <span
                 class="export-client"
-                style={{ marginLeft: "3%", marginTop: "5px" }}
+                style={{  marginTop: "5px" }}
               >
                 <select id="export-client" name="export">
                   <option value="Export">Export</option>
@@ -475,9 +479,9 @@ function TicketsList() {
                   
                   marginLeft: "15px",
 
-                  width: "8%",
+                  
                   height: "40px",
-                  marginTop: "5px",
+                  
                 }}
               >
                 Assign
@@ -488,6 +492,8 @@ function TicketsList() {
                 onClick={() => setShowApplyFilter((prev) => !prev)}
                 class="filterimage"
               />
+                </div>
+              </div>
             </div>
             <br />
 

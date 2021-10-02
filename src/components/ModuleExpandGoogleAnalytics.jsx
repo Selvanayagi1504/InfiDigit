@@ -810,6 +810,7 @@ function ModuleExpandGoogleAnalytics() {
                             <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
                             <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
                             <li><a href="module-expand-google-analytics">Google Analytics</a></li>
+                            <li><a href="module-expand-seo-audit">SEO Audit</a></li>
                         </ul>
                     </div>
                     <Breadcrumb>

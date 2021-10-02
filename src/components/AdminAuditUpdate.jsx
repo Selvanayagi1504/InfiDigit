@@ -174,7 +174,7 @@ return (
                     <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                            <span class="profile-name">Sales</span>
+                            <span class="profile-name">Admin</span>
                         </button>
 
 
@@ -243,7 +243,7 @@ return (
                                         {notes && notes.map((i, index)=>{
                                             return(
                                                 <div className="description-box-outer">
-                                                    <textarea name="" id={i.id} cols="58" rows="10"></textarea>
+                                                    <textarea name="" id={i.id}></textarea>
                                                     <div class="images-description">
                                                     {i.input.map((j)=>{
                                                         return(
@@ -258,7 +258,7 @@ return (
                                         })}
                                         
                                         <ul class="form-action-wrapper">
-                                            <li><a href="#" class="ol-btn">Save</a></li>
+                                           
                                             <li><button class="outline-btn" onClick={()=>{addnote()}}>Add new</button></li>
                                         </ul>
                                     </div>
@@ -314,7 +314,7 @@ return (
                                             {notes1 && notes1.map((i, index)=>{
                                                 return(
                                                     <div className="description-box-outer">
-                                                        <textarea name="" id={i.id} cols="58" rows="10" value={i.description}></textarea>
+                                                        <textarea name="" id={i.id}>{i.description}</textarea>
                                                         <div class="images-description">
                                                         {i.input.map((j)=>{
                                                             return(
@@ -329,7 +329,7 @@ return (
                                             })}
                                             
                                             <ul class="form-action-wrapper">
-                                                <li><a href="#" class="ol-btn">Save</a></li>
+                                                
                                                 <li><button class="outline-btn" onClick={()=>{addnote1()}}>Add new</button></li>
                                             </ul>
                                         </div>

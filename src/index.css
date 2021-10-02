@@ -74,6 +74,60 @@ ul{
 ,#4e73df 10%,#224abe 100%);
   background-size: cover;
   z-index: 1;
+  padding-bottom: 64px;
+  }
+ .sidebar-nav-bar::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+  }
+  
+ .sidebar-nav-bar::-webkit-scrollbar
+  {
+    width: 5px;
+    background-color: #F5F5F5;
+  }
+  
+ .sidebar-nav-bar::-webkit-scrollbar-thumb
+  {
+    background-color: #AAA;
+    border-radius: 10px;
+    background-image: -webkit-linear-gradient(90deg,
+                                              rgba(0, 0, 0, .2) 25%,
+                          /* transparent 25%,
+                          transparent 50%,
+                          rgba(0, 0, 0, .2) 50%,
+                          rgba(0, 0, 0, .2) 75%,
+                          transparent 75%, */
+                          transparent)
+  }
+  #sample::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+  }
+  
+ #sample::-webkit-scrollbar
+  {
+    width: 5px;
+    height: 5px;
+    background-color: #F5F5F5;
+  }
+  
+ #sample::-webkit-scrollbar-thumb
+  {
+    background-color: #AAA;
+    border-radius: 10px;
+    background-image: -webkit-linear-gradient(90deg,
+                                              rgba(0, 0, 0, .2) 25%,
+                          /* transparent 25%,
+                          transparent 50%,
+                          rgba(0, 0, 0, .2) 50%,
+                          rgba(0, 0, 0, .2) 75%,
+                          transparent 75%, */
+                          transparent)
   }
   .side-menu a{
     font-size: 14px;
@@ -1418,10 +1472,10 @@ ul.ant-pagination.ant-table-pagination.ant-table-pagination-left li.ant-paginati
   display: none;
 }
 
-ul.ant-pagination.ant-table-pagination.ant-table-pagination-left li.ant-pagination-options {
+/* ul.ant-pagination.ant-table-pagination.ant-table-pagination-left li.ant-pagination-options {
   margin-left: 79%;
     margin-top: -5.1%;
-}
+} */
 ul.ant-pagination.ant-table-pagination.ant-table-pagination-left .ant-select-selector {
   border: 1px solid rgb(204, 204, 204) !important;
   padding: 3px 19px !important;
@@ -1560,12 +1614,12 @@ height: 40px;
   background-color: #ffffff;
   padding: 3px 19px;
 }
-.tab-panel-url-options select, .tab-panel-url-options button{
+/* .tab-panel-url-options select, .tab-panel-url-options button{
   border-radius: 2px;
   border: solid 1px #d4dee7;
   background-color: #ffffff;
   padding: 8px 16px;
-}
+} */
 .row.tab-panel-url {
   margin: 48px 0px;
 }
@@ -2883,7 +2937,7 @@ div#full {
 }
 .dashboard-sales-chart1-inner {
   margin-right: 24px;
-  display: flex;
+  /* display: flex; */
   background-color: #fff;
     border-color: hsl(0, 0%, 80%);
     border-radius: 4px;
@@ -2898,7 +2952,11 @@ div#full {
 .dashboard-sales-chart1-inner i {
   margin-right: 17px;
   font-size: 32px;
-  margin-top: 46%;
+  margin-top: 5%;
+}
+.dashboard-sales-chart1-inner h2 {
+  font-size: 26px;
+  margin-top: 6px;
 }
 .salesRevenue .apexcharts-toolbar {
   display: none;
@@ -2936,7 +2994,7 @@ span.square-legend {
   height: 10px;
   margin-right: 10px;
 }
-.dashboard-sales #wi-50{
+#wi-50{
   width: 50%;
 }
 .daterangepicker .active{
@@ -3161,6 +3219,7 @@ h2.mt-4.keyword-idea-title {
 }
 .description-box-outer textarea {
   border: unset;
+  width: 100%;
 }
 .images-description img {
   width: 50px;
@@ -3200,6 +3259,132 @@ h2.mt-4.keyword-idea-title {
 .seo-audit-modal .modal-content {
   min-width: 608px;
 }
+.dashboard-customers .charts-main-box {
+  padding: 23px;
+  margin-bottom: 48px;
+}
+.chart-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+.seo-audit .dashboard-sales-legend {
+  justify-content: left;
+}
+.seo-audit .pagination a{
+  text-decoration: none;
+   /* background-color: #E0E0E0; */
+}
+.seo-audit .pagination a:hover{
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.seo-audit .pagination p, .seo-audit  .pagination li,.seo-audit .pagination  a{
+  font-size: 14px;
+  padding: 4px 11px;
+}
+.seo-audit .col {
+  display: block;
+  float:left;
+  margin: 1% 0 1% 1.6%;
+}
+.seo-audit .col:first-of-type {
+  margin-left: 0;
+}
+/* style for first 3 */
+.seo-audit .pagination .button-1{
+  background-color: #7FD8C9;
+}
+.seo-audit .pagination .button-2{
+  background-color: #FCA69A;
+}
+.seo-audit .pagination .button-3{
+  background-color: #E4CB93;
+}
+/* ///////// */
+.seo-audit .container{
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+}
+.seo-audit .pagination{
+  padding: 30px 0;
+}
+.seo-audit .pagination ul{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.seo-audit .pagination a{
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 7px;
+  padding: 2px 2px;
+  margin-right: 8px;
+  color: #222;
+}
+.seo-audit .p12 .prev, .seo-audit .p12 .next, .seo-audit .p12 .is-active{
+  /* background-color: #4E73DF; */
+  color: black;
+  /* font-weight: bold; */
+}
+.heading-customers span {
+  font-size: 23px;
+  margin-right: 24px;
+}
+.heading-customers i.fa.fa-star {
+  color: goldenrod;
+  margin-right: 8px;
+}
+span.progress-bar-customer {
+  display: inline-block;
+  width: 5%;
+  height: 10%;
+}
+.progress-bar-sales {
+  width: 23%;
+}
+
+
+.custom-row{
+  width: 100%;
+  display: flex;
+}
+.custom-column-33{
+  width: 33.33%;
+  padding: 10px 16px;
+}
+.custom-borrig{
+  border-right: 1px solid grey;
+}
+.custom-column-30{
+  width: 30%;
+  padding: 10px 16px;
+}
+.custom-column-70{
+  width: 70%;
+  padding: 10px 16px;
+}
+.configuration select, .configuration select:focus-visible {
+  width: 100%;
+  border: unset !important;
+  border-bottom: 1px solid hsl(0, 0%, 80%) !important;
+}
+ul.configuration-tab-list {
+  list-style: none;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.configuration-tab-list li {
+  padding: 10px 0px;
+  cursor: pointer;
+}
+.configuration .fa.fa-angle-left {
+  border: 1px solid lightgray;
+  padding: 5px 10px;
+  cursor: pointer;
+}
 
 @media(max-width:1440px) and (min-width:1025px){
   #atmospheric-composition {
@@ -3223,33 +3408,11 @@ h2.mt-4.keyword-idea-title {
   .score-maintain a.outline-btn {
     height: 40px;
   }
-  .sub-projects ul.ant-pagination.ant-table-pagination.ant-table-pagination-left li.ant-pagination-options {
-    margin-left: 78% !important;
-    margin-top: -7% !important;
-  }
-  .client-list ul.ant-pagination.ant-table-pagination.ant-table-pagination-left li.ant-pagination-options{
-    margin-top: -4.4% !important;
-    margin-left: 63.5% !important;
-  }
-  .data-export .count-drop{
-    margin-left: 2%;
-  }
-  ul.ant-pagination.ant-table-pagination.ant-table-pagination-left li.ant-pagination-options{
-    margin-left: 70%;
-  }
-  .data-export{
-    margin-left: unset;
-  }
+  
   .search{
     margin-left: 65%;
   }
-  ul.ant-pagination.ant-table-pagination.ant-table-pagination-left li.ant-pagination-options {
-    margin-left: 70%  !important;
-    margin-top: -7.1%  !important;
-  }
-  .count-drop{
-    margin-left: 8%  !important;
-  }
+ 
   .ROI input[type="text"], .ROI select {
     max-width: 43%;
     height: 40px;
@@ -3334,39 +3497,17 @@ h2.mt-4.keyword-idea-title {
   .data-export {
     margin-left: -102px;
   }
-  ul.ant-pagination.ant-table-pagination.ant-table-pagination-left li.ant-pagination-options {
-    margin-left: 61% !important;
-    margin-top: -9.1% !important;
-  }
+  
   .data-export-client {
     text-align: end;
     width: 36em;
     margin-left: -8em;
   }
-  .client-list ul.ant-pagination.ant-table-pagination.ant-table-pagination-left li.ant-pagination-options {
-    margin-top: -7% !important;
-    margin-left: 49.5% !important;
-  }
+  
   .search {
     margin-left: 48%;
   }
-  .team-members .data-export {
-    margin-left: -141px;
-  }
-  .team-members ul.ant-pagination.ant-table-pagination.ant-table-pagination-left li.ant-pagination-options {
-    margin-left: 56% !important;
-    margin-top: -10.8% !important;
-  }
-  .sub-projects .data-export {
-    margin-left: -219px;
-  }
-  .sub-projects ul.ant-pagination.ant-table-pagination.ant-table-pagination-left li.ant-pagination-options {
-    margin-left: 67% !important;
-    margin-top: -10.6% !important;
-  }
-  .data-export-client .count-drop{
-    margin-left: 8%;
-  }
+
   .ROI input[type="text"], .ROI select {
     width: 61%;
     height: 40px;

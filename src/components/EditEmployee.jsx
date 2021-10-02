@@ -193,7 +193,7 @@ return (
                     <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                            <span class="profile-name">M.Subash</span>
+                            <span class="profile-name">HR</span>
                         </button>
 
 
@@ -212,7 +212,7 @@ return (
 
         <div class="sidebar-nav-bar">
             <ul class="list-unstyled side-menu">
-                <li><a href="dashboard.html"><i class="fa fa-columns"></i> Dashboard</a></li>
+                {/* <li><a href="dashboard.html"><i class="fa fa-columns"></i> Dashboard</a></li> */}
 
                 <li><a href="/team-members"><i class="fa fa-users"></i> Team Members</a></li>
             </ul>

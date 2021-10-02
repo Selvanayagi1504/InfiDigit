@@ -195,6 +195,7 @@ function ClinetsSalesDir() {
       <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
       <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
       <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
+      <li><a href="configuration">Configuration</a></li>
             </ul>
         </div>
         <div class="content-wrapper">
@@ -245,7 +246,7 @@ function ClinetsSalesDir() {
                                             id="input-s"
                                             />
                                         </span>
-                                        <span class="export">
+                                        <span class="export" style={{marginRight:0+'px'}}>
                                         
                                                 <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Export

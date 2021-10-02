@@ -189,7 +189,7 @@ function ClientList() {
             </Breadcrumb>
                 <div class="row">
                     <div class="col-sm-5 pad-lzero">
-                        <div class="main-title">CLIENTS</div>
+                        <div class="main-title">CUSTOMERS</div>
                     </div>
                     <div class="col-sm-7 add-new-btnw">
                         <a href="create-client" class="outline-btn">Add New</a>
@@ -209,15 +209,15 @@ function ClientList() {
                                         
                                         <span class="count-drop">
                                         </span>
-                                        <span class="export-client">
+                                        {/* <span class="export-client">
                                             <select id="export-client" name="export">
                                                 <option value="Export">Export</option>
                                                 <option value="PDF">Excel</option>
                                                 <option value="WORD">CSV</option>
                                                 <option value="Sheets">Sheets</option>
                                             </select>
-                                        </span>
-                                        <span>
+                                        </span> */}
+                                        <span class="common-mr-24">
                                             <Input.Search
                                             allowClear
                                             placeholder="Search By name"
@@ -231,6 +231,18 @@ function ClientList() {
                                             id="input-s"
                                             />
                                         </span>
+                                        <span class="export" style={{marginRight:0+'px'}}>
+                                        
+                                                <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Export
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-content" href="#">Excel</a>
+                                                    <a class="dropdown-content" href="#">CSV</a>
+                                                    <a class="dropdown-content" href="#">Sheets</a>
+                                                </div>
+                                        
+                                    </span>
                                     </div>
                                 {/* </div>
                             </div> */}

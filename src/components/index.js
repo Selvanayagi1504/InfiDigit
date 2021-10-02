@@ -53,3 +53,6 @@ export {default as DashboardAdmin} from './DashboardAdmin'
 export {default as AccessPermissionsAdmin} from './AccessPermissionsAdmin'
 export {default as AdminAuditUpdate} from './AdminAuditUpdate'
 export {default as ModuleExpandSEOAudit} from './ModuleExpandSEOAudit';
+export {default as DashboardCustomers} from './DashboardCustomers';
+export {default as ModuleExpandNonCompliant} from './ModuleExpandNonCompliant';
+export {default as Configuration} from './Configuration'

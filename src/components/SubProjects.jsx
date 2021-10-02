@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {useHistory} from "react-router-dom";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col } from "antd";
-import {Dropdown} from 'react-bootstrap'
+// import {Dropdown} from 'react-bootstrap'
 
 import { Breadcrumb } from 'antd';
 import {
@@ -13,7 +13,8 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
-
+import { NotificationSEO } from "./index";
+import { Sidenav, Nav, Dropdown } from 'rsuite';
 
 const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -158,7 +159,7 @@ const [sidenav,setsidenav] = useState(false);
           <div class="nav-bar-right">
             <ul class="list-unstyled nav-right-menu">
             <li>
-            <Dropdown id="notification-dropdown">
+            {/* <Dropdown id="notification-dropdown">
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
@@ -177,7 +178,8 @@ const [sidenav,setsidenav] = useState(false);
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
-                    </Dropdown>
+                    </Dropdown> */}
+                    <NotificationSEO/>
 
 
                     </li>
@@ -204,24 +206,38 @@ const [sidenav,setsidenav] = useState(false);
 
         <div class="sidebar-nav-bar">
           <ul class="list-unstyled side-menu">
-            <li>
-              <UncontrolledButtonDropdown className="uncontrolled">
-                <DropdownToggle caret size="md" >
-                  Dashboard <i class="fa fa-angle-right"  aria-hidden="true"></i>
-                </DropdownToggle>
-                <DropdownMenu>
-                  <div className="main">Clients</div>
-                  <span><a href="dashboard-seo?id=Myntra"> Myntra </a></span>
-                  <DropdownItem href="dashboard-seo?id=Myntra-Shoes">Myntra Shoes</DropdownItem>
-                  <DropdownItem href="dashboard-seo?id=Myntra-Loafers">Myntra Loafers</DropdownItem>
-                  <span ><a href="dashboard-seo?id=Amazon"> Amazon </a></span>
-                  <DropdownItem href="dashboard-seo?id=Amazon - Fashion">Fashion</DropdownItem>
-                  <DropdownItem href="dashboard-seo?id=Amazon - Jewellery">Jewellery</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledButtonDropdown>
-            </li>
-            <li><a href="sub-projects"><i class="fa fa-tasks"></i> Projects</a></li>
-            <li><a href="ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
+          <Sidenav class="sidenav-seo">
+            <Sidenav.Body>
+            <Nav>
+                {/* <Nav.Item eventKey="1" >
+                Dashboard
+                </Nav.Item>
+                <Nav.Item eventKey="2" >
+                User Group
+                </Nav.Item> */}
+                <Dropdown eventKey="1" title="Dasboard" >
+                  <Dropdown.Menu eventKey="1-1" title="Clients">
+                      {/* <Dropdown.Item eventKey="1-1-1">Myntra</Dropdown.Item>
+                      <Dropdown.Item eventKey="1-1-2">Amazon</Dropdown.Item> */}
+                      <Dropdown.Menu eventKey="1-1-1" title="Myntra">
+                        <Dropdown.Item eventKey="1-1-1-1" href="dashboard-seo?id=Myntra-Shoes">Myntra Shoes</Dropdown.Item>
+                        <Dropdown.Item eventKey="1-1-1-2" href="dashboard-seo?id=Myntra-Loafers">Myntra Loafers</Dropdown.Item>
+                      </Dropdown.Menu>
+                      <Dropdown.Menu eventKey="1-1-2" title="Amazon">
+                        <Dropdown.Item eventKey="1-1-2-1" href="dashboard-seo?id=Amazon - Fashion">Fashion</Dropdown.Item>
+                        <Dropdown.Item eventKey="1-1-2-2" href="dashboard-seo?id=Amazon - Jewellery">Jewellery</Dropdown.Item>
+                      </Dropdown.Menu>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <Nav.Item eventKey="2" href="/sub-projects">
+                  <i class="fa fa-tasks"></i> Projects
+                </Nav.Item>
+                <Nav.Item eventKey="3" href="ticketslist">
+                  <i class="fa fa-ticket"></i>Tickets
+                </Nav.Item>
+            </Nav>
+            </Sidenav.Body>
+        </Sidenav>
           </ul>
         </div>
         <div class="content-wrapper">
@@ -234,26 +250,27 @@ const [sidenav,setsidenav] = useState(false);
               </Breadcrumb.Item>
           </Breadcrumb>
 
-            <div class="search">
-              <div class="input-group">
-                <Row type="flex" gutter={10} style={{ marginBottom: 10 }}>
-                  <Col>
-
-                  </Col>
-                  <Col>
-                  <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
-                    {setteamList(
-                    searchdata.filter(person =>
-                    person.clientname.includes(nameSearch)
-                    )
-                    );console.log(nameSearch)}
-                    }
-                    id="input-s"
-                    />
-                    </Col>
-                </Row>
-              </div>
-            </div>
+          <div className="row">
+                            <div className="col-sm-5"></div>
+                            <div className="col-sm-7 add-new-btnw">
+                            <div class="search" style={{marginLeft:0+'px', width:100+'%'}}>
+                                <div class="input-group" style={{display:"block"}}>
+                            <Input.Search
+                                allowClear
+                                placeholder="Search By name"
+                                onSearch={nameSearch =>
+                                    {setteamList(
+                                        searchdata.filter(person =>
+                                        person.name.includes(nameSearch)
+                                        )
+                                    );console.log(nameSearch)}
+                                }
+                                id="input-s"
+                                />
+                                 </div>
+                                </div>
+                            </div>
+                        </div>
 
 
 
@@ -270,14 +287,18 @@ const [sidenav,setsidenav] = useState(false);
                         
                         <span class="count-drop" style={{width:100+'px'}}>
                         </span>
-                        <span class="export">
-                          <select id="export" name="export">
-                            <option value="Export">Export</option>
-                            <option value="PDF">Excel</option>
-                            <option value="WORD">CSV</option>
-                            <option value="Sheets">Sheets</option>
-                          </select>
-                        </span>
+                        <span class="export" style={{marginRight:0+'px'}}>
+                                        
+                                                <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Export
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-content" href="#">Excel</a>
+                                                    <a class="dropdown-content" href="#">CSV</a>
+                                                    <a class="dropdown-content" href="#">Sheets</a>
+                                                </div>
+                                        
+                                    </span>
                         <span>
                           {/* <button class="Import">Import</button> */}
                         </span>

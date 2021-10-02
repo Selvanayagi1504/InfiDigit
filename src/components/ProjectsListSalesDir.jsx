@@ -164,7 +164,7 @@ const [sidenav,setsidenav] = useState(false);
               <li class="dropdown">
                 <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                     <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                    <span class="profile-name">M.Subash</span>
+                    <span class="profile-name">Director</span>
                 </button>
 
 
@@ -187,6 +187,7 @@ const [sidenav,setsidenav] = useState(false);
       <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
       <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
       <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
+      <li><a href="configuration">Configuration</a></li>
 
           </ul>
         </div>
@@ -202,26 +203,27 @@ const [sidenav,setsidenav] = useState(false);
               </Breadcrumb.Item>
           </Breadcrumb>
 
-            <div class="search">
-              <div class="input-group">
-                <Row type="flex" gutter={10} style={{ marginBottom: 10 }}>
-                  <Col>
-
-                  </Col>
-                  <Col>
-                  <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
-                    {setteamList(
-                    searchdata.filter(person =>
-                    person.clientname.includes(nameSearch)
-                    )
-                    );console.log(nameSearch)}
-                    }
-                    id="input-s"
-                    />
-                    </Col>
-                </Row>
-              </div>
-            </div>
+          <div className="row">
+                            <div className="col-sm-5"></div>
+                            <div className="col-sm-7 add-new-btnw">
+                            <div class="search" style={{marginLeft:0+'px', width:100+'%'}}>
+                                <div class="input-group" style={{display:"block"}}>
+                            <Input.Search
+                                allowClear
+                                placeholder="Search By name"
+                                onSearch={nameSearch =>
+                                    {setteamList(
+                                        searchdata.filter(person =>
+                                        person.name.includes(nameSearch)
+                                        )
+                                    );console.log(nameSearch)}
+                                }
+                                id="input-s"
+                                />
+                                 </div>
+                                </div>
+                            </div>
+                        </div>
 
 
 

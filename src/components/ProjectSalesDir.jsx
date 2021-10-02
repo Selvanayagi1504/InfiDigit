@@ -55,13 +55,13 @@ function ProjectSalesDir() {
         var filtercity=[], filterstatus=[];
         data.push({
           key: 0,
-          projcode:`0`,
+          projcode:<a href="view-client-sales-dir">0</a>,
           poc:`Raj 0`,
           client:"Myntra",
           startdate: "03/05/2020",
           closedate: "03/05/2021",
           status:`Active`,
-          view:<a href="project-details-dir">View</a>
+          
         });
         filterstatus.push({
             text:"Active",
@@ -70,13 +70,13 @@ function ProjectSalesDir() {
         for (let i = 1; i < 100; i++) {
         data.push({
             key: i,
-            projcode:`1234${i}`,
+            projcode:<a href="view-client-sales-dir">1234{i}</a>,
             poc:`Raj ${i}`,
             client:"Cultfit",
             startdate: "03/05/2020",
             closedate: "03/05/2021",
             status:`Completed`,
-            view:<a href="project-details-dir">View</a>
+            
         });
         }
         filterstatus.push({
@@ -232,6 +232,7 @@ function ProjectSalesDir() {
       <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
       <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
       <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
+      <li><a href="configuration">Configuration</a></li>
             </ul>
         </div>
         <div class="content-wrapper">
@@ -248,12 +249,12 @@ function ProjectSalesDir() {
                     <a href="/project-sales-dir">Projects</a>
                     </Breadcrumb.Item>
                 </Breadcrumb>
-                <Tabs>
+                {/* <Tabs>
                     <TabList>
                         <Tab>Projects</Tab>
                         <Tab>Team Members</Tab>
                     </TabList>
-                    <TabPanel>
+                    <TabPanel> */}
                         <div class="row">
                             <div class="col-sm-5 pad-lzero">
                                 <div class="main-title">PROJECTS</div>
@@ -300,7 +301,7 @@ function ProjectSalesDir() {
                             </div>
                             <Table id="sample" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
                         </div>
-                    </TabPanel>
+                    {/* </TabPanel>
                     <TabPanel>
                     <div class="row">
                             <div class="col-sm-5 pad-lzero">
@@ -334,7 +335,7 @@ function ProjectSalesDir() {
                             ? 
                                 <>
                                     <div class="add-new-btnw" style={{textAlign:"left"}}>
-                                        {/* <button  class="outline-btn">Edit</button> */}
+                                        <button  class="outline-btn">Edit</button> 
                                     </div>
                                     <div class="common-table">
                                         <div class="row">
@@ -376,9 +377,9 @@ function ProjectSalesDir() {
                                 </> 
                             :
                                 <></>
-                        }
-                    </TabPanel>
-                </Tabs>
+                        } */}
+                    {/* </TabPanel>
+                </Tabs> */}
 
             </div>
         </div>

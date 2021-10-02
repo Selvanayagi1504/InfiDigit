@@ -32,6 +32,7 @@ const rowSelection = {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
   },
 };
+
 function DashboardSEO() {
   const search = useLocation().search;
   const id = new URLSearchParams(search).get('id');
@@ -296,11 +297,11 @@ return (
                       </Dropdown.Menu>
                   </Dropdown.Menu>
                 </Dropdown>
-                <Nav.Item eventKey="2" >
-                <i class="fa fa-tasks" style={{marginRight:8+'px'}}></i>Projects
+                <Nav.Item eventKey="2" href="/sub-projects">
+                  <i class="fa fa-tasks"></i> Projects
                 </Nav.Item>
-                <Nav.Item eventKey="3" >
-                <i class="fa fa-ticket" style={{marginRight:8+'px'}}></i>Tickets
+                <Nav.Item eventKey="3" href="ticketslist">
+                  <i class="fa fa-ticket"></i>Tickets
                 </Nav.Item>
             </Nav>
             </Sidenav.Body>
@@ -396,7 +397,7 @@ return (
                     </div>
                     <Chart
                         className="line-graph"
-                        width={'600px'}
+                        
                         height={'400px'}
                         chartType="LineChart"
                         data={chartdata}
@@ -441,7 +442,7 @@ return (
                     </div>
                     <Chart
                       className="line-graph"
-                      width={'600px'}
+                      
                       height={'400px'}
                       chartType="ColumnChart"
                       data={chartdataContentWordCount}
@@ -475,11 +476,11 @@ return (
                     <h4>Tickets</h4>
                     <MyFDate />
                   </div>
-                  <div className="col-lg-3">
+                 
+                  <div className="col-lg-2"></div>
+                  <div className="col-lg-5 add-new-btnw">
                     <a href ="ticketslist">View all Tickets</a>
                   </div>
-                  <div className="col-lg-1"></div>
-                  
                 </div>
                 {
                   ticketmin

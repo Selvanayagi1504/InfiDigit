@@ -527,7 +527,7 @@ function EditProjectDir() {
                         <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                            <span class="profile-name">SEO</span>
+                            <span class="profile-name">Director</span>
                         </button>
 
 
@@ -605,27 +605,27 @@ function EditProjectDir() {
                                 <button onClick={()=>assign1()}  class="outline-btn">Edit</button>
                             </div>
 
-                            <div class="search" style={{marginTop:-67+'px'}}>
-                                <div class="input-group">
-                                    <Row type="flex" gutter={10} style={{ marginBottom: 10 }}>
-                                        <Col>
-                                            
-                                        </Col>
-                                        <Col>
-                                            <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
-                                                {setteamList(
-                                                searchdata.filter(person =>
-                                                person.teammember.includes(nameSearch)
-                                                )
-                                                );console.log(nameSearch)}
-                                                }
-                                                id="input-s"
-                                            />
-                                        </Col>
-                                    </Row>
+                            <div className="row">
+                            <div className="col-sm-5"></div>
+                            <div className="col-sm-7 add-new-btnw">
+                            <div class="search" style={{marginLeft:0+'px', width:100+'%'}}>
+                                <div class="input-group" style={{display:"block"}}>
+                            <Input.Search
+                                allowClear
+                                placeholder="Search By name"
+                                onSearch={nameSearch =>
+                                    {setteamList(
+                                        searchdata.filter(person =>
+                                        person.name.includes(nameSearch)
+                                        )
+                                    );console.log(nameSearch)}
+                                }
+                                id="input-s"
+                                />
+                                 </div>
                                 </div>
                             </div>
-
+                        </div>
 
 
                             <div class="common-table">

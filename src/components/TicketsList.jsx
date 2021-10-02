@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import {Dropdown} from 'react-bootstrap'
+// import {Dropdown} from 'react-bootstrap'
 import { Table, Input, Row, Col, Space, Tag } from "antd";
 import { Select } from "antd";
 import { DatePicker } from "antd";
@@ -16,6 +16,8 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
+import { NotificationSEO } from "./index";
+import { Sidenav, Nav, Dropdown } from 'rsuite';
 
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
@@ -418,7 +420,7 @@ function TicketsList() {
           <div class="nav-bar-right">
             <ul class="list-unstyled nav-right-menu">
             <li>
-            <Dropdown id="notification-dropdown">
+            {/* <Dropdown id="notification-dropdown">
                         <Dropdown.Toggle id="dropdown-basic">
                         <i class="fa fa-bell"></i>
                         </Dropdown.Toggle>
@@ -437,8 +439,8 @@ function TicketsList() {
                                 </div>
                             </Dropdown.Item>
                         </Dropdown.Menu>
-                    </Dropdown>
-
+                    </Dropdown> */}
+<NotificationSEO/>
 
                     </li>
 
@@ -479,7 +481,7 @@ function TicketsList() {
 
         <div class="sidebar-nav-bar">
           <ul class="list-unstyled side-menu">
-          <li>
+          {/* <li>
               <UncontrolledButtonDropdown className="uncontrolled">
                 <DropdownToggle caret size="md" >
                   Dashboard <i class="fa fa-angle-right"  aria-hidden="true"></i>
@@ -496,7 +498,39 @@ function TicketsList() {
               </UncontrolledButtonDropdown>
             </li>
             <li><a href="sub-projects"><i class="fa fa-tasks"></i> Projects</a></li>
-            <li><a href="ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
+            <li><a href="ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li> */}
+            <Sidenav class="sidenav-seo">
+            <Sidenav.Body>
+            <Nav>
+                {/* <Nav.Item eventKey="1" >
+                Dashboard
+                </Nav.Item>
+                <Nav.Item eventKey="2" >
+                User Group
+                </Nav.Item> */}
+                <Dropdown eventKey="1" title="Dasboard" >
+                  <Dropdown.Menu eventKey="1-1" title="Clients">
+                      {/* <Dropdown.Item eventKey="1-1-1">Myntra</Dropdown.Item>
+                      <Dropdown.Item eventKey="1-1-2">Amazon</Dropdown.Item> */}
+                      <Dropdown.Menu eventKey="1-1-1" title="Myntra">
+                        <Dropdown.Item eventKey="1-1-1-1" href="dashboard-seo?id=Myntra-Shoes">Myntra Shoes</Dropdown.Item>
+                        <Dropdown.Item eventKey="1-1-1-2" href="dashboard-seo?id=Myntra-Loafers">Myntra Loafers</Dropdown.Item>
+                      </Dropdown.Menu>
+                      <Dropdown.Menu eventKey="1-1-2" title="Amazon">
+                        <Dropdown.Item eventKey="1-1-2-1" href="dashboard-seo?id=Amazon - Fashion">Fashion</Dropdown.Item>
+                        <Dropdown.Item eventKey="1-1-2-2" href="dashboard-seo?id=Amazon - Jewellery">Jewellery</Dropdown.Item>
+                      </Dropdown.Menu>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <Nav.Item eventKey="2" href="/sub-projects">
+                  <i class="fa fa-tasks"></i> Projects
+                </Nav.Item>
+                <Nav.Item eventKey="3" href="ticketslist">
+                  <i class="fa fa-ticket"></i>Tickets
+                </Nav.Item>
+            </Nav>
+            </Sidenav.Body>
+        </Sidenav>
           </ul>
         </div>
         <div class="content-wrapper">
@@ -530,7 +564,9 @@ function TicketsList() {
             <div
               class="top-ticket-frame"
             >
-              <label
+              <div className="row">
+                <div className="col-sm-3">
+                <label
                 style={{
                   
                   
@@ -541,9 +577,11 @@ function TicketsList() {
               >
                 Ticket - 25
               </label>
-              <span
+                </div>
+                <div className="col-sm-9 add-new-btnw">
+                <span
                 class="export-client"
-                style={{ marginLeft: "3%", marginTop: "5px" }}
+                style={{  marginTop: "5px" }}
               >
                 <select id="export-client" name="export">
                   <option value="Export">Export</option>
@@ -572,9 +610,9 @@ function TicketsList() {
                   
                   marginLeft: "15px",
 
-                  width: "8%",
+                  
                   height: "40px",
-                  marginTop: "5px",
+                  
                 }}
               >
                 Assign
@@ -585,6 +623,9 @@ function TicketsList() {
                 onClick={() => setShowApplyFilter((prev) => !prev)}
                 class="filterimage"
               />
+                </div>
+              </div>
+              
             </div>
             <br />
 

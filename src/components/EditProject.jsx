@@ -619,27 +619,27 @@ function EditProject() {
                                 <button onClick={()=>assign1()}  class="outline-btn">Edit</button>
                             </div>
 
-                            <div class="search" style={{marginTop:-67+'px'}}>
-                                <div class="input-group">
-                                    <Row type="flex" gutter={10} style={{ marginBottom: 10 }}>
-                                        <Col>
-                                            
-                                        </Col>
-                                        <Col>
-                                            <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
-                                                {setteamList(
-                                                searchdata.filter(person =>
-                                                person.teammember.includes(nameSearch)
-                                                )
-                                                );console.log(nameSearch)}
-                                                }
-                                                id="input-s"
-                                            />
-                                        </Col>
-                                    </Row>
+                            <div className="row">
+                            <div className="col-sm-5"></div>
+                            <div className="col-sm-7 add-new-btnw">
+                            <div class="search" style={{marginLeft:0+'px', width:100+'%'}}>
+                                <div class="input-group" style={{display:"block"}}>
+                            <Input.Search
+                                allowClear
+                                placeholder="Search By name"
+                                onSearch={nameSearch =>
+                                    {setteamList(
+                                        searchdata.filter(person =>
+                                        person.name.includes(nameSearch)
+                                        )
+                                    );console.log(nameSearch)}
+                                }
+                                id="input-s"
+                                />
+                                 </div>
                                 </div>
                             </div>
-
+                        </div>
 
 
                             <div class="common-table">
@@ -655,14 +655,18 @@ function EditProject() {
                                                     
                                                     <span class="count-drop" style={{width:100+'px'}}>
                                                     </span>
-                                                    <span class="export">
-                                                    <select id="export" name="export">
-                                                        <option value="Export">Export</option>
-                                                        <option value="PDF">Excel</option>
-                                                        <option value="WORD">CSV</option>
-                                                        <option value="Sheets">Sheets</option>
-                                                    </select>
-                                                    </span>
+                                                    <span class="export" style={{marginRight:0+'px'}}>
+                                        
+                                        <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Export
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-content" href="#">Excel</a>
+                                            <a class="dropdown-content" href="#">CSV</a>
+                                            <a class="dropdown-content" href="#">Sheets</a>
+                                        </div>
+                                
+                            </span>
                                                     <span>
                                                     {/* <button class="Import">Import</button> */}
                                                     </span>
@@ -899,17 +903,21 @@ function EditProject() {
                                                 
                                             </select>
                                         </span>
-                                        <span>
-                                            <button>Import</button>
-                                        </span>
-                                        <span>
-                                            <select name="" id="">
-                                                <option value="Export">Export</option>
-                                                <option value="Excel">Excel</option>
-                                                <option value=".CSV">.CSV</option>
-                                                <option value="Sheets">Sheets</option>
-                                            </select>
-                                        </span>
+                                        <span class="export">
+                                        <button class="outline-btn ">Import</button>
+                                    </span>
+                                    <span class="export" style={{marginRight:0+'px'}}>
+                                        
+                                                <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Export
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-content" href="#">Excel</a>
+                                                    <a class="dropdown-content" href="#">CSV</a>
+                                                    <a class="dropdown-content" href="#">Sheets</a>
+                                                </div>
+                                        
+                                    </span>
                                     </div>
                                     <Table id="url" columns={URLTabcol} dataSource={taburllist}
                                     rowSelection={{type: selectionTypeURLTab,...rowSelection,}} pagination={{position:["bottomRight"]}} />
@@ -939,17 +947,21 @@ function EditProject() {
                                                 <option value="Keywords">Keywords</option>
                                             </select>
                                         </span>
-                                        <span>
-                                            <button>Import</button>
-                                        </span>
-                                        <span>
-                                            <select name="" id="">
-                                                <option value="Export">Export</option>
-                                                <option value="Excel">Excel</option>
-                                                <option value=".CSV">.CSV</option>
-                                                <option value="Sheets">Sheets</option>
-                                            </select>
-                                        </span>
+                                        <span class="export">
+                                        <button class="outline-btn ">Import</button>
+                                    </span>
+                                    <span class="export" style={{marginRight:0+'px'}}>
+                                        
+                                                <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Export
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-content" href="#">Excel</a>
+                                                    <a class="dropdown-content" href="#">CSV</a>
+                                                    <a class="dropdown-content" href="#">Sheets</a>
+                                                </div>
+                                        
+                                    </span>
                                     </div>
                                     <Table id="url" columns={CompTabcol} dataSource={tabcomplist}
                                     rowSelection={{type: selectionTypeCompTab,...rowSelection,}} pagination={{position:["bottomRight"]}} />
@@ -962,7 +974,7 @@ function EditProject() {
                                 <div className="tab-panel-url-options">
                                         <span>
                                             <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
-                                                {setKeywordTabcol(
+                                                {settabkeywordList(
                                                 searchdataKeywordTab.filter(person =>
                                                 person.keyword.includes(nameSearch)
                                                 )
@@ -978,17 +990,21 @@ function EditProject() {
                                                 <option value="Keywords">Keywords</option>
                                             </select>
                                         </span>
-                                        <span>
-                                            <button>Import</button>
-                                        </span>
-                                        <span>
-                                            <select name="" id="">
-                                                <option value="Export">Export</option>
-                                                <option value="Excel">Excel</option>
-                                                <option value=".CSV">.CSV</option>
-                                                <option value="Sheets">Sheets</option>
-                                            </select>
-                                        </span>
+                                        <span class="export">
+                                        <button class="outline-btn ">Import</button>
+                                    </span>
+                                    <span class="export" style={{marginRight:0+'px'}}>
+                                        
+                                                <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Export
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-content" href="#">Excel</a>
+                                                    <a class="dropdown-content" href="#">CSV</a>
+                                                    <a class="dropdown-content" href="#">Sheets</a>
+                                                </div>
+                                        
+                                    </span>
                                     </div>
                                     <Table id="url" columns={KeywordTabcol} dataSource={tabkeywordlist}
                                     rowSelection={{type: selectionTypeKeywordTab,...rowSelection,}} pagination={{position:["bottomRight"]}} />

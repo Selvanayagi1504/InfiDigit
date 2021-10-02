@@ -13,7 +13,7 @@ import Highcharts from 'highcharts';
 import {ModuleExpandTickets} from './index';
 import Pagination from '@mui/material/Pagination';
 import { addClass } from "dom-lib";
-import {Link} from 'react-router-dom';
+import ReactApexChart  from 'react-apexcharts'
 
 const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -21,8 +21,9 @@ const rowSelection = {
     },
   };
 
-function ModuleExpandSEOAudit() {
+function ModuleExpandNonComplaint() {
     const [show,setshow]= useState(false);
+    const [show1,setshow1]= useState(false);
     const [sidenav,setsidenav] = useState(false);
     const [page, setPage] = React.useState(1);
     const [notes1,setnotes1] = useState([]);
@@ -95,112 +96,93 @@ function ModuleExpandSEOAudit() {
         ]
         setinputimg(data)
         data=[{
-            module:"Content",
-            pointsChecked: 50,
-            pointsPending:10,
-            compliantPoints:30,
-            nonCompliants:<Link to={{pathname: '/module-expand-non-compliant', search: `?id=1`,state: { detail: "1" }}}> 20</Link>,
-            highImpact:5,
-            mediumImpact:10,
-            lowImpact:15,
-            p0:5,
-            p1:10, 
-            p2:5,
-            p3:0
-        },{
-            module:"Crawl",
-            pointsChecked: 60,
-            pointsPending:20,
-            compliantPoints:40,
-            nonCompliants:<Link to={{pathname: '/module-expand-non-compliant', search: `?id=2`,state: { detail: "1" }}}> 10 </Link>,
-            highImpact:2,
-            mediumImpact:5,
-            lowImpact:3,
-            p0:5,
-            p1:3,
-            p2:2,
-            p3:0
-        },{
-            module:"Total",
-            pointsChecked: 110,
-            pointsPending:30,
-            compliantPoints:70,
-            nonCompliants:<Link to={{pathname: '/module-expand-non-compliant', search: `?id=3`,state: { detail: "1" }}}> 30 </Link>,
-            highImpact:7,
-            mediumImpact:15,
-            lowImpact:18,
-            p0:10,
-            p1:13,
-            p2:7,
-            p3:0
-        },];
-        setteamList(data);
-        const columns = [
-            {
-              title: "Module",
-              dataIndex: "module",
-              key: "module"
+                month:"Feb-21",
+                changesRequested: 14,
+                implemented:"",
+                wip:"",
+                onHold:"",
+                pending:"",
+                implementation:""
             },
             {
-              title: "Points Checked",
-              dataIndex: "pointsChecked",
-              key: "pointsChecked"
+                month:"Mar-21",
+                changesRequested: 14,
+                implemented:"",
+                wip:"",
+                onHold:"",
+                pending:"",
+                implementation:""
             },
             {
-                title:"Points Pending",
-                dataIndex:"pointsPending",
-                key:"pointsPending",
-            },
-            {
-                title:"Compliant Points",
-                dataIndex:"compliantPoints",
-                key:"compliantPoints",
-            },
-            {
-                title:"Non Compliant",
-                dataIndex:"nonCompliants",
-                key:"nonCompliants",
-            },
-            {
-                title:"High Impact",
-                dataIndex:"highImpact",
-                key:"highImpact",
-            },
-            {
-                title:"Medium Impact",
-                dataIndex:"mediumImpact",
-                key:"mediumImpact",
-            },
-            {
-                title:"Low Impact",
-                dataIndex:"lowImpact",
-                key:"lowImpact",
-            },
-            {
-                title:"P0",
-                dataIndex:"p0",
-                key:"p0",
-            },
-            {
-                title:"P1",
-                dataIndex:"p1",
-                key:"p1",
-            },
-            {
-                title:"P2",
-                dataIndex:"p2",
-                key:"p2",
-            },
-            {
-                title:"P3",
-                dataIndex:"p3",
-                key:"p3",
-            }
-          ];
-        setteamcol(columns);
+                month:"Apr-21",
+                changesRequested: 33,
+                implemented:4,
+                wip:11,
+                onHold:4,
+                pending:14,
+                implementation:"12%"
+            },{
+                month:"May-21",
+                changesRequested: 64,
+                implemented:12,
+                wip:11,
+                onHold:4,
+                pending:37,
+                implementation:"19%"
+            },{
+                month:"Jun-21",
+                changesRequested: 66,
+                implemented:13,
+                wip:10,
+                onHold:4,
+                pending:39,
+                implementation:"20%"
+            }];
+            setteamList(data);
+            const columns = [
+                {
+                  title: "Month",
+                  dataIndex: "month",
+                  key: "month"
+                },
+                {
+                  title: "Changes Requested",
+                  dataIndex: "changesRequested",
+                  key: "changesRequested"
+                },
+                {
+                    title:"Implemented",
+                    dataIndex:"implemented",
+                    key:"implemented",
+                },
+                {
+                    title:"WIP",
+                    dataIndex:"wip",
+                    key:"wip",
+                },
+                {
+                    title:"On Hold",
+                    dataIndex:"onHold",
+                    key:"onHold",
+                },
+                {
+                    title:"Pending",
+                    dataIndex:"pending",
+                    key:"pending",
+                },
+                {
+                    title:"Implementation%",
+                    dataIndex:"implementation",
+                    key:"implementation",
+                }
+              ];
+            setteamcol(columns);
     },[])
     function handleModal(){
         setshow(!show);
+    }
+    function handleModal1(){
+        setshow1(!show1);
     }
     function addClass(i){
         var a = "button-"+i;
@@ -215,6 +197,85 @@ function ModuleExpandSEOAudit() {
         b.push({imgsrc:URL.createObjectURL(event.target.files[0])});
         setinputimg(b)
     }
+    const [chartseries, setchartseries] = useState([
+		{
+			name: "Changes Requested",
+			type: "column",
+			data: [14,14,33,64,66]
+		},
+    {
+			name: "Implemented",
+			type: "column",
+			data: [,,4,12,13]
+		},
+    {
+			name: "WIP",
+			type: "column",
+			data: [,,11,11,10]
+		},
+    {
+			name: "On Hold",
+			type: "column",
+			data: [,,4,4,4]
+		},
+    {
+			name: "Pending",
+			type: "column",
+			data: [,,14,37,39]
+		},
+		{
+			name: "Implementation %",
+			type: "line",
+			data: [,,12,19,20]
+		}
+	]);
+	const [chartoptions, setchartoptions] = useState({
+		chart: {
+			height: 350,
+			type: "line"
+		},
+		stroke: {
+			width: [0, 4]
+		},
+		title: {
+			text: ""
+		},
+		dataLabels: {
+			enabled: true,
+			enabledOnSeries: [1]
+		},
+		labels: [
+      "Jan21",
+			"Feb 21",
+      "Mar 21",
+      "Apr 21",
+      "May 21",
+      "Jun 21"
+		],
+		xaxis: {
+			type: "datetime"
+		},
+		yaxis: [
+			{
+				title: {
+					text: "",
+				},
+        min:0,
+        max:100,
+        range:10
+			},
+			{
+				opposite: true,
+				title: {
+					text: ""
+				}
+			}
+		],
+    legend: {
+      show: false
+    },
+    colors : ['#4264BE','#8BA3D9','#A4A4A5','#FFC531','#913203','#50BC63']
+	});
     function pageNext(){
         var tempArray=pageArray;
         if(tempArray[0].page+5<totalpage){
@@ -250,6 +311,7 @@ function ModuleExpandSEOAudit() {
     function pageCapture(page){
         console.log(page)
     }
+
     return (
         <>
             <section class="outer-wrapper seo-audit">
@@ -268,7 +330,7 @@ function ModuleExpandSEOAudit() {
 
 
 
-                                <ul style={{display:sidenav?"bloc{i.description}k":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li><a href="">Profile</a></li>
 
                                 <li><a href="/">Log Out</a></li>
@@ -401,7 +463,56 @@ function ModuleExpandSEOAudit() {
                                 
                             </span>
                     </div>
-                    <Table id="sample" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
+                    <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
+                    <div className="score-maintain">
+                                
+                        <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal1()}>Custom</a>
+                    
+                        <Dropdown>
+                            <Dropdown.Toggle id="dropdown-basic">
+                            <i className="fa fa-download"></i>
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="">Download All Charts</Dropdown.Item>
+                                <Dropdown.Item href="">Download this only</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+                    <ReactApexChart
+                        options={chartoptions}
+                        series={chartseries}
+                        type="line"
+                        height={350}
+                        width={600}
+                        class="salesRevenue"
+                    />
+                    <div className="dashboard-sales-legend">
+                        <div>
+                            <span className="square-legend" style={{backgroundColor:"#4264BE"}}></span>
+                            <span>Changes Requested</span>
+                        </div>
+                        <div>
+                            <span className="square-legend" style={{backgroundColor:"#8BA3D9"}}></span>
+                            <span>Implemented</span>
+                        </div>
+                        <div>
+                            <span className="square-legend" style={{backgroundColor:"#A4A4A5"}}></span>
+                            <span>WIP</span>
+                        </div>
+                        <div>
+                            <span className="square-legend" style={{backgroundColor:"#FFC531"}}></span>
+                            <span>On H0ld</span>
+                        </div>
+                        <div>
+                            <span className="square-legend" style={{backgroundColor:"#913203"}}></span>
+                            <span>Pending</span>
+                        </div>
+                        <div>
+                            <span className="line-legend" style={{backgroundColor:"#50BC63"}}></span>
+                            <span>Implementation %</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -491,8 +602,39 @@ function ModuleExpandSEOAudit() {
         <Button onClick={()=>handleModal()}>Save</Button>  
         </Modal.Footer> 
       </Modal>
+      <Modal show={show1} onHide={()=>handleModal1()} className="edit-employee-modal">  
+            <Modal.Header closeButton>Choose Data Range</Modal.Header>  
+            <Modal.Body>
+                <div class="common-wrapper">
+
+                    <div class="common-wcard">
+
+                        <div class="common-form-fields">
+
+                            <div class="add-user">
+                                <div class="form-wrappers">
+                                    <label>From Date</label>
+                                    <input type="date" name="" placeholder="" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>To Date</label>
+                                    <input type="date" name="" placeholder="" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </Modal.Body>  
+            <Modal.Footer>  
+            <Button onClick={()=>handleModal1()}>Close</Button>  
+            <Button onClick={()=>handleModal1()}>Save</Button>  
+            </Modal.Footer>  
+        </Modal> 
         </>
     );
 }
 
-export default ModuleExpandSEOAudit;
+export default ModuleExpandNonComplaint;

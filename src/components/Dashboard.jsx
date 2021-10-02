@@ -257,6 +257,7 @@ return (
       <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
       <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
       <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
+      <li><a href="configuration">Configuration</a></li>
       {/* <li>
         <UncontrolledButtonDropdown className="uncontrolled">
           <DropdownToggle caret size="md" >

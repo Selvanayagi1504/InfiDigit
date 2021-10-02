@@ -382,7 +382,7 @@ function AccessPermissionsAdmin() {
                         <li class="dropdown">
                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                                 <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                                <span class="profile-name">M.Subash</span>
+                                <span class="profile-name">Admin</span>
                             </button>
 
 
@@ -419,16 +419,17 @@ function AccessPermissionsAdmin() {
                     </Breadcrumb>
                     <div className="row ">
                         <div className="col-md-3 my-3 my-md-0"><h2>Access Permissions</h2></div>
-                        <div className="col-md-6 "></div>
-                        <div className="col-md-2 my-3 my-md-0">
-                            <select id="choose" onChange={()=>{setoption(document.getElementById('choose').value)}}>
+                        <div className="col-md-5 "></div>
+                        <div className="col-md-4 add-new-btnw">
+                            <select id="choose" onChange={()=>{setoption(document.getElementById('choose').value)}} class="common-mr-24">
                                 <option value="Director">Director</option>
                                 <option value="HR">HR</option>
                                 <option value="Sales">Sales</option>
                                 <option value="SEO">SEO</option>
                             </select>
+                            <button className="outline-btn" onClick={checkbox}>Save</button>
                         </div>
-                        <div className="col-md-1 my-3 my-md-0"><button className="outline-btn" onClick={checkbox}>Save</button></div>
+                        
                     </div>
                     <div className="designation-box mt-5">
                         <div className="row my-3 px-3 py-5 align-item-center justify-content-between">

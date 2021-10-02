@@ -12,7 +12,7 @@ import {
 import Chart from "react-google-charts";
 import "antd/dist/antd.css";
 import { Table, Breadcrumb } from "antd";
-import Highcharts from 'highcharts';
+// import Highcharts from 'highcharts';
 import ReactApexChart  from 'react-apexcharts'
 
 import DateRangePicker from "react-bootstrap-daterangepicker";
@@ -20,6 +20,10 @@ import "bootstrap-daterangepicker/daterangepicker.css";
 import $ from 'jquery'
 import { customRanges } from "./functions";
 import moment from "moment";
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import { circularProgressClasses } from "@mui/material";
+
 const datePickerHandler = (event, picker) => {
     let value =
       picker.startDate.format("DD-MM-YYYY") +
@@ -36,6 +40,40 @@ const rowSelection = {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
   },
 };
+
+
+function CustomTextProgressbar(props) {
+  const { children, ...otherProps } = props;
+
+  return (
+    <div
+      style={{
+        position: 'relative',
+        width: '200px',
+        height: '200px',
+      }}
+    >
+      <div style={{ position: 'absolute' }}>
+        <CircularProgressbar {...otherProps} />
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        {props.children}
+      </div>
+    </div>
+  );
+}
+
+
 function DashboardSales() {
   const [sidenav,setsidenav] = useState(false);
   const [sidenavsales, setsidenavsales] = useState(false);
@@ -52,7 +90,7 @@ function DashboardSales() {
   const [ticketscolWait, setticketscolWait] = useState([]);
   // const [series, setseries] = useState([])
   useEffect(()=>{
-    highChartsRender(127);
+    // highChartsRender(127);
     var data = [
       ['x', 'totalClicks', 'totalImp','organicUsers', 'newUsers'],
       ["24/1/2021", 5,10,20,30],
@@ -201,76 +239,76 @@ function DashboardSales() {
   function sidenavtoggle(){
     setsidenavsales(!sidenavsales)
   }
-  function highChartsRender(a){
-    var value = a;
-    var value1= 1;
-    if(a>100){
-      value = 100;
-      value1 = 0;
-    }
-    else{
-      value = a;
-      value1 = 100-a;
-    }
-    Highcharts.chart({
-      chart: {
-        type: 'pie',
-        renderTo: 'atmospheric-composition',
-        height:'400px',
-      },
-      title: {
+  // function highChartsRender(a){
+  //   var value = a;
+  //   var value1= 1;
+  //   if(a>100){
+  //     value = 100;
+  //     value1 = 0;
+  //   }
+  //   else{
+  //     value = a;
+  //     value1 = 100-a;
+  //   }
+  //   Highcharts.chart({
+  //     chart: {
+  //       type: 'pie',
+  //       renderTo: 'atmospheric-composition',
+  //       height:'400px',
+  //     },
+  //     title: {
         
-        floating: true,
-        text: `${a}%<hr/>`,
-        align: "center",
-        verticalAlign: "middle",
-        y: 80,
-      },
-      subtitle: {
-        text: "Congrats Tickets <br/>is met",
-        align: "center",
-        verticalAlign: "middle",
-        y: 110
-      },
-      plotOptions: {
-        pie: {
-          dataLabels: {
-              format: '{point.name}: {point.percentage:.1f} %',
-              enabled: false,
-                distance: -50,
-                style: {
-                    fontWeight: 'bold',
-                    color: 'white'
-                }
-          },
-          startAngle: -180,
-        endAngle: 180,
-        center: ['50%', '75%'],
-        size: '50%',
-        }
-      },
-      series: [
-        {
-          name: <div>3.2 helo</div>,
-          type: 'pie',
-          innerSize: '60%',
-          data: [
-              {
-                name: '',
-                y: value,
-                color: "#a5c559"
-              },
-              {
-                name: '',
-                y: value1,
-                color: '#edf3de'
-              },
+  //       floating: true,
+  //       text: `${a}%<hr/>`,
+  //       align: "center",
+  //       verticalAlign: "middle",
+  //       y: 80,
+  //     },
+  //     subtitle: {
+  //       text: "Congrats Tickets <br/>is met",
+  //       align: "center",
+  //       verticalAlign: "middle",
+  //       y: 110
+  //     },
+  //     plotOptions: {
+  //       pie: {
+  //         dataLabels: {
+  //             format: '{point.name}: {point.percentage:.1f} %',
+  //             enabled: false,
+  //               distance: -50,
+  //               style: {
+  //                   fontWeight: 'bold',
+  //                   color: 'white'
+  //               }
+  //         },
+  //         startAngle: -180,
+  //       endAngle: 180,
+  //       center: ['50%', '75%'],
+  //       size: '50%',
+  //       }
+  //     },
+  //     series: [
+  //       {
+  //         name: <div>3.2 helo</div>,
+  //         type: 'pie',
+  //         innerSize: '60%',
+  //         data: [
+  //             {
+  //               name: '',
+  //               y: value,
+  //               color: "#a5c559"
+  //             },
+  //             {
+  //               name: '',
+  //               y: value1,
+  //               color: '#edf3de'
+  //             },
               
-          ]
-        }
-      ]
-  });
-  }
+  //         ]
+  //       }
+  //     ]
+  // });
+  // }
   const [chartseries, setchartseries] = useState([
 		{
 			name: "Sales Revenue",
@@ -510,7 +548,7 @@ return (
                 <div class={!ticketmin?"charts-flex":""}>
                   <div class="charts-main-box">
                     <div className="row">
-                      <div className="col-lg-6 dashboard-sales-chart1">
+                      <div className="col-lg-8 dashboard-sales-chart1">
                         <div className="dashboard-sales-chart1-inner" style={{marginLeft:7+'%'}}>
                           <span><i class="fa fa-user-plus"></i></span>
                           <span>
@@ -526,9 +564,14 @@ return (
                           </span>
                         </div>
                       </div>
-                      <div className="col-lg-6 dashboard-sales-chart1">
-                        <div id="atmospheric-composition">
-                        </div>
+                      <div className="col-lg-4 dashboard-sales-chart1 progress-bar-sales">
+                         {/* <CustomTextProgressbar percentage="127">
+                          <div>
+                            <strong>127%</strong>
+                          </div>
+                          <div style={{ fontSize: '0.8em' }}>Congrats Tickets <br/> are met</div>
+                        </CustomTextProgressbar> */}
+                        <CircularProgressbar value="127" text="127%" />
                       </div>
                     </div>
                     <ReactApexChart
@@ -536,7 +579,7 @@ return (
                       series={chartseries}
                       type="line"
                       height={350}
-                      width={600}
+                     
                       class="salesRevenue"
                     />
                     <div className="dashboard-sales-legend">
@@ -576,7 +619,7 @@ return (
                       series={chartseriesSecond}
                       type="line"
                       height={350}
-                      width={600}
+                      
                       class="salesRevenue"
                     />
                     <div className="dashboard-sales-legend">
@@ -597,8 +640,8 @@ return (
                 <div class="charts-main-box" id={!ticketmin?"wi-50":""}>
                     <Chart
                       className="line-graph"
-                      width={'600px'}
-                      height={'400px'}
+                     
+                      height={'350px'}
                       chartType="ColumnChart"
                       data={chartdataContentWordCount}
                       
@@ -652,11 +695,11 @@ return (
                   ticketmin
                   ?
                     <>
-                      <Table id="sample-module-expand" columns={ticketscol} dataSource={ticketstable} pagination={{position:[]}} />
+                      <Table id="sample" columns={ticketscol} dataSource={ticketstable} pagination={{position:[]}} />
                       <div className="audit-score-title">
                         Waiting for Approval
                       </div>
-                      <Table id="sample-module-expand" columns={ticketscolWait} dataSource={ticketstableWait} pagination={{position:[]}} />
+                      <Table id="sample" columns={ticketscolWait} dataSource={ticketstableWait} pagination={{position:[]}} />
                     </>
                   :
                     <>
@@ -684,4 +727,5 @@ function MyFDate() {
     <p>{newCurrentDate}</p>
   );
 }
+
 export default DashboardSales;

@@ -165,10 +165,11 @@ return (
 
         <div class="sidebar-nav-bar">
             <ul class="list-unstyled side-menu">
-            <li><a href="/dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
-      <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
-      <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
-      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
+                <li><a href="/dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
+                <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
+                <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
+                <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
+                <li><a href="configuration">Configuration</a></li>
             </ul>
         </div>
         <div class="content-wrapper">
@@ -211,14 +212,13 @@ return (
                     </div>
                 </div>
 
-                <div class="search">
-                    <div class="input-group">
-                        <Row type="flex" gutter={10} style={{ marginBottom: 10 }}>
-                            <Col>
-                                
-                            </Col>
-                            <Col>
-                                <Input.Search
+                
+                        <div className="row">
+                            <div className="col-sm-5"></div>
+                            <div className="col-sm-7 add-new-btnw">
+                            <div class="search" style={{marginLeft:0+'px', width:100+'%'}}>
+                                <div class="input-group" style={{display:"block"}}>
+                            <Input.Search
                                 allowClear
                                 placeholder="Search By name"
                                 onSearch={nameSearch =>
@@ -230,10 +230,11 @@ return (
                                 }
                                 id="input-s"
                                 />
-                            </Col>
-                        </Row>
-                    </div>
-                </div>
+                                 </div>
+                                </div>
+                            </div>
+                        </div>
+                   
 
                 
 
@@ -248,12 +249,11 @@ return (
                             <div class="col-md-8">
                                 <div class="data-export">
                                     
-                                    <span class="count-drop" style={{width:100+'px'}}>
-                                    </span>
+                                    
                                     <span class="export">
                                         <button class="ms-5 outline-btn ">Import</button>
                                     </span>
-                                    <span class="export">
+                                    <span class="export" style={{marginRight:0+'px'}}>
                                         
                                                 <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Export

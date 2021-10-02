@@ -85,7 +85,7 @@ return (
                     <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                            <span class="profile-name">Sales</span>
+                            <span class="profile-name">Director</span>
                         </button>
 
 
@@ -108,6 +108,7 @@ return (
                 <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
                 <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
                 <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
+                <li><a href="configuration">Configuration</a></li>
             </ul>
         </div>
         <div class="content-wrapper">
@@ -192,7 +193,7 @@ return (
                                             <label>Phone Number</label>
                                             <br />
                                             <div style={{display:"flex"}}>
-                                                <input type="text" value={phonecode} style={{width:10+'%', marginRight:16+'px'}} />
+                                                <input type="text" value={phonecode} style={{width:15+'%', marginRight:16+'px'}} />
                                                 <input type="text" name="" placeholder="Enter Phone Number" />
                                             </div>
                                         </div>
@@ -200,6 +201,12 @@ return (
                                         <div class="form-wrappers">
                                             <label>Created By</label>
                                             <input type="text" name="" placeholder="Rahul" disabled />
+                                        </div>
+
+                                        <div className="form-wrappers">
+                                            <label>Account Activation</label>
+                                            <br />
+                                            <label  class="switch"><input data-onstyle="success" type="checkbox" /><span  class="slider round"></span></label>
                                         </div>
 
                                         <div class="form-wrappers">
@@ -305,7 +312,7 @@ return (
                                                 <label>Phone Number</label>
                                                 <br />
                                                 <div style={{display:"flex"}}>
-                                                    <input type="text" value="+91" style={{width:10+'%', marginRight:16+'px'}} />
+                                                    <input type="text" value="+91" style={{width:15+'%', marginRight:16+'px'}} />
                                                     <input type="text" name="" placeholder="8905675841" disabled />
                                                 </div>
                                             </div>

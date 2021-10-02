@@ -89,6 +89,9 @@ function Home() {
     if(strUser == "Admin"){
       history.push('/dashboard-admin')
     }
+    if(strUser == "Customers"){
+      history.push('/dashboard-customers?id=Myntra - Shoes')
+    }
   }
 return (
 <>
@@ -107,6 +110,7 @@ return (
                   <option value="sales">Sales</option>
                   <option value="SEO">SEO</option>
                   <option value="Admin">Admin</option>
+                  <option value="Customers">Customers</option>
               </select>
             </div>
           

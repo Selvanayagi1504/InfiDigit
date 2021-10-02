@@ -3,7 +3,7 @@ import {useState, useEffect} from "react";
 import { Button,Modal} from 'react-bootstrap';  
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "antd/dist/antd.css";
-import { Table, Input,  Row,  Col, Switch,Drawer } from "antd";
+import { Table, Input,  Row,  Col, Switch,Drawer, Breadcrumb } from "antd";
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 import {Dropdown} from 'react-bootstrap'
@@ -142,9 +142,17 @@ function ViewClientDetailsSalesDir() {
             [7, 27, 19],
           ]
         setchartdatacomp(data)
+        data = [
+            {
+                teammember:"Kiran",
+                date:"02/05/2021",
+                delete:<a href=""><i class="fa fa-trash"></i></a>
+            }
+        ]
+        setteamList(data)
     },[])
     function assign(){
-        var data=[];
+        var data = JSON.parse(JSON.stringify(teamlist))
         optionSelected.map((i)=>{
             data.push({
                 teammember:`${i.value}`,
@@ -233,7 +241,7 @@ return (
                     <li class="dropdown">
                         <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                             <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                            <span class="profile-name">M.Subash</span>
+                            <span class="profile-name">Director</span>
                         </button>
 
 
@@ -256,10 +264,26 @@ return (
       <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
       <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
       <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
+      <li><a href="configuration">Configuration</a></li>
             </ul>
         </div>
         <div class="content-wrapper">
             <div class="dashboard-wrapper">
+            <Breadcrumb>
+                    <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                    <a href="/dashboard">Dashboard</a>
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                    <a href="/team-members-sales-dir">Team Members</a>
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                    <a href="/project-sales-dir">Projects</a>
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                    <a href="/view-client-sales-dir">Projects Details</a>
+                    </Breadcrumb.Item>
+                </Breadcrumb>
                 <div class="row">
                     <div class="col-sm-5 pad-lzero">
                         <div class="main-title">CLIENT DETAILS</div>
@@ -492,29 +516,30 @@ return (
                                 ? 
                                     <>
                                         <div class="add-new-btnw" style={{textAlign:"left"}}>
-                                            <button  class="outline-btn">Edit</button>
+                                            {/* <button  class="outline-btn">Edit</button> */}
                                         </div>
 
-                                        <div class="search" style={{marginTop:-67+'px'}}>
-                                            <div class="input-group">
-                                                <Row type="flex" gutter={10} style={{ marginBottom: 10 }}>
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                    <Col>
-                                                        <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
-                                                            {setteamList(
-                                                            searchdata.filter(person =>
-                                                            person.teammember.includes(nameSearch)
-                                                            )
-                                                            );console.log(nameSearch)}
-                                                            }
-                                                            id="input-s"
-                                                        />
-                                                    </Col>
-                                                </Row>
-                                            </div>
-                                        </div>
+                                        <div className="row">
+                            <div className="col-sm-5"></div>
+                            <div className="col-sm-7 add-new-btnw">
+                            <div class="search" style={{marginLeft:0+'px', width:100+'%'}}>
+                                <div class="input-group" style={{display:"block"}}>
+                            <Input.Search
+                                allowClear
+                                placeholder="Search By name"
+                                onSearch={nameSearch =>
+                                    {setteamList(
+                                        searchdata.filter(person =>
+                                        person.name.includes(nameSearch)
+                                        )
+                                    );console.log(nameSearch)}
+                                }
+                                id="input-s"
+                                />
+                                 </div>
+                                </div>
+                            </div>
+                        </div>
                                         <div class="common-table">
                                             <div class="row">
                                                 <div class="col-md-5"></div>

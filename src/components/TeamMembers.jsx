@@ -371,7 +371,7 @@ import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
 import {useHistory} from "react-router-dom";
 import "antd/dist/antd.css";
-import { Table, Input,  Row,  Col } from "antd";
+import { Table, Input,  Row,  Col, Breadcrumb } from "antd";
 
 
 const rowSelection = {
@@ -616,7 +616,7 @@ return (
 
         <div class="sidebar-nav-bar">
         <ul class="list-unstyled side-menu">
-               <li><a href="dashboard.html"><i class="fa fa-columns"></i> Dashboard</a></li>
+               {/* <li><a href="dashboard.html"><i class="fa fa-columns"></i> Dashboard</a></li> */}
                 <li><a href=""><i class="fa fa-users"></i> Team Members</a></li>
         </ul>
         </div>
@@ -641,7 +641,13 @@ return (
             </AutoComplete>
           </Col>
         </Row> */}
-            
+             <Breadcrumb>
+                <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+                <Breadcrumb.Item>
+                <a href="/team-members">Team Members</a>
+                </Breadcrumb.Item>
+                
+            </Breadcrumb>
                 <div class="row">
                     <div class="col-sm-5 pad-lzero">
                         <div class="main-title">TEAM MEMBERS</div>
@@ -651,14 +657,12 @@ return (
                     </div>
                 </div>
 
-                <div class="search">
-                    <div class="input-group">
-                        <Row type="flex" gutter={10} style={{ marginBottom: 10 }}>
-                            <Col>
-                                
-                            </Col>
-                            <Col>
-                                <Input.Search
+                <div className="row">
+                            <div className="col-sm-5"></div>
+                            <div className="col-sm-7 add-new-btnw">
+                            <div class="search" style={{marginLeft:0+'px', width:100+'%'}}>
+                                <div class="input-group" style={{display:"block"}}>
+                            <Input.Search
                                 allowClear
                                 placeholder="Search By name"
                                 onSearch={nameSearch =>
@@ -670,10 +674,10 @@ return (
                                 }
                                 id="input-s"
                                 />
-                            </Col>
-                        </Row>
-                    </div>
-                </div>
+                                 </div>
+                                </div>
+                            </div>
+                        </div>
 
                 
 
@@ -688,12 +692,11 @@ return (
                             <div class="col-md-8">
                                 <div class="data-export">
                                     
-                                    <span class="count-drop" style={{width:100+'px'}}>
-                                    </span>
+                                   
                                     <span class="export">
                                         <button class="ms-5 outline-btn ">Import</button>
                                     </span>
-                                    <span class="export">
+                                    <span class="export" style={{marginRight:0+'px'}}>
                                         
                                                 <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Export
