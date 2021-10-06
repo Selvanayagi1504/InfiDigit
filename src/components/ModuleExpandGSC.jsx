@@ -555,14 +555,10 @@ function ModuleExpandGSC() {
                                 </div>
                                 
                                 <div className="col-lg-4" style={{textAlign:"end"}}>
-                                    <button class="outline-btn">Export</button>
+                                    
                                 </div>
                             </div>
                             <hr/>
-                            <div>
-                                <Table id="sample-module-expand" columns={GSCTableCol} dataSource={[...gsctabtable]} rowSelection={{type: selectionTypeGSCTab,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
-                            </div>
-                            <hr />
                             <Tabs className="tabs-inner-page-speed">
                                 <TabList>
                                     <Tab>Performance</Tab>
@@ -668,6 +664,15 @@ function ModuleExpandGSC() {
                                     />
                                 </TabPanel>
                             </Tabs>
+                            <hr/>
+                            <div>
+                                <div className="add-new-btnw">
+                                <button class="outline-btn">Export</button>
+                                </div>
+                                <Table id="sample-module-expand" columns={GSCTableCol} dataSource={[...gsctabtable]} rowSelection={{type: selectionTypeGSCTab,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
+                            </div>
+                            <hr />
+                            
 
                         </TabPanel>
                         <TabPanel>
@@ -704,65 +709,79 @@ function ModuleExpandGSC() {
                                     </select>
                                 </div>
                                 <div className="col-md-6 add-new-btnw">
-                                    <a href="#" class="outline-btn">EXPORT</a>
+                                    
                                 </div>
                             </div>
                             <hr/>
                             { chooseintoption == "External" 
                                 ?
                                 <>
-                                    <div className="gsc-ex-title">External Total:</div>
-                                    <div className="box-gsc">
-                                        <a href="">Show more</a>
-                                    </div>
-                                    <div class="add-new-btnw">
-                                        <div className="score-maintain">
-                                            <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
-                                        
-                                            <Dropdown>
-                                                <Dropdown.Toggle id="dropdown-basic">
-                                                <i className="fa fa-download"></i>
-                                                </Dropdown.Toggle>
+                                    <div className="common-flex-div">
+                                        <div style={{width:48+'%', marginRight:48+'px'}}>
+                                            <div className="add-new-btnw"><a href="#" class="outline-btn">EXPORT</a></div>
+                                            <div className="gsc-ex-title">External Total:</div>
+                                            <div className="box-gsc">
+                                                <a href="">Show more</a>
+                                            </div>
+                                        </div>
+                                        <div style={{width:48+'%', marginRight:48+'px'}}>
+                                            <div class="add-new-btnw">
+                                                <div className="score-maintain">
+                                                    <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
+                                                
+                                                    <Dropdown>
+                                                        <Dropdown.Toggle id="dropdown-basic">
+                                                        <i className="fa fa-download"></i>
+                                                        </Dropdown.Toggle>
 
-                                                <Dropdown.Menu>
-                                                    <Dropdown.Item href="">Download All Charts</Dropdown.Item>
-                                                    <Dropdown.Item href="">Download this only</Dropdown.Item>
-                                                </Dropdown.Menu>
-                                            </Dropdown>
+                                                        <Dropdown.Menu>
+                                                            <Dropdown.Item href="">Download All Charts</Dropdown.Item>
+                                                            <Dropdown.Item href="">Download this only</Dropdown.Item>
+                                                        </Dropdown.Menu>
+                                                    </Dropdown>
+                                                </div>
+                                            </div>
+                                            <div className="chart-inex">
+                                                <Chart
+                                                    className="line-graph"
+                                                    
+                                                    height={'500px'}
+                                                    chartType="Bar"
+                                                    data={[
+                                                        ['External links dropped by 20%', 'External links'],
+                                                        ["Feb '21", 32627],
+                                                        ["Mar '21", 31843],
+                                                        ["Apr '21", 33191],
+                                                        ["May '21", 32154],
+                                                        ["Jun '21", 33195],
+                                                        ["Jul '21", 34323],
+                                                        ["Aug '21", 27345]
+                                                    ]}
+                                                    
+                                                    options={{
+                                                        hAxis: {
+                                                        title: "External links dropped by 20%",
+                                                        baselineColor:"red"
+                                                        },
+                                                        vAxis: {
+                                                        title: "",
+                                                        minValue:"0",
+                                                        maxValue:"40,000"
+                                                        },
+                                                        legend:{position:"none"}
+                                                    }}
+                                                    rootProps={{ 'data-testid': '1' }}
+                                                    
+                                                />
+                                                <div style={{textAlign:"center",marginTop:24+'px'}}>
+                                                    <span className="square-legend" style={{backgroundColor:"rgb(78, 115, 223)"}}></span>
+                                                    <span>External</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="chart-inex">
-                                        <Chart
-                                            className="line-graph"
-                                            width={'800px'}
-                                            height={'500px'}
-                                            chartType="Bar"
-                                            data={[
-                                                ['External links dropped by 20%', 'External links'],
-                                                ["Feb '21", 32627],
-                                                ["Mar '21", 31843],
-                                                ["Apr '21", 33191],
-                                                ["May '21", 32154],
-                                                ["Jun '21", 33195],
-                                                ["Jul '21", 34323],
-                                                ["Aug '21", 27345]
-                                            ]}
-                                            
-                                            options={{
-                                                hAxis: {
-                                                title: "External links dropped by 20%",
-                                                baselineColor:"red"
-                                                },
-                                                vAxis: {
-                                                title: "",
-                                                minValue:"0",
-                                                maxValue:"40,000"
-                                                },
-                                                
-                                            }}
-                                            rootProps={{ 'data-testid': '1' }}
-                                        />
-                                    </div>
+                                    
+                                    
                                 </>
                                 :
                                 <></>
@@ -770,11 +789,16 @@ function ModuleExpandGSC() {
                             { chooseintoption == "Internal" 
                                 ?
                                 <>
-                                    <div className="gsc-ex-title">Internal Total:</div>
-                                    <div className="box-gsc">
-                                        <a href="">Show more</a>
-                                    </div>
-                                    <div class="add-new-btnw">
+                                <div className="common-flex-div">
+                                        <div style={{width:48+'%', marginRight:48+'px'}}>
+                                            <div className="add-new-btnw"><a href="#" class="outline-btn">EXPORT</a></div>
+                                            <div className="gsc-ex-title">Internal Total:</div>
+                                            <div className="box-gsc">
+                                                <a href="">Show more</a>
+                                            </div>
+                                        </div>
+                                        <div style={{width:48+'%', marginRight:48+'px'}}>
+                                        <div class="add-new-btnw">
                                         <div className="score-maintain">
                                             <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
                                         
@@ -793,7 +817,7 @@ function ModuleExpandGSC() {
                                     <div className="chart-inex">
                                         <Chart
                                             className="line-graph"
-                                            width={'800px'}
+                                            
                                             height={'500px'}
                                             chartType="Bar"
                                             data={[
@@ -817,11 +841,19 @@ function ModuleExpandGSC() {
                                                 minValue:"0",
                                                 maxValue:"40,000"
                                                 },
-                                                
+                                                legend:{position:"none"}
                                             }}
                                             rootProps={{ 'data-testid': '1' }}
                                         />
+                                         <div style={{textAlign:"center",marginTop:24+'px'}}>
+                                            <span className="square-legend" style={{backgroundColor:"rgb(78, 115, 223)"}}></span>
+                                            <span>Internal</span>
+                                        </div>
                                     </div>
+                                        </div>
+                                    </div>
+                                   
+                                   
                                 </>
                                 :
                                 <></>
@@ -829,59 +861,71 @@ function ModuleExpandGSC() {
                             { chooseintoption == "Index" 
                                 ?
                                 <>
-                                    <div className="gsc-ex-title">Index Total:</div>
-                                    <div className="box-gsc">
-                                        <a href="">Show more</a>
-                                    </div>
-                                    <div class="add-new-btnw">
-                                        <div className="score-maintain">
-                                            <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
-                                        
-                                            <Dropdown>
-                                                <Dropdown.Toggle id="dropdown-basic">
-                                                <i className="fa fa-download"></i>
-                                                </Dropdown.Toggle>
+                                <div className="common-flex-div">
+                                        <div style={{width:48+'%', marginRight:48+'px'}}>
+                                            <div className="add-new-btnw"><a href="#" class="outline-btn">EXPORT</a></div>
+                                            <div className="gsc-ex-title">Index Total:</div>
+                                            <div className="box-gsc">
+                                                <a href="">Show more</a>
+                                            </div>
+                                        </div>
+                                        <div style={{width:48+'%', marginRight:48+'px'}}>
+                                            <div class="add-new-btnw">
+                                                <div className="score-maintain">
+                                                    <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
+                                                
+                                                    <Dropdown>
+                                                        <Dropdown.Toggle id="dropdown-basic">
+                                                        <i className="fa fa-download"></i>
+                                                        </Dropdown.Toggle>
 
-                                                <Dropdown.Menu>
-                                                    <Dropdown.Item href="">Download All Charts</Dropdown.Item>
-                                                    <Dropdown.Item href="">Download this only</Dropdown.Item>
-                                                </Dropdown.Menu>
-                                            </Dropdown>
+                                                        <Dropdown.Menu>
+                                                            <Dropdown.Item href="">Download All Charts</Dropdown.Item>
+                                                            <Dropdown.Item href="">Download this only</Dropdown.Item>
+                                                        </Dropdown.Menu>
+                                                    </Dropdown>
+                                                </div>
+                                            </div>
+                                            <div className="chart-inex">
+                                                <Chart
+                                                    className="line-graph"
+                                                    height={'500px'}
+                                                    chartType="Bar"
+                                                    data={[
+                                                        ['Index pages improved by 9%', 'Index links'],
+                                                        ["Jan '21", 20216],
+                                                        ["Feb '21", 22204],
+                                                        ["Mar '21", 23647],
+                                                        ["Apr '21", 25670],
+                                                        ["May '21", 28501],
+                                                        ["Jun '21", 33620],
+                                                        ["Jul '21", 36757],
+                                                        ["Aug '21", 40195]
+                                                    ]}
+                                                    
+                                                    options={{
+                                                        hAxis: {
+                                                        title: "Index links dropped by 20%",
+                                                        baselineColor:"red"
+                                                        },
+                                                        vAxis: {
+                                                        title: "",
+                                                        minValue:"0",
+                                                        maxValue:"40,000"
+                                                        },
+                                                        legend:{position:"none"}
+                                                    }}
+                                                    rootProps={{ 'data-testid': '1' }}
+                                                />
+                                                 <div style={{textAlign:"center",marginTop:24+'px'}}>
+                                                    <span className="square-legend" style={{backgroundColor:"rgb(78, 115, 223)"}}></span>
+                                                    <span>Index</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="chart-inex">
-                                        <Chart
-                                            className="line-graph"
-                                            width={'800px'}
-                                            height={'500px'}
-                                            chartType="Bar"
-                                            data={[
-                                                ['Index pages improved by 9%', 'Index links'],
-                                                ["Jan '21", 20216],
-                                                ["Feb '21", 22204],
-                                                ["Mar '21", 23647],
-                                                ["Apr '21", 25670],
-                                                ["May '21", 28501],
-                                                ["Jun '21", 33620],
-                                                ["Jul '21", 36757],
-                                                ["Aug '21", 40195]
-                                            ]}
-                                            
-                                            options={{
-                                                hAxis: {
-                                                title: "Index links dropped by 20%",
-                                                baselineColor:"red"
-                                                },
-                                                vAxis: {
-                                                title: "",
-                                                minValue:"0",
-                                                maxValue:"40,000"
-                                                },
-                                                
-                                            }}
-                                            rootProps={{ 'data-testid': '1' }}
-                                        />
-                                    </div>
+                                   
+                                    
                                 </>
                                 :
                                 <></>

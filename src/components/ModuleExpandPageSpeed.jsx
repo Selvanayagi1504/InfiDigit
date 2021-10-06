@@ -463,33 +463,11 @@ function ModuleExpandPageSpeed() {
                             </div>
                             
                             <hr />
-                            <Tabs className="tabs-inner-page-speed">
-                                <div class="row">
-                                    <div class="col-sm-10 pad-lzero">
-                                        <TabList>
-                                            <Tab>Core Web Vitals</Tab>
-                                            <Tab>Page Speed</Tab>
-                                        </TabList>
-                                    </div>
-                                    <div class="col-sm-2 add-new-btnw">
-                                        <a href="#" class="outline-btn">EXPORT</a>
-                                    </div>
-                                </div>
-                                <TabPanel>
-                                    <div>
-                                        <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
-                                    </div>
-                                </TabPanel>
-                                <TabPanel>
-                                    <Table id="sample-module-expand" columns={PageSpeedCol} dataSource={pagespeedtable} rowSelection={{type: selectionTypePageSpeed,...rowSelection,}} pagination={{position:[]}} />  
-                                </TabPanel>
-                            </Tabs>
-                            <hr/>
                             <div class="row common-mt-24 common-mb-24 common-ml-5">
                                 <div class="col-lg-9 pad-lzero">
                                     <div className="row">
                                         <div className="col-lg-6 common-flex-div">
-                                        <label class="common-mr-24 common-mt-5" htmlFor="">Select URL</label>
+                                        <label style={{marginLeft:10+'px'}} class="common-mr-24 common-mt-5" htmlFor="">Select URL</label>
                                         <select id="select-url-page-speed" onChange={handleURLChange}>
                                             <option value="https://www.infidigit.com/">https://www.infidigit.com/</option>
                                             <option value="https://www.ezrankings.org/">https://www.ezrankings.org/</option>
@@ -531,9 +509,9 @@ function ModuleExpandPageSpeed() {
                                     </div>
                                 </div>
                             </div>
-                            
+                            <hr/>
                            
-                            <Table id="sample-module-expand" className="page-speed-second" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
+                            <Table id="sample-module-expand" style={{overflow:"hidden"}} className="page-speed-second" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
                             <div className="row">
                                 <div className="col-md-6">
                                     <Chart
@@ -560,6 +538,30 @@ function ModuleExpandPageSpeed() {
                                     
                                 </div>
                             </div>
+                            <hr/>
+                            <Tabs className="tabs-inner-page-speed">
+                                <div class="row">
+                                    <div class="col-sm-10 pad-lzero">
+                                        <TabList>
+                                            <Tab>Core Web Vitals</Tab>
+                                            <Tab>Page Speed</Tab>
+                                        </TabList>
+                                    </div>
+                                    <div class="col-sm-2 add-new-btnw">
+                                        <a href="#" class="outline-btn">EXPORT</a>
+                                    </div>
+                                </div>
+                                <TabPanel>
+                                    <div>
+                                        <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
+                                    </div>
+                                </TabPanel>
+                                <TabPanel>
+                                    <Table id="sample-module-expand" columns={PageSpeedCol} dataSource={pagespeedtable} rowSelection={{type: selectionTypePageSpeed,...rowSelection,}} pagination={{position:[]}} />  
+                                </TabPanel>
+                            </Tabs>
+                            <hr/>
+                            
                                    
                         </TabPanel>
                         <TabPanel>

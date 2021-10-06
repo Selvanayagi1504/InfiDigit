@@ -488,6 +488,9 @@ function ModuleExpandRankTracking() {
                                 displayTable
                                 ? 
                                     <>
+                                        <div class="add-new-btnw">
+                                            <a href="#" class="outline-btn">EXPORT</a>
+                                        </div>
                                         <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
                                         <hr/>
                                         <div className="row">

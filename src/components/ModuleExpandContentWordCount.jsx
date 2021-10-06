@@ -339,10 +339,6 @@ function ModuleExpandContentWordCount() {
                                 </div>
                             </div>
                             <hr/>
-                            <div class="add-new-btnw">
-                                <a href="#" class="outline-btn">EXPORT</a>
-                            </div>
-                            <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
                             <div className="chart-content-word-count">
                                 <div class="add-new-btnw">
                                     <div className="score-maintain">
@@ -379,6 +375,11 @@ function ModuleExpandContentWordCount() {
                                     rootProps={{ 'data-testid': '1' }}
                                 />
                             </div>
+                            <div class="add-new-btnw">
+                                <a href="#" class="outline-btn">EXPORT</a>
+                            </div>
+                            <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
+                            
                         </TabPanel>
                         <TabPanel>
                             <ModuleExpandTickets/>

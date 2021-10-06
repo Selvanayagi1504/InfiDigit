@@ -399,24 +399,6 @@ function ModuleExpandROI() {
                                 </div>
                             </div>
                             <hr/>
-                            <div className="add-new-btnw">
-                                <button class="outline-btn">Export</button>
-                            </div>
-
-                            <Table id="sample-module-expand" columns={PaidCTCCol} dataSource={PaidCPCTable} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["bottomRight"]}} />
-                            {
-                                methodROI == "GSC"
-                                ?
-                                    <>
-                                        <div class="main-title ">GSC</div>
-                                        <Table id="sample-module-expand" columns={GSCCol} dataSource={GSCTable} rowSelection={{type: selectionTypeGSC,...rowSelection,}} pagination={{position:["bottomRight"]}} />
-                                    </>
-                                :
-                                    <>
-                                        <div class="main-title ">Click Share</div>
-                                        <Table id="sample-module-expand" columns={ClickShareCol} dataSource={ClickShareTable} rowSelection={{type: selectionTypeClickShare,...rowSelection,}} pagination={{position:["bottomRight"]}} />
-                                    </>
-                            }
                             <div className="ROI-outer">
                                 <div className="ROI-inner">
                                     <h4>ROI</h4>
@@ -476,6 +458,26 @@ function ModuleExpandROI() {
                                 }}
                                 rootProps={{ 'data-testid': '1' }}
                             />
+                            <hr/>
+                            <div className="add-new-btnw">
+                                <button class="outline-btn">Export</button>
+                            </div>
+
+                            <Table id="sample-module-expand" columns={PaidCTCCol} dataSource={PaidCPCTable} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["bottomRight"]}} />
+                            {
+                                methodROI == "GSC"
+                                ?
+                                    <>
+                                        <div class="main-title ">GSC</div>
+                                        <Table id="sample-module-expand" columns={GSCCol} dataSource={GSCTable} rowSelection={{type: selectionTypeGSC,...rowSelection,}} pagination={{position:["bottomRight"]}} />
+                                    </>
+                                :
+                                    <>
+                                        <div class="main-title ">Click Share</div>
+                                        <Table id="sample-module-expand" columns={ClickShareCol} dataSource={ClickShareTable} rowSelection={{type: selectionTypeClickShare,...rowSelection,}} pagination={{position:["bottomRight"]}} />
+                                    </>
+                            }
+                            
                         </TabPanel>
                         <TabPanel>
                             <ModuleExpandTickets/>

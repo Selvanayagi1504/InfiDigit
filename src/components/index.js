@@ -58,3 +58,4 @@ export {default as ModuleExpandSEOAudit} from './ModuleExpandSEOAudit';
 export {default as DashboardCustomers} from './DashboardCustomers';
 export {default as ModuleExpandNonCompliant} from './ModuleExpandNonCompliant';
 export {default as Configuration} from './Configuration'
+export {default as DashboardSuperAdmin} from './DashboardSuperAdmin'

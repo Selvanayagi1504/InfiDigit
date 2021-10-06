@@ -378,7 +378,7 @@ function ModuleExpandKeywordResearch() {
                             {/* /////////////////////////////////// */}
                             <div className="row" style={{marginTop:24+'px'}}>
                                 <div className="col-lg-3 my-2">
-                                    <label style={{marginRight:24+'px'}}>Select Date Range</label>
+                                    <label style={{marginRight:17+'px', maxWidth:133+'px'}}>Select Date Range</label>
                                     {/* <input style={{marginRight:24+'px'}} type="date"/>    */}
                                     {/* <input  type="date"/>    */}
                                     <DateRangePicker
