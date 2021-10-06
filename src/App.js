@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { ModuleExpandNonCompliant,ModuleExpandSEOAudit, ProjectDetailsDir,EditEmployeeDir,EditProjectDir,EditClientDir,Profile,Home, About, Contact, Dashboard, DashboardSEO,DashboardSales, SalesList, SubProjects, TeamMembers, EditEmployee, SalesNew, CreateProject, EditProject, ViewClientDetails, ClientList, ProjectList, CreateClient, EditClient, ModuleExpandDAPA, ModuleExpandGoogleTrends, ModuleExpandPageSpeed, TeamMembersSalesDir, ClinetsSalesDir, ProjectSalesDir, ViewClientDetailsSalesDir, ProjectsListSalesDir, Tickets, TicketsList,TicketsSales, TicketsListSales, ModuleExpandSiteUptime, ModuleExpandRankTracking, ModuleExpandGSC, ModuleExpandContentWordCount, ModuleExpandGoogleAnalytics, ModuleExpandSEOVolatality, ModuleExpandKeywordResearch, ModuleExpandClickShare, ModuleExpandROI, ModuleExpandBackLinks, ModuleExpandOrganicResearch,Designation, DashboardAdmin, AccessPermissionsAdmin, AdminAuditUpdate, DashboardCustomers, Configuration } from "./components";
+import { ModuleExpandNonCompliant,ModuleExpandSEOAudit, ProjectDetailsDir,EditEmployeeDir,EditProjectDir,EditClientDir,Profile,Home, About, Contact, Dashboard, DashboardSEO,DashboardSales, SalesList, SubProjects, TeamMembers, EditEmployee, SalesNew, CreateProject, EditProject, ViewClientDetails, ClientList, ProjectList, CreateClient, EditClient, ModuleExpandDAPA, ModuleExpandGoogleTrends, ModuleExpandPageSpeed, TeamMembersSalesDir, ClinetsSalesDir, ProjectSalesDir, ViewClientDetailsSalesDir, ProjectsListSalesDir, Tickets, TicketsList,TicketsSales, TicketsListSales, ModuleExpandSiteUptime, ModuleExpandRankTracking, ModuleExpandGSC, ModuleExpandContentWordCount, ModuleExpandGoogleAnalytics, ModuleExpandSEOVolatality, ModuleExpandKeywordResearch, ModuleExpandClickShare, ModuleExpandROI, ModuleExpandBackLinks, ModuleExpandOrganicResearch,Designation, DashboardAdmin, AccessPermissionsAdmin, AdminAuditUpdate, DashboardCustomers, Configuration, TicketsListCustomers, TicketCustomers } from "./components";
 function App() {
   return (
     <div className="App">
@@ -60,6 +60,8 @@ function App() {
           <Route path="/dashboard-customers" exact component={() => <DashboardCustomers/>} />
           <Route path="/module-expand-non-compliant" exact component={() => <ModuleExpandNonCompliant/>} />
           <Route path="/configuration" exact component={()=> <Configuration /> } />
+          <Route path="/tickets-list-customers" exact component={()=> <TicketsListCustomers /> } />
+          <Route path="/ticket-customers" exact component={()=> <TicketCustomers /> } />
         </Switch>
         {/* <Footer /> */}
       </Router>

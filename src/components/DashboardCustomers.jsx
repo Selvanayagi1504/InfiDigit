@@ -94,7 +94,7 @@ return (
                       
                 </Dropdown>
                 
-                <Nav.Item eventKey="3">
+                <Nav.Item eventKey="3" href="tickets-list-customers">
                   <i class="fa fa-ticket"></i>Tickets
                 </Nav.Item>
             </Nav>
@@ -264,7 +264,7 @@ return (
                     rootProps={{ 'data-testid': '1' }}
                     />
                     <div className="add-new-btnw">
-                        <a href="module-expand-da">View Full report</a>
+                        <a href="module-expand-rank-tracking">View Full report</a>
                     </div>
                 </div>
             </div>
@@ -306,7 +306,7 @@ return (
                     rootProps={{ 'data-testid': '1' }}
                     />
                     <div className="add-new-btnw">
-                        <a href="module-expand-page-speed">View Full report</a>
+                        <a href="module-expand-site-uptime">View Full report</a>
                     </div>
                 </div>
             </div>
@@ -349,7 +349,7 @@ return (
                     rootProps={{ 'data-testid': '1' }}
                     />
                     <div className="add-new-btnw">
-                        <a href="module-expand-da">View Full report</a>
+                        <a href="module-expand-roi">View Full report</a>
                     </div>
                 </div>
             </div>
@@ -392,7 +392,7 @@ return (
                     rootProps={{ 'data-testid': '1' }}
                     />
                     <div className="add-new-btnw">
-                        <a href="module-expand-page-speed">View Full report</a>
+                        <a href="module-expand-google-trends">View Full report</a>
                     </div>
                 </div>
             </div>

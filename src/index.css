@@ -2131,7 +2131,7 @@ i.fa.fa-angle-right.side-dropdown {
 }
 .rank-tracking-top-select{
   margin-bottom: 24px;
-  margin-top: 48px !important;
+  /* margin-top: 48px !important; */
 }
 
 .rank-tracking-top-select-1 select#device-type {
@@ -3379,10 +3379,14 @@ ul.configuration-tab-list {
   list-style: none;
   margin-top: 24px;
   margin-bottom: 24px;
+  padding-left: 18px;
 }
 .configuration-tab-list li {
   padding: 10px 0px;
-  cursor: pointer;
+    cursor: pointer;
+    border-bottom: 1px solid hsl(0, 0%, 80%) !important;
+    margin-right: 19px;
+    font-size: 16px;
 }
 .configuration .fa.fa-arrow-left {
   border: 1px solid gray;
@@ -3392,6 +3396,11 @@ ul.configuration-tab-list {
     margin-left: -6%;
     margin-right: 11%;
     border-radius: 2px;
+}
+h2.tab-title-comfiguration {
+  font-size: 16px;
+    margin-bottom: 12px;
+    font-weight: 400;
 }
 .configuration .SearchSelectMain .css-yk16xz-control, .configuration .SearchSelectMain .css-1pahdxg-control {
   width: 100%;
@@ -3405,6 +3414,14 @@ ul.configuration-tab-list {
 }
 .configuration .SearchSelectMain input:focus-visible{
   border: unset !important;
+}
+.SearchSelectMain.css-2b097c-container {
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+.page-speed-main .da-pa-search {
+  margin-right: 24px;
 }
 @media(max-width:1440px) and (min-width:1025px){
   #atmospheric-composition {

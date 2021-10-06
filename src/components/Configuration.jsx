@@ -430,6 +430,7 @@ function Configuration() {
         document.getElementById('main-col-2').classList.add('none');
         document.getElementById('main-col-1').classList.add('none');
         document.getElementById('main-col-3').classList.add('custom-column-30');
+        document.getElementById('main-col-3').classList.add('custom-borrig');
         document.getElementById('main-col-3').classList.remove('custom-column-33');
         document.getElementById('angle-3').classList.remove('none');
       }
@@ -459,6 +460,7 @@ function Configuration() {
     if(currenttab[0].currentid == 3){
       document.getElementById('main-col-2').classList.remove('none');
       document.getElementById('main-col-1').classList.remove('none');
+      document.getElementById('main-col-3').classList.remove('custom-borrig');  
     }
     if(currenttab[0].currentid == 1){
       document.getElementById('main-col-2').classList.remove('none');
@@ -495,11 +497,14 @@ function Configuration() {
   function handleChangeClients(selected){
     setClientsSelected(selected);
     var a = selected.value;
+    console.log(a)
     var data = [];
     for(let i=0;i<5;i++){
       data.push({value:`${a} Project ${i}`, label:`${a} Project ${i}`})
     }
-    setClientsProjectChosenSelected(data)
+    setClientsProjectChosenSelected({ value:`${a} Project 0`, label:`${a} Project 0` })
+    setClientsProjectChosen(data)
+    console.log(data);
   }
   const [ClientsProjectChosen, setClientsProjectChosen] = useState([
     { value: "Myntra Project 1", label: "Myntra Project 1" },
@@ -573,6 +578,7 @@ function Configuration() {
                     <option value="CultFit">CultFit</option>
                     <option value="CureFit">CureFit</option>
                     </select> */}
+                    <h2 className="tab-title-comfiguration">Clients</h2>
                     <ReactSelect
                         className="SearchSelectMain"
                         placeholder="Select or search module"
@@ -595,6 +601,7 @@ function Configuration() {
                 </div>
                 <div className="custom-column-33 custom-borrig" id="main-col-2">
                 <i className="fa fa-arrow-left none" id="angle-2" onClick={()=>closeTabs()}></i>
+                <h2 className="tab-title-comfiguration">Projects</h2>
                     {/* <select name="" id="client-proj" onChange={()=>{changechoseclientproj()}}>
                     {clientproj.map((i)=>{
                         return(
@@ -624,9 +631,15 @@ function Configuration() {
                 </div>
                 <div className="custom-column-33" id="main-col-3">
                     <i className="fa fa-arrow-left none" id="angle-3" onClick={()=>closeTabs()}></i>
-                    hiii
+                    <ul class="configuration-tab-list">
+                        <li>
+                            <a onClick={()=>{openTab('view-settings',3)}}>View Settings</a>
+                        </li>
+                    </ul>
                 </div>
-
+                <div className="custom-column-70 none" id="view-settings">
+                    View Settings
+                </div>
                 {/* Team Members Expand */}
                 <div className="custom-column-70 none" id="team-members">
                     <div class="row">

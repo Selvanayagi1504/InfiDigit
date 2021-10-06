@@ -370,7 +370,7 @@ function ModuleExpandOrganicResearch() {
                         <li class="dropdown">
                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                                 <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                                <span class="profile-name">M.Subash</span>
+                                <span class="profile-name">SEO</span>
                             </button>
 
 
@@ -390,7 +390,7 @@ function ModuleExpandOrganicResearch() {
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
-                        <li><a href="module-expand-da">DA/ PA Checker</a></li>
+                            <li><a href="module-expand-da">DA/ PA Checker</a></li>
                             <li><a href="module-expand-google-trends">Google Trends</a></li>
                             <li><a href="module-expand-page-speed">Page Speed and Core Web Vitals</a></li>
                             <li><a href="module-expand-click-share">Click Share</a></li>
@@ -398,10 +398,10 @@ function ModuleExpandOrganicResearch() {
                             <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
                             <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
                             <li><a href="module-expand-organic-research">Organic Research module</a></li>
-                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator</a></li>
                             <li><a href="content-word-count">Content Word Count on a Page</a></li>
-                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
-                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research</a></li>
                             <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
                             <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                             <li><a href="module-expand-seo-audit">SEO Audit</a></li>
@@ -462,7 +462,7 @@ function ModuleExpandOrganicResearch() {
                             </div>
 
 
-                            <br />
+                            <hr />
                             <div class="add-new-btnw">
                                 <a href="#" class="outline-btn">EXPORT</a>
                             </div>

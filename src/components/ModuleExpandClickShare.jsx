@@ -321,10 +321,10 @@ function ModuleExpandClickShare() {
                             <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
                             <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
                             <li><a href="module-expand-organic-research">Organic Research module</a></li>
-                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator</a></li>
                             <li><a href="content-word-count">Content Word Count on a Page</a></li>
-                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
-                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research</a></li>
                             <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
                             <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                             <li><a href="module-expand-seo-audit">SEO Audit</a></li>
@@ -379,7 +379,7 @@ function ModuleExpandClickShare() {
                                 <button class="outline-btn">Generate</button>
                                 </div>
                             </div>
-                            
+                            <hr/>
                             <div className="row website-main">
                                 <div className="col-md-6">
                                     <label htmlFor="">Date Range</label>

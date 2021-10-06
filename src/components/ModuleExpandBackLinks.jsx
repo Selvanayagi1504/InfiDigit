@@ -424,7 +424,7 @@ function ModuleExpandBackLinks() {
                         <li class="dropdown">
                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                                 <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                                <span class="profile-name">M.Subash</span>
+                                <span class="profile-name">SEO</span>
                             </button>
 
 
@@ -455,10 +455,10 @@ function ModuleExpandBackLinks() {
                             <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
                             <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
                             <li><a href="module-expand-organic-research">Organic Research module</a></li>
-                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator</a></li>
                             <li><a href="content-word-count">Content Word Count on a Page</a></li>
-                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
-                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research</a></li>
                             <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
                             <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                             <li><a href="module-expand-seo-audit">SEO Audit</a></li>
@@ -483,7 +483,7 @@ function ModuleExpandBackLinks() {
 
                         <TabPanel>
                         
-                            <div className="row">
+                            <div className="row" style={{marginTop:48+'px'}}>
                                 <div className="col-lg-4 my-2">
                                     <label style={{marginRight:40+'px'}}>Select Type</label>
                                     <select>
@@ -502,7 +502,7 @@ function ModuleExpandBackLinks() {
                                     <button className="outline-btn ">Generate</button>
                                 </div>
                             </div>
-                        
+                        <hr/>
                             <div className="row mt-5 mb-2">
                                 <div className="col-lg-8 my-2">
                                     <label style={{marginRight:50+'px'}}>Referring Domains Count</label>
@@ -572,6 +572,7 @@ function ModuleExpandBackLinks() {
                             </div>
                             
                                 <button className="outline-btn" onClick={()=>addData()}>add</button>
+                                <hr/>
                             <div className="row">
                                 <Table id="sample-module-expand"  columns={tablecol4} dataSource={tablelist4} rowSelection={{type: selectionType4,...rowSelection4,}} pagination={{position:["topLeft", "bottomRight"]}} />
 

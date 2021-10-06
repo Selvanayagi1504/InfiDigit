@@ -405,7 +405,7 @@ function ModuleExpandPageSpeed() {
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
-                        <li><a href="module-expand-da">DA/ PA Checker</a></li>
+                            <li><a href="module-expand-da">DA/ PA Checker</a></li>
                             <li><a href="module-expand-google-trends">Google Trends</a></li>
                             <li><a href="module-expand-page-speed">Page Speed and Core Web Vitals</a></li>
                             <li><a href="module-expand-click-share">Click Share</a></li>
@@ -413,10 +413,10 @@ function ModuleExpandPageSpeed() {
                             <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
                             <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
                             <li><a href="module-expand-organic-research">Organic Research module</a></li>
-                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator</a></li>
                             <li><a href="content-word-count">Content Word Count on a Page</a></li>
-                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
-                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research</a></li>
                             <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
                             <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                             <li><a href="module-expand-seo-audit">SEO Audit</a></li>
@@ -454,12 +454,12 @@ function ModuleExpandPageSpeed() {
                                     value={optionSelected}
                                 />
                                 <label class="common-mt-24 common-mt-5 common-mr-24">Device Type</label>
-                                <select name="" id="device-type">
+                                <select name="" id="device-type" className="common-mr-24">
                                     <option value="Mobile">Mobile</option>
                                     <option value="Desktop">Desktop</option>
                                     <option value="both">Both</option>
                                 </select>
-                                <a href="#" class="common-ml-24 common-height-40" class="outline-btn">Search</a>
+                                <a href="#"  class="common-height-40 outline-btn">Search</a>
                             </div>
                             
                             <hr />

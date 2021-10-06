@@ -62,6 +62,7 @@
     ]
   },
   "devDependencies": {
+    "netlify-cli": "^6.9.28",
     "react-highcharts": "^16.1.0"
   }
 }

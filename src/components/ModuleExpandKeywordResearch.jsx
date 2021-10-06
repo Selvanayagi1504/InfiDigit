@@ -274,7 +274,7 @@ function ModuleExpandKeywordResearch() {
                         <li class="dropdown">
                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                                 <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                                <span class="profile-name">M.Subash</span>
+                                <span class="profile-name">SEO</span>
                             </button>
 
 
@@ -295,7 +295,7 @@ function ModuleExpandKeywordResearch() {
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
-                        <li><a href="module-expand-da">DA/ PA Checker</a></li>
+                            <li><a href="module-expand-da">DA/ PA Checker</a></li>
                             <li><a href="module-expand-google-trends">Google Trends</a></li>
                             <li><a href="module-expand-page-speed">Page Speed and Core Web Vitals</a></li>
                             <li><a href="module-expand-click-share">Click Share</a></li>
@@ -303,10 +303,10 @@ function ModuleExpandKeywordResearch() {
                             <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
                             <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
                             <li><a href="module-expand-organic-research">Organic Research module</a></li>
-                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator</a></li>
                             <li><a href="content-word-count">Content Word Count on a Page</a></li>
-                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
-                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research</a></li>
                             <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
                             <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                             <li><a href="module-expand-seo-audit">SEO Audit</a></li>
@@ -376,32 +376,32 @@ function ModuleExpandKeywordResearch() {
                                 </div>
                             </div>
                             {/* /////////////////////////////////// */}
-                            <div className="row">
+                            <div className="row" style={{marginTop:24+'px'}}>
                                 <div className="col-lg-3 my-2">
                                     <label style={{marginRight:24+'px'}}>Select Date Range</label>
                                     {/* <input style={{marginRight:24+'px'}} type="date"/>    */}
                                     {/* <input  type="date"/>    */}
                                     <DateRangePicker
-                    class="date-range"
-                        showDropdowns
-                        ranges={customRanges}
-                        timePickerIncrement={1}
-                    startDate={start}
-                    endDate={maxDate}
-                        minDate={minDate}
-                        maxDate={maxDate}
-                        opens="right"
-                        format="DD-MM-YYYY"
-                        autoUpdateInput={true}
-                        alwaysShowCalendars={true}
-                        linkedCalendars={true}
-                        onApply={datePickerHandler}
-                        autoApply={true}
-                        applyClass="btn btn-sm btn-primary btn-raised"
-                        cancelClass="btn btn-sm btn-flat"
-                      >
-                        <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
-                    </DateRangePicker>
+                                        class="date-range"
+                                            showDropdowns
+                                            ranges={customRanges}
+                                            timePickerIncrement={1}
+                                        startDate={start}
+                                        endDate={maxDate}
+                                            minDate={minDate}
+                                            maxDate={maxDate}
+                                            opens="right"
+                                            format="DD-MM-YYYY"
+                                            autoUpdateInput={true}
+                                            alwaysShowCalendars={true}
+                                            linkedCalendars={true}
+                                            onApply={datePickerHandler}
+                                            autoApply={true}
+                                            applyClass="btn btn-sm btn-primary btn-raised"
+                                            cancelClass="btn btn-sm btn-flat"
+                                        >
+                                        <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
+                                    </DateRangePicker>
                                 </div>
                                 <div className="col-lg-3 my-2">
                                     <label htmlFor="" style={{marginRight:52+'px'}}>Condition</label>
@@ -419,12 +419,15 @@ function ModuleExpandKeywordResearch() {
                                                 <div className="col-2 col-lg-1" style={{minWidth:100+'px'}}>
                                                 <label style={{marginRight:22+'px'}}>Filter</label>
                                                 </div>
-                                                <div className="col-lg-6 ms-sm-5" style={{width:205+'px'}}>
+                                                <div className="col-lg-6 ms-sm-5" style={{width:205+'px', marginLeft:0.4+'rem'}}>
                                                 <MultiSelectComponent id="mtselement" popupHeight='200px' fields={fields} dataSource={productData} placeholder="Select  Keywords" mode="CheckBox" enableGroupCheckBox="true" allowFiltering="true" showSelectAll="true" filterBarPlaceholder="Search keywords">
                                                     <Inject services={[CheckBoxSelection]} />
                                                 </MultiSelectComponent>
                                             </div>
                                             </div>
+                                </div>
+                                <div className="col-lg-3 my-2">
+                                <button className="outline-btn" onClick={generate}>Generate</button>
                                 </div>
                             </div>
                             
@@ -488,11 +491,11 @@ function ModuleExpandKeywordResearch() {
                                         
                                 </div>
                                 <div className="col-2">
-                                        <button className="outline-btn float-right" onClick={generate}>Generate</button>
+                                        
                                         
                                         </div>
                             </div>
-                            <br/>
+                            <hr/>
                             
                             
 {/* /////////////////////////////////////////////////////////////////// */}

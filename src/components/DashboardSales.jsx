@@ -510,17 +510,17 @@ return (
               </div>
             </div>
             <div className="row">
-              <div className="col-lg-7">
+              <div className="col-lg-12">
                 
               </div>
-              <div className="col-lg-1"></div>
+              {/* <div className="col-lg-1"></div>
               <div className="col-lg-4 add-new-btnw">
               {ticketmin?<i class="fa fa-window-minimize" aria-hidden="true" onClick={()=>setticketmin(!ticketmin)}></i>:<i class="fa fa-window-maximize" aria-hidden="true" onClick={()=>setticketmin(!ticketmin)}></i>}
-              </div>
+              </div> */}
             </div>
             
             <div className="row">
-              <div className="col-lg-7" id={!ticketmin?"full":""}>
+              <div className="col-lg-12" id={!ticketmin?"full":""}>
               <div className="add-new-btnw" style={{marginBottom:64+'px'}}>
                   <label htmlFor="" style={{marginRight:24+'px'}}>Date Range</label>
                   <DateRangePicker
@@ -545,7 +545,8 @@ return (
                         <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
                     </DateRangePicker>
                 </div>
-                <div class={!ticketmin?"charts-flex":""}>
+                {/* <div class={!ticketmin?"charts-flex":""}> */}
+                <div class="charts-flex">
                   <div class="charts-main-box">
                     <div className="row">
                       <div className="col-lg-8 dashboard-sales-chart1">
@@ -680,7 +681,7 @@ return (
               </div>
 
               
-              <div className="col-lg-5 tickets">
+              {/* <div className="col-lg-5 tickets">
               <div className="row tickets-heading">
                   <div className="col-lg-5">
                     <h4>Tickets</h4>
@@ -705,7 +706,7 @@ return (
                     <>
                     </>
                 }
-              </div>
+              </div> */}
             </div>
     </div>
   </div>

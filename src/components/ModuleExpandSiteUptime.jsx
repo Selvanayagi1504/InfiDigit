@@ -344,7 +344,7 @@ function ModuleExpandSiteUptime() {
                         <li class="dropdown">
                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                                 <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
-                                <span class="profile-name">M.Subash</span>
+                                <span class="profile-name">SEO</span>
                             </button>
 
 
@@ -364,7 +364,7 @@ function ModuleExpandSiteUptime() {
                 <div class="dashboard-wrapper">
                     <div class="sidebar-nav-bar">
                         <ul class="list-unstyled side-menu">
-                        <li><a href="module-expand-da">DA/ PA Checker</a></li>
+                            <li><a href="module-expand-da">DA/ PA Checker</a></li>
                             <li><a href="module-expand-google-trends">Google Trends</a></li>
                             <li><a href="module-expand-page-speed">Page Speed and Core Web Vitals</a></li>
                             <li><a href="module-expand-click-share">Click Share</a></li>
@@ -372,10 +372,10 @@ function ModuleExpandSiteUptime() {
                             <li><a href="module-expand-site-uptime">Site Uptime Monitor</a></li>
                             <li><a href="module-expand-gsc">GSC Data Extractor</a></li>
                             <li><a href="module-expand-organic-research">Organic Research module</a></li>
-                            <li><a href="module-expand-roi">ROI Calculator (Paid vs. Organic)</a></li>
+                            <li><a href="module-expand-roi">ROI Calculator</a></li>
                             <li><a href="content-word-count">Content Word Count on a Page</a></li>
-                            <li><a href="module-expand-backlinks">BackLinks (SEMRush)</a></li>
-                            <li><a href="module-expand-keyword-research">Keyword Research(Permission Pending from Google)</a></li>
+                            <li><a href="module-expand-backlinks">BackLinks</a></li>
+                            <li><a href="module-expand-keyword-research">Keyword Research</a></li>
                             <li><a href="module-expand-seo-volatality">SEO Volatality</a></li>
                             <li><a href="module-expand-google-analytics">Google Analytics</a></li>
                             <li><a href="module-expand-seo-audit">SEO Audit</a></li>
@@ -448,7 +448,7 @@ function ModuleExpandSiteUptime() {
                                 />
                                 <button style={{marginLeft:24+"px", height:38+'px'}} class="outline-btn" onClick={generatereport1}>Generate</button>
                             </div>
-                            <br/>
+                            <hr class="common-mt-24 common-mb-24" />
                             
                             {
                                 displayTable
@@ -493,7 +493,7 @@ function ModuleExpandSiteUptime() {
                                         <br />
                                         
                                         <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
-                                        <br/>
+                                        <hr/>
                                         <div className="row">
                                             
                                                 <div style={{display:"flex", marginTop:24+'px'}}>
