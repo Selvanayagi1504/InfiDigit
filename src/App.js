@@ -1,11 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { ModuleExpandNonCompliant,ModuleExpandSEOAudit, ProjectDetailsDir,EditEmployeeDir,EditProjectDir,EditClientDir,Profile,Home, About, Contact, Dashboard, DashboardSEO,DashboardSales, SalesList, SubProjects, TeamMembers, EditEmployee, SalesNew, CreateProject, EditProject, ViewClientDetails, ClientList, ProjectList, CreateClient, EditClient, ModuleExpandDAPA, ModuleExpandGoogleTrends, ModuleExpandPageSpeed, TeamMembersSalesDir, ClinetsSalesDir, ProjectSalesDir, ViewClientDetailsSalesDir, ProjectsListSalesDir, Tickets, TicketsList,TicketsSales, TicketsListSales, ModuleExpandSiteUptime, ModuleExpandRankTracking, ModuleExpandGSC, ModuleExpandContentWordCount, ModuleExpandGoogleAnalytics, ModuleExpandSEOVolatality, ModuleExpandKeywordResearch, ModuleExpandClickShare, ModuleExpandROI, ModuleExpandBackLinks, ModuleExpandOrganicResearch,Designation, DashboardAdmin, AccessPermissionsAdmin, AdminAuditUpdate, DashboardCustomers, Configuration, TicketsListCustomers, TicketCustomers, DashboardSuperAdmin } from "./components";
+import { ModuleExpandNonCompliant,ModuleExpandSEOAudit, ProjectDetailsDir,EditEmployeeDir,EditProjectDir,EditClientDir,Profile,Home, About, Contact, Dashboard, DashboardSEO,DashboardSales, SalesList, SubProjects, TeamMembers, EditEmployee, SalesNew, CreateProject, EditProject, ViewClientDetails, ClientList, ProjectList, CreateClient, EditClient, ModuleExpandDAPA, ModuleExpandGoogleTrends, ModuleExpandPageSpeed, TeamMembersSalesDir, ClinetsSalesDir, ProjectSalesDir, ViewClientDetailsSalesDir, ProjectsListSalesDir, Tickets, TicketsList,TicketsSales, TicketsListSales, ModuleExpandSiteUptime, ModuleExpandRankTracking, ModuleExpandGSC, ModuleExpandContentWordCount, ModuleExpandGoogleAnalytics, ModuleExpandSEOVolatality, ModuleExpandKeywordResearch, ModuleExpandClickShare, ModuleExpandROI, ModuleExpandBackLinks, ModuleExpandOrganicResearch,Designation, DashboardAdmin, AccessPermissionsAdmin, AdminAuditUpdate, DashboardCustomers, Configuration, TicketsListCustomers, TicketCustomers, DashboardSuperAdmin, ConfigurationSEO } from "./components";
 function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Navigation /> */}
         <Switch>
           <Route path="/" exact component={() => <Home />} />
           <Route path="/profile" exact component={() => <Profile/>} />
@@ -63,8 +62,8 @@ function App() {
           <Route path="/tickets-list-customers" exact component={()=> <TicketsListCustomers /> } />
           <Route path="/ticket-customers" exact component={()=> <TicketCustomers /> } />
           <Route path="/dashboard-super-admin" exact component={()=> <DashboardSuperAdmin /> } />
+          <Route path="/configuration-seo" exact component={()=> <ConfigurationSEO /> } />
         </Switch>
-        {/* <Footer /> */}
       </Router>
     </div>
   );

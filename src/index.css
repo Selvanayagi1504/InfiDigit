@@ -2945,8 +2945,9 @@ div#full {
 }
 .charts-flex .charts-main-box {
   box-shadow: 7px 20px 24px #bebebe, -47px -20px 60px #ffffff;
-  margin-right: 33px;
-  width: 50%;
+  margin-right: 16px;
+    width: 48%;
+    margin-left: 17px;
 }
 .charts-main-box {
   box-shadow: 7px 20px 24px #bebebe, -47px -20px 60px #ffffff;
@@ -3380,7 +3381,7 @@ span.progress-bar-customer {
   display: flex;
 }
 .custom-column-33{
-  width: 33.33%;
+  width: 25%;
   padding: 10px 16px;
   height: 100vh;
 }
@@ -3449,7 +3450,7 @@ h2.tab-title-comfiguration {
   font-size: 15px;
 }
 .audit-modal .modal-dialog {
-  max-width: 41%;
+  max-width: 66%;
   margin-left: auto;
   margin-right: unset;
   margin-top: unset;
@@ -3463,6 +3464,172 @@ h2.tab-title-comfiguration {
 }
 .page-speed-main .da-pa-search {
   margin-right: 24px;
+}
+
+
+
+.wrapper.dashboard-seo-dropdown {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.dashboard-seo-dropdown .button {
+  /* border: 1px solid #2185d0; */
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 400;
+  background-color: white;
+  width: 140px;
+}
+
+.dashboard-seo-dropdown .list {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  border: 1px solid #ccc;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  display: inline-block;
+}
+.dashboard-seo-dropdown .list-item {
+  padding: 8px;
+  cursor: pointer;
+  background-color: white;
+}
+.dashboard-seo-dropdown .list-item:hover,
+.dashboard-seo-dropdown .list-item:active {
+  background-color: #f3f3f3;
+}
+.dashboard-seo .logo {
+  width: 62%;
+} 
+.dashboard-seo .nav-bar-center {
+  width: 32%;
+}
+.dashboard-seo-dropdown .row {
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
+  width:384px
+}
+.dashboard-seo-dropdown .col-md-6{
+  padding: 13px 8px;
+}
+.dashboard-seo-dropdown ul{
+  list-style: none;
+  padding-left: unset;
+}
+.dashboard-seo-dropdown ul li{
+  padding: 10px 5px;
+  cursor: pointer;
+}
+.dashboard-seo-dropdown i.fa.fa-angle-right {
+  margin-left: 36%;
+}
+.dashboard-seo-dropdown .Clients-list span{
+  display: inline-block;
+  color: #212529;
+  font-size: 1rem;
+  font-weight: 400;
+  width: 50%;
+}
+.dashboard-seo-dropdown .Clients-list li:hover {
+  background-color: lightgrey;
+  border-radius: 0.25rem;
+}
+.custom-row-dashboard-seo{
+  width: 100%;
+  display: flex;
+}
+.custom-column-20-dashboard-seo{
+  width: 11%;
+}
+.custom-column-80-dashboard-seo{
+  width: 88%;
+  margin-top: 104px;
+}
+.custom-column-10-dashboard-seo{
+  width: 3%;
+}
+.custom-column-90-dashboard-seo{
+  width: 96%;
+  margin-top: 104px;
+}
+.custom-column-20-dashboard-seo .sidebar-nav-bar{
+  width: 10%;
+}
+.custom-column-20-dashboard-seo .sidebar-nav-bar a{
+  display: flex;
+}
+.custom-column-10-dashboard-seo .sidebar-nav-bar{
+  width: 2%;
+}
+.custom-column-10-dashboard-seo .sidebar-nav-bar a{
+  padding-left: 9px !important;
+}
+.custom-column-20-dashboard-seo .sidebar-nav-bar i {
+  width: 31px;
+}
+.dashboard-seo .line-graph svg{
+  max-width: 87%;
+}
+.custom-column-20-dashboard-seo button.control-toggle-dashboard-seo {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  float: right;
+  font-size: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.custom-column-10-dashboard-seo button.control-toggle-dashboard-seo {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  float: right;
+  font-size: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.ticket-details-dashboard h6 {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  height: 41px;
+}
+.ticket-details-dashboard p{
+  text-align: center;
+  font-size: 12px;
+}
+.ticket-details-dashboard{
+  margin-bottom: 24px;
+  box-shadow: 7px 20px 24px #bebebe, -47px -20px 60px #ffffff;
+  padding: 10px 0px;
+  border: 1px solid #bebebe;
+  margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+ul.audit-titles li {
+  font-size: 15px;
+}
+ul.audit-titles {
+  margin-top: 12px;
+  padding-left: 11px;
+}
+.prev-nex i {
+  color: white !important;
+  font-size: 29px;
+}
+.prev-nex button.outline-btn {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 3px 14px;
+  border-radius: 6px;
+}
+img.filterimage {
+  width: auto;
 }
 @media(max-width:1440px) and (min-width:1025px){
   #atmospheric-composition {

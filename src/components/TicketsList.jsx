@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 // import {Dropdown} from 'react-bootstrap'
@@ -9,6 +9,8 @@ import Barchart from "../components/barchart";
 import Filter from "./assets/funnel-fill.svg";
 import "antd/dist/antd.css";
 import { Breadcrumb } from 'antd';
+import { Button,Modal} from 'react-bootstrap';  
+
 import {
   
   UncontrolledButtonDropdown,
@@ -59,6 +61,12 @@ function TicketsList() {
   const [teamcol, setteamcol] = useState([]);
   const [searchdata, setsearch] = useState([]);
   const [showApplyFilter, setShowApplyFilter] = useState(false);
+  function handleModal(){
+    setshow(!show);
+}
+const [notes,setnotes] = useState([]);
+const [show,setshow]= useState(false);
+
   function addticket() {
     var a = document.getElementById("newticket").value;
     var data = JSON.parse(JSON.stringify(teamlist));
@@ -94,7 +102,7 @@ function TicketsList() {
     document.getElementById("newticket").value = "";
   }
   useEffect(() => {
-    const data = [];
+    var data = [];
     var filtercity = [];
 
     var filtertype = [],
@@ -102,54 +110,17 @@ function TicketsList() {
       filterstatus = [],
       filterassignedto = [],
       filterproject = [];
-
-    // data.push({
-    //   key: 0,
-    //   id: (
-    //     <Link
-    //       to={{
-    //         pathname: "/Tickets",
-    //         search: `?id=0`,
-    //         state: { detail: "1" },
-    //       }}
-    //     >
-    //       {" "}
-    //       0{" "}
-    //     </Link>
-    //   ),
-    //   type: "Alert",
-    //   subject: "Myntra show page down",
-    //   priority: "High",
-    //   status: <Tag color="#f50">Over Due</Tag>,
-    //   raisedby: "BOT",
-    //   raisedon: "03/05/2020",
-    //   duedate: "03/05/2021",
-    //   assignedto: "sample",
-    //   project: "Myntra:shoes",
-    //   module: "DA/PA Checker",
-    //   lastupdate: "RAJ",
-    //   view: <a href="view-client-details">View</a>,
-    // });
-    // filtertype.push({
-    //   text: "Alert",
-    //   value: "Alert",
-    // });
-    // filterpriority.push({
-    //   text: "High",
-    //   value: "High",
-    // });
-    // // filterstatus.push({
-    // //   text: "Over Due",
-    // //   value: "Over Due",
-    // // });
-    // filterassignedto.push({
-    //   text: "Emp1",
-    //   value: "Emp1",
-    // });
-    // filterproject.push({
-    //   text: "Myntra shoes",
-    //   value: "Myntra shoes",
-    // });
+      for(let i=0;i<2;i++){
+        data.push({
+            id:i,
+            name:"Raj",
+            date:"17/05/2021",
+            time:"16:57",
+            description:`description ${i}`
+        })
+    }
+    setnotes(data);
+    data = []
     data.push({
       key: 0,
       id: (
@@ -176,6 +147,7 @@ function TicketsList() {
       module: "DA/PA Checker",
       lastupdate: "RAJ",
       view: <a href="view-client-details">View</a>,
+      action:<i class="fa fa-info-circle" onClick={()=>{handleModal()}}></i>
     });
     filtertype.push({
       text: "Alert",
@@ -273,6 +245,7 @@ function TicketsList() {
         module: "",
         lastupdate: "RAJ",
         view: <a href="view-client-details">View</a>,
+        action:<i class="fa fa-info-circle" onClick={()=>{handleModal()}}></i>
       });
       filtertype.push({
         text: "Competitor Alert",
@@ -398,6 +371,11 @@ function TicketsList() {
         dataIndex: "lastupdate",
         key: "lastupdate",
       },
+      {
+        title:"Action",
+        dataIndex:"action",
+        key:"action"
+      }
     ];
     setteamcol(columns);
   }, []);
@@ -406,135 +384,203 @@ function TicketsList() {
   const addticketnew = () => {
     history.push("/Tickets");
   };
+  const [clientchosen, setclientchosen] = useState([
+  
+    {
+      projname:"Myntra - Shoes"
+    },
+    {
+      projname:"Myntra - Loafers"
+    }
+]);
+const [projectslisttop, setprojectslisttop] = useState([
+{
+  title:"Myntra",
+  projects:[
+    {
+      projname:"Myntra - Shoes"
+    },
+    {
+      projname:"Myntra - Loafers"
+    }
+  ]
+},
+{
+  title:"Amazon",
+  projects:[
+    {
+      projname:"Amazon - Fashion"
+    },
+    {
+      projname:"Amazon - Jewellery"
+    }
+  ]
+}
+])
+function showProjects(a){
+var proj = projectslisttop.filter(item => item.title == a);
+console.log(proj[0].projects)
+setclientchosen(proj[0].projects)
+}
+const ref = useRef()
+const [isMenuOpen, setIsMenuOpen] = useState(false)
+useEffect(() => {
+    const checkIfClickedOutside = e => {
+    if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+        setIsMenuOpen(false)
+    }
+    }
+
+    document.addEventListener("mousedown", checkIfClickedOutside)
+
+    return () => {
+    document.removeEventListener("mousedown", checkIfClickedOutside)
+    }
+}, [isMenuOpen])
+const [sidenavToggle, setSidenavToggle] = useState(true);
+function addnote(){
+  var note = document.getElementById('notes-input').value;
+  var data = [];
+  var id = 0;
+  notes.map((i)=>{
+      data.push(i);
+      id+=1;
+  })
+  data.push({
+      id:id,
+      name:"Raj",
+      date:"17/05/2021",
+      time:"16:57",
+      description:`${note}`
+  })
+  setnotes(data);
+  console.log(notes);
+  document.getElementById('notes-input').value = "";
+}
   return (
     <>
-      <section class="outer-wrapper client-list ticket-list">
-        <div class="top-nav-bar">
-          <div class="logo">
-            <a href="">
-              <img src="images/infidigit-logo.png" />
-            </a>{" "}
-            <span>Growth</span>
+      <section class="outer-wrapper client-list ticket-list dashboard-seo">
+        <div className="top-nav-bar">
+          <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span>
+            <div className="wrapper dashboard-seo-dropdown" ref={ref}>
+              <button
+                      className="button"
+                      onClick={() => setIsMenuOpen(oldState => !oldState)}>
+                All data View <i class="fa fa-caret-down" aria-hidden="true"></i>
+              </button>
+              {isMenuOpen && (
+              <div className="row">
+                <div className="col-md-6" style={{borderRight:'1px solid rgba(0,0,0,.15)'}}>
+
+                  <ul className="Clients-list">
+                    <li  onClick={()=>{showProjects("Myntra")}}><span>Myntra</span> <i class="fa fa-angle-right"></i></li>
+                    <li  onClick={()=>{showProjects("Amazon")}}><span>Amazon</span> <i class="fa fa-angle-right"></i></li>
+                  </ul>
+                </div>
+                <div className="col-md-6">
+                  <ul class="projectsList">
+                    {clientchosen.map((i)=>{
+                    return(
+                    <li onClick={()=>{setIsMenuOpen(false)}}><a style={{color:"inherit"}} href={`dashboard-seo?id=${i.projname}`}>{i.projname}</a></li>
+                    )
+                    })}
+                  </ul>
+                </div>
+              </div>
+
+              )}
+            </div> 
           </div>
-          <div class="nav-bar-center">&nbsp;</div>
           <div class="nav-bar-right">
-            <ul class="list-unstyled nav-right-menu">
-            <li>
-            {/* <Dropdown id="notification-dropdown">
-                        <Dropdown.Toggle id="dropdown-basic">
-                        <i class="fa fa-bell"></i>
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="">
-                                <div className="notification-item">
-                                    <h4>Notification 1!!</h4>
-                                    <p>21 hours ago..</p>
-                                </div>
-                            </Dropdown.Item>
-                            <hr />
-                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
-                                <div className="notification-item" >
-                                    <h4>Notification 2!!</h4>
-                                    <p>8 hours ago..</p>
-                                </div>
-                            </Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown> */}
+    <ul class="list-unstyled nav-right-menu">
+      <li>
+      
 <NotificationSEO/>
 
-                    </li>
+      </li>
 
-              <li class="dropdown">
-                <button
-                  onClick={() => {
-                    console.log("hiii");
-                    setsidenav(!sidenav);
-                  }}
-                  class="btn btn-default dropdown-toggle"
-                  type="button"
-                  id="dropdownMenu1"
-                >
-                  <span class="profile-pic">
-                    <img src="images/profile-pic.jpeg" alt="" />
-                  </span>
-                  <span class="profile-name">SEO</span>
-                </button>
+      <li class="dropdown">
+        <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
+          <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
+          <span class="profile-name">SEO</span>
+        </button>
 
-                <ul
-                  style={{ display: sidenav ? "block" : "none" }}
-                  class="dropdown-menu"
-                  aria-labelledby="dropdownMenuLink"
-                >
-                  <li>
-                    <a href="/profile">Profile</a>
-                  </li>
 
-                  <li>
-                    <a href="/">Log Out</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div class="clearfix"></div>
+
+        <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a href="/profile">Profile</a></li>
+
+          <li><a href="/">Log Out</a></li>
+        </ul>
+
+      </li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
         </div>
-
-        <div class="sidebar-nav-bar">
-          <ul class="list-unstyled side-menu">
-          {/* <li>
-              <UncontrolledButtonDropdown className="uncontrolled">
-                <DropdownToggle caret size="md" >
-                  Dashboard <i class="fa fa-angle-right"  aria-hidden="true"></i>
-                </DropdownToggle>
-                <DropdownMenu>
-                  <div className="main">Clients</div>
-                  <span><a href="dashboard-seo?id=Myntra"> Myntra </a></span>
-                  <DropdownItem href="dashboard-seo?id=Myntra-Shoes">Myntra Shoes</DropdownItem>
-                  <DropdownItem href="dashboard-seo?id=Myntra-Loafers">Myntra Loafers</DropdownItem>
-                  <span ><a href="dashboard-seo?id=Amazon"> Amazon </a></span>
-                  <DropdownItem href="dashboard-seo?id=Amazon - Fashion">Fashion</DropdownItem>
-                  <DropdownItem href="dashboard-seo?id=Amazon - Jewellery">Jewellery</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledButtonDropdown>
-            </li>
-            <li><a href="sub-projects"><i class="fa fa-tasks"></i> Projects</a></li>
-            <li><a href="ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li> */}
-            <Sidenav class="sidenav-seo">
-            <Sidenav.Body>
-            <Nav>
-                {/* <Nav.Item eventKey="1" >
-                Dashboard
-                </Nav.Item>
-                <Nav.Item eventKey="2" >
-                User Group
-                </Nav.Item> */}
-                <Dropdown eventKey="1" title="Dasboard" >
-                  <Dropdown.Menu eventKey="1-1" title="Clients">
-                      {/* <Dropdown.Item eventKey="1-1-1">Myntra</Dropdown.Item>
-                      <Dropdown.Item eventKey="1-1-2">Amazon</Dropdown.Item> */}
-                      <Dropdown.Menu eventKey="1-1-1" title="Myntra">
-                        <Dropdown.Item eventKey="1-1-1-1" href="dashboard-seo?id=Myntra-Shoes">Myntra Shoes</Dropdown.Item>
-                        <Dropdown.Item eventKey="1-1-1-2" href="dashboard-seo?id=Myntra-Loafers">Myntra Loafers</Dropdown.Item>
-                      </Dropdown.Menu>
-                      <Dropdown.Menu eventKey="1-1-2" title="Amazon">
-                        <Dropdown.Item eventKey="1-1-2-1" href="dashboard-seo?id=Amazon - Fashion">Fashion</Dropdown.Item>
-                        <Dropdown.Item eventKey="1-1-2-2" href="dashboard-seo?id=Amazon - Jewellery">Jewellery</Dropdown.Item>
-                      </Dropdown.Menu>
-                  </Dropdown.Menu>
-                </Dropdown>
-                <Nav.Item eventKey="2" href="/sub-projects">
-                  <i class="fa fa-tasks"></i> Projects
-                </Nav.Item>
-                <Nav.Item eventKey="3" href="ticketslist">
-                  <i class="fa fa-ticket"></i>Tickets
-                </Nav.Item>
-            </Nav>
-            </Sidenav.Body>
-        </Sidenav>
-          </ul>
-        </div>
-        <div class="content-wrapper">
-          <div class="dashboard-wrapper">
+        <div className="custom-row-dashboard-seo">
+                <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+                    <div class="sidebar-nav-bar">
+                        {sidenavToggle 
+                            ?
+                            <>
+                                <ul class="list-unstyled side-menu">
+                                <li><a href="/dashboard-seo?id=Myntra - Shoes"><i class="fa fa-home"></i>Home</a></li>
+                                <li><a href="module-expand-da"><span class="icon"><i class="fa fa-check"></i></span><span>DA/ PA Checker</span></a></li>
+                                <li><a href="module-expand-google-trends"><span class="icon"><i class="fa fa-line-chart" aria-hidden="true"></i></span><span>Google Trends</span></a></li>
+                                <li><a href="module-expand-page-speed"><span class="icon"><i class="fa fa-tachometer" aria-hidden="true"></i></span><span>Page Speed and Core Web Vitals</span></a></li>
+                                <li><a href="module-expand-click-share"><span class="icon"><i class="fa fa-share"></i></span><span>Click Share</span></a></li>
+                                <li><a href="module-expand-rank-tracking"><span class="icon"><i class="fa fa-trophy"></i></span><span>Rank Tracking</span></a></li>
+                                <li><a href="module-expand-site-uptime"><span class="icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span><span>Site Uptime Monitor</span></a></li>
+                                <li><a href="module-expand-gsc"><span class="icon"><i class="fa fa-database" aria-hidden="true"></i></span><span>GSC Data Extractor</span></a></li>
+                                <li><a href="module-expand-organic-research"><span class="icon"><i class='fa fa-flask' aria-hidden="true"></i></span><span>Organic Research module</span></a></li>
+                                <li><a href="module-expand-roi"><span class="icon"><i class="fa fa-calculator" aria-hidden="true"></i></span><span>ROI Calculator</span></a></li>
+                                <li><a href="content-word-count"><span class="icon"><i class="fa fa-file" aria-hidden="true"></i></span><span>Content Word Count on a Page</span></a></li>
+                                <li><a href="module-expand-backlinks"><span class="icon"><i class="fa fa-external-link" aria-hidden="true"></i></span><span>BackLinks</span></a></li>
+                                <li><a href="module-expand-keyword-research"><span class="icon"><i class="fa fa-keyboard-o" aria-hidden="true"></i></span><span>Keyword Research</span></a></li>
+                                <li><a href="module-expand-seo-volatality"><span class="icon"><i class="fa fa-building-o"></i></span><span>SEO Volatality</span></a></li>
+                                <li><a href="module-expand-google-analytics"><span class="icon"><i class="fa fa-bar-chart" aria-hidden="true"></i></span><span>Google Analytics</span></a></li>
+                                <li><a href="module-expand-seo-audit"><span class="icon"><i class="fa fa-pagelines"></i></span><span>SEO Audit</span></a></li>
+                                <br />
+                                <li><a href="/ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
+                                <li><a href="/configuration-seo"><i className="fa fa-cogs"></i>Configuration</a></li>
+                                </ul>
+                                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                                <i class="fa fa-angle-right"></i>
+                                </button>
+                            </>
+                            :
+                            <>
+                                <ul class="list-unstyled side-menu">
+                                <li><a href="/dashboard-seo?id=Myntra - Shoes"><i class="fa fa-home"></i></a></li>
+                                <li><a href="module-expand-da"><i class="fa fa-check"></i></a></li>
+                                <li><a href="module-expand-google-trends"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
+                                <li><a href="module-expand-page-speed"><i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
+                                <li><a href="module-expand-click-share"><i class="fa fa-share"></i></a></li>
+                                <li><a href="module-expand-rank-tracking"><i class="fa fa-trophy"></i></a></li>
+                                <li><a href="module-expand-site-uptime"><i class="fa fa-clock-o" aria-hidden="true"></i></a></li>
+                                <li><a href="module-expand-gsc"><i class="fa fa-database" aria-hidden="true"></i></a></li>
+                                <li><a href="module-expand-organic-research"><i class='fa fa-flask' aria-hidden="true"></i></a></li>
+                                <li><a href="module-expand-roi"><i class="fa fa-calculator" aria-hidden="true"></i></a></li>
+                                <li><a href="content-word-count"><i class="fa fa-file" aria-hidden="true"></i></a></li>
+                                <li><a href="module-expand-backlinks"><i class="fa fa-external-link" aria-hidden="true"></i></a></li>
+                                <li><a href="module-expand-keyword-research"><i class="fa fa-keyboard-o" aria-hidden="true"></i></a></li>
+                                <li><a href="module-expand-seo-volatality"><i class="fa fa-building-o"></i></a></li>
+                                <li><a href="module-expand-google-analytics"><i class="fa fa-bar-chart" aria-hidden="true"></i></a></li>
+                                <li><a href="module-expand-seo-audit"><i class="fa fa-pagelines"></i></a></li>
+                                <br />
+                                <li><a href="/ticketslist"><i class="fa fa-ticket"></i></a></li>
+                                <li><a href="/configuration-seo"><i className="fa fa-cogs"></i></a></li>
+                                </ul>
+                                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                                <i class="fa fa-angle-right"></i>
+                                </button>
+                            </>
+                        }        
+                    </div>
+                </div>
+                <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
+                    
           <Breadcrumb>
               <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
               <Breadcrumb.Item><a href="/dashboard-seo">Dashboard</a></Breadcrumb.Item>
@@ -868,7 +914,40 @@ function TicketsList() {
           </div>
         </div>
       </section>
+      <Modal show={show} onHide={()=>handleModal()} className="edit-notes">  
+        <Modal.Header closeButton>View / Add Notes</Modal.Header>  
+        <Modal.Body>
+            
+            {notes && notes.map((i, index)=>{
+                return(
+                    <div className="notes-list ">
+                        <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
+                        <span class="notes-name">{i.name} - </span>
+                        <span class="notes-date">{i.date} </span>
+                        <span class="notes-time"> {i.time}</span>
+                        <div className="description">
+                            {i.description}
+                        </div>
+                    </div>
+                )
+            })}
+
+            
+        </Modal.Body>  
+        <Modal.Footer>
+        <div className="notes-input-box tickets-view" id="notes-input-box">
+                <div>
+                    <textarea rows="4" cols="45" id="notes-input" placeholder="Enter notes..."></textarea>
+                </div>
+                <div>
+                    <button class="send-button" onClick={addnote}><i class="fa fa-send"></i></button>
+                </div>
+            </div>
+
+        </Modal.Footer>  
+    </Modal> 
     </>
+    
   );
 }
 
