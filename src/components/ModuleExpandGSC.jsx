@@ -4,29 +4,18 @@ import Chart from "react-google-charts";
 import {useState, useEffect, useRef} from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Button,Modal} from 'react-bootstrap';  
+import DatePicker,{ DateObject } from "react-multi-date-picker"
+import { Calendar } from "react-multi-date-picker"
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col,Breadcrumb } from "antd";
-import {Dropdown} from 'react-bootstrap'
-import {DatePicker} from 'react-datepicker';
+import {Dropdown, Card} from 'react-bootstrap'
 import {ModuleExpandTickets} from './index';
-
-import DateRangePicker from "react-bootstrap-daterangepicker";
-import "bootstrap-daterangepicker/daterangepicker.css";
 import $ from 'jquery'
 import { customRanges } from "./functions";
 import moment from "moment";
-const datePickerHandler = (event, picker) => {
-    let value =
-      picker.startDate.format("DD-MM-YYYY") +
-      " to " +
-      picker.endDate.format("DD-MM-YYYY");
-    $("#date-picker").val(value);
-  };
-  const start = moment().subtract(1, "days");
-  const minDate = moment("01-01-2017", "DD-MM-YYYY");
-  const maxDate = moment();
+
 const Option = (props) => {
     return (
       <div>
@@ -431,6 +420,35 @@ function ModuleExpandGSC() {
         }
     }, [isMenuOpen])
     const [sidenavToggle, setSidenavToggle] = useState(true);
+    const [values, setValues] = useState([
+        new DateObject().setDay(4).subtract(1, "month"),
+        new DateObject().setDay(4).add(1, "month")
+      ])
+    const [headValues, setHeadValues] = useState([
+        new DateObject().setDay(4).subtract(1, "month"),
+        new DateObject().setDay(4).add(1, "month")
+      ])
+    const [open, setOpen] = useState(false);
+    const [head1,setHead1]= useState(headValues[0].format())
+    const [head2,setHead2]= useState(headValues[1].format())
+    const [checkBoxValue,setCheckBoxValue]= useState(false)
+    function setheadvalues(){
+        setHead1(values[0].format())
+        setHead2(values[1].format())
+    }
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+        if (open && ref.current && !ref.current.contains(e.target)) {
+            setOpen(false)
+        }
+        }
+
+        document.addEventListener("mousedown", checkIfClickedOutside)
+
+        return () => {
+        document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [open])
     return (
         <>
             <section class="outer-wrapper module-expand-gsc dashboard-seo">
@@ -584,6 +602,126 @@ function ModuleExpandGSC() {
                         <a href="/module-expand-gsc">GSC</a>
                         </Breadcrumb.Item>
                     </Breadcrumb>
+                    <div ref={ref} class="calendar-main">
+                        <div className="add-new-btnw">
+                            <button className="outline-btn-boderless" style={{width:"250px"}} onClick={() => setOpen(!open)} >
+                                {head1}&nbsp;-&nbsp;{head2}&nbsp;&nbsp;
+                                <i class="fa fa-chevron-down drop"></i>
+                            </button>
+                        </div>
+                        
+                        {open && (
+                            <div id="example-collapse-text-calendar">
+                                <Card body className="daterange-picker-card  mt-2">
+                                    <div className="row">
+                                    
+                                        <div className="col-lg-8 calendar-col">
+                                            <Calendar
+                                                className="custom-calendar"
+                                                value={values}
+                                                onChange={(e)=>{
+                                                    setValues(e)
+                                                }}
+                                                range
+                                                numberOfMonths={3}
+                                                className="custom-calendar"
+                                                showOtherDays
+                                            />
+                                        </div>
+                                        <div className="col-lg-4 mt-3 mt-lg-0 text-center">
+                                            <div className="row">
+                                                <div className="col-6">
+                                                    <label >Date Range</label>
+                                                </div>
+                                                <div className="col-5">
+                                                    <select >
+                                                        <option value="All">custom</option>
+                                                        <option value="Contains">today</option>
+                                                        <option>yesterday</option>
+                                                        <option>last week</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            <div className="row mt-3 text-center">
+                                                <div className="col-5">
+                                                    <input type="text" value={values[0].format()}/>
+                                                </div>
+                                                <div className="col-1">
+                                                
+                                                </div>
+                                                <div className="col-5">
+                                                    {
+                                                        values.length==2?
+                                                        <input type="text" value={values[1].format()}/> : <input type="text" value={"select"}/>
+                                                    }
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            <div className="row mt-3">
+                                                <div className="col-6 ">
+                                                    <input type="checkbox" onChange={()=>{setCheckBoxValue(!checkBoxValue)}}/>
+                                                    <label className="lable-compare">Compare to</label>
+                                                </div>
+                                                <div className="col-5">
+                                                    <select >
+                                                        <option value="All">previous period</option>
+                                                        <option>yesterday</option>
+                                                        <option>last week</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            {
+                                            checkBoxValue?
+                                                <div className="row mt-3">
+                                                    <div className="col-5">
+                                                    <input type="text" value={head1}/>
+                                                    </div>
+                                                    <div className="col-1">
+                                                    
+                                                    </div>
+                                                    <div className="col-5">
+                                                        <input type="text" value={head2}/>
+                                                    </div>
+                                                    <div className="col-1"></div>
+                                                </div>
+                                                :
+                                                <div  className="row mt-3">
+                                                    <div className="col-5">
+                                                    <input type="text" disabled value={head1}/>
+                                                    </div>
+                                                    <div className="col-1">
+                                                    <h6 className="pt-2">-</h6>
+                                                    </div>
+                                                    <div className="col-5">
+                                                        <input type="text" disabled value={head2}/>
+                                                    </div>
+                                                    <div className="col-1"></div>
+                                                </div>
+                                            }
+                                            <hr/>
+                                            <div className="row mt-3">
+                                                <div className="col-6">
+                                                    <button onClick={()=>{setheadvalues();setOpen(!open)}}
+                                                    className="outline-btn" >
+                                                        Apply
+                                                    </button>
+                                                </div>
+                                                <div className="col-6">
+                                                <buton onClick={() => setOpen(!open)}
+                                                className="outline-btn">
+                                                        Cancel
+                                                </buton>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Card>
+                            </div>
+                        )}
+                        
+                    </div>
                     <Tabs>
                         <TabList>
                             <Tab>GSC</Tab>
@@ -596,12 +734,12 @@ function ModuleExpandGSC() {
                         <TabPanel>
                             
                             <div className="row" style={{marginBottom:24+'px'}}>
-                                <div className="col-lg-4">
+                                <div className="col-lg-3">
                                     <label>Website</label>
                                     <input type="text" className="website-gsc-inp"/>
                                 </div>
                                
-                                <div className="col-lg-4">
+                                <div className="col-lg-3">
                                     <label>Search Type</label>
                                     <select>
                                         <option value="Web">Web</option>
@@ -609,33 +747,7 @@ function ModuleExpandGSC() {
                                         <option>Image</option>
                                     </select>
                                 </div>
-                                <div className="col-lg-4">
-                                    <label style={{width:27+'%'}}>Select Date Range</label>
-                                    <DateRangePicker
-                                        class="date-range"
-                                            showDropdowns
-                                            ranges={customRanges}
-                                            timePickerIncrement={1}
-                                        startDate={start}
-                                        endDate={maxDate}
-                                            minDate={minDate}
-                                            maxDate={maxDate}
-                                            opens="right"
-                                            format="DD-MM-YYYY"
-                                            autoUpdateInput={true}
-                                            alwaysShowCalendars={true}
-                                            linkedCalendars={true}
-                                            onApply={datePickerHandler}
-                                            autoApply={true}
-                                            applyClass="btn btn-sm btn-primary btn-raised"
-                                            cancelClass="btn btn-sm btn-flat"
-                                        >
-                                            <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
-                                    </DateRangePicker>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-lg-4" style={{display:"flex"}}>
+                                <div className="col-lg-3" style={{display:"flex"}}>
                                     <label>Dimensions</label>
                                     <ReactSelect
                                         className="gsc-multiselect"
@@ -651,37 +763,57 @@ function ModuleExpandGSC() {
                                         value={dimensionsSelected}
                                     />
                                 </div>
-                                <div className="col-lg-4">
-                                    <label>Expression</label>
+                                <div className="col-lg-3">
+                                <   label>Expression</label>
                                     <select>
                                         <option value="All">All</option>
                                         <option value="Contains">Contains</option>
                                         <option>Does not Contain</option>
                                         <option>Exact match</option>
                                         <option value="regex">Regex</option>
-                      9              </select>
-                                </div>
-                                <div className="col-lg-4" style={{display:"flex"}}>
-                                <label style={{marginRight:24+'px', marginTop:5+'px'}}>Filter</label>
-                                <button class="filter-btn-GSC" onClick={()=>handleModal()}>Filter <i class="fa fa-filter"></i></button>
+                                    </select>
                                 </div>
                             </div>
-                            <div className="row" style={{marginTop:24+'px'}}>
-                                <div className="col-lg-4">
+                            <div className="row">
+                                <div className="col-lg-3">
+                                    <label style={{marginRight:24+'px', marginTop:5+'px'}}>Filter</label>
+                                    <button class="filter-btn-GSC" onClick={()=>handleModal()}>Filter <i class="fa fa-filter"></i></button>
+                                </div>
+                                <div className="col-lg-3">
                                     <label className="aggregation-type">Aggregation Type</label>
                                     <select id="aggregation">
                                         <option value="By Property">By Property</option>
                                         <option value="By Page">By Page</option>
                                     </select>
                                 </div>
-                                <div className="col-lg-4">
+                                <div className="col-lg-3"></div>
+                                <div className="col-lg-3 add-new-btnw">
                                     <button class="outline-btn generate-report" onClick={()=>generatereportgsc()}>Generate</button>
+                                </div>
+                            </div>
+                            {/* <div className="row">
+                                <div className="col-lg-4" style={{display:"flex"}}>
+                                    
+                                </div>
+                                <div className="col-lg-4">
+                                    
+                                </div>
+                                <div className="col-lg-4" style={{display:"flex"}}>
+                                
+                                </div>
+                            </div>
+                            <div className="row" style={{marginTop:24+'px'}}>
+                                <div className="col-lg-4">
+                                    
+                                </div>
+                                <div className="col-lg-4">
+                                    
                                 </div>
                                 
                                 <div className="col-lg-4" style={{textAlign:"end"}}>
                                     
                                 </div>
-                            </div>
+                            </div> */}
                             <hr/>
                             <div className="row">
                                 <div className="col-md-6">

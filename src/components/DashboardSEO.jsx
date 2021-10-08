@@ -14,6 +14,7 @@ import { customRanges } from "./functions";
 import moment from "moment";
 import { NotificationSEO } from "./index";
 import 'rsuite/dist/rsuite.css';
+import {useHistory} from "react-router-dom";
 import Dashboard from '@rsuite/icons/legacy/Dashboard';
 // import { Sidenav, Nav, Dropdown } from 'rsuite';
 import {Dropdown} from 'react-bootstrap'
@@ -36,6 +37,7 @@ const rowSelection = {
 };
 
 function DashboardSEO() {
+  const history = useHistory();
   const search = useLocation().search;
   const id = new URLSearchParams(search).get('id');
   const [sidenav,setsidenav] = useState(false);
@@ -90,19 +92,19 @@ function DashboardSEO() {
       {
         projects:"Myntra Shoes",
         comp:"90%",
-        healthscore:<div><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>,
+        healthscore:"60%",
         totalscore:<i class="fa fa-star"></i>
       },
       {
         projects:"Myntra Loafers",
         comp:"90%",
-        healthscore:<div><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>,
+        healthscore:"75%",
         totalscore:<i class="fa fa-star"></i>
       },
       {
         projects:"Amazon Fashion",
         comp:"90%",
-        healthscore:<div><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>,
+        healthscore:"55%",
         totalscore:<i class="fa fa-star"></i>
       }
     ]
@@ -486,30 +488,35 @@ return (
                 <div className="legend-list">
                   <div class="legend-list-inner">
                   <p>Tickets Raised</p>
+                  <h1>32</h1>
                   </div>
                   <hr style={{backgroundColor:"#4e73df"}}/>
                 </div>
                 <div className="legend-list">
                   <div class="legend-list-inner">
                   <p>Tickets Resolved</p>
+                  <h1>24</h1>
                   </div>
                   <hr style={{backgroundColor:"#008000"}}/>
                 </div>
                 <div className="legend-list">
                   <div class="legend-list-inner">
                   <p>Tickets WIP</p>
+                  <h1>02</h1>
                   </div>
                   <hr style={{backgroundColor:"#ffc107"}}/>
                 </div>
                 <div className="legend-list">
                   <div class="legend-list-inner">
                   <p>Tickets Not Started</p>
+                  <h1>04</h1>
                   </div>
                   <hr style={{backgroundColor:"#5f9ea0"}}/>
                 </div>
                 <div className="legend-list">
                   <div class="legend-list-inner">
                   <p>Tickets on Hold</p>
+                  <h1>02</h1>
                   </div>
                   <hr style={{backgroundColor:"#e9967a"}}/>
                 </div>
@@ -559,29 +566,31 @@ return (
               <a href ="ticketslist">View all Tickets</a>
             </div>
           </div>
-          <div className="row ticket-details-dashboard">
-            <div className="col-lg-1 custom-borrig"></div>
-            <div className="col-lg-2 custom-borrig">
-              <h6>Tickets Raised</h6>
+          <div class="ticket-details-dashboard">
+          <div className="row ">
+            
+            <div className="col-lg-2 box-tickets-num" onClick={()=>{history.push('/ticketslist')}} style={{backgroundColor:"rgb(78, 115, 223)"}}>
+              <h6>Raised</h6>
               <p>32</p>
             </div>
-            <div className="col-lg-2 custom-borrig">
-              <h6>Tickets Resolved</h6>
+            <div className="col-lg-2 box-tickets-num" onClick={()=>{history.push('/ticketslist')}} style={{backgroundColor:"rgb(0, 128, 0)"}}>
+              <h6>Resolved</h6>
               <p>24</p>
             </div>
-            <div className="col-lg-2 custom-borrig">
-              <h6>Tickets WIP</h6>
+            <div className="col-lg-2 box-tickets-num" onClick={()=>{history.push('/ticketslist')}} style={{backgroundColor:"rgb(255, 193, 7)"}}>
+              <h6>WIP</h6>
               <p>02</p>
             </div>
-            <div className="col-lg-2 custom-borrig">
-              <h6>Tickets Not Started</h6>
+            <div className="col-lg-2 box-tickets-num" onClick={()=>{history.push('/ticketslist')}} style={{backgroundColor:"rgb(95, 158, 160)"}}>
+              <h6>Not Started</h6>
               <p>04</p>
             </div>
-            <div className="col-lg-2 custom-borrig">
-              <h6>Tickets on Hold</h6>
+            <div className="col-lg-2 box-tickets-num" onClick={()=>{history.push('/ticketslist')}} style={{backgroundColor:"#e9967a"}}>
+              <h6>on Hold</h6>
               <p>02</p>
             </div>
-            <div className="col-lg-1"></div>
+            
+          </div>
           </div>
           <Table id="sample" columns={ticketscol} dataSource={ticketstable} pagination={{position:["bottomRight"]}} />
           <div className="audit-score-title">

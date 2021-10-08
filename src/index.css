@@ -1779,7 +1779,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible{
 }
 .pa-da {
   border: 1px solid #e3e3e3;
-  width: 282px;
+  width: 290px;
   margin-right: 24px;
 }
 .spam {
@@ -2726,7 +2726,7 @@ button#dropdown-show-hide {
   margin-right: -29px;
 }
 .ROI .row label {
-  width: 32%;
+  width: 40%;
 }
 .ROI input[type="text"], .ROI select {
   width: 59%;
@@ -2857,8 +2857,11 @@ margin-bottom: 24px;
   width: 14%;
   text-align: center;
 }
+.legend-list-inner p {
+  height: 51%;
+}
 .legend-list h1 {
-  font-size: 28px;
+  font-size: 24px;
 }
 .main-dashboard i.fa.fa-star {
   color: goldenrod;
@@ -3591,15 +3594,16 @@ h2.tab-title-comfiguration {
   margin-left: 5px;
 }
 .ticket-details-dashboard h6 {
-  color: rgba(0, 0, 0, 0.85);
+  
   font-weight: 500;
   font-size: 14px;
   text-align: center;
-  height: 41px;
+  height: 32px;
 }
 .ticket-details-dashboard p{
   text-align: center;
-  font-size: 12px;
+  font-size: 24px;
+  margin-bottom: unset;
 }
 .ticket-details-dashboard{
   margin-bottom: 24px;
@@ -3631,17 +3635,20 @@ img.filterimage {
 }
 
 .da-average-div {
-  
   text-align: center;
-  top: 50%;
-  position: absolute;
-  left: 50%;
-  color: orangered;
-  opacity: 0.8;
+    opacity: 0.8;
+    background-color: #ffcb35;
+    color: #000;
+    width: 42%;
+    padding: 14px 65px;
+    border-radius: 4px;
+    border: 1px solid #ffcb35;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 23%;
 }
 .da-average-div h6, .da-average-div p{
-  font-size: 21px;
-  text-transform: uppercase;
+  font-size: 32px;
 }
 .chart-box-modules {
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
@@ -3656,7 +3663,114 @@ img.filterimage {
 }
 
 
+.custom-calendar select{
+  width:135px;
+  /* width:90%; */
+  /* min-width: 200px;
+  max-width: 230px; */
+}
+.custom-calendar input {
+  width:135px;
+  /* min-width: 200px;
+  max-width: 230px; */
+}
+.custom-calendar input[type='checkbox'] {
+  box-sizing: border-box;
+  padding: 0;
+  margin-left: -70px;
+}
+.custom-calendar .daterange-picker-card{
+  font-size: 12px;
+  right: 0px;
+  /* position:absolute; */
+  z-index: 4;
+    float:right;
+}
+/* .ep-arrow::after */
+.custom-calendar .rmdp-day{
+  color: #000;
+  cursor: pointer;
+  height: 24px;
+  position: relative;
+  width: 24px;
+  /* width:20%; */
+}
+.custom-calendar .rmdp-week-day {
+  color: #000;
+  cursor: pointer;
+  height: 24px;
+  position: relative;
+  width: 24px;
+  /* width:20%; */
+}
+.custom-calendar .rmdp-day span {
+  border-radius: 50%;
+  bottom: 3px;
+  font-size:  10px;
+  left: 3px;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+}
+.custom-calendar .rmdp-week-day {
+  color: #1448D6;
+  cursor: default;
+  font-size: 10px;
+  font-weight: 500;
+}
+.custom-calendar .rmdp-header {
+  font-size: 13px;
+  height: 38px;
+  line-height: 37px;
+  margin-top: 5px;
+}
+.custom-calendar .lable-compare{
+  margin-left: -55px;
+}
+div#example-collapse-text-calendar {
+  max-width: 969px;
+  width: 100%;
+  margin-left: auto;
+  position: absolute;
+    z-index: 3;
+    right: 0%;
+    /* top: 23%; */
+}
+.tabs-inner-page-speed .react-tabs__tab-panel {
+  margin-top: unset;
+}
+#example-collapse-text-calendar input[type="text"], #example-collapse-text-calendar select {
+  width: 129% !important;
+  max-width: 129% !important;
+}
+#example-collapse-text-calendar label {
+  width: 100% !important;
+}
+.ROI .ant-table-selection-column label{
+  width: unset;
+}
+.calendar-main{
+  margin-top:-48px;
+}
+.col-lg-2.box-tickets-num {
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  width: 17% !important;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.ticket-details-dashboard .row {
+  width: 99%;
+  margin-left: auto;
+}
 @media(max-width:1440px) and (min-width:1025px){
+  .keyowrd-ROI-drop {
+    flex-direction: column;
+}
+.keyowrd-ROI-drop label{
+  margin-top: unset !important;
+}
   #atmospheric-composition {
     margin-left: -83px  !important;
     margin-top: -103px;
@@ -3682,16 +3796,16 @@ img.filterimage {
   }
  
   .ROI input[type="text"], .ROI select {
-    max-width: 43%;
+    max-width: 96%;
     height: 40px;
     width: 100%;
   }
   .ROI .da-pa-search.css-2b097c-container {
-    max-width: 43%!important;
+    max-width: 96%!important;
       width: 100% !important;
   }
   .ROI .row label {
-    width: 48%;
+    width: 68%;
       margin-right: 24px;
   }
   .module-expand-gsc label{

@@ -113,9 +113,9 @@ return (
                   <option value="HR">HR</option>
                   <option value="sales">Sales</option>
                   <option value="SEO">SEO</option>
-                  <option value="Admin">Admin</option>
+                  {/* <option value="Admin">Admin</option> */}
                   <option value="Customers">Customers</option>
-                  <option value="SuperAdmin">Super Admin</option>
+                  {/* <option value="SuperAdmin">Super Admin</option> */}
               </select>
             </div>
           

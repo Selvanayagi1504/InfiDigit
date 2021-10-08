@@ -798,12 +798,76 @@ function Configuration() {
     var a = document.getElementById('client-proj').value;
     setchosenclientproj(a);
   }
-  function openTab(tabname, id){
+//   function openTab(tabname, id){
+//     if(currenttab.length == 0){
+//       var data = [];
+//       if(id == 1){
+//         document.getElementById('main-col-2').classList.add('none');
+//         document.getElementById('main-col-3').classList.add('none');
+//         document.getElementById('main-col-1').classList.add('custom-column-30');
+//         document.getElementById('main-col-1').classList.remove('custom-column-33');
+//         document.getElementById('angle-1').classList.remove('none');
+//       }
+//       else if(id == 2){
+//         document.getElementById('main-col-1').classList.add('none');
+//         document.getElementById('main-col-3').classList.add('none');
+//         document.getElementById('main-col-2').classList.add('custom-column-30');
+//         document.getElementById('main-col-2').classList.remove('custom-column-33');
+//         document.getElementById('angle-2').classList.remove('none');
+//       }
+//       else if(id == 3){
+//         document.getElementById('main-col-2').classList.add('none');
+//         document.getElementById('main-col-1').classList.add('none');
+//         document.getElementById('main-col-3').classList.add('custom-column-30');
+//         document.getElementById('main-col-3').classList.add('custom-borrig');
+//         document.getElementById('main-col-3').classList.remove('custom-column-33');
+//         document.getElementById('angle-3').classList.remove('none');
+//       }
+//       document.getElementById(tabname).classList.remove('none');
+//       data.push({
+//         currentabname:tabname,
+//         currentid:id,
+//       })
+//       setcurrenttab(data);
+//     }
+//     else {
+//       document.getElementById(currenttab[0].currentabname).classList.add('none');
+//       document.getElementById(tabname).classList.remove('none');
+//       var data = []
+//       data.push({
+//         currentabname:tabname,
+//         currentid:id,
+//       })
+//       setcurrenttab(data);
+//     }
+//   }
+//   function closeTabs(){
+//     document.getElementById(currenttab[0].currentabname).classList.add('none');
+//     document.getElementById(`main-col-${currenttab[0].currentid}`).classList.remove('custom-column-30');
+//     document.getElementById(`main-col-${currenttab[0].currentid}`).classList.add('custom-column-33');
+//     document.getElementById(`angle-${currenttab[0].currentid}`).classList.add('none');
+//     if(currenttab[0].currentid == 3){
+//       document.getElementById('main-col-2').classList.remove('none');
+//       document.getElementById('main-col-1').classList.remove('none');
+//       document.getElementById('main-col-3').classList.remove('custom-borrig');  
+//     }
+//     if(currenttab[0].currentid == 1){
+//       document.getElementById('main-col-2').classList.remove('none');
+//       document.getElementById('main-col-3').classList.remove('none');
+//     }
+//     if(currenttab[0].currentid == 2){
+//       document.getElementById('main-col-3').classList.remove('none');
+//       document.getElementById('main-col-1').classList.remove('none');
+//     }
+//     setcurrenttab([])
+//   }
+function openTab(tabname, id){
     if(currenttab.length == 0){
       var data = [];
       if(id == 1){
         document.getElementById('main-col-2').classList.add('none');
         document.getElementById('main-col-3').classList.add('none');
+        document.getElementById('main-col-4').classList.add('none');
         document.getElementById('main-col-1').classList.add('custom-column-30');
         document.getElementById('main-col-1').classList.remove('custom-column-33');
         document.getElementById('angle-1').classList.remove('none');
@@ -811,6 +875,7 @@ function Configuration() {
       else if(id == 2){
         document.getElementById('main-col-1').classList.add('none');
         document.getElementById('main-col-3').classList.add('none');
+        document.getElementById('main-col-4').classList.add('none');
         document.getElementById('main-col-2').classList.add('custom-column-30');
         document.getElementById('main-col-2').classList.remove('custom-column-33');
         document.getElementById('angle-2').classList.remove('none');
@@ -818,10 +883,20 @@ function Configuration() {
       else if(id == 3){
         document.getElementById('main-col-2').classList.add('none');
         document.getElementById('main-col-1').classList.add('none');
+        document.getElementById('main-col-4').classList.add('none');
         document.getElementById('main-col-3').classList.add('custom-column-30');
-        document.getElementById('main-col-3').classList.add('custom-borrig');
+        
         document.getElementById('main-col-3').classList.remove('custom-column-33');
         document.getElementById('angle-3').classList.remove('none');
+      }
+      else if(id == 4){
+        document.getElementById('main-col-2').classList.add('none');
+        document.getElementById('main-col-1').classList.add('none');
+        document.getElementById('main-col-3').classList.add('none');
+        document.getElementById('main-col-4').classList.add('custom-borrig');
+        document.getElementById('main-col-4').classList.add('custom-column-30');
+        document.getElementById('main-col-4').classList.remove('custom-column-33');
+        document.getElementById('angle-4').classList.remove('none');
       }
       document.getElementById(tabname).classList.remove('none');
       data.push({
@@ -849,15 +924,23 @@ function Configuration() {
     if(currenttab[0].currentid == 3){
       document.getElementById('main-col-2').classList.remove('none');
       document.getElementById('main-col-1').classList.remove('none');
-      document.getElementById('main-col-3').classList.remove('custom-borrig');  
+      document.getElementById('main-col-4').classList.remove('none'); 
     }
     if(currenttab[0].currentid == 1){
       document.getElementById('main-col-2').classList.remove('none');
       document.getElementById('main-col-3').classList.remove('none');
+      document.getElementById('main-col-4').classList.remove('none');
     }
     if(currenttab[0].currentid == 2){
       document.getElementById('main-col-3').classList.remove('none');
       document.getElementById('main-col-1').classList.remove('none');
+      document.getElementById('main-col-4').classList.remove('none');
+    }
+    if(currenttab[0].currentid == 4){
+        document.getElementById('main-col-2').classList.remove('none');
+        document.getElementById('main-col-1').classList.remove('none');
+        document.getElementById('main-col-3').classList.remove('none');
+        document.getElementById('main-col-4').classList.remove('custom-borrig'); 
     }
     setcurrenttab([])
   }
@@ -911,6 +994,15 @@ function Configuration() {
   const [OrganizationSelected, setOrganizationSelected] = useState({ value: "InfiDigit", label: "InfiDigit" });
   function handleChangeOrganization(selected){
     setOrganizationSelected(selected);
+  }
+  const [UserList, setUserList] = useState([
+    { value: "User 1", label: "User 1" },
+    { value: "User 2", label: "User 2" },
+    { value: "User 3", label: "User 3" },
+  ])
+  const [UserSelected, setUserSelected] = useState({ value: "User 1", label: "User 1" });
+  function handleChangeUser(selected){
+    setUserSelected(selected);
   }
   return (
     <>
@@ -984,6 +1076,9 @@ function Configuration() {
                         <li>
                             <a onClick={()=>{openTab('access-permissions',1)}}>Access Permissions</a>
                         </li>
+                        <li>
+                            <a>Customize dashboard</a>
+                        </li>
                     </ul>
                 </div>
                 <div className="custom-column-33 custom-borrig" id="main-col-2">
@@ -1014,9 +1109,9 @@ function Configuration() {
                     </li>
                     </ul>
                 </div>
-                <div className="custom-column-33 custom" id="main-col-3">
+                <div className="custom-column-33 custom-borrig" id="main-col-3">
                 <i className="fa fa-arrow-left none" id="angle-3" onClick={()=>closeTabs()}></i>
-                <h2 className="tab-title-comfiguration">Projects <i class="fa fa-plus common-ml-24"></i></h2>
+                <h2 className="tab-title-comfiguration">Projects <i onClick={()=>{openTab('create-project',3)}} class="fa fa-plus common-ml-24"></i></h2>
                     {/* <select name="" id="client-proj" onChange={()=>{changechoseclientproj()}}>
                     {clientproj.map((i)=>{
                         return(
@@ -1044,8 +1139,26 @@ function Configuration() {
                     </li>
                     </ul>
                 </div>
-                
-                
+                <div className="custom-column-33" id="main-col-4">
+                    <i className="fa fa-arrow-left none" id="angle-4" onClick={()=>closeTabs()}></i>
+                    <h2 className="tab-title-comfiguration">Users <i class="fa fa-plus common-ml-24"></i></h2>
+                    <ReactSelect
+                        className="SearchSelectMain"
+                        placeholder="Select or search module"
+                        options={UserList}
+                        closeMenuOnSelect={true}
+                        onChange={handleChangeUser}
+                        value={UserSelected}
+                    />
+                    <ul className="configuration-tab-list">
+                        <li>
+                            <a onClick={()=>{openTab('customize',4)}}>Customize</a>
+                        </li>
+                    </ul>
+                </div>
+                <div className="custom-column-70 none" id="customize">
+                    user
+                </div>
                 {/* Team Members Expand */}
                 <div className="custom-column-70 none" id="team-members">
                     <div class="row">
@@ -1378,6 +1491,9 @@ function Configuration() {
                     </> :<></>
                 }
                 </div>
+                <div className="custom-column-70 none" id="create-project">
+                    <CreateProject />
+                </div>
                 <div className="custom-column-70 none" id="account-settings">
                     Account Settings
                 </div>
@@ -1536,7 +1652,6 @@ function Configuration() {
                             <a style={{color:"#fff"}} class="outline-btn" onClick={()=>{handleAddAudit()}}>Add New Module</a>
                         </div>
                     </div>        
-
                     <div class="common-table" >
                         <div class="row common-mb-24">
                             <div class="col-md-5">
@@ -2359,6 +2474,125 @@ function AddNewModuleAudit(props){
 
                 
             </div>  
+        </>
+    )
+}
+
+function CreateProject(props){
+    const [filelist,setfilelist] = useState([]);
+    function updateList() {
+        var input = document.getElementById('myfile');
+        const a = []
+        for (var i = 0; i < input.files.length; ++i) {
+            a.push(input.files.item(i).name);
+        }
+        setfilelist(a);
+    }
+    function removeItem(i){
+        var list = filelist;
+        setfilelist(list.filter(item => item !== i))
+    }
+    return(
+        <>
+            <div class="row">
+                    <div class="col-sm-5 pad-lzero">
+                        <div class="main-title">CREATE NEW PROJECT</div>
+                    </div>
+                    <div class="col-sm-7 add-new-btnw">
+                    </div>
+                </div>
+
+                <div class="common-wrapper">
+
+                    <div class="common-wcard">
+
+                        <div class="common-form-fields">
+
+                            <div class="add-user" style={{width:100+'%'}}>
+                                <div class="form-wrappers">
+                                    <label>Project Code</label>
+                                    <input type="text" name="" placeholder="Enter Project Code" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Customer Name</label>
+                                    <select>
+                                        <option>Myntra</option>
+                                        <option>Infi</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Start Date</label>
+                                    <input type="date" name="" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Estimated Completion Date</label>
+                                    <input type="date" name="" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Domain Name</label>
+                                    <input type="text" name="" placeholder="Enter Domain Name" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Cost</label>
+                                    <input type="text" name="" placeholder="Enter Cost" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Location</label>
+                                    <input type="text" name="" placeholder="Enter Location" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>POC</label>
+                                    <input type="text" name="" placeholder="Enter POC" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Contact</label>
+                                    <input type="text" name="" placeholder="Enter Contact" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Status</label>
+                                    <select>
+                                        <option>Lead</option>
+                                        <option>Active</option>
+                                        <option value="">Prospect</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Document Upload</label>
+                                    <br />
+                                    {/* <input type="file" id="myfile" name="myfile" multiple onChange={updateList} /> */}
+                                    <input type="file" id="myfile" name="myfile" multiple onChange={updateList} /><label id="fileLabel">{filelist.length>0?`${filelist.length} files`:""}</label>
+
+                                </div>
+                                <div id="fileList">
+                                    <ul>
+                                    {filelist && filelist.map((i, index)=>{
+                                        return(
+                                            <li id={i}>{i} <i class="fa fa-trash" onClick={()=>{removeItem(i)}}></i></li>
+                                        )
+                                    })}
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <ul class="form-action-wrapper">
+                        <li><a href="#" class="ol-btn">Cancel</a></li>
+                        <li><a href="#" class="outline-btn">Save</a></li>
+                    </ul>
+                </div>
         </>
     )
 }

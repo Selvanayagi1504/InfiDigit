@@ -8,9 +8,10 @@ import { default as ReactSelect, createFilter } from "react-select";
 import { components } from "react-select";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col ,Breadcrumb} from "antd";
-import {Dropdown} from 'react-bootstrap'
+import {Dropdown, Card} from 'react-bootstrap'
 import {ModuleExpandTickets} from './index';
-
+import DatePicker,{ DateObject } from "react-multi-date-picker"
+import { Calendar } from "react-multi-date-picker"
 
 
 const Option = (props) => {
@@ -128,22 +129,26 @@ function ModuleExpandRankTracking() {
             {
                 title:"URL",
                 dataIndex:"url",
-                key:"url"
+                key:"url",
+                // fixed:"left"
             },
             {
                 title:"1 Aug",
                 dataIndex:"aug1",
-                key:"aug1"
+                key:"aug1",
+                
             },
             {
                 title:"8 Aug",
                 dataIndex:"aug8",
-                key:"aug8"
+                key:"aug8",
+                
             },
             {
                 title:"16 Aug",
                 dataIndex:"aug16",
-                key:"aug16"
+                key:"aug16",
+                
             },
             
           ]
@@ -366,6 +371,35 @@ function ModuleExpandRankTracking() {
         }
     }, [isMenuOpen])
     const [sidenavToggle, setSidenavToggle] = useState(true);
+    const [values, setValues] = useState([
+        new DateObject().setDay(4).subtract(1, "month"),
+        new DateObject().setDay(4).add(1, "month")
+      ])
+    const [headValues, setHeadValues] = useState([
+        new DateObject().setDay(4).subtract(1, "month"),
+        new DateObject().setDay(4).add(1, "month")
+      ])
+    const [open, setOpen] = useState(false);
+    const [head1,setHead1]= useState(headValues[0].format())
+    const [head2,setHead2]= useState(headValues[1].format())
+    const [checkBoxValue,setCheckBoxValue]= useState(false)
+    function setheadvalues(){
+        setHead1(values[0].format())
+        setHead2(values[1].format())
+    }
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+        if (open && ref.current && !ref.current.contains(e.target)) {
+            setOpen(false)
+        }
+        }
+
+        document.addEventListener("mousedown", checkIfClickedOutside)
+
+        return () => {
+        document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [open])
     return (
         <>
             <section class="outer-wrapper module-expand-site-uptime module-rank dashboard-seo">
@@ -519,6 +553,126 @@ function ModuleExpandRankTracking() {
                         <a href="/module-expand-rank-tracking">Rank Tracking</a>
                         </Breadcrumb.Item>
                     </Breadcrumb>
+                    <div ref={ref} class="calendar-main">
+                        <div className="add-new-btnw">
+                            <button className="outline-btn-boderless" style={{width:"250px"}} onClick={() => setOpen(!open)} >
+                                {head1}&nbsp;-&nbsp;{head2}&nbsp;&nbsp;
+                                <i class="fa fa-chevron-down drop"></i>
+                            </button>
+                        </div>
+                        
+                        {open && (
+                            <div id="example-collapse-text-calendar">
+                                <Card body className="daterange-picker-card  mt-2">
+                                    <div className="row">
+                                    
+                                        <div className="col-lg-8 calendar-col">
+                                            <Calendar
+                                                className="custom-calendar"
+                                                value={values}
+                                                onChange={(e)=>{
+                                                    setValues(e)
+                                                }}
+                                                range
+                                                numberOfMonths={3}
+                                                className="custom-calendar"
+                                                showOtherDays
+                                            />
+                                        </div>
+                                        <div className="col-lg-4 mt-3 mt-lg-0 text-center">
+                                            <div className="row">
+                                                <div className="col-6">
+                                                    <label >Date Range</label>
+                                                </div>
+                                                <div className="col-5">
+                                                    <select >
+                                                        <option value="All">custom</option>
+                                                        <option value="Contains">today</option>
+                                                        <option>yesterday</option>
+                                                        <option>last week</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            <div className="row mt-3 text-center">
+                                                <div className="col-5">
+                                                    <input type="text" value={values[0].format()}/>
+                                                </div>
+                                                <div className="col-1">
+                                                
+                                                </div>
+                                                <div className="col-5">
+                                                    {
+                                                        values.length==2?
+                                                        <input type="text" value={values[1].format()}/> : <input type="text" value={"select"}/>
+                                                    }
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            <div className="row mt-3">
+                                                <div className="col-6 ">
+                                                    <input type="checkbox" onChange={()=>{setCheckBoxValue(!checkBoxValue)}}/>
+                                                    <label className="lable-compare">Compare to</label>
+                                                </div>
+                                                <div className="col-5">
+                                                    <select >
+                                                        <option value="All">previous period</option>
+                                                        <option>yesterday</option>
+                                                        <option>last week</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            {
+                                            checkBoxValue?
+                                                <div className="row mt-3">
+                                                    <div className="col-5">
+                                                    <input type="text" value={head1}/>
+                                                    </div>
+                                                    <div className="col-1">
+                                                    
+                                                    </div>
+                                                    <div className="col-5">
+                                                        <input type="text" value={head2}/>
+                                                    </div>
+                                                    <div className="col-1"></div>
+                                                </div>
+                                                :
+                                                <div  className="row mt-3">
+                                                    <div className="col-5">
+                                                    <input type="text" disabled value={head1}/>
+                                                    </div>
+                                                    <div className="col-1">
+                                                    <h6 className="pt-2">-</h6>
+                                                    </div>
+                                                    <div className="col-5">
+                                                        <input type="text" disabled value={head2}/>
+                                                    </div>
+                                                    <div className="col-1"></div>
+                                                </div>
+                                            }
+                                            <hr/>
+                                            <div className="row mt-3">
+                                                <div className="col-6">
+                                                    <button onClick={()=>{setheadvalues();setOpen(!open)}}
+                                                    className="outline-btn" >
+                                                        Apply
+                                                    </button>
+                                                </div>
+                                                <div className="col-6">
+                                                <buton onClick={() => setOpen(!open)}
+                                                className="outline-btn">
+                                                        Cancel
+                                                </buton>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Card>
+                            </div>
+                        )}
+                        
+                    </div>
                     <Tabs>
                         <TabList>
                             <Tab>Rank Tracking</Tab>
@@ -547,8 +701,8 @@ function ModuleExpandRankTracking() {
                             </div>
                             <br/>
                             <div className="row rank-tracking-top-select" style={{marginTop:48+"px"}}>
-                                <div className="col-lg-4 my-2 col-sm-6 col-md-6" style={{display:"flex"}}>
-                                    <label htmlFor="" style={{marginTop:5+'px'}}>Select Keywords</label>
+                                <div className="col-lg-3 my-2 col-sm-6 col-md-6" style={{display:"flex"}}>
+                                    <label htmlFor="" style={{marginTop:5+'px'}}>Keywords</label>
                                     <ReactSelect
                                         className="da-pa-search"
                                         options={colourOptions}
@@ -565,8 +719,8 @@ function ModuleExpandRankTracking() {
                                         onInputChange={(e) => filterAllOptions(e)}
                                     />
                                 </div>
-                                <div className="col-lg-4 my-2 col-sm-6 col-md-6" style={{display:"flex"}}>
-                                    <label htmlFor="" style={{marginTop:5+'px'}}>Select Competitors</label>
+                                <div className="col-lg-3 my-2 col-sm-6 col-md-6" style={{display:"flex"}}>
+                                    <label htmlFor="" style={{marginTop:5+'px'}}>Competitors</label>
                                     <ReactSelect
                                         className="da-pa-search"
                                         options={colourOptions1}
@@ -583,7 +737,7 @@ function ModuleExpandRankTracking() {
                                         onInputChange={(e) => filterAllOptions1(e)}
                                     />
                                 </div>
-                                <div className="col-lg-4 my-2 col-sm-6 col-md-6">
+                                <div className="col-lg-3 my-2 col-sm-6 col-md-6">
                                     <label>Device Type</label>
                                     <select name="" id="device-type" className="device-type-rank-choose"> 
                                         <option value="Mobile">Mobile</option>
@@ -591,8 +745,38 @@ function ModuleExpandRankTracking() {
                                         <option value="both">Both</option>
                                     </select>
                                 </div>
+                                <div className="col-lg-3 col-sm-6 col-md-6">
+                                    <label>Location</label>
+                                    <select name="" id="device-type" className="device-type-rank-choose">
+                                        <option value="Chennai">Chennai</option>
+                                        <option value="Bangalore">Bangalore</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div className="row rank-tracking-top-select" >
+                            <div className="row rank-tracking-top-select">
+                                <div className="col-lg-3 col-sm-6 col-md-6" style={{display:"flex"}}>
+                                    <label htmlFor="" style={{marginTop:5+'px'}}>Domain url</label>
+                                    <ReactSelect
+                                        className="da-pa-search"
+                                        options={DomainUrlOption}
+                                        isMulti
+                                        closeMenuOnSelect={false}
+                                        hideSelectedOptions={false}
+                                        components={{
+                                            Option
+                                        }}
+                                        onChange={handleChangeDomainUrl}
+                                        allowSelectAll={true}
+                                        value={DomainUrlSelected}
+                                    />
+                                </div>
+                                <div className="col-lg-3"></div>
+                                <div className="col-lg-3"></div>
+                                <div className="col-lg-3 add-new-btnw">
+                                <button style={{ height:38+'px'}} class="outline-btn" onClick={generatereport1}>Generate</button>
+                                </div>
+                            </div>
+                            {/* <div className="row rank-tracking-top-select" >
                                 
                                 <div className="col-lg-4 my-2 col-sm-6 col-md-6">
                                     <label>Location</label>
@@ -620,62 +804,53 @@ function ModuleExpandRankTracking() {
                                 <div className="col-lg-4 my-2 col-sm-6 col-md-6">
                                     <button style={{ height:38+'px'}} class="outline-btn" onClick={generatereport1}>Generate</button>
                                 </div>
-                            </div>
+                            </div> */}
                             <hr/>
                             
                             {
                                 displayTable
                                 ? 
                                     <>
+                                        <div style={{display:"flex", marginTop:24+'px'}}>
+                                            <div style={{width:"90%", display:"flex"}}>
+                                                <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Keyword</label>
+                                                <ReactSelect
+                                                    className="da-pa-search"
+                                                    options={UrloptionBottom}
+                                                    isMulti
+                                                    closeMenuOnSelect={false}
+                                                    hideSelectedOptions={false}
+                                                    components={{
+                                                        Option
+                                                    }}
+                                                    onChange={handleChangeURLSelectedBottom}
+                                                    allowSelectAll={true}
+                                                    value={urlSelectbottom}
+                                                />
+                                                <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px', marginLeft:24+'px'}}>Competitor</label>
+                                                <select>
+                                                    <option value="https://www.metroshoes.net/">https://www.metroshoes.net/</option>
+                                                    <option value="https://www.mochishoes.com/">https://www.mochishoes.com/</option>
+                                                    <option value="https://www.myntra.com/">https://www.myntra.com/</option>
+                                                    <option value="https://www.amazon.in/">https://www.amazon.in/</option>
+                                                </select>
+                                                <button style={{ height:38+'px'}} class="outline-btn common-ml-24" onClick={generatereport2}>Generate</button>
+                                            </div>
+                                            <div style={{textAlign:"end", width:"10%"}}>
+                                                <Dropdown>
+                                                    <Dropdown.Toggle id="dropdown-basic">
+                                                    <i className="fa fa-download"></i>
+                                                    </Dropdown.Toggle>
+
+                                                    <Dropdown.Menu>
+                                                        <Dropdown.Item href="">Download All Charts</Dropdown.Item>
+                                                        <Dropdown.Item href="">Download this only</Dropdown.Item>
+                                                    </Dropdown.Menu>
+                                                </Dropdown>
+                                            </div>
+                                        </div>
                                         <div className="row">
                                             <div className="col-md-6">
-                                                
-                                                <div style={{display:"flex", marginTop:24+'px'}}>
-                                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Keyword</label>
-                                                    <ReactSelect
-                                                        className="da-pa-search"
-                                                        options={UrloptionBottom}
-                                                        isMulti
-                                                        closeMenuOnSelect={false}
-                                                        hideSelectedOptions={false}
-                                                        components={{
-                                                            Option
-                                                        }}
-                                                        onChange={handleChangeURLSelectedBottom}
-                                                        allowSelectAll={true}
-                                                        value={urlSelectbottom}
-                                                    />
-                                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px', marginLeft:24+'px'}}>Competitor</label>
-                                                    <select>
-                                                        <option value="https://www.metroshoes.net/">https://www.metroshoes.net/</option>
-                                                        <option value="https://www.mochishoes.com/">https://www.mochishoes.com/</option>
-                                                        <option value="https://www.myntra.com/">https://www.myntra.com/</option>
-                                                        <option value="https://www.amazon.in/">https://www.amazon.in/</option>
-                                                    </select>
-                                                    
-                                                </div>
-                                                    
-                                                  
-                                                <div className="row common-mt-24">
-                                                    <div className="col-md-6">
-                                                        <button style={{ height:38+'px'}} class="outline-btn" onClick={generatereport2}>Generate</button>
-                                                    </div>
-                                                    <div className="col-md-5 add-new-btnw">
-                                                        
-                                                            <Dropdown>
-                                                                <Dropdown.Toggle id="dropdown-basic">
-                                                                <i className="fa fa-download"></i>
-                                                                </Dropdown.Toggle>
-
-                                                                <Dropdown.Menu>
-                                                                    <Dropdown.Item href="">Download All Charts</Dropdown.Item>
-                                                                    <Dropdown.Item href="">Download this only</Dropdown.Item>
-                                                                </Dropdown.Menu>
-                                                            </Dropdown>
-                                                        
-                                                    </div>
-                                                    <div className="col-md-1"></div>
-                                                </div>
                                                 <Chart
                                                     className="line-graph"
                                                     
@@ -704,6 +879,8 @@ function ModuleExpandRankTracking() {
                                                 <Table id="sample" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
                                             </div>
                                         </div>
+                                        <Table id="sample" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
+
                                         <hr />
                                         <div class="add-new-btnw">
                                             <a href="#" class="outline-btn">EXPORT</a>

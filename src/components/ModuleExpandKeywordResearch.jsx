@@ -14,21 +14,8 @@ import  Card  from "react-bootstrap/Card";
 import { DropDownTreeComponent,CheckBoxSelection, Inject,MultiSelectComponent } from '@syncfusion/ej2-react-dropdowns';
 import {ModuleExpandTickets} from './index';
 
-import DateRangePicker from "react-bootstrap-daterangepicker";
-import "bootstrap-daterangepicker/daterangepicker.css";
-import $ from 'jquery'
-import { customRanges } from "./functions";
-import moment from "moment";
-const datePickerHandler = (event, picker) => {
-    let value =
-      picker.startDate.format("DD-MM-YYYY") +
-      " to " +
-      picker.endDate.format("DD-MM-YYYY");
-    $("#date-picker").val(value);
-  };
-  const start = moment().subtract(1, "days");
-  const minDate = moment("01-01-2017", "DD-MM-YYYY");
-  const maxDate = moment();
+import DatePicker,{ DateObject } from "react-multi-date-picker"
+import { Calendar } from "react-multi-date-picker"
 
 const Option = (props) => {
     return (
@@ -290,6 +277,35 @@ function ModuleExpandKeywordResearch() {
         }
     }, [isMenuOpen])
     const [sidenavToggle, setSidenavToggle] = useState(true);
+    const [values, setValues] = useState([
+        new DateObject().setDay(4).subtract(1, "month"),
+        new DateObject().setDay(4).add(1, "month")
+      ])
+    const [headValues, setHeadValues] = useState([
+        new DateObject().setDay(4).subtract(1, "month"),
+        new DateObject().setDay(4).add(1, "month")
+      ])
+    const [open1, setOpen1] = useState(false);
+    const [head1,setHead1]= useState(headValues[0].format())
+    const [head2,setHead2]= useState(headValues[1].format())
+    const [checkBoxValue,setCheckBoxValue]= useState(false)
+    function setheadvalues(){
+        setHead1(values[0].format())
+        setHead2(values[1].format())
+    }
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+        if (open1 && ref.current && !ref.current.contains(e.target)) {
+            setOpen1(false)
+        }
+        }
+
+        document.addEventListener("mousedown", checkIfClickedOutside)
+
+        return () => {
+        document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [open])
     return (
         <>
         
@@ -446,6 +462,126 @@ function ModuleExpandKeywordResearch() {
                         <a href="/module-expand-keyword-research">Keyword Research</a>
                         </Breadcrumb.Item>
                     </Breadcrumb>
+                    <div ref={ref} class="calendar-main">
+                        <div className="add-new-btnw">
+                            <button className="outline-btn-boderless" style={{width:"250px"}} onClick={() => setOpen1(!open1)} >
+                                {head1}&nbsp;-&nbsp;{head2}&nbsp;&nbsp;
+                                <i class="fa fa-chevron-down drop"></i>
+                            </button>
+                        </div>
+                        
+                        {open1 && (
+                            <div id="example-collapse-text-calendar">
+                                <Card body className="daterange-picker-card  mt-2">
+                                    <div className="row">
+                                    
+                                        <div className="col-lg-8 calendar-col">
+                                            <Calendar
+                                                className="custom-calendar"
+                                                value={values}
+                                                onChange={(e)=>{
+                                                    setValues(e)
+                                                }}
+                                                range
+                                                numberOfMonths={3}
+                                                className="custom-calendar"
+                                                showOtherDays
+                                            />
+                                        </div>
+                                        <div className="col-lg-4 mt-3 mt-lg-0 text-center">
+                                            <div className="row">
+                                                <div className="col-6">
+                                                    <label >Date Range</label>
+                                                </div>
+                                                <div className="col-5">
+                                                    <select >
+                                                        <option value="All">custom</option>
+                                                        <option value="Contains">today</option>
+                                                        <option>yesterday</option>
+                                                        <option>last week</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            <div className="row mt-3 text-center">
+                                                <div className="col-5">
+                                                    <input type="text" value={values[0].format()}/>
+                                                </div>
+                                                <div className="col-1">
+                                                
+                                                </div>
+                                                <div className="col-5">
+                                                    {
+                                                        values.length==2?
+                                                        <input type="text" value={values[1].format()}/> : <input type="text" value={"select"}/>
+                                                    }
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            <div className="row mt-3">
+                                                <div className="col-6 ">
+                                                    <input type="checkbox" onChange={()=>{setCheckBoxValue(!checkBoxValue)}}/>
+                                                    <label className="lable-compare">Compare to</label>
+                                                </div>
+                                                <div className="col-5">
+                                                    <select >
+                                                        <option value="All">previous period</option>
+                                                        <option>yesterday</option>
+                                                        <option>last week</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            {
+                                            checkBoxValue?
+                                                <div className="row mt-3">
+                                                    <div className="col-5">
+                                                    <input type="text" value={head1}/>
+                                                    </div>
+                                                    <div className="col-1">
+                                                    
+                                                    </div>
+                                                    <div className="col-5">
+                                                        <input type="text" value={head2}/>
+                                                    </div>
+                                                    <div className="col-1"></div>
+                                                </div>
+                                                :
+                                                <div  className="row mt-3">
+                                                    <div className="col-5">
+                                                    <input type="text" disabled value={head1}/>
+                                                    </div>
+                                                    <div className="col-1">
+                                                    <h6 className="pt-2">-</h6>
+                                                    </div>
+                                                    <div className="col-5">
+                                                        <input type="text" disabled value={head2}/>
+                                                    </div>
+                                                    <div className="col-1"></div>
+                                                </div>
+                                            }
+                                            <hr/>
+                                            <div className="row mt-3">
+                                                <div className="col-6">
+                                                    <button onClick={()=>{setheadvalues();setOpen1(!open1)}}
+                                                    className="outline-btn" >
+                                                        Apply
+                                                    </button>
+                                                </div>
+                                                <div className="col-6">
+                                                <buton onClick={() => setOpen1(!open1)}
+                                                className="outline-btn">
+                                                        Cancel
+                                                </buton>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Card>
+                            </div>
+                        )}
+                        
+                    </div>
                     <Tabs>
                         <TabList>
                             <Tab>Keyword Research</Tab>
@@ -502,10 +638,9 @@ function ModuleExpandKeywordResearch() {
                             </div>
                             {/* /////////////////////////////////// */}
                             <div className="row" style={{marginTop:24+'px'}}>
-                                <div className="col-lg-3 my-2">
+                                {/* <div className="col-lg-3 my-2">
                                     <label style={{marginRight:17+'px', maxWidth:133+'px'}}>Select Date Range</label>
-                                    {/* <input style={{marginRight:24+'px'}} type="date"/>    */}
-                                    {/* <input  type="date"/>    */}
+                                    
                                     <DateRangePicker
                                         class="date-range"
                                             showDropdowns
@@ -527,7 +662,7 @@ function ModuleExpandKeywordResearch() {
                                         >
                                         <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
                                     </DateRangePicker>
-                                </div>
+                                </div> */}
                                 <div className="col-lg-3 my-2">
                                     <label htmlFor="" style={{marginRight:52+'px'}}>Condition</label>
                                         <button className="outline-btn-boderless"

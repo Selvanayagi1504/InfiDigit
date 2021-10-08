@@ -7,9 +7,10 @@ import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col,Breadcrumb } from "antd";
-import {Dropdown} from 'react-bootstrap'
+import {Dropdown, Card} from 'react-bootstrap'
 import {ModuleExpandTickets} from './index';
-
+import DatePicker,{ DateObject } from "react-multi-date-picker"
+import { Calendar } from "react-multi-date-picker"
 
 const Option = (props) => {
     return (
@@ -59,7 +60,7 @@ function ModuleExpandGoogleAnalytics() {
     const [selectionType, setSelectionType] = useState('checkbox');
     const [GACol,setGACol] = useState([]);
     const [chartdata, setchartdata] = useState([]);
-    const [chartdataOptions, setchartdataOptions] = useState({legend:{position:"right"}});
+    const [chartdataOptions, setchartdataOptions] = useState({legend:{position:"bottom"}});
     const [color, setcolor] = useState(['#4e73df', '#008000', '#ffc107', '#dc3545', '#a52a2a', '#deb887', '#5f9ea0','#8b008b', '#e9967a', '#c71585']);
     const [startDate1, setStartDate1] = useState("");
     const [startDate2, setStartDate2] = useState("");
@@ -797,6 +798,35 @@ function ModuleExpandGoogleAnalytics() {
         }
     }, [isMenuOpen])
     const [sidenavToggle, setSidenavToggle] = useState(true);
+    const [values, setValues] = useState([
+        new DateObject().setDay(4).subtract(1, "month"),
+        new DateObject().setDay(4).add(1, "month")
+      ])
+    const [headValues, setHeadValues] = useState([
+        new DateObject().setDay(4).subtract(1, "month"),
+        new DateObject().setDay(4).add(1, "month")
+      ])
+    const [open, setOpen] = useState(false);
+    const [head1,setHead1]= useState(headValues[0].format())
+    const [head2,setHead2]= useState(headValues[1].format())
+    const [checkBoxValue,setCheckBoxValue]= useState(false)
+    function setheadvalues(){
+        setHead1(values[0].format())
+        setHead2(values[1].format())
+    }
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+        if (open && ref.current && !ref.current.contains(e.target)) {
+            setOpen(false)
+        }
+        }
+
+        document.addEventListener("mousedown", checkIfClickedOutside)
+
+        return () => {
+        document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [open])
     return (
         <>
             <section class="outer-wrapper module-expand-ga dashboard-seo">
@@ -832,7 +862,7 @@ function ModuleExpandGoogleAnalytics() {
                     )}
                     </div> 
                 </div>
-                <div class="nav-bar-center">&nbsp;</div>
+                {/* <div class="nav-bar-center">&nbsp;</div> */}
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
                     <li>
@@ -948,6 +978,126 @@ function ModuleExpandGoogleAnalytics() {
                         <a href="/module-expand-google-analytics">Google Analytics</a>
                         </Breadcrumb.Item>
                     </Breadcrumb>
+                    <div ref={ref} class="calendar-main">
+                        <div className="add-new-btnw">
+                            <button className="outline-btn-boderless" style={{width:"250px"}} onClick={() => setOpen(!open)} >
+                                {head1}&nbsp;-&nbsp;{head2}&nbsp;&nbsp;
+                                <i class="fa fa-chevron-down drop"></i>
+                            </button>
+                        </div>
+                        
+                        {open && (
+                            <div id="example-collapse-text-calendar">
+                                <Card body className="daterange-picker-card  mt-2">
+                                    <div className="row">
+                                    
+                                        <div className="col-lg-8 calendar-col">
+                                            <Calendar
+                                                className="custom-calendar"
+                                                value={values}
+                                                onChange={(e)=>{
+                                                    setValues(e)
+                                                }}
+                                                range
+                                                numberOfMonths={3}
+                                                className="custom-calendar"
+                                                showOtherDays
+                                            />
+                                        </div>
+                                        <div className="col-lg-4 mt-3 mt-lg-0 text-center">
+                                            <div className="row">
+                                                <div className="col-6">
+                                                    <label >Date Range</label>
+                                                </div>
+                                                <div className="col-5">
+                                                    <select >
+                                                        <option value="All">custom</option>
+                                                        <option value="Contains">today</option>
+                                                        <option>yesterday</option>
+                                                        <option>last week</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            <div className="row mt-3 text-center">
+                                                <div className="col-5">
+                                                    <input type="text" value={values[0].format()}/>
+                                                </div>
+                                                <div className="col-1">
+                                                
+                                                </div>
+                                                <div className="col-5">
+                                                    {
+                                                        values.length==2?
+                                                        <input type="text" value={values[1].format()}/> : <input type="text" value={"select"}/>
+                                                    }
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            <div className="row mt-3">
+                                                <div className="col-6 ">
+                                                    <input type="checkbox" onChange={()=>{setCheckBoxValue(!checkBoxValue)}}/>
+                                                    <label className="lable-compare">Compare to</label>
+                                                </div>
+                                                <div className="col-5">
+                                                    <select >
+                                                        <option value="All">previous period</option>
+                                                        <option>yesterday</option>
+                                                        <option>last week</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            {
+                                            checkBoxValue?
+                                                <div className="row mt-3">
+                                                    <div className="col-5">
+                                                    <input type="text" value={head1}/>
+                                                    </div>
+                                                    <div className="col-1">
+                                                    
+                                                    </div>
+                                                    <div className="col-5">
+                                                        <input type="text" value={head2}/>
+                                                    </div>
+                                                    <div className="col-1"></div>
+                                                </div>
+                                                :
+                                                <div  className="row mt-3">
+                                                    <div className="col-5">
+                                                    <input type="text" disabled value={head1}/>
+                                                    </div>
+                                                    <div className="col-1">
+                                                    <h6 className="pt-2">-</h6>
+                                                    </div>
+                                                    <div className="col-5">
+                                                        <input type="text" disabled value={head2}/>
+                                                    </div>
+                                                    <div className="col-1"></div>
+                                                </div>
+                                            }
+                                            <hr/>
+                                            <div className="row mt-3">
+                                                <div className="col-6">
+                                                    <button onClick={()=>{setheadvalues();setOpen(!open)}}
+                                                    className="outline-btn" >
+                                                        Apply
+                                                    </button>
+                                                </div>
+                                                <div className="col-6">
+                                                <buton onClick={() => setOpen(!open)}
+                                                className="outline-btn">
+                                                        Cancel
+                                                </buton>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Card>
+                            </div>
+                        )}
+                        
+                    </div>
                     <Tabs>
                         <TabList>
                             <Tab>Google Analytics</Tab>
@@ -967,33 +1117,7 @@ function ModuleExpandGoogleAnalytics() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-8">
-                                    <div className="row">
-                                        <div className="col-2">
-                                            <label htmlFor="">Date Range</label>
-                                        </div>
-                                        <div className="col-md-10">
-                                            <input id="start-date-1" type="date" style={{marginRight:24+'px'}} />
-                                            <input id="end-date-1" style={{marginBottom:24+'px'}} type="date" />
-                                            <br/>
-                                            {!daterange2 
-                                                ? 
-                                                    <>
-                                                        <a style={{color:"blue"}} onClick={()=>{setdaterenge2(!daterange2)}}>Compare with date range</a>
-                                                    </> 
-                                                : 
-                                                    <>
-                                                        <input id="start-date-2" type="date" style={{marginRight:24+'px'}} />
-                                                        <input id="end-date-2" style={{marginRight:24+'px'}} type="date" />
-                                                        <i class="fa fa-close" onClick={()=>{setdaterenge2(!daterange2)}}></i>
-                                                    </>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row google-analytics-top-label">
-                                <div className="col-md-6">
+                                <div className="col-md-4">
                                     <div className="row">
                                         <div className="col-md-2">
                                             <label>Segment</label>
@@ -1015,17 +1139,40 @@ function ModuleExpandGoogleAnalytics() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-md-4">
                                     <button class="outline-btn" style={{marginLeft:-23+'%'}} onClick={()=>generatereportga()}>Generate</button>
                                 </div>
-                                <div className="col-md-3 add-new-btnw">
-                                    <button class="outline-btn">Export</button>
+                            </div>
+                            {/* <div className="row google-analytics-top-label">
+                                <div className="col-md-6">
+                                    
                                 </div>
-                            </div>
-                            <hr/>
-                            <div className="ga-table">
-                                <Table id="sample-module-expand" columns={GACol} dataSource={GATable} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
-                            </div>
+                                <div className="col-md-3">
+                                    
+                                </div>
+                                
+                            </div> */}
+                            {/* <div className="row common-mt-24">
+                                
+                                <div className="col-md-12">
+                                <label htmlFor="" class="common-mr-24">Date Range</label>
+                                    <input id="start-date-1" type="date" style={{marginRight:24+'px'}} />
+                                    <input id="end-date-1" style={{marginBottom:24+'px'}} type="date" />
+                                    <br/>
+                                    {!daterange2 
+                                        ? 
+                                            <>
+                                                <a style={{color:"blue"}} onClick={()=>{setdaterenge2(!daterange2)}}>Compare with date range</a>
+                                            </> 
+                                        : 
+                                            <>
+                                                <input id="start-date-2" type="date" style={{marginRight:24+'px'}} />
+                                                <input id="end-date-2" style={{marginRight:24+'px'}} type="date" />
+                                                <i class="fa fa-close" onClick={()=>{setdaterenge2(!daterange2)}}></i>
+                                            </>
+                                    }
+                                </div>
+                            </div> */}
                             <hr/>
                             <div className="ga-chart">
                                 <div className="row">
@@ -1060,7 +1207,7 @@ function ModuleExpandGoogleAnalytics() {
                                     </div>
                                     <div className="col-md-4">
                                         <div className="score-maintain">
-                                            <a style={{color:"white",marginRight:24+"px", height:40+'px'}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
+                                            {/* <a style={{color:"white",marginRight:24+"px", height:40+'px'}} class="outline-btn" onClick={()=>handleModal()}>Custom</a> */}
                                             <Dropdown>
                                                 <Dropdown.Toggle id="dropdown-basic">
                                                 <i className="fa fa-download"></i>
@@ -1114,7 +1261,7 @@ function ModuleExpandGoogleAnalytics() {
                                 :<></>}
                                 <Chart
                                     className="line-graph"
-                                    width={'800px'}
+                                    width={'600px'}
                                     height={'400px'}
                                     chartType="LineChart"
                                     data={chartdata}
@@ -1123,6 +1270,15 @@ function ModuleExpandGoogleAnalytics() {
                                     rootProps={{ 'data-testid': '1' }}
                                 />
                             </div>
+                            <hr/>
+                            <div className="add-new-btnw">
+                                    <button class="outline-btn">Export</button>
+                                </div>
+                            <div className="ga-table">
+                                <Table id="sample-module-expand" columns={GACol} dataSource={GATable} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
+                            </div>
+                            <hr/>
+                            
                         </TabPanel>
                         <TabPanel>
                             <ModuleExpandTickets/>

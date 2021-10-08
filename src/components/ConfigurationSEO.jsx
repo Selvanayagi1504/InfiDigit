@@ -1077,6 +1077,9 @@ function ConfigurationSEO() {
                         <li>
                             <a onClick={()=>{openTab('access-permissions',1)}}>Access Permissions</a>
                         </li>
+                        <li>
+                            <a>Customize dashboard</a>
+                        </li>
                     </ul>
                 </div>
                 <div className="custom-column-33 custom-borrig" id="main-col-2">
@@ -1109,7 +1112,7 @@ function ConfigurationSEO() {
                 </div>
                 <div className="custom-column-33 custom-borrig" id="main-col-3">
                 <i className="fa fa-arrow-left none" id="angle-3" onClick={()=>closeTabs()}></i>
-                <h2 className="tab-title-comfiguration">Projects <i class="fa fa-plus common-ml-24"></i></h2>
+                <h2 className="tab-title-comfiguration">Projects <i onClick={()=>{openTab('create-project',3)}} class="fa fa-plus common-ml-24"></i></h2>
                     {/* <select name="" id="client-proj" onChange={()=>{changechoseclientproj()}}>
                     {clientproj.map((i)=>{
                         return(
@@ -1153,6 +1156,9 @@ function ConfigurationSEO() {
                             <a onClick={()=>{openTab('customize',4)}}>Customize</a>
                         </li>
                     </ul>
+                </div>
+                <div className="custom-column-70 none" id="create-project">
+                    <CreateProject />
                 </div>
                 <div className="custom-column-70 none" id="customize">
                     user
@@ -2609,5 +2615,122 @@ function AddNewModuleAudit(props){
         </>
     )
 }
+function CreateProject(props){
+    const [filelist,setfilelist] = useState([]);
+    function updateList() {
+        var input = document.getElementById('myfile');
+        const a = []
+        for (var i = 0; i < input.files.length; ++i) {
+            a.push(input.files.item(i).name);
+        }
+        setfilelist(a);
+    }
+    function removeItem(i){
+        var list = filelist;
+        setfilelist(list.filter(item => item !== i))
+    }
+    return(
+        <>
+            <div class="row">
+                    <div class="col-sm-5 pad-lzero">
+                        <div class="main-title">CREATE NEW PROJECT</div>
+                    </div>
+                    <div class="col-sm-7 add-new-btnw">
+                    </div>
+                </div>
 
+                <div class="common-wrapper">
+
+                    <div class="common-wcard">
+
+                        <div class="common-form-fields">
+
+                            <div class="add-user" style={{width:100+'%'}}>
+                                <div class="form-wrappers">
+                                    <label>Project Code</label>
+                                    <input type="text" name="" placeholder="Enter Project Code" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Customer Name</label>
+                                    <select>
+                                        <option>Myntra</option>
+                                        <option>Infi</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Start Date</label>
+                                    <input type="date" name="" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Estimated Completion Date</label>
+                                    <input type="date" name="" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Domain Name</label>
+                                    <input type="text" name="" placeholder="Enter Domain Name" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Cost</label>
+                                    <input type="text" name="" placeholder="Enter Cost" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Location</label>
+                                    <input type="text" name="" placeholder="Enter Location" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>POC</label>
+                                    <input type="text" name="" placeholder="Enter POC" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Contact</label>
+                                    <input type="text" name="" placeholder="Enter Contact" />
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Status</label>
+                                    <select>
+                                        <option>Lead</option>
+                                        <option>Active</option>
+                                        <option value="">Prospect</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-wrappers">
+                                    <label>Document Upload</label>
+                                    <br />
+                                    {/* <input type="file" id="myfile" name="myfile" multiple onChange={updateList} /> */}
+                                    <input type="file" id="myfile" name="myfile" multiple onChange={updateList} /><label id="fileLabel">{filelist.length>0?`${filelist.length} files`:""}</label>
+
+                                </div>
+                                <div id="fileList">
+                                    <ul>
+                                    {filelist && filelist.map((i, index)=>{
+                                        return(
+                                            <li id={i}>{i} <i class="fa fa-trash" onClick={()=>{removeItem(i)}}></i></li>
+                                        )
+                                    })}
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <ul class="form-action-wrapper">
+                        <li><a href="#" class="ol-btn">Cancel</a></li>
+                        <li><a href="#" class="outline-btn">Save</a></li>
+                    </ul>
+                </div>
+        </>
+    )
+}
 export default ConfigurationSEO;

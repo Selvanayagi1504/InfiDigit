@@ -7,9 +7,10 @@ import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col,Breadcrumb } from "antd";
-import {Dropdown} from 'react-bootstrap'
+import {Dropdown, Card} from 'react-bootstrap'
 import {ModuleExpandTickets} from './index';
-
+import DatePicker,{ DateObject } from "react-multi-date-picker"
+import { Calendar } from "react-multi-date-picker"
 
 const Option = (props) => {
     return (
@@ -54,6 +55,9 @@ function ModuleExpandROI() {
     const [show,setshow]= useState(false);
     const [showGSC, setshowGSC] = useState(false);
     const [showClickShare, setshowClickShare] = useState(false);
+    const [MetricTable, setMetricTable] = useState([]);
+    const [MetricCol, setMetricCol] = useState([]);
+    const [selectionTypeMetric, setSelectionTypeMetric] = useState('checkbox');
     useEffect(()=>{
         var data = [];
         data = [
@@ -213,6 +217,41 @@ function ModuleExpandROI() {
             
         ];
         setchartdata(data);
+        data = [
+            {
+                title:"Metric",
+                dataIndex:"metric",
+                key:"metric"
+            },
+            {   
+                title:"Aug 1",
+                dataIndex:"aug1",
+                key:"aug1",
+                
+            },
+            {   
+                title:"Aug 2",
+                dataIndex:"aug2",
+                key:"aug2",
+                
+            },
+            {   
+                title:"Aug 3",
+                dataIndex:"aug3",
+                key:"aug3",
+                
+            }
+        ]
+        setMetricCol(data);
+        data = [
+            {
+                metric:"ROI",
+                aug1:"25",
+                aug2:"36",
+                aug3:"47"
+            }
+        ]
+        setMetricTable(data);
     },[])
     
     function handleModal(){
@@ -295,6 +334,35 @@ function ModuleExpandROI() {
         }
     }, [isMenuOpen])
     const [sidenavToggle, setSidenavToggle] = useState(true);
+    const [values, setValues] = useState([
+        new DateObject().setDay(4).subtract(1, "month"),
+        new DateObject().setDay(4).add(1, "month")
+      ])
+    const [headValues, setHeadValues] = useState([
+        new DateObject().setDay(4).subtract(1, "month"),
+        new DateObject().setDay(4).add(1, "month")
+      ])
+    const [open, setOpen] = useState(false);
+    const [head1,setHead1]= useState(headValues[0].format())
+    const [head2,setHead2]= useState(headValues[1].format())
+    const [checkBoxValue,setCheckBoxValue]= useState(false)
+    function setheadvalues(){
+        setHead1(values[0].format())
+        setHead2(values[1].format())
+    }
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+        if (open && ref.current && !ref.current.contains(e.target)) {
+            setOpen(false)
+        }
+        }
+
+        document.addEventListener("mousedown", checkIfClickedOutside)
+
+        return () => {
+        document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [open])
     return (
         <>
             <section class="outer-wrapper ROI dashboard-seo">
@@ -449,6 +517,126 @@ function ModuleExpandROI() {
                         <a href="/module-expand-roi">ROI</a>
                         </Breadcrumb.Item>
                     </Breadcrumb>
+                    <div ref={ref} class="calendar-main">
+                        <div className="add-new-btnw">
+                            <button className="outline-btn-boderless" style={{width:"250px"}} onClick={() => setOpen(!open)} >
+                                {head1}&nbsp;-&nbsp;{head2}&nbsp;&nbsp;
+                                <i class="fa fa-chevron-down drop"></i>
+                            </button>
+                        </div>
+                        
+                        {open && (
+                            <div id="example-collapse-text-calendar">
+                                <Card body className="daterange-picker-card  mt-2">
+                                    <div className="row">
+                                    
+                                        <div className="col-lg-8 calendar-col">
+                                            <Calendar
+                                                className="custom-calendar"
+                                                value={values}
+                                                onChange={(e)=>{
+                                                    setValues(e)
+                                                }}
+                                                range
+                                                numberOfMonths={3}
+                                                className="custom-calendar"
+                                                showOtherDays
+                                            />
+                                        </div>
+                                        <div className="col-lg-4 mt-3 mt-lg-0 text-center">
+                                            <div className="row">
+                                                <div className="col-6">
+                                                    <label >Date Range</label>
+                                                </div>
+                                                <div className="col-5">
+                                                    <select >
+                                                        <option value="All">custom</option>
+                                                        <option value="Contains">today</option>
+                                                        <option>yesterday</option>
+                                                        <option>last week</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            <div className="row mt-3 text-center">
+                                                <div className="col-5">
+                                                    <input type="text" value={values[0].format()}/>
+                                                </div>
+                                                <div className="col-1">
+                                                
+                                                </div>
+                                                <div className="col-5">
+                                                    {
+                                                        values.length==2?
+                                                        <input type="text" value={values[1].format()}/> : <input type="text" value={"select"}/>
+                                                    }
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            <div className="row mt-3">
+                                                <div className="col-6 ">
+                                                    <input type="checkbox" onChange={()=>{setCheckBoxValue(!checkBoxValue)}}/>
+                                                    <label className="lable-compare">Compare to</label>
+                                                </div>
+                                                <div className="col-5">
+                                                    <select >
+                                                        <option value="All">previous period</option>
+                                                        <option>yesterday</option>
+                                                        <option>last week</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-1"></div>
+                                            </div>
+                                            {
+                                            checkBoxValue?
+                                                <div className="row mt-3">
+                                                    <div className="col-5">
+                                                    <input type="text" value={head1}/>
+                                                    </div>
+                                                    <div className="col-1">
+                                                    
+                                                    </div>
+                                                    <div className="col-5">
+                                                        <input type="text" value={head2}/>
+                                                    </div>
+                                                    <div className="col-1"></div>
+                                                </div>
+                                                :
+                                                <div  className="row mt-3">
+                                                    <div className="col-5">
+                                                    <input type="text" disabled value={head1}/>
+                                                    </div>
+                                                    <div className="col-1">
+                                                    <h6 className="pt-2">-</h6>
+                                                    </div>
+                                                    <div className="col-5">
+                                                        <input type="text" disabled value={head2}/>
+                                                    </div>
+                                                    <div className="col-1"></div>
+                                                </div>
+                                            }
+                                            <hr/>
+                                            <div className="row mt-3">
+                                                <div className="col-6">
+                                                    <button onClick={()=>{setheadvalues();setOpen(!open)}}
+                                                    className="outline-btn" >
+                                                        Apply
+                                                    </button>
+                                                </div>
+                                                <div className="col-6">
+                                                <buton onClick={() => setOpen(!open)}
+                                                className="outline-btn">
+                                                        Cancel
+                                                </buton>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Card>
+                            </div>
+                        )}
+                        
+                    </div>
                     <Tabs>
                         <TabList>
                             <Tab>ROI</Tab>
@@ -457,8 +645,8 @@ function ModuleExpandROI() {
 
                         <TabPanel>
                             <div className="row">
-                                <div className="col-md-4" style={{display:"flex"}}>
-                                    <label>Choose Keyword</label>
+                                <div className="col-md-3 keyowrd-ROI-drop" style={{display:"flex"}}>
+                                    <label class="common-mt-5">Choose Keyword</label>
                                     <ReactSelect
                                         className="da-pa-search"
                                         options={KeywordOption}
@@ -473,16 +661,24 @@ function ModuleExpandROI() {
                                         value={KeywordSelected}
                                     />
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-md-3">
                                     <label>Revenue Generated</label>
                                     <input type="text" name="" id="" />
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-md-3">
                                     <label>Total Leads</label>
                                     <input type="text" name="" id="" />
                                 </div>
+                                <div className="col-md-3">
+                                    <label>Frequency</label>
+                                    <select>
+                                        <option value="Daily">Daily</option>
+                                        <option value="Monthly">Monthly</option>
+                                        <option value="Weekly">Weekly</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div className="row">
+                            {/* <div className="row">
                                 <div className="col-md-4">
                                     <label>Choose Location</label>
                                     <select>
@@ -504,28 +700,79 @@ function ModuleExpandROI() {
                                         <option value="Sheets">Sheets</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> */}
                             <hr/>
-                            <div class="main-title ">Organic CPC</div>
                             <div className="row">
-                                <div className="col-md-4">
-                                    <label>SEO Cost</label>
-                                    <input type="text" />
+                                <div className="col-md-6">
+                                    <div class="main-title ">Paid CPC</div>
+                                    <div className="row">
+                                        <div className="col-md-4">
+                                            <label>Location</label>
+                                            <select>
+                                                <option value="India">India</option>
+                                                <option value="US">US</option>
+                                            </select>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <label>Language</label>
+                                            <select>
+                                                <option value="English">English</option>
+                                                <option value="Tamil">Tamil</option>
+                                            </select>
+                                        </div>
+                                        {/* <div className="col-md-4">
+                                            <button class="outline-btn" onClick={()=>{generateROI()}}>Generate</button>
+                                        </div> */}
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-4">
+                                            <label>Data Source</label>
+                                            <select>
+                                                <option value="Google">Google</option>
+                                                {/* <option value="Sheets">Sheets</option> */}
+                                            </select>
+                                        </div>
+                                        <div className="col-md-4 add-new-btnw " style={{marginTop:"auto", marginBottom:"unset"}}>
+                                            <button class="outline-btn"  >Generate</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="col-md-4">
-                                    <label>Choose Method</label>
-                                    <select id="roi-choose-method" onChange={()=>{openModal(document.getElementById('roi-choose-method').value)}}>
-                                        <option value="GSC">GSC</option>
-                                        <option value="ClickShare">Click Share</option>
-                                    </select>
-                                </div>
-                                <div className="col-md-4">
-                                    <button class="outline-btn" onClick={()=>{generateROI()}}>Generate</button>
+                                <div className="col-md-6">
+                                    <div class="main-title ">Organic CPC</div>
+                                    <div className="row">
+                                        <div className="col-md-4">
+                                            <label>SEO Cost</label>
+                                            <input type="text" />
+                                        </div>
+                                        <div className="col-md-4">
+                                            <label>Method</label>
+                                            <select id="roi-choose-method" onChange={()=>{openModal(document.getElementById('roi-choose-method').value)}}>
+                                                <option value="GSC">GSC</option>
+                                                <option value="ClickShare">Click Share</option>
+                                            </select>
+                                        </div>
+                                        <div className="col-md-4 " style={{marginTop:"auto", marginBottom:"unset"}}>
+                                            <button class="outline-btn"   onClick={()=>{generateROI()}}>Generate</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <hr/>
                             
-                            
+                            <div className="ROI-outer">
+                                <div className="ROI-inner">
+                                    <h4>ROI</h4>
+                                    <p>3</p>
+                                </div>
+                                <div className="ROI-inner">
+                                    <h4>ROAS</h4>
+                                    <p>8</p>
+                                </div>
+                                <div className="ROI-inner">
+                                    <h4>Cost Per Lead</h4>
+                                    <p>$245k</p>
+                                </div>
+                            </div>
                             
                             <div className="row">
                                 <div className="col-md-6">
@@ -575,20 +822,7 @@ function ModuleExpandROI() {
                                     />
                                 </div>
                                 <div className="col-md-6 table-graph-modules">
-                                    <div className="ROI-outer">
-                                        <div className="ROI-inner">
-                                            <h4>ROI</h4>
-                                            <p>3</p>
-                                        </div>
-                                        <div className="ROI-inner">
-                                            <h4>ROAS</h4>
-                                            <p>8</p>
-                                        </div>
-                                        <div className="ROI-inner">
-                                            <h4>Cost Per Lead</h4>
-                                            <p>$245k</p>
-                                        </div>
-                                    </div>
+                                    <Table id="sample" columns={MetricCol} dataSource={MetricTable} rowSelection={{type: selectionTypeMetric,...rowSelection,}} pagination={{position:["bottomRight"]}} />
                                 </div>
                             </div>
                             <hr/>
@@ -596,8 +830,9 @@ function ModuleExpandROI() {
                                 <button class="outline-btn">Export</button>
                             </div>
                             <div className="row">
-                                <div className="col-md-6">
-                                    <div class="main-title " style={{visibility:"hidden"}}>GSC</div>
+                                <div className="col-md-6 custom-borrig">
+                                    <div class="main-title ">Paid CPC</div>
+                                    
                                     <Table id="sample-module-expand" columns={PaidCTCCol} dataSource={PaidCPCTable} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["bottomRight"]}} />
                                 </div>
                                 <div className="col-md-6">
@@ -605,12 +840,14 @@ function ModuleExpandROI() {
                                         methodROI == "GSC"
                                         ?
                                             <>
-                                                <div class="main-title ">GSC</div>
+                                                <div class="main-title ">Organic CPC - GSC</div>
+                                                
                                                 <Table id="sample-module-expand" columns={GSCCol} dataSource={GSCTable} rowSelection={{type: selectionTypeGSC,...rowSelection,}} pagination={{position:["bottomRight"]}} />
                                             </>
                                         :
                                             <>
-                                                <div class="main-title ">Click Share</div>
+                                                <div class="main-title ">Organic CPC - Click Share</div>
+                                                
                                                 <Table id="sample-module-expand" columns={ClickShareCol} dataSource={ClickShareTable} rowSelection={{type: selectionTypeClickShare,...rowSelection,}} pagination={{position:["bottomRight"]}} />
                                             </>
                                     }
