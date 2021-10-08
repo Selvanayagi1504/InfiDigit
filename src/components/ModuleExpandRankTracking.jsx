@@ -48,6 +48,17 @@ function ModuleExpandRankTracking() {
         setcolor(filteredOptions);
     };
 
+    const [allOptions1, setallOptions1] = useState([]);
+    const filterAllOptions1 = (rawInput) => {
+    const filteredOptions = allOptions1.filter((o) => filterOption(o, rawInput));
+
+        if (filteredOptions.length === 0) {
+            filteredOptions.push({ value: rawInput, label: rawInput });
+        }
+
+        setcolor1(filteredOptions);
+    };
+
     const [urlSelectbottom, seturlSelectbottom] = useState(null);
     function handleChangeURLSelectedBottom(selected){
         seturlSelectbottom(selected);
@@ -104,6 +115,7 @@ function ModuleExpandRankTracking() {
             { value: "https://www.amazon.in/", label: "https://www.amazon.in/" }
         ]
         setcolor1(color);
+        setallOptions1(color)
         var columns = [
             {
                 title:"List of Keywords",
@@ -389,7 +401,6 @@ function ModuleExpandRankTracking() {
                     )}
                     </div> 
                 </div>
-                <div class="nav-bar-center">&nbsp;</div>
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
                     <li>
@@ -568,6 +579,8 @@ function ModuleExpandRankTracking() {
                                         onChange={handleChange1}
                                         allowSelectAll={true}
                                         value={optionSelected1}
+                                        filterOption={() => true}
+                                        onInputChange={(e) => filterAllOptions1(e)}
                                     />
                                 </div>
                                 <div className="col-lg-4 my-2 col-sm-6 col-md-6">
@@ -614,15 +627,11 @@ function ModuleExpandRankTracking() {
                                 displayTable
                                 ? 
                                     <>
-                                        <div class="add-new-btnw">
-                                            <a href="#" class="outline-btn">EXPORT</a>
-                                        </div>
-                                        <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
-                                        <hr/>
                                         <div className="row">
-                                            <div className="col-md-12">
+                                            <div className="col-md-6">
+                                                
                                                 <div style={{display:"flex", marginTop:24+'px'}}>
-                                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Select Keyword</label>
+                                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Keyword</label>
                                                     <ReactSelect
                                                         className="da-pa-search"
                                                         options={UrloptionBottom}
@@ -636,49 +645,40 @@ function ModuleExpandRankTracking() {
                                                         allowSelectAll={true}
                                                         value={urlSelectbottom}
                                                     />
-                                                     <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px', marginLeft:24+'px'}}>Select Competitor</label>
+                                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px', marginLeft:24+'px'}}>Competitor</label>
                                                     <select>
                                                         <option value="https://www.metroshoes.net/">https://www.metroshoes.net/</option>
                                                         <option value="https://www.mochishoes.com/">https://www.mochishoes.com/</option>
                                                         <option value="https://www.myntra.com/">https://www.myntra.com/</option>
                                                         <option value="https://www.amazon.in/">https://www.amazon.in/</option>
                                                     </select>
-                                                    <button style={{marginLeft:24+"px", height:38+'px'}} class="outline-btn" onClick={generatereport2}>Generate</button>
+                                                    
                                                 </div>
-                                                {/* <div style={{display:"flex", marginTop:24+'px'}}>
-                                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Select Competitor</label>
-                                                    <select>
-                                                        <option value="https://www.metroshoes.net/">https://www.metroshoes.net/</option>
-                                                        <option value="https://www.mochishoes.com/">https://www.mochishoes.com/</option>
-                                                        <option value="https://www.myntra.com/">https://www.myntra.com/</option>
-                                                        <option value="https://www.amazon.in/">https://www.amazon.in/</option>
-                                                    </select>
-                                                    <button style={{marginLeft:24+"px", height:38+'px'}} class="outline-btn" onClick={generatereport2}>Generate Report</button>
-                                                </div> */}
-                                            </div>
-                                            
-                                        </div>
-                                        <div className="score-maintain">
-                                                    <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
-                                                
-                                                    <Dropdown>
-                                                        <Dropdown.Toggle id="dropdown-basic">
-                                                        <i className="fa fa-download"></i>
-                                                        </Dropdown.Toggle>
+                                                    
+                                                  
+                                                <div className="row common-mt-24">
+                                                    <div className="col-md-6">
+                                                        <button style={{ height:38+'px'}} class="outline-btn" onClick={generatereport2}>Generate</button>
+                                                    </div>
+                                                    <div className="col-md-5 add-new-btnw">
+                                                        
+                                                            <Dropdown>
+                                                                <Dropdown.Toggle id="dropdown-basic">
+                                                                <i className="fa fa-download"></i>
+                                                                </Dropdown.Toggle>
 
-                                                        <Dropdown.Menu>
-                                                            <Dropdown.Item href="">Download All Charts</Dropdown.Item>
-                                                            <Dropdown.Item href="">Download this only</Dropdown.Item>
-                                                        </Dropdown.Menu>
-                                                    </Dropdown>
+                                                                <Dropdown.Menu>
+                                                                    <Dropdown.Item href="">Download All Charts</Dropdown.Item>
+                                                                    <Dropdown.Item href="">Download this only</Dropdown.Item>
+                                                                </Dropdown.Menu>
+                                                            </Dropdown>
+                                                        
+                                                    </div>
+                                                    <div className="col-md-1"></div>
                                                 </div>
-                                        <br/>
-                                        <Table id="sample-module-expand" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
-                                        <div className="row">
-                                            <div className="col-md-6">
                                                 <Chart
                                                     className="line-graph"
-                                                    width={'600px'}
+                                                    
                                                     height={'400px'}
                                                     chartType="LineChart"
                                                     data={chartdata}
@@ -693,15 +693,22 @@ function ModuleExpandRankTracking() {
                                                         minValue:0,
                                                         maxValue:100
                                                         },
-                                                        
+                                                        legend:{
+                                                            position:"bottom"
+                                                        }
                                                     }}
                                                     rootProps={{ 'data-testid': '1' }}
                                                 />
                                             </div>
-                                            <div className="col-md-6" style={{textAlign:"end"}}>
-                                                
+                                            <div className="col-md-6 table-graph-modules">
+                                                <Table id="sample" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
                                             </div>
                                         </div>
+                                        <hr />
+                                        <div class="add-new-btnw">
+                                            <a href="#" class="outline-btn">EXPORT</a>
+                                        </div>
+                                        <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
                                     </> 
                                 : 
                                     <>

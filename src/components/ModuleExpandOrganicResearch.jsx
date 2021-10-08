@@ -422,7 +422,6 @@ function ModuleExpandOrganicResearch() {
                     )}
                     </div> 
                 </div>
-                <div class="nav-bar-center">&nbsp;</div>
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
                     <li>

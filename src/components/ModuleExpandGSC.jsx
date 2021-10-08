@@ -466,7 +466,6 @@ function ModuleExpandGSC() {
                     )}
                     </div> 
                 </div>
-                <div class="nav-bar-center">&nbsp;</div>
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
                     <li>
@@ -684,13 +683,13 @@ function ModuleExpandGSC() {
                                 </div>
                             </div>
                             <hr/>
-                            <Tabs className="tabs-inner-page-speed">
+                            <div className="row">
+                                <div className="col-md-6">
+                                <Tabs className="tabs-inner-page-speed">
                                 <TabList>
                                     <Tab>Performance</Tab>
                                     <Tab>Search Results</Tab>
-                                </TabList>
-                                <div className="score-maintain">   
-                                    <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
+                                    <div className="score-maintain">
                                     <Dropdown>
                                         <Dropdown.Toggle id="dropdown-basic">
                                         <i className="fa fa-download"></i>
@@ -702,10 +701,12 @@ function ModuleExpandGSC() {
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </div>
+                                </TabList>
+                                
                                 <TabPanel>
                                     <Chart
                                         className="line-graph"
-                                        width={'600px'}
+                                       
                                         height={'400px'}
                                         chartType="LineChart"
                                         data={chartdataGSC}
@@ -717,7 +718,9 @@ function ModuleExpandGSC() {
                                             vAxis: {
                                             title: "",
                                             },
-                                            
+                                            legend:{
+                                                position:"bottom"
+                                            }
                                         }}
                                         rootProps={{ 'data-testid': '1' }}
                                     />
@@ -771,7 +774,7 @@ function ModuleExpandGSC() {
                                     </div>
                                     <Chart
                                         className="line-graph"
-                                        width={'600px'}
+                                        
                                         height={'400px'}
                                         chartType="LineChart"
                                         data={chartdataGSCSearch}
@@ -789,14 +792,15 @@ function ModuleExpandGSC() {
                                     />
                                 </TabPanel>
                             </Tabs>
-                            <hr/>
-                            <div>
+                                </div>
+                                <div className="col-md-6 table-graph-modules">
                                 <div className="add-new-btnw">
                                 <button class="outline-btn">Export</button>
                                 </div>
-                                <Table id="sample-module-expand" columns={GSCTableCol} dataSource={[...gsctabtable]} rowSelection={{type: selectionTypeGSCTab,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
+                                <Table id="sample" columns={GSCTableCol} dataSource={[...gsctabtable]} rowSelection={{type: selectionTypeGSCTab,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
+                                </div>
                             </div>
-                            <hr />
+                            
                             
 
                         </TabPanel>
@@ -852,8 +856,6 @@ function ModuleExpandGSC() {
                                         <div style={{width:48+'%', marginRight:48+'px'}}>
                                             <div class="add-new-btnw">
                                                 <div className="score-maintain">
-                                                    <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
-                                                
                                                     <Dropdown>
                                                         <Dropdown.Toggle id="dropdown-basic">
                                                         <i className="fa fa-download"></i>

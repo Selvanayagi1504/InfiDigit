@@ -439,7 +439,7 @@ function ModuleExpandPageSpeed() {
                     )}
                     </div> 
                 </div>
-                <div class="nav-bar-center">&nbsp;</div>
+                
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
                     <li>
@@ -589,83 +589,7 @@ function ModuleExpandPageSpeed() {
                             </div>
                             
                             <hr />
-                            <div class="row common-mt-24 common-mb-24 common-ml-5">
-                                <div class="col-lg-9 pad-lzero">
-                                    <div className="row">
-                                        <div className="col-lg-6 common-flex-div">
-                                        <label style={{marginLeft:10+'px'}} class="common-mr-24 common-mt-5" htmlFor="">Select URL</label>
-                                        <select id="select-url-page-speed" onChange={handleURLChange}>
-                                            <option value="https://www.infidigit.com/">https://www.infidigit.com/</option>
-                                            <option value="https://www.ezrankings.org/">https://www.ezrankings.org/</option>
-                                        </select>
-                                        </div>
-                                        <div className="col-lg-6 common-flex-div">
-                                        <label htmlFor="" class="common-mr-24 common-mt-5">Choose Data Type</label>
-                                        <ReactSelect
-                                            className="da-pa-search custom-gogle-trends"
-                                            options={colourOptions1}
-                                            isMulti
-                                            closeMenuOnSelect={false}
-                                            hideSelectedOptions={false}
-                                            components={{
-                                                Option
-                                            }}
-                                            onChange={handleChange1}
-                                            allowSelectAll={true}
-                                            value={optionSelected1}
-                                        />
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-lg-3 add-new-btnw">
-                                    <div className="score-maintain">
-                                        <a style={{color:"white"}} class="outline-btn common-mr-24" onClick={()=>handleModal()}>Custom</a>
-                                    
-                                        <Dropdown>
-                                            <Dropdown.Toggle id="dropdown-basic">
-                                            <i className="fa fa-download"></i>
-                                            </Dropdown.Toggle>
-
-                                            <Dropdown.Menu>
-                                                <Dropdown.Item href="">Download All Charts</Dropdown.Item>
-                                                <Dropdown.Item href="">Download this only</Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr/>
-                           
-                            <Table id="sample-module-expand" style={{overflow:"hidden"}} className="page-speed-second" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <Chart
-                                        className="line-graph"
-                                        width={'600px'}
-                                        height={'400px'}
-                                        chartType="LineChart"
-                                        data={chartdata}
-                                        
-                                        options={{
-                                            hAxis: {
-                                            title: "Keyword",
-                                            baselineColor:"red"
-                                            },
-                                            vAxis: {
-                                            title: "Shoes",
-                                            },
-                                            
-                                        }}
-                                        rootProps={{ 'data-testid': '1' }}
-                                    />
-                                </div>
-                                <div className="col-md-6" >
-                                    
-                                </div>
-                            </div>
-                            <hr/>
-                            <Tabs className="tabs-inner-page-speed">
+                            <Tabs className="tabs-inner-page-speed common-mb-24 common-mt-24">
                                 <div class="row">
                                     <div class="col-sm-10 pad-lzero">
                                         <TabList>
@@ -678,15 +602,96 @@ function ModuleExpandPageSpeed() {
                                     </div>
                                 </div>
                                 <TabPanel>
-                                    <div>
+                                    <div class="common-mt-24">
                                         <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
                                     </div>
                                 </TabPanel>
                                 <TabPanel>
-                                    <Table id="sample-module-expand" columns={PageSpeedCol} dataSource={pagespeedtable} rowSelection={{type: selectionTypePageSpeed,...rowSelection,}} pagination={{position:[]}} />  
+                                    <div class="common-mt-24">
+                                        <Table id="sample-module-expand" columns={PageSpeedCol} dataSource={pagespeedtable} rowSelection={{type: selectionTypePageSpeed,...rowSelection,}} pagination={{position:[]}} />  
+                                    </div>
                                 </TabPanel>
                             </Tabs>
-                            <hr/>
+                            <hr />
+                            
+                        
+                           
+                            
+                            <div className="row common-mt-24">
+                                <div className="col-md-6">
+                                    <div class="row common-mt-24 common-mb-24 common-ml-5">
+                                        <div class="col-lg-10 pad-lzero">
+                                            <div className="row">
+                                                <div className="col-lg-6 common-flex-div">
+                                                    <label style={{marginLeft:10+'px'}} class="common-mr-24 common-mt-5" htmlFor="">URL</label>
+                                                    <select id="select-url-page-speed" onChange={handleURLChange}>
+                                                        <option value="https://www.infidigit.com/">https://www.infidigit.com/</option>
+                                                        <option value="https://www.ezrankings.org/">https://www.ezrankings.org/</option>
+                                                    </select>
+                                                    </div>
+                                                <div className="col-lg-6 common-flex-div">
+                                                    <label htmlFor="" class="common-mr-24 common-mt-5">Data Type</label>
+                                                    <ReactSelect
+                                                        className="da-pa-search custom-gogle-trends"
+                                                        options={colourOptions1}
+                                                        isMulti
+                                                        closeMenuOnSelect={false}
+                                                        hideSelectedOptions={false}
+                                                        components={{
+                                                            Option
+                                                        }}
+                                                        onChange={handleChange1}
+                                                        allowSelectAll={true}
+                                                        value={optionSelected1}
+                                                    />
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-lg-1 add-new-btnw">
+                                            <div className="score-maintain">
+                                                <Dropdown>
+                                                    <Dropdown.Toggle id="dropdown-basic">
+                                                    <i className="fa fa-download"></i>
+                                                    </Dropdown.Toggle>
+
+                                                    <Dropdown.Menu>
+                                                        <Dropdown.Item href="">Download All Charts</Dropdown.Item>
+                                                        <Dropdown.Item href="">Download this only</Dropdown.Item>
+                                                    </Dropdown.Menu>
+                                                </Dropdown>
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-1"></div>
+                                    </div>
+                                    <Chart
+                                        className="line-graph"
+                                        height={'400px'}
+                                        chartType="LineChart"
+                                        data={chartdata}
+                                        
+                                        options={{
+                                            hAxis: {
+                                            title: "Keyword",
+                                            baselineColor:"red"
+                                            },
+                                            vAxis: {
+                                            title: "Shoes",
+                                            },
+                                            legend:{
+                                                position:"bottom"
+                                            }
+                                        }}
+                                        rootProps={{ 'data-testid': '1' }}
+                                    />
+                                </div>
+                                <div className="col-md-6 table-graph-modules" >
+                                    <Table id="sample-module-expand" style={{overflow:"hidden"}} className="page-speed-second" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
+                                </div>
+                            </div>
+                            
+                            
+                            
                             
                                    
                         </TabPanel>

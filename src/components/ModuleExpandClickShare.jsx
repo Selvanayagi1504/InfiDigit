@@ -471,7 +471,7 @@ function ModuleExpandClickShare() {
                         </TabList>
 
                         <TabPanel>
-                            <div className="row common-mb-24">
+                            <div className="row">
                                 <div className="col-lg-3 col-md-6">
                                     <label>Organic Share %</label>
                                     <input type="text" />

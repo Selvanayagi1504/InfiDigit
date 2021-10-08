@@ -347,13 +347,7 @@ function ModuleExpandGoogleTrends() {
                 <div class="clearfix"></div>
             </div>
 
-            {/* <div class="sidebar-nav-bar">
-                <ul class="list-unstyled side-menu">
-                    <li><a href="dashboard.html"><i class="fa fa-columns"></i> Dashboard</a></li>
-
-                    <li><a href=""><i class="fa fa-users"></i> Customers</a></li>
-                </ul>
-            </div> */}
+           
             <div className="custom-row-dashboard-seo">
                 <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
                     <div class="sidebar-nav-bar">
@@ -480,68 +474,45 @@ function ModuleExpandGoogleTrends() {
                                 </div>
                             </div>
                             <hr />
-                            <div class="row">
-                                <div class="col-sm-5 pad-lzero">
-                                    
-                                </div>
-                                <div class="col-sm-7 add-new-btnw">
-                                    <a href="#" class="outline-btn">EXPORT</a>
-                                </div>
-                            </div>
-                            <div>
-                                <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
-                            </div>
-                            <hr />
-                            <div class="row" style={{marginTop:24+'px',marginLeft:5+'px',marginBottom:24+'px'}}>
-                                <div class="col-sm-5 pad-lzero">
-                                    <div style={{display:"flex"}}>
-                                        <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Select Keyword</label>
-                                        <ReactSelect
-                                            className="da-pa-search custom-gogle-trends"
-                                            options={colourOptions1}
-                                            isMulti
-                                            closeMenuOnSelect={false}
-                                            hideSelectedOptions={false}
-                                            components={{
-                                                Option
-                                            }}
-                                            onChange={handleChange1}
-                                            allowSelectAll={true}
-                                            value={optionSelected1}
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-sm-7 add-new-btnw">
-                                    <div className="score-maintain">
-                                        <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
-                                    
-                                        <Dropdown>
-                                            <Dropdown.Toggle id="dropdown-basic">
-                                            <i className="fa fa-download"></i>
-                                            </Dropdown.Toggle>
-
-                                            <Dropdown.Menu>
-                                                <Dropdown.Item href="">Download All Charts</Dropdown.Item>
-                                                <Dropdown.Item href="">Download this only</Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            {optionSelected1 && optionSelected1.length>0
-                                ?
-                                    <>
-                                        <Table id="sample-module-expand" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
-                                    </>
-                                :
-                                    <></>
-                            }
                             <div className="row">
-                                <div className="col-md-6">
+                                <div className="col-md-5">
+                                    <div class="row" style={{marginTop:24+'px',marginLeft:5+'px',marginBottom:24+'px'}}>
+                                        <div class="col-sm-10 pad-lzero">
+                                            <div style={{display:"flex"}}>
+                                                <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Keyword</label>
+                                                <ReactSelect
+                                                    className="da-pa-search custom-gogle-trends"
+                                                    options={colourOptions1}
+                                                    isMulti
+                                                    closeMenuOnSelect={false}
+                                                    hideSelectedOptions={false}
+                                                    components={{
+                                                        Option
+                                                    }}
+                                                    onChange={handleChange1}
+                                                    allowSelectAll={true}
+                                                    value={optionSelected1}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 add-new-btnw">
+                                            <div className="score-maintain">
+                                                <Dropdown>
+                                                    <Dropdown.Toggle id="dropdown-basic">
+                                                    <i className="fa fa-download"></i>
+                                                    </Dropdown.Toggle>
+
+                                                    <Dropdown.Menu>
+                                                        <Dropdown.Item href="">Download All Charts</Dropdown.Item>
+                                                        <Dropdown.Item href="">Download this only</Dropdown.Item>
+                                                    </Dropdown.Menu>
+                                                </Dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <Chart
                                         className="line-graph"
-                                        width={'600px'}
+                                        
                                         height={'400px'}
                                         chartType="LineChart"
                                         data={chartdata}
@@ -554,15 +525,42 @@ function ModuleExpandGoogleTrends() {
                                             vAxis: {
                                             title: "Shoes",
                                             },
-                                            
+                                            legend:{
+                                                position:"bottom"
+                                            }
                                         }}
                                         rootProps={{ 'data-testid': '1' }}
                                     />
                                 </div>
-                                <div className="col-md-6" style={{textAlign:"end"}}>
-                                    
+                                <div className="col-md-7 table-graph-modules">
+                                    {optionSelected1 && optionSelected1.length>0
+                                        ?
+                                            <>
+                                                <Table id="sample" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
+                                            </>
+                                        :
+                                            <></>
+                                    }
                                 </div>
                             </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm-5 pad-lzero">
+                                    
+                                </div>
+                                <div class="col-sm-7 add-new-btnw">
+                                    <a href="#" class="outline-btn">EXPORT</a>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
+                            </div>
+                            <hr />
+                            
+                            
+                            
+                            
                             {/* 
                             <div class="row">
                                 <div class="col-sm-5 pad-lzero">

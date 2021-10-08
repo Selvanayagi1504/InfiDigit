@@ -397,7 +397,6 @@ function ModuleExpandSiteUptime() {
                     )}
                     </div> 
                 </div>
-                <div class="nav-bar-center">&nbsp;</div>
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
                     <li>
@@ -580,7 +579,8 @@ function ModuleExpandSiteUptime() {
                                 displayTable
                                 ? 
                                     <>
-                                        <div className="site-uptime-box">
+                                        
+                                        <div className="site-uptime-box common-mb-24">
                                             <div className="row">
                                                 {/* <div className="col-md-1"></div> */}
                                                 <div className="col-md-2">
@@ -613,17 +613,14 @@ function ModuleExpandSiteUptime() {
                                                         <p className="box-value">0</p>
                                                     </div>
                                                 </div>
-                                                {/* <div className="col-md-1"></div> */}
+                                                
                                             </div>
                                         </div>
-                                        <br />
-                                        
-                                        <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
-                                        <hr/>
+                                        <hr class="common-mt-24" />
                                         <div className="row">
-                                            
+                                            <div className="col-md-6">
                                                 <div style={{display:"flex", marginTop:24+'px'}}>
-                                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>Select URL's</label>
+                                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px'}}>URL's</label>
                                                     <ReactSelect
                                                         className="da-pa-search"
                                                         options={UrloptionBottom}
@@ -637,7 +634,7 @@ function ModuleExpandSiteUptime() {
                                                         allowSelectAll={true}
                                                         value={urlSelectbottom}
                                                     />
-                                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px', marginLeft:24+'px'}}>Select Fields</label>
+                                                    <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px', marginLeft:24+'px'}}>Fields</label>
                                                     <ReactSelect
                                                         className="da-pa-search"
                                                         options={FieldOptionsBottom}
@@ -651,33 +648,31 @@ function ModuleExpandSiteUptime() {
                                                         allowSelectAll={true}
                                                         value={FiledselectBottom}
                                                     />
-                                                    <button style={{marginLeft:24+"px", height:38+'px'}} class="outline-btn" onClick={generatereport2}>Generate</button>
+                                                    
                                                 </div>
-                                                
-                                            
-                                            
-                                        </div>
-                                            <div className="score-maintain">
-                                                <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
-                                            
-                                                <Dropdown>
-                                                    <Dropdown.Toggle id="dropdown-basic">
-                                                    <i className="fa fa-download"></i>
-                                                    </Dropdown.Toggle>
+                                                <div className="row common-mt-24">
+                                                    <div className="col-md-6">
+                                                        <button style={{height:38+'px'}} class="outline-btn" onClick={generatereport2}>Generate</button>
+                                                    </div>
+                                                    <div className="col-md-5 add-new-btnw">
+                                                        <div>
+                                                            <Dropdown>
+                                                                <Dropdown.Toggle id="dropdown-basic">
+                                                                <i className="fa fa-download"></i>
+                                                                </Dropdown.Toggle>
 
-                                                    <Dropdown.Menu>
-                                                        <Dropdown.Item href="">Download All Charts</Dropdown.Item>
-                                                        <Dropdown.Item href="">Download this only</Dropdown.Item>
-                                                    </Dropdown.Menu>
-                                                </Dropdown>
-                                            </div>
-                                        <br/>
-                                        <Table id="sample-module-expand" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
-                                        <div className="row">
-                                            <div className="col-md-6">
+                                                                <Dropdown.Menu>
+                                                                    <Dropdown.Item href="">Download All Charts</Dropdown.Item>
+                                                                    <Dropdown.Item href="">Download this only</Dropdown.Item>
+                                                                </Dropdown.Menu>
+                                                            </Dropdown>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-1"></div>
+                                                </div>
                                                 <Chart
                                                     className="line-graph"
-                                                    width={'600px'}
+                                                    
                                                     height={'400px'}
                                                     chartType="LineChart"
                                                     data={chartdata}
@@ -690,15 +685,20 @@ function ModuleExpandSiteUptime() {
                                                         vAxis: {
                                                         title: "https://www.metroshoes.net/",
                                                         },
-                                                        
+                                                        legend:{
+                                                            position:"bottom"
+                                                        }
                                                     }}
                                                     rootProps={{ 'data-testid': '1' }}
                                                 />
                                             </div>
-                                            <div className="col-md-6" style={{textAlign:"end"}}>
-                                                
+                                            <div className="col-md-6 table-graph-modules">
+                                                <Table id="sample" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
                                             </div>
                                         </div>
+                                        <hr />
+                                        
+                                        <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
                                     </> 
                                 : 
                                     <>

@@ -297,7 +297,6 @@ function ModuleExpandContentWordCount() {
                     )}
                     </div> 
                 </div>
-                <div class="nav-bar-center">&nbsp;</div>
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
                     <li>
@@ -464,46 +463,52 @@ function ModuleExpandContentWordCount() {
                                 </div>
                             </div>
                             <hr/>
-                            <div className="chart-content-word-count">
-                                <div class="add-new-btnw">
-                                    <div className="score-maintain">
-                                        <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
+                            <div className="row">
+                                <div className="col-md-6">
                                     
-                                        <Dropdown>
-                                            <Dropdown.Toggle id="dropdown-basic">
-                                            <i className="fa fa-download"></i>
-                                            </Dropdown.Toggle>
+                                        <div class="add-new-btnw">
+                                            
+                                                <Dropdown>
+                                                    <Dropdown.Toggle id="dropdown-basic">
+                                                    <i className="fa fa-download"></i>
+                                                    </Dropdown.Toggle>
 
-                                            <Dropdown.Menu>
-                                                <Dropdown.Item href="">Download All Charts</Dropdown.Item>
-                                                <Dropdown.Item href="">Download this only</Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>
+                                                    <Dropdown.Menu>
+                                                        <Dropdown.Item href="">Download All Charts</Dropdown.Item>
+                                                        <Dropdown.Item href="">Download this only</Dropdown.Item>
+                                                    </Dropdown.Menu>
+                                                </Dropdown>
+                                            
+                                        </div>
+                                        <Chart
+                                            className="line-graph"
+                                            height={'400px'}
+                                            chartType="ColumnChart"
+                                            data={chartdataContentWordCount}
+                                            
+                                            options={{
+                                                hAxis: {
+                                                title: "Months",
+                                                },
+                                                vAxis: {
+                                                title: "Months",
+                                                },
+                                                legend:{position:"bottom"}
+                                            }}
+                                            rootProps={{ 'data-testid': '1' }}
+                                        />
+                                    
+                                </div>
+                                <div className="col-md-6">
+                                    <div class="add-new-btnw">
+                                        <a href="#" class="outline-btn">EXPORT</a>
+                                    </div>
+                                    <div class="common-mt-24">
+                                        <Table id="sample" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
                                     </div>
                                 </div>
-                                <Chart
-                                    className="line-graph"
-                                    width={'600px'}
-                                    height={'400px'}
-                                    chartType="ColumnChart"
-                                    data={chartdataContentWordCount}
-                                    
-                                    options={{
-                                        hAxis: {
-                                        title: "Months",
-                                        },
-                                        vAxis: {
-                                        title: "Months",
-                                        },
-                                        legend:{position:"bottom"}
-                                    }}
-                                    rootProps={{ 'data-testid': '1' }}
-                                />
                             </div>
-                            <div class="add-new-btnw">
-                                <a href="#" class="outline-btn">EXPORT</a>
-                            </div>
-                            <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
+                            <hr/>
                             
                         </TabPanel>
                         <TabPanel>

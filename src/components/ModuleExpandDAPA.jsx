@@ -356,14 +356,7 @@ function ModuleExpandDAPA() {
                         </TabList>
 
                         <TabPanel>
-                            {/* <div class="row">
-                                <div class="col-sm-5 pad-lzero">
-                                    <div class="main-title">DA / PA Checker</div>
-                                </div>
-                                <div class="col-sm-7 add-new-btnw">
-                                    <a href="#" class="outline-btn">Export</a>
-                                </div>
-                            </div> */}
+                            
                             <div class="row da-pa-top-select">
                                 <div class="col-sm-5 pad-lzero" style={{display:"flex"}}>
                                     <span class="main-title">DA / PA Results</span>
@@ -371,13 +364,7 @@ function ModuleExpandDAPA() {
                                     </span>
                                 </div>
                                 <div class="col-sm-7 add-new-btnw">
-                                    {/* <a href="#" style={{marginRight:24+"px"}} class="outline-btn">Export</a>
-                                    <select name="" id="" onChange={handlePeriodChange}>
-                                        <option value="Daily">Daily</option>
-                                        <option value="Weekly">Weeklt</option>
-                                        <option value="Fornightly">Fornightly</option>
-                                        <option value="Monthly">Monthly</option>
-                                    </select> */}
+                                    
                                 </div>
                             </div>
                             <div className="row">
@@ -401,40 +388,21 @@ function ModuleExpandDAPA() {
 
                                     </div>
                                 </div>
-                                {/* <div className="col-md-7 add-new-btnw" style={{textAlign:"end"}}> */}
                                 <div class="col-sm-4 add-new-btnw">
-                                    <a href="#" style={{marginRight:24+"px"}} class="outline-btn">Export</a>
-                                    {/* <select name="" id="dailychange" onChange={handlePeriodChange}>
-                                        <option value="Daily">Daily</option>
-                                        <option value="Weekly">Weekly</option>
-                                        <option value="Fornightly">Fornightly</option>
-                                    </select> */}
                                 </div>
-                                {/* </div> */}
                             </div>
                             <hr />
-                            <div>
-                                
-                                <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
-                            </div>
-                            <hr/>
-                            <div class="row">
-                                <div class="col-sm-5 pad-lzero">
-                                    <div class="main-title">Chart Results</div>
-                                </div>
-                                <div class="col-sm-7 add-new-btnw">
-                                    {/* <a href="#" class="outline-btn">Export</a> */}
-                                </div>
-                            </div>
-                            <div className="row">
+                            <div className="chart-box-modules row">
+                                <div className="col-md-6">
+                                <div className="row">
                                 <div className="col-md-12" style={{display:"flex", marginBottom:24+'px'}}>
-                                    <label htmlFor="" style={{marginRight:24+"px",marginTop:8+'px'}}>Select URL</label>
-                                    <select name="" id="url-module-expand" placeholder="Select Url" style={{marginRight:48+'px'}}>
+                                    <label htmlFor="" style={{marginRight:24+"px",marginTop:8+'px'}}> URL</label>
+                                    <select name="" id="url-module-expand" placeholder="Select Url" style={{marginRight:20+'px'}}>
                                         <option value="">ww.myntra.com</option>
                                         <option value="">www.infi.com</option>
                                     </select>
                                     
-                                    <label htmlFor="" style={{marginRight:24+"px",marginTop:8+'px'}}>Select Competitor</label>
+                                    <label htmlFor="" style={{marginRight:24+"px",marginTop:8+'px'}}>Competitor</label>
                                     <select name="" id="url-module-expand" placeholder="Select Url">
                                         <option value="">https://www.ezrankings.org/</option>
                                         <option value="">https://www.ezrankings.org/seo-packages.html</option>
@@ -442,14 +410,17 @@ function ModuleExpandDAPA() {
                                 </div>
                                 
                             </div>
-                            <div className="score-maintain">
+                            <div class="common-flex-div">
                                 
+                                <div className="col-md-10">
                                 <div className="pa-da">
                                     <button class={chartoption == "da"?"blue":""} onClick={()=>{setchartoption("da")}}>DA Score</button>
                                     <button class={chartoption == "pa"?"blue":""} onClick={()=>{setchartoption("pa")}}>PA Score</button>
                                     <button class={chartoption == "spam"?"blue":""} onClick={()=>{setchartoption("spam")}}>Spam%</button>
                                 </div>
-                                <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
+                                </div>
+                                
+                                <div class="col-md-2">
                                 <Dropdown>
                                     <Dropdown.Toggle id="dropdown-basic">
                                     <i className="fa fa-download"></i>
@@ -460,67 +431,12 @@ function ModuleExpandDAPA() {
                                         <Dropdown.Item href="">Download this only</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
-                        </div>
-                            {/* <Chart
-                                className="line-graph"
-                                width={'600px'}
-                                height={'400px'}
-                                chartType="LineChart"
-                                data={chartdata}
-                                
-                                options={{
-                                    hAxis: {
-                                    title: timeperiod,
-                                    baselineColor:"red"
-                                    },
-                                    vAxis: {
-                                    title: chartoption,
-                                    },
-                                    
-                                }}
-                                rootProps={{ 'data-testid': '1' }}
-                                /> */}
-
-
-
-                            {/* <div class="row">
-                                <div class="col-sm-5 pad-lzero">
-                                    <div class="main-title">Competitor Comparison</div>
-                                </div>
-                                <div class="col-sm-7 add-new-btnw">
-                                    <a href="#" class="outline-btn">Export</a>
                                 </div>
                             </div>
-                            <div className="row">
-                                <div className="col-md-6">
-                                    
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="score-maintain">
-                                    <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
-                                        <div className="pa-da">
-                                            <button class={chartoption == "da"?"blue":""} onClick={()=>{setchartoption("da")}}>DA Score</button>
-                                            <button class={chartoption == "pa"?"blue":""} onClick={()=>{setchartoption("pa")}}>PA Score</button>
-                                            <button class={chartoption == "spam"?"blue":""} onClick={()=>{setchartoption("spam")}}>Spam%</button>
-                                        </div>
-                                        
-                                        <Dropdown>
-                                            <Dropdown.Toggle id="dropdown-basic">
-                                            <i className="fa fa-download"></i>
-                                            </Dropdown.Toggle>
-
-                                            <Dropdown.Menu>
-                                                <Dropdown.Item href="">Download All Charts</Dropdown.Item>
-                                                <Dropdown.Item href="">Download this only</Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>
-                                    </div>
-                                </div>
-                            </div> */}
+                        
                             
                             <Chart
                                 className="line-graph"
-                                width={'600px'}
                                 height={'400px'}
                                 chartType="LineChart"
                                 data={chartdataCompetitor}
@@ -532,10 +448,29 @@ function ModuleExpandDAPA() {
                                     vAxis: {
                                     title: chartoption,
                                     },
-                                    
+                                    legend:{
+                                        position:"bottom"
+                                    }
                                 }}
                                 rootProps={{ 'data-testid': '1' }}
                             />
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="da-average-div">
+                                        <h6>Average {chartoption}</h6>
+                                        <p>39.2%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="add-new-btnw">
+                                    <a href="#" style={{marginRight:24+"px"}} class="outline-btn">Export</a>
+                                </div>
+                                <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
+                            </div>
+                            <hr/>
+                            
+                            
                         </TabPanel>
                         <TabPanel>
                             <ModuleExpandTickets/>

@@ -330,7 +330,6 @@ function ModuleExpandROI() {
                     )}
                     </div> 
                 </div>
-                <div class="nav-bar-center">&nbsp;</div>
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
                     <li>
@@ -525,84 +524,100 @@ function ModuleExpandROI() {
                                 </div>
                             </div>
                             <hr/>
-                            <div className="ROI-outer">
-                                <div className="ROI-inner">
-                                    <h4>ROI</h4>
-                                    <p>3</p>
-                                </div>
-                                <div className="ROI-inner">
-                                    <h4>ROAS</h4>
-                                    <p>8</p>
-                                </div>
-                                <div className="ROI-inner">
-                                    <h4>Cost Per Lead</h4>
-                                    <p>$245k</p>
-                                </div>
-                            </div>
+                            
+                            
+                            
                             <div className="row">
-                                <div className="col-md-4">
-                                    <label>Select Metric</label>
-                                    <select>
-                                        <option value="ROI">ROI</option>
-                                        
-                                    </select>
-                                </div>
-                                <div className="col-md-2"></div>
                                 <div className="col-md-6">
-                                    <div className="score-maintain">
-                                        <a style={{color:"white",marginRight:24+"px"}} class="outline-btn" onClick={()=>handleModal()}>Custom</a>
-                                    
-                                        <Dropdown>
-                                            <Dropdown.Toggle id="dropdown-basic">
-                                            <i className="fa fa-download"></i>
-                                            </Dropdown.Toggle>
+                                    <div className="row">
+                                        <div className="col-md-4">
+                                            <label>Metric</label>
+                                            <select>
+                                                <option value="ROI">ROI</option>
+                                                
+                                            </select>
+                                        </div>
+                                        
+                                        <div className="col-md-6">
+                                            <div className="score-maintain">
+                                                <Dropdown>
+                                                    <Dropdown.Toggle id="dropdown-basic">
+                                                    <i className="fa fa-download"></i>
+                                                    </Dropdown.Toggle>
 
-                                            <Dropdown.Menu>
-                                                <Dropdown.Item href="">Download All Charts</Dropdown.Item>
-                                                <Dropdown.Item href="">Download this only</Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>
+                                                    <Dropdown.Menu>
+                                                        <Dropdown.Item href="">Download All Charts</Dropdown.Item>
+                                                        <Dropdown.Item href="">Download this only</Dropdown.Item>
+                                                    </Dropdown.Menu>
+                                                </Dropdown>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-2"></div>
+                                    </div>
+                                    <Chart
+                                        className="line-graph"
+                                        width={'600px'}
+                                        height={'400px'}
+                                        chartType="LineChart"
+                                        data={chartdata}
+                                        
+                                        options={{
+                                            hAxis: {
+                                            title: "Dates",
+                                            },
+                                            vAxis: {
+                                            title: "",
+                                            ticks:[10,20,30,40,50]
+                                            },
+                                            
+                                        }}
+                                        rootProps={{ 'data-testid': '1' }}
+                                    />
+                                </div>
+                                <div className="col-md-6 table-graph-modules">
+                                    <div className="ROI-outer">
+                                        <div className="ROI-inner">
+                                            <h4>ROI</h4>
+                                            <p>3</p>
+                                        </div>
+                                        <div className="ROI-inner">
+                                            <h4>ROAS</h4>
+                                            <p>8</p>
+                                        </div>
+                                        <div className="ROI-inner">
+                                            <h4>Cost Per Lead</h4>
+                                            <p>$245k</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <Chart
-                                className="line-graph"
-                                width={'600px'}
-                                height={'400px'}
-                                chartType="LineChart"
-                                data={chartdata}
-                                
-                                options={{
-                                    hAxis: {
-                                    title: "Dates",
-                                    },
-                                    vAxis: {
-                                    title: "",
-                                    ticks:[10,20,30,40,50]
-                                    },
-                                    
-                                }}
-                                rootProps={{ 'data-testid': '1' }}
-                            />
                             <hr/>
                             <div className="add-new-btnw">
                                 <button class="outline-btn">Export</button>
                             </div>
-
-                            <Table id="sample-module-expand" columns={PaidCTCCol} dataSource={PaidCPCTable} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["bottomRight"]}} />
-                            {
-                                methodROI == "GSC"
-                                ?
-                                    <>
-                                        <div class="main-title ">GSC</div>
-                                        <Table id="sample-module-expand" columns={GSCCol} dataSource={GSCTable} rowSelection={{type: selectionTypeGSC,...rowSelection,}} pagination={{position:["bottomRight"]}} />
-                                    </>
-                                :
-                                    <>
-                                        <div class="main-title ">Click Share</div>
-                                        <Table id="sample-module-expand" columns={ClickShareCol} dataSource={ClickShareTable} rowSelection={{type: selectionTypeClickShare,...rowSelection,}} pagination={{position:["bottomRight"]}} />
-                                    </>
-                            }
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div class="main-title " style={{visibility:"hidden"}}>GSC</div>
+                                    <Table id="sample-module-expand" columns={PaidCTCCol} dataSource={PaidCPCTable} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["bottomRight"]}} />
+                                </div>
+                                <div className="col-md-6">
+                                    {
+                                        methodROI == "GSC"
+                                        ?
+                                            <>
+                                                <div class="main-title ">GSC</div>
+                                                <Table id="sample-module-expand" columns={GSCCol} dataSource={GSCTable} rowSelection={{type: selectionTypeGSC,...rowSelection,}} pagination={{position:["bottomRight"]}} />
+                                            </>
+                                        :
+                                            <>
+                                                <div class="main-title ">Click Share</div>
+                                                <Table id="sample-module-expand" columns={ClickShareCol} dataSource={ClickShareTable} rowSelection={{type: selectionTypeClickShare,...rowSelection,}} pagination={{position:["bottomRight"]}} />
+                                            </>
+                                    }
+                                </div>
+                            </div>
+                            
+                            
                             
                         </TabPanel>
                         <TabPanel>

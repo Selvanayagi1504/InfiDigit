@@ -326,7 +326,7 @@ function ModuleExpandKeywordResearch() {
                     )}
                     </div> 
                 </div>
-                <div class="nav-bar-center">&nbsp;</div>
+                {/* <div class="nav-bar-center">&nbsp;</div> */}
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
                     <li>
@@ -639,61 +639,63 @@ function ModuleExpandKeywordResearch() {
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </div>
-                                <Chart
-                                className="line-graph mt-5"
-                                width={'600px'}
-                                height={'400px'}
-                                chartType="LineChart"
-                                data={chartdataCompetitor}
-                                
-                                options={{
-                                    hAxis: {
-                                    title: timeperiod,
-                                    },
-                                    vAxis: {
-                                    title: chartoption,
-                                    },
-                                    
-                                }}
-                                rootProps={{ 'data-testid': '1' }}
-                                />
-                                {
-                                        searched.length===0?<>
-                                        
-                                        </>
-                                        :
-                                        <>
-                                        <div>
-                                            <Table id="sample-module-expand" columns={teamcol} dataSource={searched} rowSelection={{type: selectionType,...rowSelection,}} pagination={false} />
-                                        </div>
-                                        </>
-                                } 
-                                <h2 className="mt-4 keyword-idea-title">Keyword Ideas</h2>
-                                {
-                                        searched.length===0?<>
-                                        <div>
-                                            <Table id="sample-module-expand"  columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
-                                        </div>
-                                        </>
-                                        :
-                                        <>
-                                        <div>
+                                <div className="row" style={{marginTop:64+'px'}}>
+                                    <div className="col-md-6">
+                                        <Chart
+                                            className="line-graph mt-5"
                                             
-                                            <Table id="sample-module-expand-hidden" columns={teamcolHidden} dataSource={teamlistnew} rowSelection={{type: selectionTypenew,...rowSelection,}} pagination={{position:["bottomRight"]}} />
-                                        </div>
-                                         </>
-                                }
+                                            height={'400px'}
+                                            chartType="LineChart"
+                                            data={chartdataCompetitor}
+                                            
+                                            options={{
+                                                hAxis: {
+                                                title: timeperiod,
+                                                },
+                                                vAxis: {
+                                                title: chartoption,
+                                                },
+                                                legend:{
+                                                    position:"bottom"
+                                                }
+                                            }}
+                                            rootProps={{ 'data-testid': '1' }}
+                                        />
+                                    </div>
+                                    <div className="col-md-6">
+                                        {
+                                            searched.length===0?<>
+                                            
+                                            </>
+                                            :
+                                            <>
+                                            <div>
+                                                <Table id="sample-module-expand" columns={teamcol} dataSource={searched} rowSelection={{type: selectionType,...rowSelection,}} pagination={false} />
+                                            </div>
+                                            </>
+                                        } 
+                                        <h2 className="mt-4 keyword-idea-title">Keyword Ideas</h2>
+                                        {
+                                                searched.length===0?<>
+                                                <div>
+                                                    <Table id="sample-module-expand"  columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
+                                                </div>
+                                                </>
+                                                :
+                                                <>
+                                                <div>
+                                                    
+                                                    <Table id="sample-module-expand-hidden" columns={teamcolHidden} dataSource={teamlistnew} rowSelection={{type: selectionTypenew,...rowSelection,}} pagination={{position:["bottomRight"]}} />
+                                                </div>
+                                                </>
+                                        }
+                                    </div>
+                                </div>
                                 
-                            
-                            <div class="row">
                                 
-                            </div>
+                                <hr/>
                             
                             
-
-                            
-
-                        {/* <button onClick={()=>{cho()}}>graph</button> */}
                             
                         
                             
