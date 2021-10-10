@@ -3764,6 +3764,12 @@ div#example-collapse-text-calendar {
   width: 99%;
   margin-left: auto;
 }
+.team-members-hr .control-toggle-dashboard-seo{
+  margin-top: 73vh;
+}
+.sidebar-sales .control-toggle-dashboard-seo{
+  margin-top: 70vh;
+}
 @media(max-width:1440px) and (min-width:1025px){
   .keyowrd-ROI-drop {
     flex-direction: column;
@@ -3922,4 +3928,161 @@ div#example-collapse-text-calendar {
     width: 50%;
     margin-bottom: 24px;
   }
+}
+
+
+.nav-right-menu .dropdown-menu a:hover{
+  display: block;
+  padding: unset;
+  /* clear: both; */
+  font-weight: unset;
+  background-color:unset;
+  line-height: inherit;
+  color: #abacc3;
+  white-space: nowrap;
+}
+.seo-audit .CircularProgressbar {
+  width: 40%;
+  text-shadow: #262626;
+  vertical-align: middle;
+}
+@media only screen and (max-width: 1024px) {
+  .seo-audit .CircularProgressbar {
+    width: 80%;
+    text-shadow: #262626;
+    vertical-align: middle;
+  }
+}
+.audit-card{
+  /* background-color: #FFCB35; */
+  padding: 34px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 700;
+  font-size: 120%;
+}
+.seo-audit .pop-over{
+  position:fixed;
+  /* display: none; */
+  margin-left: 10%;
+  /* margin-right: auto; */
+  width: 55%;
+  height: 85%;
+  background-color: #FFFFFF;
+  border: #212529;
+  /* overflow-y: auto; */
+  border-radius: 8px;
+  box-shadow:  20px 20px 60px #BEBEBE,
+             -20px -20px 60px #FFFFFF;
+  z-index: 3;
+}
+@media only screen and (max-width: 1012px) {
+  .seo-audit .pop-over{
+    position:fixed;
+  margin-left: auto;
+    width: 85%;
+    height: 85%;
+    background-color: #FFFFFF;
+    border: #212529;
+    /* overflow-y: auto; */
+    border-radius: 8px;
+    box-shadow:  20px 20px 60px #BEBEBE,
+               -20px -20px 60px #FFFFFF;
+    z-index: 3;
+  }
+  .seo-audit .pop-over .header{
+    margin-left: auto;
+    margin-right: auto;
+    width:200%;
+  }
+  .seo-audit .pagination li {
+    font-size: 14px;
+    padding: 1px 5px;
+}
+}
+.seo-audit .form-scroll{
+  /* display: none; */
+  width: 100%;
+  height: 70%;
+  overflow: auto;
+}
+.seo-audit .add-user {
+  width: 80%;
+}
+.seo-audit .pop-over .header{
+  margin-left: auto;
+  margin-right: auto;
+  width:50%;
+}
+.seo-audit .pop-over .footer{
+  /* background-color: #2653D4; */
+  /* position: absolute;
+   bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  width:42%; */
+}
+.seo-audit .pagination2 {
+  margin-left: 60%;
+  padding: 30px 0;
+}
+.seo-audit .pop-over .footer-line{
+  /* width: 239%;
+  margin-top: 60%; */
+}
+.seo-audit .close-button{
+  /* margin-left: auto;
+  right:2px;
+  position: fixed; */
+}
+.seo-audit .progress-circle svg{
+-webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+font-size: 10px;
+filter: drop-shadow( 9px 3px 9px grey);
+}
+.seo-audit .CircularProgressbar .CircularProgressbar-text {
+  fill: #3E98C7;
+  font-size: 12px;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}
+.seo-audit .progress-circle{
+  /* margin-left: 90px; */
+  min-height: 300px;
+  min-width: 400px;
+  border-radius: 8px;
+  box-shadow:  20px 20px 60px #BEBEBE,
+             -20px -20px 60px #FFFFFF;
+}
+.seo-audit .progress-text{
+  min-height: 300px;
+  min-width: 400px;
+  /* margin-top: auto; */
+  /* margin-bottom: auto; */
+  border-radius: 8px;
+  box-shadow:  20px 20px 60px #BEBEBE,
+             -20px -20px 60px #FFFFFF;
+}
+.seo-audit .audit-button{
+  width: 150px;
+}
+.seo-audit .audit-title{
+  font-size: 20px;
+  font-weight: 500;
+}
+.seo-audit .pop-over-footer a{
+  border: 1px solid rgba(0, 0, 0, 0.23);
+    border-radius: 7px;
+    padding: 9px;
+    margin-right: 8px;
+    color: black;
+    font-size: 14px;
+}
+.seo-audit .pop-over-footer{
+  margin-left: auto;
+    margin-right: auto;
+    width: 37%;
 }

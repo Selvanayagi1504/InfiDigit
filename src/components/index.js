@@ -60,3 +60,5 @@ export {default as ModuleExpandNonCompliant} from './ModuleExpandNonCompliant';
 export {default as Configuration} from './Configuration'
 export {default as DashboardSuperAdmin} from './DashboardSuperAdmin'
 export {default as ConfigurationSEO} from './ConfigurationSEO'
+export {default as SideNavBarCustom} from './SideNavBarCustom';
+export {default as SideNavBarCustomClosed} from './SideNavBarCustomClosed';

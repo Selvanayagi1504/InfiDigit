@@ -74,7 +74,7 @@ function Home() {
   function redirect(){
     var e = document.getElementById("usertype");
     var strUser = e.value;
-    localStorage.setItem('User',strUser);
+    localStorage.setItem('state', strUser);
     if (strUser == "admin") {
       history.push('/dashboard');
     }

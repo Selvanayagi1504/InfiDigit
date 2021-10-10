@@ -9,7 +9,7 @@ import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col, Breadcrumb } from "antd";
 import {Dropdown, Card} from 'react-bootstrap'
 import Item from "antd/lib/list/Item";
-import {ModuleExpandTickets} from './index';
+import {ModuleExpandTickets, SideNavBarCustom, SideNavBarCustomClosed} from './index';
 import DatePicker,{ DateObject } from "react-multi-date-picker"
 import { Calendar } from "react-multi-date-picker"
 
@@ -51,6 +51,8 @@ const rowSelection1 = {
 
 
 function ModuleExpandBackLinks() {
+    const u = localStorage.getItem('state');
+    const [usertype, setusertype] = useState(u);
     const [sidenav,setsidenav] = useState(false);
     const [inputData,setInputData] = useState([{
         id:"1"
@@ -475,8 +477,10 @@ function ModuleExpandBackLinks() {
     return (
         <>
             <section class="outer-wrapper ModuleExpandBacklinks dashboard-seo">
-            <div class="top-nav-bar">
-                <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span><div className="wrapper dashboard-seo-dropdown" ref={ref}>
+            {
+                usertype == "SEO" ?<div class="top-nav-bar">
+                <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span>
+                <div className="wrapper dashboard-seo-dropdown" ref={ref}>
                     <button
                         className="button"
                         onClick={() => setIsMenuOpen(oldState => !oldState)}
@@ -504,7 +508,8 @@ function ModuleExpandBackLinks() {
                     </div>
 
                     )}
-                    </div> </div>
+                    </div> 
+                </div>
                 {/* <div class="nav-bar-center">&nbsp;</div> */}
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
@@ -532,6 +537,7 @@ function ModuleExpandBackLinks() {
 
 
                     </li>
+
                         <li class="dropdown">
                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
                                 <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
@@ -550,8 +556,55 @@ function ModuleExpandBackLinks() {
                     </ul>
                 </div>
                 <div class="clearfix"></div>
-            </div>
-
+            </div> :
+             <div class="top-nav-bar">
+             <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span></div>
+             <div class="nav-bar-right">
+               <ul class="list-unstyled nav-right-menu">
+                 <li>
+                   <Dropdown id="notification-dropdown">
+                     <Dropdown.Toggle id="dropdown-basic">
+                     <i class="fa fa-bell"></i>
+                     </Dropdown.Toggle>
+                     <Dropdown.Menu>
+                         <Dropdown.Item href="">
+                             <div className="notification-item">
+                                 <h4>Notification 1!!</h4>
+                                 <p>21 hours ago..</p>
+                             </div>
+                         </Dropdown.Item>
+                         <hr />
+                         <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                             <div className="notification-item" >
+                                 <h4>Notification 2!!</h4>
+                                 <p>8 hours ago..</p>
+                             </div>
+                         </Dropdown.Item>
+                     </Dropdown.Menu>
+                 </Dropdown>
+       
+       
+                 </li>
+                 <li class="dropdown">
+                   <button onClick={()=>{setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
+                   <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
+                   <span class="profile-name">Director</span>
+                 </button>
+                   
+                     
+                     
+                     <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                       <li><a href="/profile">Profile</a></li>
+                       
+                       <li><a href="/">Log Out</a></li>
+                     </ul>
+                   
+                 </li>
+               </ul>
+             </div>
+             <div class="clearfix"></div>
+           </div>
+            }
             
             
             <div className="custom-row-dashboard-seo">
@@ -560,7 +613,7 @@ function ModuleExpandBackLinks() {
                         {sidenavToggle 
                             ?
                             <>
-                                <ul class="list-unstyled side-menu">
+                                {/* <ul class="list-unstyled side-menu">
                                 <li><a href="/dashboard-seo?id=Myntra - Shoes"><i class="fa fa-home"></i>Home</a></li>
                                 <li><a href="module-expand-da"><span class="icon"><i class="fa fa-check"></i></span><span>DA/ PA Checker</span></a></li>
                                 <li><a href="module-expand-google-trends"><span class="icon"><i class="fa fa-line-chart" aria-hidden="true"></i></span><span>Google Trends</span></a></li>
@@ -580,14 +633,15 @@ function ModuleExpandBackLinks() {
                                 <br />
                                 <li><a href="/ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
                                 <li><a href="/configuration-seo"><i className="fa fa-cogs"></i>Configuration</a></li>
-                                </ul>
+                                </ul> */}
+                                <SideNavBarCustom />
                                 <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
                                 <i class="fa fa-angle-right"></i>
                                 </button>
                             </>
                             :
                             <>
-                                <ul class="list-unstyled side-menu">
+                                {/* <ul class="list-unstyled side-menu">
                                 <li><a href="/dashboard-seo?id=Myntra - Shoes"><i class="fa fa-home"></i></a></li>
                                 <li><a href="module-expand-da"><i class="fa fa-check"></i></a></li>
                                 <li><a href="module-expand-google-trends"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
@@ -607,7 +661,8 @@ function ModuleExpandBackLinks() {
                                 <br />
                                 <li><a href="/ticketslist"><i class="fa fa-ticket"></i></a></li>
                                 <li><a href="/configuration-seo"><i className="fa fa-cogs"></i></a></li>
-                                </ul>
+                                </ul> */}
+                                <SideNavBarCustomClosed />
                                 <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
                                 <i class="fa fa-angle-right"></i>
                                 </button>

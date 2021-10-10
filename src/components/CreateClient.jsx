@@ -1,13 +1,15 @@
 import React from "react";
 import {useState, useEffect} from "react";
 import {Dropdown} from 'react-bootstrap'
+import {SideNavBarCustom, SideNavBarCustomClosed} from './index'
 import {Breadcrumb} from 'antd'
 
 import { FilePicker } from 'react-file-picker'
 function CreateClient() {
     const [phonecode, setphonecode] = useState("+91");
     const [countrycodes, setcountrycodes] = useState([]);
-
+  const [sidenavToggle, setSidenavToggle] = useState(true);
+    
     useEffect(()=>{
         var data = [
             {
@@ -98,15 +100,30 @@ return (
             <div class="clearfix"></div>
         </div>
 
-        <div class="sidebar-nav-bar">
-            <ul class="list-unstyled side-menu">
-                <li><a href="dashboard-sales"><i class="fa fa-columns"></i> Dashboard</a></li>
-
-                <li><a href="client-list"><i class="fa fa-users"></i> Customers</a></li>
-            </ul>
-        </div>
-        <div class="content-wrapper">
-            <div class="dashboard-wrapper">
+        <div className="custom-row-dashboard-seo">
+            <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+                <div class="sidebar-nav-bar sidebar-sales">
+                {sidenavToggle 
+                    ?
+                    <>
+                    
+                <SideNavBarCustom/>
+                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                <i class="fa fa-angle-right"></i>
+                </button>
+                    </>
+                    :
+                    <>
+                
+                <SideNavBarCustomClosed/>
+                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                <i class="fa fa-angle-right"></i>
+                </button>
+                    </>
+                }        
+                </div>
+            </div>
+            <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
             <Breadcrumb>
                 <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
                 <Breadcrumb.Item><a href="/dashboard-sales">Dashboard</a></Breadcrumb.Item>
@@ -226,6 +243,11 @@ return (
                 </div>
             </div>
         </div>
+        {/* <div class="content-wrapper">
+            <div class="dashboard-wrapper">
+            
+            </div>
+        </div> */}
     </section>
 </>
 );

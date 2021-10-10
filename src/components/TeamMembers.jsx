@@ -372,6 +372,7 @@ import {Link} from 'react-router-dom';
 import {useHistory} from "react-router-dom";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col, Breadcrumb } from "antd";
+import { SideNavBarCustom, SideNavBarCustomClosed } from '.';
 
 
 const rowSelection = {
@@ -381,6 +382,7 @@ const rowSelection = {
   };
 
 function TeamMembers() {
+    const [sidenavToggle, setSidenavToggle] = useState(true);
     const [teamlist, setteamList] = useState([]);
     const [selectionType, setSelectionType] = useState('checkbox');
     const [teamcol,setteamcol] = useState([]);
@@ -561,6 +563,7 @@ function TeamMembers() {
           });
     }
     const [sidenav,setsidenav] = useState(false);
+    
 return (
 <>
     <section class="outer-wrapper team-members">
@@ -614,34 +617,32 @@ return (
             <div class="clearfix"></div>
         </div>
 
-        <div class="sidebar-nav-bar">
-        <ul class="list-unstyled side-menu">
-               {/* <li><a href="dashboard.html"><i class="fa fa-columns"></i> Dashboard</a></li> */}
-                <li><a href=""><i class="fa fa-users"></i> Team Members</a></li>
-        </ul>
-        </div>
-        <div class="content-wrapper">
-            <div class="dashboard-wrapper">
-        {/* <Row type="flex" gutter={10}>
-          <Col>
-            <Typography>Auto Complete Search</Typography>
-          </Col>
-          <Col>
-            <AutoComplete dataSource={teamlist.map(person => person.name)}>
-              <Input.Search
-                allowClear
-                onSearch={nameSearch =>
-                  setteamList(
-                    teamlist.filter(person =>
-                      person.name.includes(nameSearch)
-                    )
-                  )
-                }
-              />
-            </AutoComplete>
-          </Col>
-        </Row> */}
-             <Breadcrumb>
+        
+        <div className="custom-row-dashboard-seo">
+                <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+                    <div class="sidebar-nav-bar team-members-hr">
+                        {sidenavToggle 
+                            ?
+                            <>
+                               
+                                <SideNavBarCustom/>
+                                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                                <i class="fa fa-angle-right"></i>
+                                </button>
+                            </>
+                            :
+                            <>
+                                
+                                <SideNavBarCustomClosed/>
+                                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                                <i class="fa fa-angle-right"></i>
+                                </button>
+                            </>
+                        }        
+                    </div>
+                </div>
+                <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
+                <Breadcrumb>
                 <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
                 <Breadcrumb.Item>
                 <a href="/team-members">Team Members</a>
@@ -716,9 +717,15 @@ return (
                 </div>
                     <Table id="sample" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
                 </div>
+                    
+                </div>
+            </div>
+        {/* <div class="content-wrapper">
+            <div class="dashboard-wrapper">
+            
 
             </div>
-        </div>
+        </div> */}
 
 
     </section>

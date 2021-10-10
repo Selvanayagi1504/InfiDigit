@@ -12,6 +12,7 @@ import {
 import Chart from "react-google-charts";
 import "antd/dist/antd.css";
 import { Table, Breadcrumb } from "antd";
+import { SideNavBarCustom, SideNavBarCustomClosed } from ".";
 
 
 const rowSelection = {
@@ -184,6 +185,7 @@ function Dashboard() {
   function sidenavtoggle(){
     setsidenavsales(!sidenavsales)
   }
+  const [sidenavToggle, setSidenavToggle] = useState(true);
   
 return (
 <>
@@ -239,43 +241,126 @@ return (
       </div>
       <div class="clearfix"></div>
     </div>
-  <div class="sidebar-nav-bar">
+  {/* <div class="sidebar-nav-bar">
     <ul class="list-unstyled side-menu">
       <li onClick={()=>{setopenproj(false);}}><a href=""><i class="fa fa-columns"></i> Dashboard</a></li>
-      {/* <li>
-        <Dropdown>
-          <Dropdown.Toggle id="dropdown-basic" className="drop-dire">
-          Sales <i class="fa fa-angle-right side-dropdown"  aria-hidden="true"></i>
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-              <Dropdown.Item href="team-members-sales-dir">Team Members</Dropdown.Item>
-              <Dropdown.Item href="clinets-sales-dir">Clients</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </li> */}
       <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
       <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
       <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
       <li><a href="configuration">Configuration</a></li>
-      {/* <li>
-        <UncontrolledButtonDropdown className="uncontrolled">
-          <DropdownToggle caret size="md" >
-            Clients <i class="fa fa-angle-right"  aria-hidden="true"></i>
-          </DropdownToggle>
-          <DropdownMenu>
-            <span onClick={()=>{setopenproj(true);setproj("Myntra");}}> Myntra </span>
-            <DropdownItem onClick={()=>{setopenproj(true);setproj("Myntra - Myntra Shoes");}}>Myntra Shoes</DropdownItem>
-            <DropdownItem onClick={()=>{setopenproj(true);setproj("Myntra - Myntra Loafers");}}>Myntra Loafers</DropdownItem>
-            <span onClick={()=>{setopenproj(true);setproj("Amazon");}}> Amazon </span>
-            <DropdownItem onClick={()=>{setopenproj(true);setproj("Amazon - Fashion");}}>Fashion</DropdownItem>
-            <DropdownItem onClick={()=>{setopenproj(true);setproj("Amazon - Jewellery");}}>Jewellery</DropdownItem>
-          </DropdownMenu>
-        </UncontrolledButtonDropdown>
-      </li> */}
     </ul>
+  </div> */}
+  <div className="custom-row-dashboard-seo">
+    <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+      <div class="sidebar-nav-bar">
+        {sidenavToggle 
+            ?
+            <>
+                
+                <SideNavBarCustom/>
+                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                <i class="fa fa-angle-right"></i>
+                </button>
+            </>
+            :
+            <>
+                
+                <SideNavBarCustomClosed/>
+                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                <i class="fa fa-angle-right"></i>
+                </button>
+            </>
+        }
+      </div>
+    </div>
+    <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
+      <Breadcrumb>
+          <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
+          <Breadcrumb.Item>
+          <a href="/dashboard">Dashboard</a>
+          </Breadcrumb.Item>
+      </Breadcrumb>
+      <div class="row">
+              <div class="col-sm-5 pad-lzero">
+                <div class="main-title">Dashboard</div>
+              </div>
+          
+            </div>
+            
+            <div class="row">
+              <div class="col-sm-3 col-6">
+                <div class="common-wcard resource-snap">
+                    <div class="rsnap-lft">
+                      <span class="rsnap-title">Clients</span>
+                      <span class="rsnap-count">100</span>
+                    </div>
+                    <div class="rsnap-rgt">
+                      
+                      <div class="text-success">+11%</div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-6">
+                <div class="common-wcard resource-snap">
+                  <div class="rsnap-lft">
+                    <span class="rsnap-title">Projects</span>
+                    <span class="rsnap-count">24</span>
+                  </div>
+                  <div class="rsnap-rgt">
+                    
+                    <div class="text-success">+11%</div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              
+              <div class="col-sm-3 col-6">
+                <div class="common-wcard resource-snap">
+                  <div class="rsnap-lft">
+                    <span class="rsnap-title">Members</span>
+                    <span class="rsnap-count">54</span>
+                  </div>
+                  <div class="rsnap-rgt">
+                    
+                    <div class="text-success">+11%</div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-6">
+                <div class="common-wcard resource-snap">
+                  <div class="rsnap-lft">
+                    <span class="rsnap-title">Reports</span>
+                    <span class="rsnap-count">12</span>
+                  </div>
+                  <div class="rsnap-rgt">
+                    
+                    <div class="text-decline">+11%</div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+            <div class="col-sm-6 col-12">
+              <div class="common-wcard">
+                <div class="rd-title">Clients</div>
+                <img src="images/graph1.png" alt="" />
+              </div>
+            </div>
+            <div class="col-sm-6 col-12">
+              <div class="common-wcard">
+                <div class="rd-title">Reports</div>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <img src="images/graph2.png" alt="" />
+              </div>
+            </div>
+          </div>
+    </div>
   </div>
-  <div class="content-wrapper">
+  {/* <div class="content-wrapper">
     <div class="dashboard-wrapper main-dashboard">
       <Breadcrumb>
         <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
@@ -541,7 +626,7 @@ return (
       }
       
     </div>
-  </div>
+  </div> */}
 
   
 </section>

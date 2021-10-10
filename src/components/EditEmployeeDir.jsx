@@ -9,6 +9,7 @@ import {Dropdown} from 'react-bootstrap'
 import {Breadcrumb} from 'antd'
 
 
+import { SideNavBarCustom, SideNavBarCustomClosed } from '.';
 
 
 const rowSelection = {
@@ -49,6 +50,8 @@ const pieOptions = {
   };
 
 function EditEmployeeDir() {
+    const [sidenavToggle, setSidenavToggle] = useState(true);
+
 const search = useLocation().search;
 const id = new URLSearchParams(search).get('id');
  const [show,setshow]= useState(false);
@@ -210,18 +213,30 @@ return (
             <div class="clearfix"></div>
         </div>
 
-        <div class="sidebar-nav-bar">
-            <ul class="list-unstyled side-menu">
-            <li><a href="/dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
-      <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
-      <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
-      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
-      <li><a href="configuration">Configuration</a></li>
-            </ul>
-        </div>
-
-        <div class="content-wrapper">
-            <div class="dashboard-wrapper">
+        <div className="custom-row-dashboard-seo">
+            <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+                <div class="sidebar-nav-bar">
+                {sidenavToggle 
+                    ?
+                    <>
+                    
+                    <SideNavBarCustom/>
+                    <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                    <i class="fa fa-angle-right"></i>
+                    </button>
+                    </>
+                    :
+                    <>
+                    
+                    <SideNavBarCustomClosed/>
+                    <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                    <i class="fa fa-angle-right"></i>
+                    </button>
+                    </>
+                }        
+                </div>
+            </div>
+            <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
             <Breadcrumb>
                 <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
                 <Breadcrumb.Item>

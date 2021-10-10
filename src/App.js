@@ -1,10 +1,20 @@
 import React from "react";
+// import withBreadcrumbs from "react-router-breadcrumbs-hoc";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ModuleExpandNonCompliant,ModuleExpandSEOAudit, ProjectDetailsDir,EditEmployeeDir,EditProjectDir,EditClientDir,Profile,Home, About, Contact, Dashboard, DashboardSEO,DashboardSales, SalesList, SubProjects, TeamMembers, EditEmployee, SalesNew, CreateProject, EditProject, ViewClientDetails, ClientList, ProjectList, CreateClient, EditClient, ModuleExpandDAPA, ModuleExpandGoogleTrends, ModuleExpandPageSpeed, TeamMembersSalesDir, ClinetsSalesDir, ProjectSalesDir, ViewClientDetailsSalesDir, ProjectsListSalesDir, Tickets, TicketsList,TicketsSales, TicketsListSales, ModuleExpandSiteUptime, ModuleExpandRankTracking, ModuleExpandGSC, ModuleExpandContentWordCount, ModuleExpandGoogleAnalytics, ModuleExpandSEOVolatality, ModuleExpandKeywordResearch, ModuleExpandClickShare, ModuleExpandROI, ModuleExpandBackLinks, ModuleExpandOrganicResearch,Designation, DashboardAdmin, AccessPermissionsAdmin, AdminAuditUpdate, DashboardCustomers, Configuration, TicketsListCustomers, TicketCustomers, DashboardSuperAdmin, ConfigurationSEO } from "./components";
+// const Breadcrumbs = withBreadcrumbs()(({ breadcrumbs }) => (
+//   <React.Fragment>
+//     {breadcrumbs.map(({ breadcrumb }) => breadcrumb)}
+//   </React.Fragment>
+// ));
 function App() {
   return (
     <div className="App">
       <Router>
+        {/* <div style={{marginLeft:11+"%", marginTop:4+'%'}}>
+          <Breadcrumbs />
+        </div> */}
+      
         <Switch>
           <Route path="/" exact component={() => <Home />} />
           <Route path="/profile" exact component={() => <Profile/>} />

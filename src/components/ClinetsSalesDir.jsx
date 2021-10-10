@@ -4,7 +4,7 @@ import {useHistory} from "react-router-dom";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col,Breadcrumb } from "antd";
 import {Dropdown} from 'react-bootstrap'
-
+import {SideNavBarCustom, SideNavBarCustomClosed} from './index'
 
 
 const rowSelection = {
@@ -15,7 +15,7 @@ const rowSelection = {
 
 
 function ClinetsSalesDir() {
-
+    const [sidenavToggle, setSidenavToggle] = useState(true);
     const [teamlist, setteamList] = useState([]);
     const [selectionType, setSelectionType] = useState('checkbox');
     const [teamcol,setteamcol] = useState([]);
@@ -175,31 +175,30 @@ function ClinetsSalesDir() {
             <div class="clearfix"></div>
         </div>
 
-        <div class="sidebar-nav-bar">
-            <ul class="list-unstyled side-menu">
-                {/* <li><a href="dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
-                <li>
-        <Dropdown>
-          <Dropdown.Toggle id="dropdown-basic" className="drop-dire">
-          Sales <i class="fa fa-angle-right side-dropdown"  aria-hidden="true"></i>
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-              <Dropdown.Item href="team-members-sales-dir">Team Members</Dropdown.Item>
-              <Dropdown.Item href="clinets-sales-dir">Clients</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </li>
-      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li> */}
-      <li><a href="/dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
-      <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
-      <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
-      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
-      <li><a href="configuration">Configuration</a></li>
-            </ul>
-        </div>
-        <div class="content-wrapper">
-            <div class="dashboard-wrapper">
+        <div className="custom-row-dashboard-seo">
+            <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+                <div class="sidebar-nav-bar">
+                {sidenavToggle 
+                    ?
+                    <>
+                    
+                    <SideNavBarCustom/>
+                    <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                    <i class="fa fa-angle-right"></i>
+                    </button>
+                    </>
+                    :
+                    <>
+                    
+                    <SideNavBarCustomClosed/>
+                    <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                    <i class="fa fa-angle-right"></i>
+                    </button>
+                    </>
+                }        
+                </div>
+            </div>
+            <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
             <Breadcrumb>
                 <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
                 <Breadcrumb.Item><a href="/dashboard">Dashboard</a></Breadcrumb.Item>
@@ -266,10 +265,9 @@ function ClinetsSalesDir() {
                     </div>
                     <Table id="sample" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
                 </div>
-
             </div>
         </div>
-
+       
 
     </section>
     </>

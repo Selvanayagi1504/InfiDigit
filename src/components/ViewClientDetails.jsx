@@ -8,7 +8,7 @@ import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 import {Dropdown} from 'react-bootstrap'
 import Chart from "react-google-charts";
-
+import {SideNavBarCustom, SideNavBarCustomClosed} from './index'
 
 const Option = (props) => {
     return (
@@ -31,6 +31,7 @@ const Option = (props) => {
   };
 
 function ViewClientDetails() {
+    const [sidenavToggle, setSidenavToggle] = useState(true);
     const [optionSelected, setoptionSelected] = useState(null);
     function handleChange(selected){
         setoptionSelected(selected);
@@ -279,16 +280,31 @@ return (
             <div class="clearfix"></div>
         </div>
 
-        <div class="sidebar-nav-bar">
-            <ul class="list-unstyled side-menu">
-                <li><a href="dashboard-sales"><i class="fa fa-columns"></i> Dashboard</a></li>
-
-                <li><a href="client-list"><i class="fa fa-users"></i> Customers</a></li>
-            </ul>
-        </div>
-        <div class="content-wrapper">
-            <div class="dashboard-wrapper">
-                <Breadcrumb>
+        <div className="custom-row-dashboard-seo">
+            <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+                <div class="sidebar-nav-bar sidebar-sales">
+                {sidenavToggle 
+                    ?
+                    <>
+                    
+                <SideNavBarCustom/>
+                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                <i class="fa fa-angle-right"></i>
+                </button>
+                    </>
+                    :
+                    <>
+                
+                <SideNavBarCustomClosed/>
+                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                <i class="fa fa-angle-right"></i>
+                </button>
+                    </>
+                }        
+                </div>
+            </div>
+            <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
+            <Breadcrumb>
                     <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
                     <Breadcrumb.Item><a href="/dashboard-seo">Dashboard</a></Breadcrumb.Item>
                     <Breadcrumb.Item>
@@ -734,6 +750,11 @@ return (
                         }
                     </TabPanel>
                 </Tabs>
+            </div>
+        </div>
+        {/* <div class="content-wrapper">
+            <div class="dashboard-wrapper">
+                
 
                 
 
@@ -741,7 +762,7 @@ return (
                 
 
             </div>
-        </div>
+        </div> */}
     </section>
     <Modal show={show} onHide={()=>handleModal()} className="edit-notes">  
         <Modal.Header closeButton>View / Add Notes</Modal.Header>  

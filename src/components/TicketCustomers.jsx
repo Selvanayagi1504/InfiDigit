@@ -478,7 +478,7 @@
 
 
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { Button,Modal} from 'react-bootstrap';  
 // import {Dropdown} from 'react-bootstrap'
@@ -491,7 +491,8 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
-import NotificationSEO from "./NotificationSEO";
+import { NotificationSEO, SideNavBarCustom, SideNavBarCustomClosed } from "./index";
+
 import { Sidenav, Nav, Dropdown } from 'rsuite';
 
 function TicketCustomers() {
@@ -580,18 +581,99 @@ const [notes,setnotes] = useState([]);
     var list = filelist;
     setfilelist(list.filter((item) => item !== i));
   }
+  const [clientchosen, setclientchosen] = useState([
+  
+    {
+      projname:"Myntra - Shoes"
+    },
+    {
+      projname:"Myntra - Loafers"
+    }
+]);
+const [projectslisttop, setprojectslisttop] = useState([
+{
+  title:"Myntra",
+  projects:[
+    {
+      projname:"Myntra - Shoes"
+    },
+    {
+      projname:"Myntra - Loafers"
+    }
+  ]
+},
+{
+  title:"Amazon",
+  projects:[
+    {
+      projname:"Amazon - Fashion"
+    },
+    {
+      projname:"Amazon - Jewellery"
+    }
+  ]
+}
+])
+function showProjects(a){
+var proj = projectslisttop.filter(item => item.title == a);
+console.log(proj[0].projects)
+setclientchosen(proj[0].projects)
+}
+const ref = useRef()
+const [isMenuOpen, setIsMenuOpen] = useState(false)
+useEffect(() => {
+    const checkIfClickedOutside = e => {
+    if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+        setIsMenuOpen(false)
+    }
+    }
 
+    document.addEventListener("mousedown", checkIfClickedOutside)
+
+    return () => {
+    document.removeEventListener("mousedown", checkIfClickedOutside)
+    }
+}, [isMenuOpen])
+const [sidenavToggle, setSidenavToggle] = useState(true);
   return (
     <>
-      <section class="outer-wrapper">
+      <section class="outer-wrapper dashboard-seo">
         <div class="top-nav-bar">
           <div class="logo">
             <a href="">
               <img src="images/infidigit-logo.png" />
             </a>{" "}
             <span>Growth</span>
+            <div className="wrapper dashboard-seo-dropdown" ref={ref}>
+              <button
+                      className="button"
+                      onClick={() => setIsMenuOpen(oldState => !oldState)}>
+                All data View <i class="fa fa-caret-down" aria-hidden="true"></i>
+              </button>
+              {isMenuOpen && (
+              <div className="row">
+                <div className="col-md-6" style={{borderRight:'1px solid rgba(0,0,0,.15)'}}>
+
+                  <ul className="Clients-list">
+                    <li  onClick={()=>{showProjects("Myntra")}}><span>Myntra</span> <i class="fa fa-angle-right"></i></li>
+                    <li  onClick={()=>{showProjects("Amazon")}}><span>Amazon</span> <i class="fa fa-angle-right"></i></li>
+                  </ul>
+                </div>
+                <div className="col-md-6">
+                  <ul class="projectsList">
+                    {clientchosen.map((i)=>{
+                    return(
+                    <li onClick={()=>{setIsMenuOpen(false)}}><a style={{color:"inherit"}} href={`dashboard-customers?id=${i.projname}`}>{i.projname}</a></li>
+                    )
+                    })}
+                  </ul>
+                </div>
+              </div>
+
+              )}
+            </div> 
           </div>
-          <div class="nav-bar-center">&nbsp;</div>
+          {/* <div class="nav-bar-center">&nbsp;</div> */}
           <div class="nav-bar-right">
             <ul class="list-unstyled nav-right-menu">
             <li>
@@ -635,31 +717,30 @@ const [notes,setnotes] = useState([]);
           <div class="clearfix"></div>
         </div>
 
-        <div class="sidebar-nav-bar">
-          <ul class="list-unstyled side-menu">
-          <Sidenav class="sidenav-seo">
-            <Sidenav.Body>
-            <Nav>
-                <Dropdown eventKey="1" title="Dasboard" >
+        <div className="custom-row-dashboard-seo">
+          <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+              <div class="sidebar-nav-bar sidebar-sales">
+            {sidenavToggle 
+                ?
+                <>
                   
-                      
-                      <Dropdown.Menu eventKey="1-1" title="Myntra">
-                        <Dropdown.Item eventKey="1-1-1" href="dashboard-customers?id=Myntra - Shoes">Myntra Shoes</Dropdown.Item>
-                        <Dropdown.Item eventKey="1-1-2" href="dashboard-customers?id=Myntra - Loafers">Myntra Loafers</Dropdown.Item>
-                      </Dropdown.Menu>
-                      
-                </Dropdown>
-                
-                <Nav.Item eventKey="3" href="tickets-list-customers">
-                  <i class="fa fa-ticket"></i>Tickets
-                </Nav.Item>
-            </Nav>
-            </Sidenav.Body>
-        </Sidenav>
-        </ul>
-        </div>
-        <div class="content-wrapper">
-          <div class="dashboard-wrapper">
+              <SideNavBarCustom/>
+              <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+              <i class="fa fa-angle-right"></i>
+              </button>
+                </>
+                :
+                <>
+              
+              <SideNavBarCustomClosed/>
+              <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+              <i class="fa fa-angle-right"></i>
+              </button>
+                </>
+            }        
+              </div>
+          </div>
+          <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
           <Breadcrumb>
               <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
               <Breadcrumb.Item><a href="/dashboard-sales">Dashboard</a></Breadcrumb.Item>
@@ -950,8 +1031,13 @@ const [notes,setnotes] = useState([]);
                 </li>
               </ul>
             </div>
-          </div>
         </div>
+      </div>
+        {/* <div class="content-wrapper">
+          <div class="dashboard-wrapper">
+          
+          </div>
+        </div> */}
       </section>
       <Modal show={show} onHide={()=>handleModal()} className="edit-notes">  
         <Modal.Header closeButton>View / Add Notes</Modal.Header>  

@@ -491,6 +491,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
+import { NotificationSEO, SideNavBarCustom, SideNavBarCustomClosed } from "./index";
 
 function Tickets() {
   const [startDate, setStartDate] = useState(new Date());
@@ -721,7 +722,7 @@ const [notes,setnotes] = useState([]);
                         {sidenavToggle 
                             ?
                             <>
-                                <ul class="list-unstyled side-menu">
+                                {/* <ul class="list-unstyled side-menu">
                                 <li><a href="/dashboard-seo?id=Myntra - Shoes"><i class="fa fa-home"></i>Home</a></li>
                                 <li><a href="module-expand-da"><span class="icon"><i class="fa fa-check"></i></span><span>DA/ PA Checker</span></a></li>
                                 <li><a href="module-expand-google-trends"><span class="icon"><i class="fa fa-line-chart" aria-hidden="true"></i></span><span>Google Trends</span></a></li>
@@ -741,14 +742,15 @@ const [notes,setnotes] = useState([]);
                                 <br />
                                 <li><a href="/ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
                                 <li><a href="/configuration-seo"><i className="fa fa-cogs"></i>Configuration</a></li>
-                                </ul>
+                                </ul> */}
+                                <SideNavBarCustom/>
                                 <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
                                 <i class="fa fa-angle-right"></i>
                                 </button>
                             </>
                             :
                             <>
-                                <ul class="list-unstyled side-menu">
+                                {/* <ul class="list-unstyled side-menu">
                                 <li><a href="/dashboard-seo?id=Myntra - Shoes"><i class="fa fa-home"></i></a></li>
                                 <li><a href="module-expand-da"><i class="fa fa-check"></i></a></li>
                                 <li><a href="module-expand-google-trends"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
@@ -768,7 +770,8 @@ const [notes,setnotes] = useState([]);
                                 <br />
                                 <li><a href="/ticketslist"><i class="fa fa-ticket"></i></a></li>
                                 <li><a href="/configuration-seo"><i className="fa fa-cogs"></i></a></li>
-                                </ul>
+                                </ul> */}
+                                <SideNavBarCustomClosed/>
                                 <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
                                 <i class="fa fa-angle-right"></i>
                                 </button>

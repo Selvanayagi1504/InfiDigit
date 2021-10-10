@@ -7,6 +7,8 @@ import {Dropdown} from 'react-bootstrap'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
+import { SideNavBarCustom, SideNavBarCustomClosed } from '.';
+
 
 const Option = (props) => {
     return (
@@ -31,6 +33,8 @@ const rowSelection = {
 
 
 function ProjectSalesDir() {
+    const [sidenavToggle, setSidenavToggle] = useState(true);
+
     const [optionSelected, setoptionSelected] = useState(null);
     function handleChange(selected){
         setoptionSelected(selected);
@@ -226,18 +230,31 @@ function ProjectSalesDir() {
             <div class="clearfix"></div>
         </div>
 
-        <div class="sidebar-nav-bar">
-            <ul class="list-unstyled side-menu">
-            <li><a href="/dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
-      <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
-      <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
-      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
-      <li><a href="configuration">Configuration</a></li>
-            </ul>
-        </div>
-        <div class="content-wrapper">
-            <div class="dashboard-wrapper">
-                <Breadcrumb>
+        <div className="custom-row-dashboard-seo">
+            <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+                <div class="sidebar-nav-bar">
+                {sidenavToggle 
+                    ?
+                    <>
+                    
+                    <SideNavBarCustom/>
+                    <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                    <i class="fa fa-angle-right"></i>
+                    </button>
+                    </>
+                    :
+                    <>
+                    
+                    <SideNavBarCustomClosed/>
+                    <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                    <i class="fa fa-angle-right"></i>
+                    </button>
+                    </>
+                }        
+                </div>
+            </div>
+            <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
+            <   Breadcrumb>
                     <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
                     <Breadcrumb.Item>
                     <a href="/dashboard">Dashboard</a>
@@ -249,140 +266,55 @@ function ProjectSalesDir() {
                     <a href="/project-sales-dir">Projects</a>
                     </Breadcrumb.Item>
                 </Breadcrumb>
-                {/* <Tabs>
-                    <TabList>
-                        <Tab>Projects</Tab>
-                        <Tab>Team Members</Tab>
-                    </TabList>
-                    <TabPanel> */}
-                        <div class="row">
-                            <div class="col-sm-5 pad-lzero">
-                                <div class="main-title">PROJECTS</div>
-                            </div>
-                            <div class="col-sm-7 add-new-btnw">
-                                
-                            </div>
-                        </div>
-                        <div class="common-table" >
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <span class="data-per-page-client">Data Per page</span>
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="data-export-client">
-                                        <span class="count-drop">
-                                        </span>
-                                        <span style={{marginRight:24+'px'}}>
-                                        <Input.Search
-                                            allowClear
-                                            placeholder="Search By name"
-                                            onSearch={nameSearch =>
-                                                {setteamList(
-                                                    searchdata.filter(person =>
-                                                    person.name.includes(nameSearch)
-                                                    )
-                                                );console.log(nameSearch)}
-                                            }
-                                            id="input-s"
-                                        />
-                                        </span>
-                                        <span class="export">
-                                            <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Export
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-content" href="#">Excel</a>
-                                                <a class="dropdown-content" href="#">CSV</a>
-                                                <a class="dropdown-content" href="#">Sheets</a>
-                                            </div>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <Table id="sample" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
-                        </div>
-                    {/* </TabPanel>
-                    <TabPanel>
+                <div class="row">
+                    <div class="col-sm-5 pad-lzero">
+                        <div class="main-title">PROJECTS</div>
+                    </div>
+                    <div class="col-sm-7 add-new-btnw">
+                        
+                    </div>
+                </div>
+                <div class="common-table" >
                     <div class="row">
-                            <div class="col-sm-5 pad-lzero">
-                                <div class="main-title">ASSIGN TEAM MEMBERS</div>
-                            </div>
-                            <div class="col-sm-7 add-new-btnw">
-                                
-                            </div>
+                        <div class="col-md-5">
+                            <span class="data-per-page-client">Data Per page</span>
                         </div>
-                        <div className="row">
-                            <div className="col-md-3">
-                                <ReactSelect
-                                    options={colourOptions}
-                                    isMulti
-                                    closeMenuOnSelect={false}
-                                    hideSelectedOptions={false}
-                                    components={{
-                                        Option
-                                    }}
-                                    onChange={handleChange}
-                                    allowSelectAll={true}
-                                    value={optionSelected}
+                        <div class="col-md-7">
+                            <div class="data-export-client">
+                                <span class="count-drop">
+                                </span>
+                                <span style={{marginRight:24+'px'}}>
+                                <Input.Search
+                                    allowClear
+                                    placeholder="Search By name"
+                                    onSearch={nameSearch =>
+                                        {setteamList(
+                                            searchdata.filter(person =>
+                                            person.name.includes(nameSearch)
+                                            )
+                                        );console.log(nameSearch)}
+                                    }
+                                    id="input-s"
                                 />
-                            </div>
-                            <div className="col-md-3">
-                            <button onClick={()=>assign()}  class="outline-btn">Assign</button>
+                                </span>
+                                <span class="export">
+                                    <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Export
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-content" href="#">Excel</a>
+                                        <a class="dropdown-content" href="#">CSV</a>
+                                        <a class="dropdown-content" href="#">Sheets</a>
+                                    </div>
+                                </span>
                             </div>
                         </div>
-                        <hr />
-                        {teamlist1 && teamlist1.length>0 
-                            ? 
-                                <>
-                                    <div class="add-new-btnw" style={{textAlign:"left"}}>
-                                        <button  class="outline-btn">Edit</button> 
-                                    </div>
-                                    <div class="common-table">
-                                        <div class="row">
-                                            <div class="col-md-5">
-
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="data-export" style={{textAlign:"end",marginLeft:"unset"}}>
-                                                    <span style={{marginRight:24+'px'}}>
-                                                    <Input.Search allowClear placeholder="Search By name" onSearch={nameSearch=>
-                                                        {setteamList1(
-                                                        searchdata1.filter(person =>
-                                                        person.teammember.includes(nameSearch)
-                                                        )
-                                                        );console.log(nameSearch)}
-                                                        }
-                                                        id="input-s"
-                                                    />
-                                                    </span>
-                                                    <span class="export">
-                                            
-                                                        <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            Export
-                                                        </button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-content" href="#">Excel</a>
-                                                            <a class="dropdown-content" href="#">CSV</a>
-                                                            <a class="dropdown-content" href="#">Sheets</a>
-                                                        </div>
-                                                
-                                                    </span>
-                            
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <Table id="sample" columns={teamcol1} dataSource={teamlist1}
-                                            rowSelection={{type: selectionType1,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
-                                    </div>
-                                </> 
-                            :
-                                <></>
-                        } */}
-                    {/* </TabPanel>
-                </Tabs> */}
-
+                    </div>
+                    <Table id="sample" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
+                </div>
             </div>
         </div>
+        
     </section>
     </>
   );

@@ -1,3 +1,312 @@
+// import React from "react";
+// import Chart from "react-google-charts";
+// import {useState, useEffect, useRef} from "react";
+// import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+// import { Button,Modal} from 'react-bootstrap';  
+// import { default as ReactSelect } from "react-select";
+// import { components } from "react-select";
+// import "antd/dist/antd.css";
+// import  Card  from "react-bootstrap/Card";
+// import { Table, Input,  Row,  Col } from "antd";
+// import {Dropdown} from 'react-bootstrap'
+// import Highcharts from 'highcharts';
+// import {ModuleExpandTickets} from './index';
+// import Pagination from '@mui/material/Pagination';
+// import { addClass } from "dom-lib";
+// import {Link} from 'react-router-dom';
+
+// import {
+//     CircularProgressbar,
+//     CircularProgressbarWithChildren,
+//     buildStyles
+//   } from "react-circular-progressbar";
+//   import "react-circular-progressbar/dist/styles.css";
+
+// const rowSelection = {
+//     onChange: (selectedRowKeys, selectedRows) => {
+//       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+//     },
+//   };
+
+// function ModuleExpandSEOAudit() {
+//     const [show,setshow]= useState(false);
+//     const [sidenav,setsidenav] = useState(false);
+//     const [clientchosen, setclientchosen] = useState([
+  
+//         {
+//           projname:"Myntra - Shoes"
+//         },
+//         {
+//           projname:"Myntra - Loafers"
+//         }
+//     ]);
+//     const [projectslisttop, setprojectslisttop] = useState([
+//         {
+//         title:"Myntra",
+//         projects:[
+//             {
+//             projname:"Myntra - Shoes"
+//             },
+//             {
+//             projname:"Myntra - Loafers"
+//             }
+//         ]
+//         },
+//         {
+//         title:"Amazon",
+//         projects:[
+//             {
+//             projname:"Amazon - Fashion"
+//             },
+//             {
+//             projname:"Amazon - Jewellery"
+//             }
+//         ]
+//         }
+//     ])
+//     function showProjects(a){
+//         var proj = projectslisttop.filter(item => item.title == a);
+//         console.log(proj[0].projects)
+//         setclientchosen(proj[0].projects)
+//     }
+//     const ref = useRef()
+//     const [isMenuOpen, setIsMenuOpen] = useState(false)
+//     useEffect(() => {
+//         const checkIfClickedOutside = e => {
+//         if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+//             setIsMenuOpen(false)
+//         }
+//         }
+
+//         document.addEventListener("mousedown", checkIfClickedOutside)
+
+//         return () => {
+//         document.removeEventListener("mousedown", checkIfClickedOutside)
+//         }
+//     }, [isMenuOpen])
+//     const [sidenavToggle, setSidenavToggle] = useState(true);
+
+//     return (
+//         <>
+//             <section class="outer-wrapper seo-audit dashboard-seo">
+//             <div class="top-nav-bar">
+//                 <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span>
+//                 <div className="wrapper dashboard-seo-dropdown" ref={ref}>
+//                     <button
+//                         className="button"
+//                         onClick={() => setIsMenuOpen(oldState => !oldState)}
+//                     >
+//                         All data View <i class="fa fa-caret-down" aria-hidden="true"></i>
+//                     </button>
+//                     {isMenuOpen && (
+//                     <div className="row">
+//                         <div className="col-md-6" style={{borderRight:'1px solid rgba(0,0,0,.15)'}}>
+                            
+//                             <ul className="Clients-list">
+//                             <li  onClick={()=>{showProjects("Myntra")}}><span>Myntra</span> <i class="fa fa-angle-right"></i></li>
+//                             <li  onClick={()=>{showProjects("Amazon")}}><span>Amazon</span> <i class="fa fa-angle-right"></i></li>
+//                             </ul>
+//                         </div>
+//                         <div className="col-md-6">
+//                         <ul class="projectsList">
+//                         {clientchosen.map((i)=>{
+//                             return(
+//                             <li onClick={()=>{setIsMenuOpen(false)}}><a style={{color:"inherit"}} href={`dashboard-seo?id=${i.projname}`}>{i.projname}</a></li>
+//                             )
+//                         })}
+//                         </ul>
+//                         </div>
+//                     </div>
+
+//                     )}
+//                     </div> 
+//                 </div>
+//                 <div class="nav-bar-center">&nbsp;</div>
+//                 <div class="nav-bar-right">
+//                     <ul class="list-unstyled nav-right-menu">
+//                         <li><i class="fa fa-bell"></i></li>
+
+//                         <li class="dropdown">
+//                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
+//                                 <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
+//                                 <span class="profile-name">SEO</span>
+//                             </button>
+
+
+
+//                                 <ul style={{display:sidenav?"bloc{i.description}k":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+//                                 <li><a href="">Profile</a></li>
+
+//                                 <li><a href="/">Log Out</a></li>
+//                                 </ul>
+
+//                         </li>
+//                     </ul>
+//                 </div>
+//                 <div class="clearfix"></div>
+//             </div>
+
+//             <div className="custom-row-dashboard-seo">
+//                 <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+//                     <div class="sidebar-nav-bar">
+//                         {sidenavToggle 
+//                             ?
+//                             <>
+//                                 <ul class="list-unstyled side-menu">
+//                                 <li><a href="/dashboard-seo?id=Myntra - Shoes"><i class="fa fa-home"></i>Home</a></li>
+//                                 <li><a href="module-expand-da"><span class="icon"><i class="fa fa-check"></i></span><span>DA/ PA Checker</span></a></li>
+//                                 <li><a href="module-expand-google-trends"><span class="icon"><i class="fa fa-line-chart" aria-hidden="true"></i></span><span>Google Trends</span></a></li>
+//                                 <li><a href="module-expand-page-speed"><span class="icon"><i class="fa fa-tachometer" aria-hidden="true"></i></span><span>Page Speed and Core Web Vitals</span></a></li>
+//                                 <li><a href="module-expand-click-share"><span class="icon"><i class="fa fa-share"></i></span><span>Click Share</span></a></li>
+//                                 <li><a href="module-expand-rank-tracking"><span class="icon"><i class="fa fa-trophy"></i></span><span>Rank Tracking</span></a></li>
+//                                 <li><a href="module-expand-site-uptime"><span class="icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span><span>Site Uptime Monitor</span></a></li>
+//                                 <li><a href="module-expand-gsc"><span class="icon"><i class="fa fa-database" aria-hidden="true"></i></span><span>GSC Data Extractor</span></a></li>
+//                                 <li><a href="module-expand-organic-research"><span class="icon"><i class='fa fa-flask' aria-hidden="true"></i></span><span>Organic Research module</span></a></li>
+//                                 <li><a href="module-expand-roi"><span class="icon"><i class="fa fa-calculator" aria-hidden="true"></i></span><span>ROI Calculator</span></a></li>
+//                                 <li><a href="content-word-count"><span class="icon"><i class="fa fa-file" aria-hidden="true"></i></span><span>Content Word Count on a Page</span></a></li>
+//                                 <li><a href="module-expand-backlinks"><span class="icon"><i class="fa fa-external-link" aria-hidden="true"></i></span><span>BackLinks</span></a></li>
+//                                 <li><a href="module-expand-keyword-research"><span class="icon"><i class="fa fa-keyboard-o" aria-hidden="true"></i></span><span>Keyword Research</span></a></li>
+//                                 <li><a href="module-expand-seo-volatality"><span class="icon"><i class="fa fa-building-o"></i></span><span>SEO Volatality</span></a></li>
+//                                 <li><a href="module-expand-google-analytics"><span class="icon"><i class="fa fa-bar-chart" aria-hidden="true"></i></span><span>Google Analytics</span></a></li>
+//                                 <li><a href="module-expand-seo-audit"><span class="icon"><i class="fa fa-pagelines"></i></span><span>SEO Audit</span></a></li>
+//                                 <br />
+//                                 <li><a href="/ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
+//                                 <li><a href="/configuration-seo"><i className="fa fa-cogs"></i>Configuration</a></li>
+//                                 </ul>
+//                                 <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+//                                 <i class="fa fa-angle-right"></i>
+//                                 </button>
+//                             </>
+//                             :
+//                             <>
+//                                 <ul class="list-unstyled side-menu">
+//                                 <li><a href="/dashboard-seo?id=Myntra - Shoes"><i class="fa fa-home"></i></a></li>
+//                                 <li><a href="module-expand-da"><i class="fa fa-check"></i></a></li>
+//                                 <li><a href="module-expand-google-trends"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
+//                                 <li><a href="module-expand-page-speed"><i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
+//                                 <li><a href="module-expand-click-share"><i class="fa fa-share"></i></a></li>
+//                                 <li><a href="module-expand-rank-tracking"><i class="fa fa-trophy"></i></a></li>
+//                                 <li><a href="module-expand-site-uptime"><i class="fa fa-clock-o" aria-hidden="true"></i></a></li>
+//                                 <li><a href="module-expand-gsc"><i class="fa fa-database" aria-hidden="true"></i></a></li>
+//                                 <li><a href="module-expand-organic-research"><i class='fa fa-flask' aria-hidden="true"></i></a></li>
+//                                 <li><a href="module-expand-roi"><i class="fa fa-calculator" aria-hidden="true"></i></a></li>
+//                                 <li><a href="content-word-count"><i class="fa fa-file" aria-hidden="true"></i></a></li>
+//                                 <li><a href="module-expand-backlinks"><i class="fa fa-external-link" aria-hidden="true"></i></a></li>
+//                                 <li><a href="module-expand-keyword-research"><i class="fa fa-keyboard-o" aria-hidden="true"></i></a></li>
+//                                 <li><a href="module-expand-seo-volatality"><i class="fa fa-building-o"></i></a></li>
+//                                 <li><a href="module-expand-google-analytics"><i class="fa fa-bar-chart" aria-hidden="true"></i></a></li>
+//                                 <li><a href="module-expand-seo-audit"><i class="fa fa-pagelines"></i></a></li>
+//                                 <br />
+//                                 <li><a href="/ticketslist"><i class="fa fa-ticket"></i></a></li>
+//                                 <li><a href="/configuration-seo"><i className="fa fa-cogs"></i></a></li>
+//                                 </ul>
+//                                 <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+//                                 <i class="fa fa-angle-right"></i>
+//                                 </button>
+//                             </>
+//                         }        
+//                     </div>
+//                 </div>
+//                 <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
+                    
+//                 </div>
+//             </div>
+//         </section>
+//         <Modal
+//         show={show}
+//         onHide={() => handleModal(false)}
+//         dialogClassName="modal-90w"
+//         aria-labelledby="example-custom-modal-styling-title"
+//         className="seo-audit-modal"
+//       >
+//         <Modal.Header closeButton>
+//           <Modal.Title id="example-custom-modal-styling-title">
+//             Custom Modal Styling
+//           </Modal.Title>
+//         </Modal.Header>
+//         <Modal.Body>
+//             <div class="common-wrapper">
+
+//                 <div class="common-wcard">
+
+//                     <div class="common-form-fields">
+
+//                         <div class="add-user">
+//                             <div class="form-wrappers">
+//                                 <label>Impact</label>
+//                                 <br/>
+//                                 <select name="" id="">
+//                                     <option value="">High</option>
+//                                     <option value="">Medium</option>
+//                                     <option value="">Low</option>
+//                                 </select>
+//                             </div>
+
+//                             <div class="form-wrappers">
+//                                 <label>Priority</label>
+//                                 <br/>
+//                                 <select name="" id="">
+//                                     <option value="">High</option>
+//                                     <option value="">Medium</option>
+//                                     <option value="">Low</option>
+//                                 </select>
+//                             </div>
+
+//                             <div class="form-wrappers">
+//                                 <label>Suggestion</label>
+//                                 <br/>
+//                                 <textarea cols="48" rows="10"></textarea>
+//                             </div>
+
+//                             <div class="form-wrappers">
+//                                 <label>Reference Image</label>
+//                                 <br/>
+//                                 <div class="images-description">
+//                                     {inputimg.map((j)=>{
+//                                         return(
+//                                             <img src={j.imgsrc}/>
+//                                         )
+//                                     })}
+//                                     <button class="file-btn" onClick={()=>{document.getElementById('fileMy1').click()}}><i class="fa fa-plus"></i></button>
+//                                     <input type='file' id="fileMy1" class="none" onChange={(e)=>addnewimg1(e)}></input>
+//                                 </div>
+//                             </div>
+                            
+//                             <div class="form-wrappers">
+//                                 <label>Status</label>
+//                                 <br/>
+//                                 <select name="" id="">
+//                                     <option value="">Active</option>
+//                                     <option value="">Completed</option>
+//                                     <option value="">Prospect</option>
+//                                 </select>
+//                             </div>
+                            
+//                             <div class="form-wrappers">
+//                                 <label>Status Update Date</label>
+//                                 <br/>
+//                                 <input type="date" />
+//                             </div>
+
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         </Modal.Body>
+//         <Modal.Footer>  
+//         <Button onClick={()=>handleModal()}>Close</Button>  
+//         <Button onClick={()=>handleModal()}>Save</Button>  
+//         </Modal.Footer> 
+//       </Modal>
+//         </>
+//     );
+// }
+
+// export default ModuleExpandSEOAudit;
+
+
+
+
 
 import React from "react";
 import Chart from "react-google-charts";
@@ -7,14 +316,25 @@ import { Button,Modal} from 'react-bootstrap';
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 import "antd/dist/antd.css";
+import  Card  from "react-bootstrap/Card";
 import { Table, Input,  Row,  Col } from "antd";
 import {Dropdown} from 'react-bootstrap'
 import Highcharts from 'highcharts';
-import {ModuleExpandTickets} from './index';
+import {ModuleExpandTickets, SideNavBarCustom, SideNavBarCustomClosed} from './index';
 import Pagination from '@mui/material/Pagination';
 import { addClass } from "dom-lib";
 import {Link} from 'react-router-dom';
-
+// //////////////////////////////
+import {
+    CircularProgressbar,
+    CircularProgressbarWithChildren,
+    buildStyles
+  } from "react-circular-progressbar";
+  import "react-circular-progressbar/dist/styles.css";
+  
+  
+//   import ChangingProgressProvider from "./ChangingProgressProvider";
+//   /////////////////////////
 const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -22,6 +342,8 @@ const rowSelection = {
   };
 
 function ModuleExpandSEOAudit() {
+    const u = localStorage.getItem('state');
+    const [usertype, setusertype] = useState(u);
     const [show,setshow]= useState(false);
     const [sidenav,setsidenav] = useState(false);
     const [page, setPage] = React.useState(1);
@@ -30,6 +352,45 @@ function ModuleExpandSEOAudit() {
     const [teamlist, setteamList] = useState([]);
     const [selectionType, setSelectionType] = useState('checkbox');
     const [teamcol,setteamcol] = useState([]);
+
+    // state//////////////////////////////
+    const [status,setStatus] = useState("")
+    const [popover,setPopOver] = useState(false)
+    const [percentage,setPercentage] = useState(80)
+    const [auditName,setAuditName] = useState("Myntra");
+    const [auditDate,setAuditDate] = useState("07/10/2021")
+    const [progressColor,setProgressColor] = useState("")
+    const [progress,setProgress] = useState("in progress")
+    const [progressTextColor,setProgressTextColor] = useState("")
+    useEffect(()=>{
+        if(percentage>=80){
+            setProgressColor("green")
+            setStatus("Good")
+        }
+        else if(percentage>=60){
+            setProgressColor("turquoise")
+            setStatus("Not Bad")
+        }
+        else if(percentage>=40){
+            setProgressColor("orange")
+            setStatus("Not Bad")
+        }
+        else{
+            setProgressColor("red")
+            setStatus("Bad")
+
+        }
+
+        if(progress=="in progress"){
+            setProgressTextColor("#ffcb35")
+        }
+        else if(progress=="completed"){
+            setProgressTextColor("green")
+        }
+    })
+
+    
+    //   ////////////////////////////////
     var totalpage=100;
     const [pageArray,setpageArray] = useState([{
         page:1
@@ -307,7 +668,8 @@ function ModuleExpandSEOAudit() {
     return (
         <>
             <section class="outer-wrapper seo-audit dashboard-seo">
-            <div class="top-nav-bar">
+            {
+                usertype == "SEO" ?<div class="top-nav-bar">
                 <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span>
                 <div className="wrapper dashboard-seo-dropdown" ref={ref}>
                     <button
@@ -339,10 +701,33 @@ function ModuleExpandSEOAudit() {
                     )}
                     </div> 
                 </div>
-                <div class="nav-bar-center">&nbsp;</div>
+                {/* <div class="nav-bar-center">&nbsp;</div> */}
                 <div class="nav-bar-right">
                     <ul class="list-unstyled nav-right-menu">
-                        <li><i class="fa fa-bell"></i></li>
+                    <li>
+                    <Dropdown id="notification-dropdown">
+                        <Dropdown.Toggle id="dropdown-basic">
+                        <i class="fa fa-bell"></i>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="">
+                                <div className="notification-item">
+                                    <h4>Notification 1!!</h4>
+                                    <p>21 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                            <hr />
+                            <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                                <div className="notification-item" >
+                                    <h4>Notification 2!!</h4>
+                                    <p>8 hours ago..</p>
+                                </div>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+
+
+                    </li>
 
                         <li class="dropdown">
                             <button onClick={()=>{console.log("hiii");setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
@@ -352,8 +737,8 @@ function ModuleExpandSEOAudit() {
 
 
 
-                                <ul style={{display:sidenav?"bloc{i.description}k":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a href="">Profile</a></li>
+                                <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a href="/profile">Profile</a></li>
 
                                 <li><a href="/">Log Out</a></li>
                                 </ul>
@@ -362,7 +747,55 @@ function ModuleExpandSEOAudit() {
                     </ul>
                 </div>
                 <div class="clearfix"></div>
-            </div>
+            </div> :
+             <div class="top-nav-bar">
+             <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span></div>
+             <div class="nav-bar-right">
+               <ul class="list-unstyled nav-right-menu">
+                 <li>
+                   <Dropdown id="notification-dropdown">
+                     <Dropdown.Toggle id="dropdown-basic">
+                     <i class="fa fa-bell"></i>
+                     </Dropdown.Toggle>
+                     <Dropdown.Menu>
+                         <Dropdown.Item href="">
+                             <div className="notification-item">
+                                 <h4>Notification 1!!</h4>
+                                 <p>21 hours ago..</p>
+                             </div>
+                         </Dropdown.Item>
+                         <hr />
+                         <Dropdown.Item href="" style={{backgroundColor:"#85C1E9"}}>
+                             <div className="notification-item" >
+                                 <h4>Notification 2!!</h4>
+                                 <p>8 hours ago..</p>
+                             </div>
+                         </Dropdown.Item>
+                     </Dropdown.Menu>
+                 </Dropdown>
+       
+       
+                 </li>
+                 <li class="dropdown">
+                   <button onClick={()=>{setsidenav(!sidenav);}} class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
+                   <span class="profile-pic"><img src="images/profile-pic.jpeg" alt=""/></span>
+                   <span class="profile-name">Director</span>
+                 </button>
+                   
+                     
+                     
+                     <ul style={{display:sidenav?"block":"none"}} class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                       <li><a href="/profile">Profile</a></li>
+                       
+                       <li><a href="/">Log Out</a></li>
+                     </ul>
+                   
+                 </li>
+               </ul>
+             </div>
+             <div class="clearfix"></div>
+           </div>
+            }
 
             <div className="custom-row-dashboard-seo">
                 <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
@@ -370,7 +803,7 @@ function ModuleExpandSEOAudit() {
                         {sidenavToggle 
                             ?
                             <>
-                                <ul class="list-unstyled side-menu">
+                                {/* <ul class="list-unstyled side-menu">
                                 <li><a href="/dashboard-seo?id=Myntra - Shoes"><i class="fa fa-home"></i>Home</a></li>
                                 <li><a href="module-expand-da"><span class="icon"><i class="fa fa-check"></i></span><span>DA/ PA Checker</span></a></li>
                                 <li><a href="module-expand-google-trends"><span class="icon"><i class="fa fa-line-chart" aria-hidden="true"></i></span><span>Google Trends</span></a></li>
@@ -390,14 +823,15 @@ function ModuleExpandSEOAudit() {
                                 <br />
                                 <li><a href="/ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
                                 <li><a href="/configuration-seo"><i className="fa fa-cogs"></i>Configuration</a></li>
-                                </ul>
+                                </ul> */}
+                                <SideNavBarCustom />
                                 <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
                                 <i class="fa fa-angle-right"></i>
                                 </button>
                             </>
                             :
                             <>
-                                <ul class="list-unstyled side-menu">
+                                {/* <ul class="list-unstyled side-menu">
                                 <li><a href="/dashboard-seo?id=Myntra - Shoes"><i class="fa fa-home"></i></a></li>
                                 <li><a href="module-expand-da"><i class="fa fa-check"></i></a></li>
                                 <li><a href="module-expand-google-trends"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
@@ -417,7 +851,8 @@ function ModuleExpandSEOAudit() {
                                 <br />
                                 <li><a href="/ticketslist"><i class="fa fa-ticket"></i></a></li>
                                 <li><a href="/configuration-seo"><i className="fa fa-cogs"></i></a></li>
-                                </ul>
+                                </ul> */}
+                                <SideNavBarCustomClosed />
                                 <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
                                 <i class="fa fa-angle-right"></i>
                                 </button>
@@ -426,14 +861,17 @@ function ModuleExpandSEOAudit() {
                     </div>
                 </div>
                 <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
+                    {
+                        popover?<div className="pop-over">
+                        {/* pagination */}
+                        <button className="close-button close p-3 btn btn-danger" onClick={()=>setPopOver(!popover)}>
+                        <span class="close mt-0 mr-0">x</span>
+                        </button>
                     
-                   
-                    <div className="row">
-                        <div className="ms-5 mb-5">
+                        <div className="header">
                         
-                            {/* <Pagination count={100} variant="outlined" shape="rounded" page={page} onChange={handleChange}/> */}
                             <div class="pagination p12">
-                            <a onClick={pagePrev} class="prev" href="#"><li>&lt;</li></a>
+                                    <a onClick={pagePrev} class="prev" href="#"><li>&lt;</li></a>
                                 <ul>
                                     {
                                         pageArray.map(item=>{
@@ -442,31 +880,16 @@ function ModuleExpandSEOAudit() {
                                             )
                                         })
                                     }
-                                    {/* <a class="is-active" href="#"><li>10</li></a> */}
                                     
                                     <a onClick={pageNext} class="next" href="#"><li >&gt;</li></a>
                                 </ul>
                             </div>
 
                         </div>
-                    </div>
-                    {/* <div className="row my-2">
-                        <div className="col-md-2 x-5 my-2 ">
-                            <label className="ms-md-5" style={{marginRight:"0px"}} htmlFor="">Audit Module</label>
-                        </div>
-                        <div className="col-md-2">
-                            <span><input className="text-center" value="Lorem ipsum" type="text" /></span>
-                        </div>
-                    </div>
-                    <div className="row my-2">
-                        <div className="col-md-2 x-5 my-2 ">
-                            <label className="ms-md-5" style={{marginRight:"0px"}} htmlFor="">Audit Point Title</label>
-                        </div>
-                        <div className="col-md-2">
-                            <span><input className="text-center" value="Lorem ipsum" type="text" /></span>
-                        </div>
-                    </div> */}
-                    <div class="common-wrapper">
+                    <hr/>
+                    {/* content */}
+                    <div className="form-scroll">
+                    <div class="common-wrapper ">
 
                         <div class="common-wcard">
 
@@ -488,7 +911,7 @@ function ModuleExpandSEOAudit() {
                                     <div class="form-wrappers">
                                         <label>Description</label>
                                     </div>
-                                
+                                    
                                     {notes1 && notes1.map((i, index)=>{
                                         return(
                                             <div>
@@ -497,19 +920,66 @@ function ModuleExpandSEOAudit() {
                                                 </div>
                                                 <div className="row common-mb-24">
                                                     <div className="col-1 ms-auto text-center">
-                                                        <button id={`button-${i.id}`} class="astext" onClick={()=>{addClass(i.id)}}>Yes</button>
+                                                        <button class="btn btn-outline-success" 
+                                                        id={`button-${i.id}`} 
+                                                        onClick={()=>{addClass(i.id)}}
+                                                        >Yes</button>
                                                     </div>
                                                     <div className="col-1 text-center">
-                                                        <button class="astext" onClick={()=>handleModal()}>No</button>
+                                                        <button class="btn btn-outline-danger" onClick={()=>handleModal()}>No</button>
                                                     </div>
                                                     <div className="col-3 text-center">
-                                                        <button  class="astext ">Not applicable</button>
+                                                        <button  class="btn btn-outline-warning ">Not applicable</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         )
                                     })}
                                 </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div className="footer">
+                        <div className="footer-line">
+                            <hr/>
+                        </div>
+
+                    {/* <div class="pagination2 pagination p12">
+                    <a onClick={pagePrev} class="prev" href="#"><li>&lt;&lt;</li></a>
+                    <a onClick={pageNext} class="next" href="#"><li >&gt;&gt;</li></a>
+                    <button className="outline-btn">Save</button>   
+                    <button className="outline-btn ms-2">Complete</button>      
+                      
+                    </div> */}
+                    <div class="pop-over-footer">
+                    <a onClick={pagePrev} class="prev" href="#">&lt;&lt;</a>
+                    <a onClick={pageNext} class="next" href="#">&gt;&gt;</a>
+                    <button className="outline-btn">Save</button>   
+                    <button className="outline-btn ms-2">Complete</button>     
+                    </div>
+                    </div>
+                </div>:<></>
+                }
+                    
+                   
+                    
+                    <div className="row">
+                            <div class="col-sm-6 pad-lzero" style={{display:"flex"}}>
+                                    <span class="audit-title"> Audit result for {auditName}</span>
+                                    <span style={{width:50+'%',marginLeft:24+'px'}}>
+                                    </span>
+                            </div>
+                        
+                        <div className="col-md-6">
+                            <div className="add-new-btnw common-mb-24">
+                                
+                                <span class="export" style={{marginRight:0+'px'}}>
+                                    <button class="outline-btn audit-button" type="button" onClick={()=>setPopOver(!popover)}>
+                                        Audit
+                                    </button>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -527,6 +997,41 @@ function ModuleExpandSEOAudit() {
                                 
                             </span>
                     </div>
+                    
+                    <div className="row mx-5">
+                        <div className="col-sm-5 p-5  mx-5 text-center progress-circle"> 
+                        
+                        
+                        <CircularProgressbar
+                                value={percentage}
+                                text={`${percentage}% \n ${status}`}
+                                // textForPercentage={(p) => { return `${percentage}%\nsold` }}
+                                styles={buildStyles({
+                                    
+                                textColor: "black",
+                                pathColor: progressColor,
+                                trailColor: "grey",
+                                rotation: 0.08 + (1 - percentage / 100) / 2
+                                })}
+                            />
+                            
+                           
+                        </div>
+                        <div className="col-sm-5 p-5 mx-5 mt-5 mt-md-0 progress-text">
+                            <div className="row text-center mt-4">
+                                <h4>Last audited on {auditDate}</h4>
+                            </div>
+                            <div className="text-center">
+                                <div className="audit-card" style={{backgroundColor:`${progressTextColor}`}}>
+                                    {progress}
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    
+                    
                     <Table id="sample" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
                 </div>
             </div>

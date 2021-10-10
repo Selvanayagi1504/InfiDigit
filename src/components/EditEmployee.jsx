@@ -7,6 +7,7 @@ import { Table, Input,  Row,  Col } from "antd";
 import Chart from "react-google-charts";
 import {Dropdown} from 'react-bootstrap'
 import {Breadcrumb} from 'antd'
+import { SideNavBarCustom, SideNavBarCustomClosed } from '.';
 
 
 
@@ -157,6 +158,8 @@ const id = new URLSearchParams(search).get('id');
  },[]);
 
  const [sidenav,setsidenav] = useState(false);
+ const [sidenavToggle, setSidenavToggle] = useState(true);
+
 return (
 <>
     <section class="outer-wrapper edit-employee-main">
@@ -210,17 +213,31 @@ return (
             <div class="clearfix"></div>
         </div>
 
-        <div class="sidebar-nav-bar">
-            <ul class="list-unstyled side-menu">
-                {/* <li><a href="dashboard.html"><i class="fa fa-columns"></i> Dashboard</a></li> */}
-
-                <li><a href="/team-members"><i class="fa fa-users"></i> Team Members</a></li>
-            </ul>
-        </div>
-
-        <div class="content-wrapper">
-            <div class="dashboard-wrapper">
-            <Breadcrumb>
+        <div className="custom-row-dashboard-seo">
+                <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+                    <div class="sidebar-nav-bar team-members-hr">
+                        {sidenavToggle 
+                            ?
+                            <>
+                               
+                                <SideNavBarCustom/>
+                                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                                <i class="fa fa-angle-right"></i>
+                                </button>
+                            </>
+                            :
+                            <>
+                                
+                                <SideNavBarCustomClosed/>
+                                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                                <i class="fa fa-angle-right"></i>
+                                </button>
+                            </>
+                        }        
+                    </div>
+                </div>
+                <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
+                <Breadcrumb>
                 <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
                 <Breadcrumb.Item>
                 <a href="/team-members">Team Members</a>
@@ -295,8 +312,9 @@ return (
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
-        </div>
+      
 
     </section>
     <Modal show={show} onHide={()=>handleModal()} className="edit-employee-modal">  

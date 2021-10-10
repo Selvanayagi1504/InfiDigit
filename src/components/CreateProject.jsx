@@ -2,8 +2,10 @@ import React from "react";
 import {useState} from "react";
 import {Dropdown} from 'react-bootstrap'
 import {Breadcrumb} from 'antd'
+import {SideNavBarCustom, SideNavBarCustomClosed} from './index'
 
 function CreateProject() {
+    const [sidenavToggle, setSidenavToggle] = useState(true);
     const [sidenav,setsidenav] = useState(false);
     const [filelist,setfilelist] = useState([]);
     function updateList() {
@@ -71,15 +73,30 @@ return (
             <div class="clearfix"></div>
         </div>
 
-        <div class="sidebar-nav-bar">
-            <ul class="list-unstyled side-menu">
-                <li><a href="dashboard-sales"><i class="fa fa-columns"></i> Dashboard</a></li>
-
-                <li><a href="client-list"><i class="fa fa-users"></i> Customers</a></li>
-            </ul>
-        </div>
-        <div class="content-wrapper">
-            <div class="dashboard-wrapper">
+        <div className="custom-row-dashboard-seo">
+            <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+                <div class="sidebar-nav-bar sidebar-sales">
+                {sidenavToggle 
+                    ?
+                    <>
+                    
+                <SideNavBarCustom/>
+                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                <i class="fa fa-angle-right"></i>
+                </button>
+                    </>
+                    :
+                    <>
+                
+                <SideNavBarCustomClosed/>
+                <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                <i class="fa fa-angle-right"></i>
+                </button>
+                    </>
+                }        
+                </div>
+            </div>
+            <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
             <Breadcrumb>
                 <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
                 <Breadcrumb.Item>
@@ -193,6 +210,11 @@ return (
                 </div>
             </div>
         </div>
+        {/* <div class="content-wrapper">
+            <div class="dashboard-wrapper">
+            
+            </div>
+        </div> */}
     </section>
 </>
 );

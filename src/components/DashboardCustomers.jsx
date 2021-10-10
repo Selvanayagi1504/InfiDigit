@@ -1,59 +1,111 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {useState} from "react";
-// import {Dropdown} from 'react-bootstrap'
-import { Link } from "react-router-dom";
-import {
-  
-  UncontrolledButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from "reactstrap";
 import Chart from "react-google-charts";
 import "antd/dist/antd.css";
 import { Table, Breadcrumb } from "antd";
-import Highcharts from 'highcharts';
-import ReactApexChart  from 'react-apexcharts'
 import {useLocation} from "react-router-dom";
-import DateRangePicker from "react-bootstrap-daterangepicker";
-import "bootstrap-daterangepicker/daterangepicker.css";
-import $ from 'jquery'
-import { customRanges } from "./functions";
-import moment from "moment";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { NotificationSEO } from "./index";
 import 'rsuite/dist/rsuite.css';
-import Dashboard from '@rsuite/icons/legacy/Dashboard';
-import { Sidenav, Nav, Dropdown } from 'rsuite';
-const datePickerHandler = (event, picker) => {
-    let value =
-      picker.startDate.format("DD-MM-YYYY") +
-      " to " +
-      picker.endDate.format("DD-MM-YYYY");
-    $("#date-picker").val(value);
-  };
-  const start = moment().subtract(1, "days");
-  const minDate = moment("01-01-2017", "DD-MM-YYYY");
-  const maxDate = moment();
+import {SideNavBarCustomClosed, SideNavBarCustom} from './index'
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-  },
-};
 function DashboardCustomers() {
-  const [sidenav,setsidenav] = useState(false);
-  const [sidenavsales, setsidenavsales] = useState(false);
-  const search = useLocation().search;
-  const id = new URLSearchParams(search).get('id');
-  const [proj,setproj] = useState(id);
+    const [sidenavToggle, setSidenavToggle] = useState(true);
+    const [sidenav,setsidenav] = useState(false);
+    const [sidenavsales, setsidenavsales] = useState(false);
+    const search = useLocation().search;
+    const id = new URLSearchParams(search).get('id');
+    const [proj,setproj] = useState(id);
+    const [clientchosen, setclientchosen] = useState([
+  
+        {
+          projname:"Myntra - Shoes"
+        },
+        {
+          projname:"Myntra - Loafers"
+        }
+  ]);
+  const [projectslisttop, setprojectslisttop] = useState([
+    {
+      title:"Myntra",
+      projects:[
+        {
+          projname:"Myntra - Shoes"
+        },
+        {
+          projname:"Myntra - Loafers"
+        }
+      ]
+    },
+    {
+      title:"Amazon",
+      projects:[
+        {
+          projname:"Amazon - Fashion"
+        },
+        {
+          projname:"Amazon - Jewellery"
+        }
+      ]
+    }
+  ])
+  function showProjects(a){
+    var proj = projectslisttop.filter(item => item.title == a);
+    console.log(proj[0].projects)
+    setclientchosen(proj[0].projects)
+  }
+    const ref = useRef()
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+        if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+            setIsMenuOpen(false)
+        }
+        }
+
+        document.addEventListener("mousedown", checkIfClickedOutside)
+
+        return () => {
+        document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [isMenuOpen])
 return (
 <>
-<section class="outer-wrapper dashboard-sales">
+<section class="outer-wrapper dashboard-sales dashboard-seo">
   <div class="top-nav-bar">
-      <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span></div>
-      <div class="nav-bar-center">&nbsp;</div>
+      <div class="logo"><a href=""><img src="images/infidigit-logo.png" /></a> <span>Growth</span>
+      <div className="wrapper dashboard-seo-dropdown" ref={ref}>
+          <button
+            className="button"
+            onClick={() => setIsMenuOpen(oldState => !oldState)}
+          >
+            All data View <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </button>
+          {isMenuOpen && (
+           <div className="row">
+              <div className="col-md-6" style={{borderRight:'1px solid rgba(0,0,0,.15)'}}>
+                
+                <ul className="Clients-list">
+                  <li  onClick={()=>{showProjects("Myntra")}}><span>Myntra</span> <i class="fa fa-angle-right"></i></li>
+                  <li  onClick={()=>{showProjects("Amazon")}}><span>Amazon</span> <i class="fa fa-angle-right"></i></li>
+                </ul>
+              </div>
+              <div className="col-md-6">
+               <ul class="projectsList">
+               {clientchosen.map((i)=>{
+                 return(
+                   <li onClick={()=>{setproj(i.projname);setIsMenuOpen(false)}}>{i.projname}</li>
+                 )
+               })}
+               </ul>
+              </div>
+           </div>
+
+          )}
+        </div>
+      </div>
+      {/* <div class="nav-bar-center">&nbsp;</div> */}
       <div class="nav-bar-right">
         <ul class="list-unstyled nav-right-menu">
           <li>
@@ -79,32 +131,31 @@ return (
       </div>
       <div class="clearfix"></div>
     </div>
-  <div class="sidebar-nav-bar">
-    <ul class="list-unstyled side-menu">
-    <Sidenav class="sidenav-seo">
-            <Sidenav.Body>
-            <Nav>
-                <Dropdown eventKey="1" title="Dasboard" >
-                  
-                      
-                      <Dropdown.Menu eventKey="1-1" title="Myntra">
-                        <Dropdown.Item eventKey="1-1-1" onClick={()=>{setproj("Myntra - Myntra Shoes");}}>Myntra Shoes</Dropdown.Item>
-                        <Dropdown.Item eventKey="1-1-2" onClick={()=>{setproj("Myntra - Myntra Loafers");}}>Myntra Loafers</Dropdown.Item>
-                      </Dropdown.Menu>
-                      
-                </Dropdown>
-                
-                <Nav.Item eventKey="3" href="tickets-list-customers">
-                  <i class="fa fa-ticket"></i>Tickets
-                </Nav.Item>
-            </Nav>
-            </Sidenav.Body>
-        </Sidenav>
-    </ul>
-  </div>
-  <div class="content-wrapper">
-    <div class="dashboard-wrapper dashboard-customers">
-        <Breadcrumb>
+    <div className="custom-row-dashboard-seo">
+      <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+          <div class="sidebar-nav-bar sidebar-sales">
+        {sidenavToggle 
+            ?
+            <>
+              
+          <SideNavBarCustom/>
+          <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+          <i class="fa fa-angle-right"></i>
+          </button>
+            </>
+            :
+            <>
+          
+          <SideNavBarCustomClosed/>
+          <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+          <i class="fa fa-angle-right"></i>
+          </button>
+            </>
+        }        
+          </div>
+      </div>
+      <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard dashboard-customers":"custom-column-90-dashboard-seo main-dashboard dashboard-customers"}>
+      <Breadcrumb>
             <Breadcrumb.Item><a href="/">Home</a></Breadcrumb.Item>
             <Breadcrumb.Item>
             <a href="/dashboard-customers">Dashboard</a>
@@ -397,8 +448,13 @@ return (
                 </div>
             </div>
         </div>
+	</div>
+</div>
+  {/* <div class="content-wrapper">
+    <div class="dashboard-wrapper dashboard-customers">
+        
     </div>
-  </div>
+  </div> */}
 
   
 </section>

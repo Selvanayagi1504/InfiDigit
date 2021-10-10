@@ -11,7 +11,7 @@ import { Button,Modal} from 'react-bootstrap';
 import $ from 'jquery';
 import { Select } from 'antd';
 import Chart from "react-google-charts";
-
+import { SideNavBarCustom, SideNavBarCustomClosed } from '.';
 import {Dropdown} from 'react-bootstrap'
 
 import {
@@ -75,7 +75,7 @@ const Option = (props) => {
   };
 
 function EditProjectDir() {
-    
+    const [sidenavToggle, setSidenavToggle] = useState(true);
     const [optionSelected, setoptionSelected] = useState(null);
     function handleChange(selected){
         setoptionSelected(selected);
@@ -544,22 +544,35 @@ function EditProjectDir() {
                 <div class="clearfix"></div>
             </div>
 
-            <div class="sidebar-nav-bar">
-                <ul class="list-unstyled side-menu">
-                <li><a href="/dashboard"><i class="fa fa-columns"></i> Dashboard</a></li>
-      <li><a href="team-members-sales-dir"><i class="fa fa-tasks"></i> Team Members</a></li>
-      <li><a href="clinets-sales-dir"><i class="fa fa-tasks"></i> Clients</a></li>
-      <li><a href="project-list-sales-dir"><i class="fa fa-tasks"></i> Projects</a></li>
-                </ul>
-            </div>
-            <div class="content-wrapper">
-                <div class="dashboard-wrapper">
-               
+            <div className="custom-row-dashboard-seo">
+                <div className={sidenavToggle?"custom-column-20-dashboard-seo":"custom-column-10-dashboard-seo"}>
+                    <div class="sidebar-nav-bar">
+                    {sidenavToggle 
+                        ?
+                        <>
+                        
+                        <SideNavBarCustom/>
+                        <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                        <i class="fa fa-angle-right"></i>
+                        </button>
+                        </>
+                        :
+                        <>
+                        
+                        <SideNavBarCustomClosed/>
+                        <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
+                        <i class="fa fa-angle-right"></i>
+                        </button>
+                        </>
+                    }        
+                    </div>
+                </div>
+                <div className={sidenavToggle?"custom-column-80-dashboard-seo main-dashboard":"custom-column-90-dashboard-seo main-dashboard"}>
                 <Breadcrumb>
                         <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                        <Breadcrumb.Item><a href="/dashboard-seo">Dashboard</a></Breadcrumb.Item>
+                        <Breadcrumb.Item><a href="/dashboard">Dashboard</a></Breadcrumb.Item>
                         <Breadcrumb.Item>
-                        <a href="/sub-projects">Projects</a>
+                        <a href="/project-list-sales-dir">Projects</a>
                         </Breadcrumb.Item>
                         <Breadcrumb.Item>
                         <a href="/edit-project">Edit Project</a>
@@ -982,10 +995,16 @@ function EditProjectDir() {
                             }
                         </TabPanel>
                     </Tabs>
+                </div>
+            </div>
+            {/* <div class="content-wrapper">
+                <div class="dashboard-wrapper">
+               
+                
                         
 
                 </div>
-            </div>
+            </div> */}
 
 
         </section>
