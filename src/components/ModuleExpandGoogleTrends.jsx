@@ -656,16 +656,16 @@ function ModuleExpandGoogleTrends() {
                             </div>
                             
                             <div className="row">
-                                <div className="col-lg-4" style={{paddingLeft:12+"px"}}>
+                                <div className="col-lg-3" style={{paddingLeft:12+"px"}}>
                                     <div className="multiselect-google-trends">
                                         <label>Location</label>
                                         <select name="" id="">
-                                            <option value="Bangalore">Bangalore</option>
-                                            <option value="Chennai">Chennai</option>
+                                            <option value="Karnataka">Karnataka</option>
+                                            <option value="Punjab">Punjab</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div className="col-lg-4" style={{paddingLeft:12+"px"}}>
+                                <div className="col-lg-3" style={{paddingLeft:12+"px"}}>
                                     <div className="multiselect-google-trends">
                                         <label>Type of Search</label>
                                         <select name="" id="">
@@ -673,12 +673,21 @@ function ModuleExpandGoogleTrends() {
                                         </select>
                                     </div>
                                 </div>
-                                <div className="col-lg-4" style={{paddingLeft:12+"px"}}>
+                                <div className="col-lg-3" style={{paddingLeft:12+"px"}}>
                                     <div className="multiselect-google-trends">
                                         <label>Category</label>
                                         <select name="" id="">
                                             <option value="FootWear">Footwear</option>
                                             <option value="Dress">Dress</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="col-lg-3" style={{paddingLeft:12+"px"}}>
+                                    <div className="multiselect-google-trends">
+                                        <label>Frequency</label>
+                                        <select name="" id="">
+                                            <option value="Daily">Daily</option>
+                                            <option value="Weekly">Weekly</option>
                                         </select>
                                     </div>
                                 </div>

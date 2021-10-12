@@ -1250,7 +1250,7 @@ function ModuleExpandGoogleAnalytics() {
                                             allowSelectAll={true}
                                             value={GraphGASelected}
                                         />
-                                        <ReactSelect
+                                        {/* <ReactSelect
                                             className="multiselect-graph-ga"
                                             options={BottomSegmentOptions}
                                             isMulti
@@ -1262,7 +1262,7 @@ function ModuleExpandGoogleAnalytics() {
                                             onChange={handleChangeBottomSegment}
                                             allowSelectAll={true}
                                             value={BottomSegmentSelected}
-                                        />
+                                        /> */}
                                          <select name="" id="device-type" style={{marginRight:24+'px'}}>
                                             <option value="Daily">Daily</option>
                                             <option value="Weekly">Weekly</option>

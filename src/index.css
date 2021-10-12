@@ -76,6 +76,33 @@ ul{
   z-index: 1;
   padding-bottom: 64px;
   }
+
+  ul.configuration-tab-list.projects-list::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+  }
+  
+ ul.configuration-tab-list.projects-list::-webkit-scrollbar
+  {
+    width: 5px;
+    background-color: #F5F5F5;
+  }
+  
+ ul.configuration-tab-list.projects-list::-webkit-scrollbar-thumb
+  {
+    background-color: #AAA;
+    border-radius: 10px;
+    background-image: -webkit-linear-gradient(90deg,
+                                              rgba(0, 0, 0, .2) 25%,
+                          /* transparent 25%,
+                          transparent 50%,
+                          rgba(0, 0, 0, .2) 50%,
+                          rgba(0, 0, 0, .2) 75%,
+                          transparent 75%, */
+                          transparent)
+  }
  .sidebar-nav-bar::-webkit-scrollbar-track
   {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -1304,6 +1331,19 @@ select#maxRows{
   padding: 5px 36px;
   border: unset;
   border-radius: 4px;
+}
+.audit-titles li i.fa.fa-trash {
+  margin-left: 10%;
+  font-size: 11px;
+}
+.modules-config .css-2b097c-container {
+  width: 25em;
+}
+.modules-config .add-user {
+  width: 100%;
+}
+.modules-config select{
+  width: 100%;
 }
 
 
@@ -3410,6 +3450,11 @@ ul.configuration-tab-list {
   margin-top: 24px;
   margin-bottom: 24px;
   padding-left: 18px;
+ 
+}
+ul.configuration-tab-list.projects-list{
+  height: 40em;
+  overflow-y: scroll;
 }
 .configuration-tab-list li {
   padding: 14px 0px;
@@ -3771,6 +3816,37 @@ div#example-collapse-text-calendar {
 .sidebar-sales .control-toggle-dashboard-seo{
   margin-top: 70vh;
 }
+.kr-list .custom-column-80{
+  width: 80%;
+}
+.kr-list .custom-column-20{
+  width: 20%;
+  text-align: end;
+
+}
+.kr-list-inner {
+  padding: 13px 32px;
+  border-bottom: 1px solid lightgray;
+}
+.modal-KR .modal-body {
+  padding: 1rem 0rem !important;
+}
+.kr-list-inner ul{
+  list-style-type: none;
+}
+.kr-list-inner li {
+  padding: 6px 0px;
+}
+.kr-list-inner input[type="checkbox"] {
+  margin-right: 5px;
+}
+.kr-list-inner p {
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 5px;
+  color: gray;
+  letter-spacing: 0.5px;
+}
 @media(max-width:1440px) and (min-width:1025px){
   .keyowrd-ROI-drop {
     flex-direction: column;
@@ -4093,4 +4169,130 @@ filter: drop-shadow( 9px 3px 9px grey);
   margin-left: auto;
     margin-right: auto;
     width: 37%;
+}
+
+
+
+
+.config-dashboard td button {
+  padding: 2px 11px 6px 11px;
+  border-radius: 4px;
+}
+.config-dashboard .table-normal{
+  border: 1px solid black;
+  border-radius: 5px;
+  /* border-width: 2px; */
+}
+.config-dashboard .table-norma{
+  padding:10px;
+}
+.config-dashboard .display{
+  height: 50%;
+  width: 30%;
+margin-top: auto;
+margin-bottom: auto ;
+}
+table.table-modules{
+  width: 30%;
+  text-align: left;
+  border-radius: 2px 2px 0 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: auto;
+}
+.table-modules tbody, .table-modules td, .table-modules tfoot, .table-modules th, .table-modules thead, .table-modules tr {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+}
+.table-modules{
+  border-top: 2px solid #2B2B2B;
+  border-bottom: 2px solid #2B2B2B;
+}
+.table-modules thead > tr .left-right-border{
+  border-left: 1px solid #2B2B2B;
+}
+.table-modules th{
+    position: relative;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    text-align: center;
+    background: #FAFAFA;
+    border-bottom: 2px solid #2B2B2B;
+    transition: background 0.3s ease;
+}
+.table-modules thead > tr > th, .table-modules tbody > tr > td, .table-modules tfoot > tr > th, .table-modules tfoot > tr > td {
+  position: relative;
+  padding: 16px 66px;
+  border-left: 2px solid #2B2B2B;
+  border-right: 2px solid #2B2B2B;
+  overflow-wrap: break-word;
+}
+.table-modules thead > tr > th:not(:last-child)::before {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 1px;
+  height: 1.6em;
+  background-color: rgba(0, 0, 0, 0.06);
+  transform: translateY(-50%);
+  transition: background-color 0.3s;
+  content: '';
+}
+.table-modules tbody > tr > td {
+  border-bottom: 1px solid #F0F0F0;
+  /* border-left: 1px solid #2B2B2B;
+  border-right: 1px solid #2B2B2B; */
+  transition: background 0.3s;
+}
+.table-modules .expand-button{
+  margin-left: 2%;
+  border: unset;
+  background-color: unset;
+}
+.table-modules .add-user{
+  width: 100%;
+}
+.table-modules .css-2b097c-container {
+  width: 25em;
+  /* width: 48%; */
+  /* margin-bottom: 24px; */
+}
+.table-modules ul.input-list li:before {
+  content: "✓";
+  color: #027D02;
+  font-size: 19px;
+  margin-right: 10px;
+}
+ul.input-list {
+  list-style: none;
+  padding-left: unset;
+  font-size: 17px;
+}
+.table-modules .css-2613qy-menu{
+  font-weight: 100 !important;
+}
+.table-modules select#keywordGTFrequency, select#UrlPSFrequency {
+  width: 25em;
+}
+.table-modules .none td{
+  padding: inherit;
+}
+.table-modules .trash-module{
+  color: #0D6EFD;
+}
+.layout{
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+.layout-row{
+  /* width: 100%; */
+  height: 100px;
+  margin-left: auto;
+}
+.layout-col{
+  padding: 40px 0;
+  text-align: center;
+  background-color: #C5C5C5;
+  border-radius: 10px;
 }

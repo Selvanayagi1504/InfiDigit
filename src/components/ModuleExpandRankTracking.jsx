@@ -7,7 +7,7 @@ import { Button,Modal} from 'react-bootstrap';
 import { default as ReactSelect, createFilter } from "react-select";
 import { components } from "react-select";
 import "antd/dist/antd.css";
-import { Table, Input,  Row,  Col ,Breadcrumb} from "antd";
+import { Table, Input,  Row,  Col ,Breadcrumb,Menu,Checkbox,Dropdown as Drop,} from "antd";
 import {Dropdown, Card} from 'react-bootstrap'
 import {ModuleExpandTickets, SideNavBarCustom, SideNavBarCustomClosed} from './index';
 import DatePicker,{ DateObject } from "react-multi-date-picker"
@@ -37,6 +37,27 @@ const rowSelection = {
   const filterOption = createFilter({});
 
 function ModuleExpandRankTracking() {
+
+    const [checkedColumns, setcheckedColumns] = useState([]);;
+    const [initialColumns, setinitialColumns] = useState([]);
+    const onChange = (e) => {
+        var checkedColumnsLocal = checkedColumns;
+        if(e.target.checked){
+            checkedColumnsLocal = checkedColumnsLocal.filter(id => {return id !== e.target.id})
+        }
+        else if(!e.target.checked){
+            console.log(checkedColumnsLocal);
+            checkedColumnsLocal.push(e.target.id)
+        }
+    
+        var filtered = initialColumns;
+        for(var i =0;i< checkedColumnsLocal.length; i++)
+        filtered = filtered.filter(el => {return el.dataIndex !== checkedColumnsLocal[i]})
+        setteamcol(filtered);
+        setcheckedColumns(checkedColumnsLocal);
+      }
+
+
     const u = localStorage.getItem('state');
     const [usertype, setusertype] = useState(u);
     const [allOptions, setallOptions] = useState([]);
@@ -126,6 +147,7 @@ function ModuleExpandRankTracking() {
             },
           ];
           setteamcol(columns);
+          setinitialColumns(columns)
           columns = [
             {
                 title:"URL",
@@ -213,6 +235,7 @@ function ModuleExpandRankTracking() {
                 width:x+'%'
             })
             setteamcol(a);
+            setinitialColumns(a)
             var data=[];
             optionSelected.map((i, index)=>{
                 data.push({
@@ -230,13 +253,13 @@ function ModuleExpandRankTracking() {
             data.map((i,index)=>{
                 optionSelected1.map((j)=>{
                     var x = j.value; 
-                    var m = DomainUrlSelected.filter(item => item.value !== x)[0];
-                    if(m != undefined){
+                    // var m = DomainUrlSelected.filter(item => item.value !== x)[0];
+                    // if(m != undefined){
                         data[index][x] = <div>5 <i class="fa fa-info-circle" title={`${j.value}/${data[index].keyword}`}></i></div>;
-                    }
-                    else{
-                        data[index][x] = <div>5</div>;
-                    } 
+                    // }
+                    // else{
+                    //     data[index][x] = <div>5</div>;
+                    // } 
                 })  
             })
             setkeytablelist(b)
@@ -808,7 +831,7 @@ function ModuleExpandRankTracking() {
                             </div>
                             <div className="row rank-tracking-top-select">
                                 <div className="col-lg-3 col-sm-6 col-md-6" style={{display:"flex"}}>
-                                    <label htmlFor="" style={{marginTop:5+'px'}}>Domain url</label>
+                                    {/* <label htmlFor="" style={{marginTop:5+'px'}}>Domain url</label>
                                     <ReactSelect
                                         className="da-pa-search"
                                         options={DomainUrlOption}
@@ -821,7 +844,7 @@ function ModuleExpandRankTracking() {
                                         onChange={handleChangeDomainUrl}
                                         allowSelectAll={true}
                                         value={DomainUrlSelected}
-                                    />
+                                    /> */}
                                 </div>
                                 <div className="col-lg-3"></div>
                                 <div className="col-lg-3"></div>
@@ -935,9 +958,40 @@ function ModuleExpandRankTracking() {
                                         {/* <Table id="sample" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} /> */}
 
                                         <hr />
-                                        <div class="add-new-btnw">
-                                            <a href="#" class="outline-btn">EXPORT</a>
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <Dropdown>
+                                                    <Dropdown.Toggle id="dropdown-show-hide">
+                                                        Competitors
+                                                    </Dropdown.Toggle>
+
+                                                    <Dropdown.Menu>
+                                                        <Dropdown.Item href="">
+                                                            <Menu>  
+                                                                <Menu.ItemGroup title="" >
+                                                                    {initialColumns.map((i,index)=>{
+                                                                        return(
+                                                                            <>
+                                                                                {
+                                                                                    index != (initialColumns.length-1) ?<><Menu.Item key={index}><Checkbox id={i.key} onChange={onChange} defaultChecked>{i.title}</Checkbox></Menu.Item></> :<></>
+                                                                                }
+                                                                            </>
+                                                                        )
+                                                                    })}
+                                                                </Menu.ItemGroup>
+                                                            </Menu>
+                                                        </Dropdown.Item>
+                                                    
+                                                    </Dropdown.Menu>
+                                                </Dropdown>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div class="add-new-btnw">
+                                                    <a href="#" class="outline-btn">EXPORT</a>
+                                                </div>
+                                            </div>
                                         </div>
+                                       
                                         <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
                                     </> 
                                 : 

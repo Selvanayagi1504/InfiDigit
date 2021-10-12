@@ -831,12 +831,12 @@ function ModuleExpandPageSpeed() {
                                 </div>
                                 <TabPanel>
                                     <div class="common-mt-24">
-                                        <Table id="sample-module-expand" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
+                                        <Table id="sample" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[]}} />
                                     </div>
                                 </TabPanel>
                                 <TabPanel>
                                     <div class="common-mt-24">
-                                        <Table id="sample-module-expand" columns={PageSpeedCol} dataSource={pagespeedtable} rowSelection={{type: selectionTypePageSpeed,...rowSelection,}} pagination={{position:[]}} />  
+                                        <Table id="sample" columns={PageSpeedCol} dataSource={pagespeedtable} rowSelection={{type: selectionTypePageSpeed,...rowSelection,}} pagination={{position:[]}} />  
                                     </div>
                                 </TabPanel>
                             </Tabs>
@@ -916,7 +916,7 @@ function ModuleExpandPageSpeed() {
                                 </div>
                                 {/* <div className="col-md-6 table-graph-modules" > */}
                                 <div className="col-md-12 common-mt-24">
-                                    <Table id="sample-module-expand" style={{overflow:"hidden"}} className="page-speed-second" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
+                                    <Table id="sample" style={{overflow:"hidden"}} className="page-speed-second" columns={keyTableCol} dataSource={[...keytablelist]} rowSelection={{type: selectionTypeKeyTable,...rowSelection,}} pagination={{position:[]}} />
                                 </div>
                             </div>
                             

@@ -2599,6 +2599,7 @@
 
 // export default Configuration;
 
+import {useHistory} from "react-router-dom";
 
 
 import React, { useState, useEffect } from "react";
@@ -2608,6 +2609,7 @@ import { default as ReactSelect, components } from "react-select";
 import { Button,Modal} from 'react-bootstrap';  
 import Chart from "react-google-charts";
 import { Link } from "react-router-dom";
+import EditEmployee from "./EditEmployee";
 const Option = (props) => {
   return (
     <div>
@@ -3137,8 +3139,7 @@ function Configuration() {
           location:"Bangalore",
           billingstart:"08/05/2020",
           billingend:"08/05/2021",
-          shiftstart:"9.00AM",
-          shiftend:"4.00PM",
+         
           delete:<a href="edit-project"><i class="fa fa-trash"></i></a>
 
       });
@@ -3171,16 +3172,6 @@ function Configuration() {
               title:"Billing End Date",
               dataIndex:"billingend",
               key:"billingend",
-          },
-          {
-              title:"Shift Start Time",
-              dataIndex:"shiftstart",
-              key:"shiftstart",
-          },
-          {
-              title:"Shift End Time",
-              dataIndex:"shiftend",
-              key:"shiftend",
           },
           {
           title:"",
@@ -3363,22 +3354,22 @@ function Configuration() {
     data = [
         {
             key:"1",
-            modulename:<div>Audit Module 0 <ul class="audit-titles"><li onClick={()=>{changeAuditModalData(1,1)}}>Title 0</li><li onClick={()=>{changeAuditModalData(1,2)}}>Title 1</li><li onClick={()=>{changeAuditModalData(1,3)}}>Title 2</li></ul></div>,
+            modulename:<div>Audit Module 0 <ul class="audit-titles"><li onClick={()=>{changeAuditModalData(1,1)}}>Title 0 <i class="fa fa-trash"></i></li><li onClick={()=>{changeAuditModalData(1,2)}}>Title 1 <i class="fa fa-trash"></i></li><li onClick={()=>{changeAuditModalData(1,3)}}>Title 2 <i class="fa fa-trash"></i></li></ul></div>,
             actions:<div><a class="common-mr-24 view-audit-config" onClick={()=>{changeAuditModalData(1,1)}}> View </a><i class="fa fa-trash"></i></div>
         },
         {
             key:"2",
-            modulename:<div>Audit Module 1 <ul class="audit-titles"><li onClick={()=>{changeAuditModalData(2,1)}}>Title 0</li><li onClick={()=>{changeAuditModalData(2,2)}}>Title 1</li><li onClick={()=>{changeAuditModalData(2,3)}}>Title 2</li></ul></div>,
+            modulename:<div>Audit Module 1 <ul class="audit-titles"><li onClick={()=>{changeAuditModalData(2,1)}}>Title 0 <i class="fa fa-trash"></i></li><li onClick={()=>{changeAuditModalData(2,2)}}>Title 1 <i class="fa fa-trash"></i></li><li onClick={()=>{changeAuditModalData(2,3)}}>Title 2 <i class="fa fa-trash"></i></li></ul></div>,
             actions:<div><a class="common-mr-24 view-audit-config" onClick={()=>{changeAuditModalData(2,1)}}> View </a><i class="fa fa-trash"></i></div>
         },
         {
             key:"3",
-            modulename:<div>Audit Module 2 <ul class="audit-titles"><li onClick={()=>{changeAuditModalData(3,1)}}>Title 0</li><li onClick={()=>{changeAuditModalData(3,2)}}>Title 1</li><li onClick={()=>{changeAuditModalData(3,3)}}>Title 2</li></ul></div>,
+            modulename:<div>Audit Module 2 <ul class="audit-titles"><li onClick={()=>{changeAuditModalData(3,1)}}>Title 0 <i class="fa fa-trash"></i></li><li onClick={()=>{changeAuditModalData(3,2)}}>Title 1 <i class="fa fa-trash"></i></li><li onClick={()=>{changeAuditModalData(3,3)}}>Title 2 <i class="fa fa-trash"></i></li></ul></div>,
             actions:<div><a class="common-mr-24 view-audit-config" onClick={()=>{changeAuditModalData(3,1)}}> View </a><i class="fa fa-trash"></i></div>
         },
         {
             key:"4",
-            modulename:<div>Audit Module 3 <ul class="audit-titles"><li onClick={()=>{changeAuditModalData(4,1)}}>Title 0</li><li onClick={()=>{changeAuditModalData(4,2)}}>Title 1</li><li onClick={()=>{changeAuditModalData(4,3)}}>Title 2</li></ul></div>,
+            modulename:<div>Audit Module 3 <ul class="audit-titles"><li onClick={()=>{changeAuditModalData(4,1)}}>Title 0 <i class="fa fa-trash"></i></li><li onClick={()=>{changeAuditModalData(4,2)}}>Title 1 <i class="fa fa-trash"></i></li><li onClick={()=>{changeAuditModalData(4,3)}}>Title 2 <i class="fa fa-trash"></i></li></ul></div>,
             actions:<div><a class="common-mr-24 view-audit-config" onClick={()=>{changeAuditModalData(4,1)}}> View </a><i class="fa fa-trash"></i></div>
         }
     ]
@@ -3592,27 +3583,7 @@ function Configuration() {
                 {sidenavToggle 
                     ?
                     <>
-                        {/* <ul class="list-unstyled side-menu">
-                        <li><a href="/dashboard-seo?id=Myntra - Shoes"><i class="fa fa-home"></i>Home</a></li>
-                        <li><a href="module-expand-da"><span class="icon"><i class="fa fa-check"></i></span><span>DA/ PA Checker</span></a></li>
-                        <li><a href="module-expand-google-trends"><span class="icon"><i class="fa fa-line-chart" aria-hidden="true"></i></span><span>Google Trends</span></a></li>
-                        <li><a href="module-expand-page-speed"><span class="icon"><i class="fa fa-tachometer" aria-hidden="true"></i></span><span>Page Speed and Core Web Vitals</span></a></li>
-                        <li><a href="module-expand-click-share"><span class="icon"><i class="fa fa-share"></i></span><span>Click Share</span></a></li>
-                        <li><a href="module-expand-rank-tracking"><span class="icon"><i class="fa fa-trophy"></i></span><span>Rank Tracking</span></a></li>
-                        <li><a href="module-expand-site-uptime"><span class="icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span><span>Site Uptime Monitor</span></a></li>
-                        <li><a href="module-expand-gsc"><span class="icon"><i class="fa fa-database" aria-hidden="true"></i></span><span>GSC Data Extractor</span></a></li>
-                        <li><a href="module-expand-organic-research"><span class="icon"><i class='fa fa-flask' aria-hidden="true"></i></span><span>Organic Research module</span></a></li>
-                        <li><a href="module-expand-roi"><span class="icon"><i class="fa fa-calculator" aria-hidden="true"></i></span><span>ROI Calculator</span></a></li>
-                        <li><a href="content-word-count"><span class="icon"><i class="fa fa-file" aria-hidden="true"></i></span><span>Content Word Count on a Page</span></a></li>
-                        <li><a href="module-expand-backlinks"><span class="icon"><i class="fa fa-external-link" aria-hidden="true"></i></span><span>BackLinks</span></a></li>
-                        <li><a href="module-expand-keyword-research"><span class="icon"><i class="fa fa-keyboard-o" aria-hidden="true"></i></span><span>Keyword Research</span></a></li>
-                        <li><a href="module-expand-seo-volatality"><span class="icon"><i class="fa fa-building-o"></i></span><span>SEO Volatality</span></a></li>
-                        <li><a href="module-expand-google-analytics"><span class="icon"><i class="fa fa-bar-chart" aria-hidden="true"></i></span><span>Google Analytics</span></a></li>
-                        <li><a href="module-expand-seo-audit"><span class="icon"><i class="fa fa-pagelines"></i></span><span>SEO Audit</span></a></li>
-                        <br />
-                        <li><a href="/ticketslist"><i class="fa fa-ticket"></i>Tickets</a></li>
-                        <li><a href="/configuration-seo"><i className="fa fa-cogs"></i>Configuration</a></li>
-                        </ul> */}
+                        
                         <SideNavBarCustom/>
                         <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
                         <i class="fa fa-angle-right"></i>
@@ -3620,27 +3591,7 @@ function Configuration() {
                     </>
                     :
                     <>
-                        {/* <ul class="list-unstyled side-menu">
-                        <li><a href="/dashboard-seo?id=Myntra - Shoes"><i class="fa fa-home"></i></a></li>
-                        <li><a href="module-expand-da"><i class="fa fa-check"></i></a></li>
-                        <li><a href="module-expand-google-trends"><i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
-                        <li><a href="module-expand-page-speed"><i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
-                        <li><a href="module-expand-click-share"><i class="fa fa-share"></i></a></li>
-                        <li><a href="module-expand-rank-tracking"><i class="fa fa-trophy"></i></a></li>
-                        <li><a href="module-expand-site-uptime"><i class="fa fa-clock-o" aria-hidden="true"></i></a></li>
-                        <li><a href="module-expand-gsc"><i class="fa fa-database" aria-hidden="true"></i></a></li>
-                        <li><a href="module-expand-organic-research"><i class='fa fa-flask' aria-hidden="true"></i></a></li>
-                        <li><a href="module-expand-roi"><i class="fa fa-calculator" aria-hidden="true"></i></a></li>
-                        <li><a href="content-word-count"><i class="fa fa-file" aria-hidden="true"></i></a></li>
-                        <li><a href="module-expand-backlinks"><i class="fa fa-external-link" aria-hidden="true"></i></a></li>
-                        <li><a href="module-expand-keyword-research"><i class="fa fa-keyboard-o" aria-hidden="true"></i></a></li>
-                        <li><a href="module-expand-seo-volatality"><i class="fa fa-building-o"></i></a></li>
-                        <li><a href="module-expand-google-analytics"><i class="fa fa-bar-chart" aria-hidden="true"></i></a></li>
-                        <li><a href="module-expand-seo-audit"><i class="fa fa-pagelines"></i></a></li>
-                        <br />
-                        <li><a href="/ticketslist"><i class="fa fa-ticket"></i></a></li>
-                        <li><a href="/configuration-seo"><i className="fa fa-cogs"></i></a></li>
-                        </ul> */}
+                        
                         <SideNavBarCustomClosed/>
                         <button class="control-toggle-dashboard-seo" onClick={()=>setSidenavToggle(!sidenavToggle)}>
                         <i class="fa fa-angle-right"></i>
@@ -3683,7 +3634,13 @@ function Configuration() {
                             <a onClick={()=>{openTab('access-permissions',1)}}>Access Permissions</a>
                         </li>
                         <li>
-                            <a>Customize dashboard</a>
+                            <a onClick={()=>{openTab('customize',1)}}>Customize dashboard</a>
+                        </li>
+                        <li>
+                            <a onClick={()=>{openTab('roles',1)}}>Roles</a>
+                        </li>
+                        <li>
+                            <a onClick={()=>{openTab('Employees',1)}}>Employees</a>
                         </li>
                     </ul>
                 </div>
@@ -3733,15 +3690,60 @@ function Configuration() {
                         onChange={handleChangeClientsProjects}
                         value={ClientsProjectChosenSelected}
                     />
-                    <ul class="configuration-tab-list">
+                    <ul class="configuration-tab-list projects-list">
                     <li>
                         <a onClick={()=>{openTab('team-members',3)}}>Team Members</a>
                     </li>
-                    <li>
+                    {/* <li>
                         <a onClick={()=>{openTab('modules',3)}}>Modules</a>
+                    </li> */}
+                    <li>
+                        <a onClick={()=>{openTab('module-da',3)}}>DA / PA Checker <input type="checkbox" /></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('url-comp',3)}}>Url and Competitors</a>
+                        <a onClick={()=>{openTab('gt',3)}}>Google Trends</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('page-speed',3)}}>Page Speed</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('Click-share',3)}}>Click Share</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('rank-tracking',3)}}>Rank Tracking</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('SUM',3)}}>Site Uptime Monitor</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('GSC',3)}}>GSC Data Extractor</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('ORM',3)}}>Organic Research Module</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('ROI',3)}}>ROI Calculator</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('CWC',3)}}>Content Word Count on a Page</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('BL',3)}}>BackLinks</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('KR',3)}}>Keyword Research</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('SEOV',3)}}>SEO Volatality</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('GA',3)}}>Google Analytics</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('SEOA',3)}}>SEO Audit</a>
+                    </li>
+                    <li>
+                        <a onClick={()=>{openTab('url-comp',3)}}>Url, Competitors and Keywords</a>
                     </li>
                     </ul>
                 </div>
@@ -3762,11 +3764,57 @@ function Configuration() {
                         </li>
                     </ul>
                 </div>
+                {/* DA Expand */}
+                <div className="custom-column-70 none modules-config" id="module-da">
+                    <TableRowDAPA id="1" modulename="DA/PA Checker" OptionsURL={OptionsURL} optionSelectedURL={optionSelectedURL} optionSelectedComp={optionSelectedComp} OptionsComp={OptionsComp}  />
+                </div>
+                {/* Google trends expand */}
+                <div className="custom-column-70 none modules-config" id="gt">
+                    <TableRowGT id="2" modulename="Google Trends" KeywordsGT={KeywordsGT} KeywordGoogleTrendsSelected={KeywordGoogleTrendsSelected}  />
+                </div>
+                {/* Page Speed */}
+                <div className="custom-column-70 none modules-config" id="page-speed">
+                    <TableRowPS id="3" modulename="Page Speed" UrlPSList={UrlPSList} UrlPSSelected={UrlPSSelected}  />
+                </div>
+                {/* Click Share */}
+                <div className="custom-column-70 none" id="Click-share"><div className="main-title">Click Share</div></div>
+                {/* Rank tracking Expand */}
+                <div className="custom-column-70 none" id="rank-tracking"><div className="main-title">Rank Tracking</div></div>
+                {/* Site Uptime Expand */}
+                <div className="custom-column-70 none" id="SUM"><div className="main-title">Site Uptime Monitor</div></div>
+                {/* GSC Expand */}
+                <div className="custom-column-70 none" id="GSC"><div className="main-title">GSC Data Extractor</div></div>
+                {/* ORM Expand */}
+                <div className="custom-column-70 none" id="ORM"><div className="main-title">Ornagic Research Module</div></div>
+                {/* ROI Expand */}
+                <div className="custom-column-70 none" id="ROI"><div className="main-title">ROI Calculator</div></div>
+                {/* CWC Expand */}
+                <div className="custom-column-70 none" id="CWC"><div className="main-title">Content Word Count</div></div>
+                {/* BL Expand */}
+                <div className="custom-column-70 none" id="BL"><div className="main-title">Back Links</div></div>
+                {/* KR Expand */}
+                <div className="custom-column-70 none" id="KR"><div className="main-title">Keyword Research</div></div>
+                {/* SEOV Expand */}
+                <div className="custom-column-70 none" id="SEOV"><div className="main-title">SEO Volatality</div></div>
+                {/* GA Expand */}
+                <div className="custom-column-70 none" id="GA"><div className="main-title">Google Analytics</div></div>
+                {/* SEOA Expand */}
+                <div className="custom-column-70 none" id="SEOA"><div className="main-title">SEO Audit</div></div>
+                {/* Employees Expand */}
+                <div className="custom-column-70 none" id="Employees">
+                    <Employees />
+                </div>
+                {/* Roles Expand */}
+                <div className="custom-column-70 none" id="roles">
+                    <Roles />
+                </div>
+                {/* Create Project */}
                 <div className="custom-column-70 none" id="create-project">
                     <CreateProject />
                 </div>
+                {/* Customize Dashbaord */}
                 <div className="custom-column-70 none" id="customize">
-                    user
+                    <CustomizeDashboard />
                 </div>
                 {/* Team Members Expand */}
                 <div className="custom-column-70 none" id="team-members">
@@ -4100,12 +4148,15 @@ function Configuration() {
                     </> :<></>
                 }
                 </div>
+                {/* Account Settings Expand */}
                 <div className="custom-column-70 none" id="account-settings">
                     Account Settings
                 </div>
+                {/* Profile Expand */}
                 <div className="custom-column-70 none" id="profile">
                     Profile
                 </div>
+                {/* Admin Expand */}
                 <div className="custom-column-70 none" id="admin">
                     Admin
                 </div>
@@ -4346,12 +4397,12 @@ function Configuration() {
                                                 </div>
 
                                                 <div class="form-wrappers">
-                                                    <label>Billing Start Date</label>
+                                                    <label>Start Date</label>
                                                     <input type="date" name="" />
                                                 </div>
 
                                                 <div class="form-wrappers">
-                                                    <label>Billing End Date</label>
+                                                    <label>End Date</label>
                                                     <input type="date" name="" />
                                                 </div>
 
@@ -4360,7 +4411,7 @@ function Configuration() {
                                                     <input type="text" name="" placeholder="Enter %" />
                                                 </div>
 
-                                                <div class="form-wrappers">
+                                                {/* <div class="form-wrappers">
                                                     <label>Preffered Time Zone</label>
                                                     <input type="text" name="" placeholder="Enter start time" />
                                                 </div>
@@ -4368,7 +4419,7 @@ function Configuration() {
                                                 <div class="form-wrappers">
                                                     <label></label>
                                                     <input type="text" name="" placeholder="Enter start time" />
-                                                </div>
+                                                </div> */}
 
                                             </div>
                                         </div>
@@ -4405,12 +4456,12 @@ function Configuration() {
                                             <div class="add-user">
                                                 
                                                 <div class="form-wrappers">
-                                                    <label>Billing Start Date</label>
+                                                    <label> Start Date</label>
                                                     <input type="date" name="" />
                                                 </div>
 
                                                 <div class="form-wrappers">
-                                                    <label>Billing End Date</label>
+                                                    <label> End Date</label>
                                                     <input type="date" name="" />
                                                 </div>
 
@@ -4419,15 +4470,7 @@ function Configuration() {
                                                     <input type="text" name="" placeholder="Enter %" />
                                                 </div>
 
-                                                <div class="form-wrappers">
-                                                    <label>Preffered Time Zone</label>
-                                                    <input type="text" name="" placeholder="Enter start time" />
-                                                </div>
-
-                                                <div class="form-wrappers">
-                                                    <label></label>
-                                                    <input type="text" name="" placeholder="Enter start time" />
-                                                </div>
+                                                
 
                                             </div>
                                         </div>
@@ -4546,7 +4589,7 @@ function TableRowDAPA(props){
 
   return(
       <>
-          <tr>
+          {/* <tr>
               <td>{props.id}</td>
               <td>{props.modulename}</td>
               <td style={{textAlign:"end"}}> 
@@ -4557,7 +4600,15 @@ function TableRowDAPA(props){
               </td>
           </tr>
           <tr className={expand?"":"none"}>
-              <td colspan="4">
+              <td colspan="4"> */}
+                <div class="row">
+                    <div class="col-sm-5 pad-lzero">
+                        <div class="main-title">DA / PA Checker</div>
+                    </div>
+                    <div class="col-sm-7 add-new-btnw">
+                        {/* <a href="#" class="outline-btn">Add New</a> */}
+                    </div>
+                </div>
                   <div >
                       <div class="module-description">  
                           <div class="common-wrapper"> 
@@ -4629,8 +4680,8 @@ function TableRowDAPA(props){
                       </div>
                   {/* <ReactSelect options={props.OptionsURL} isMulti closeMenuOnSelect={false} hideSelectedOptions={false} components={{ Option }} onChange={handleChangeURL} allowSelectAll={true} value={optionSelectedURL} /> */}
                   </div>
-              </td>
-          </tr>
+              {/* </td>
+          </tr> */}
       </>
   )
 }
@@ -4669,7 +4720,7 @@ function TableRowGT(props){
   const [expand, setexpand] = useState(false);
   return(
       <>
-          <tr>
+          {/* <tr>
               <td>{props.id}</td>
               <td>{props.modulename}</td>
               <td style={{textAlign:"end"}}> 
@@ -4680,7 +4731,15 @@ function TableRowGT(props){
               </td>
           </tr>
           <tr className={expand?"":"none"}>
-              <td colspan="4">
+              <td colspan="4"> */}
+              <div class="row">
+                    <div class="col-sm-5 pad-lzero">
+                        <div class="main-title">Google Trends</div>
+                    </div>
+                    <div class="col-sm-7 add-new-btnw">
+                        {/* <a href="#" class="outline-btn">Add New</a> */}
+                    </div>
+                </div>
                   <div >
                       <div class="module-description">  
                           <div class="common-wrapper"> 
@@ -4730,8 +4789,8 @@ function TableRowGT(props){
                       </div>
                   {/* <ReactSelect options={props.OptionsURL} isMulti closeMenuOnSelect={false} hideSelectedOptions={false} components={{ Option }} onChange={handleChangeURL} allowSelectAll={true} value={optionSelectedURL} /> */}
                   </div>
-              </td>
-          </tr>
+              {/* </td>
+          </tr> */}
       </>
   )
 }
@@ -4770,7 +4829,7 @@ function TableRowPS(props){
   const [expand, setexpand] = useState(false);
   return(
       <>
-          <tr>
+          {/* <tr>
               <td>{props.id}</td>
               <td>{props.modulename}</td>
               <td style={{textAlign:"end"}}> 
@@ -4781,7 +4840,15 @@ function TableRowPS(props){
               </td>
           </tr>
           <tr className={expand?"":"none"}>
-              <td colspan="4">
+              <td colspan="4"> */}
+              <div class="row">
+                    <div class="col-sm-5 pad-lzero">
+                        <div class="main-title">Page Speed</div>
+                    </div>
+                    <div class="col-sm-7 add-new-btnw">
+                        {/* <a href="#" class="outline-btn">Add New</a> */}
+                    </div>
+                </div>
                   <div >
                       <div class="module-description">  
                           <div class="common-wrapper"> 
@@ -4831,8 +4898,8 @@ function TableRowPS(props){
                       </div>
                   {/* <ReactSelect options={props.OptionsURL} isMulti closeMenuOnSelect={false} hideSelectedOptions={false} components={{ Option }} onChange={handleChangeURL} allowSelectAll={true} value={optionSelectedURL} /> */}
                   </div>
-              </td>
-          </tr>
+              {/* </td>
+          </tr> */}
       </>
   )
 }
@@ -5335,6 +5402,696 @@ function CreateProject(props){
                         <li><a href="#" class="outline-btn">Save</a></li>
                     </ul>
                 </div>
+        </>
+    )
+}
+function Employees(props){
+    const rowSelection = {
+        onChange: (selectedRowKeys, selectedRows) => {
+          console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        },
+    };
+    const [edit, setedit] = useState(false);
+    const [teamlist, setteamList] = useState([]);
+    const [selectionType, setSelectionType] = useState('checkbox');
+    const [teamcol,setteamcol] = useState([]);
+    const [searchdata,setsearch] = useState([]);
+    useEffect(()=>{
+        const data = [];
+        var filterdesig=[], filterdpmt=[], filtersrsupervisor=[], filtersupervisor=[];
+        var k=<input type="date" value="2021-08-26" />;
+        data.push({
+            key: "0",
+            empcode:"1001",
+            name: "Ankit",
+            empdesignation: "SEO",
+            department: "Operations",
+            empjoinigdate:"01/02/2000",
+            tmsupervisor:"Ravi",
+            tmsrsupervisor:"Kiran",
+            dob:"15/04/1997",
+            phone:"8796541230",
+            email:"ankit@infidigit.com",
+            salary:"######",
+            // tmstatus:<button class="deactivate">Resigned</button>,
+            tmstatus:"Resigned",
+            accntactivation:<label class="switch"><input type="checkbox" /><span class="slider round"></span></label>,
+            lastwrkdate:k
+        });
+        filterdesig.push({
+            text:"SEO",
+            value:"SEO"
+        })
+        filterdpmt.push({
+            text:"Operations",
+            value:"Operations"
+        })
+        filtersupervisor.push({
+            text:"Ravi",
+            value:"Ravi"
+        })
+        filtersrsupervisor.push({
+            text:"Kiran",
+            value:"Kiran"
+        })
+        for (let i = 1; i < 100; i++) {
+          var  k="N/A";
+        data.push({
+            key: i,
+            // empcode:<Link to={{pathname: '/edit-employee', search: `?id=${i}`,state: { detail: "1" }}}> {i} </Link>,
+            empcode:<a onClick={()=>{editemp(i)}}>{i}</a>,
+            name: `Edrward ${i}`,
+            empdesignation: `Man ${i}`,
+            department: `department ${i}`,
+            empjoinigdate:"01/02/2000",
+            tmsupervisor:"Kiran ",
+            tmsrsupervisor:"kaushal",
+            dob:"15/04/1997",
+            phone:"9022568981",
+            email:"edward@infidigit.com",
+            salary:"######",
+            // tmstatus:<button style={{width:"130px"}} class="active">Active</button>,
+            tmstatus:"Active",
+            accntactivation:<label  class="switch"><input data-onstyle="success" type="checkbox" /><span  class="slider round"></span></label>,
+            lastwrkdate: k
+        });
+        filterdesig.push({
+            text:`Man ${i}`,
+            value:`Man ${i}`
+        })
+        filterdpmt.push({
+            text:`department ${i}`,
+            value:`department ${i}`
+        })
+        filtersupervisor.push({
+            text:"Kiran",
+            value:"Kiran"
+        })
+        filtersrsupervisor.push({
+            text:"Kaushal",
+            value:"kaushal"
+        })
+        }
+        // [...new Map(array.map((x) => [x[key], x])).values()];
+        filterdesig = [... new Set(filterdesig.map(JSON.stringify))].map(JSON.parse)
+        filterdpmt = [... new Set(filterdpmt.map(JSON.stringify))].map(JSON.parse)
+        filtersupervisor = [... new Set(filtersupervisor.map(JSON.stringify))].map(JSON.parse)
+        filtersrsupervisor = [... new Set(filtersrsupervisor.map(JSON.stringify))].map(JSON.parse)
+        setsearch(data);
+        setteamList(data);
+        const columns = [
+            {
+              title:"Emp Code",
+              dataIndex: "empcode",
+              key: "empcode",
+              
+            },
+            {
+              title: "Name",
+              dataIndex: "name",
+              key: "name"
+            },
+            {
+                title:"Emp Designation",
+                dataIndex:"empdesignation",
+                key:"empdesignation",
+                filters:filterdesig,
+                filterSearch: true,
+                onFilter: (value, record) => record.empdesignation.indexOf(value) === 0
+            },
+            {
+                title:"Department",
+                dataIndex:"department",
+                key:"department",
+                filters:filterdpmt,
+                filterSearch: true,
+                onFilter: (value, record) => record.department.indexOf(value) === 0
+            },
+            {
+                title:"Emp Joining Date",
+                dataIndex:"empjoinigdate",
+                key:"empjoinigdate",
+            },
+            {
+                title:"Emp Supervisor",
+                dataIndex:"tmsupervisor",
+                key:"tmsupervisor",
+                filters:filtersupervisor,
+                filterSearch: true,
+                onFilter: (value, record) => record.tmsupervisor.indexOf(value) === 0
+            },
+            {
+                title:"Emp Sr. Supervisor",
+                dataIndex:"tmsrsupervisor",
+                key:"tmsrsupervisor",
+                filters:filtersrsupervisor,
+                filterSearch: true,
+                onFilter: (value, record) => record.tmsrsupervisor.indexOf(value) === 0
+            },
+            {
+                title:"Date Of Birth",
+                dataIndex:"dob",
+                key:"dob"
+            },
+            {
+                title:"Phone Number",
+                dataIndex:"phone",
+                key:"phone"
+            },
+            {
+                title:"Email ID",
+                dataIndex:"email",
+                key:"email"
+            },
+            {
+                title:"Salary",
+                dataIndex:"salary",
+                key:"salary"
+            },
+            {
+                title:"Emp Status",
+                dataIndex:"tmstatus",
+                key:"tmstatus",
+                filters:[{text:"Active", value:"Active"}, {text:"Resigned", value:"Resigned"}],
+                filterSearch: true,
+                onFilter: (value, record) => record.tmstatus.indexOf(value) === 0,
+                render(text, record) {
+                    return {
+                       
+                        
+                        children: text == "Active" ? <button class="active" style={{width:"130px"}}>{text}</button> : <button class="deactivate">{text}</button>
+                    };
+                }
+            },
+            {
+                title:"Account Activation",
+                dataIndex:"accntactivation",
+                key:"accntactivation"
+            },
+            {
+                title:"Last Working Date",
+                dataIndex:"lastwrkdate",
+                key:"lastwrkdate"
+            },
+          ];
+          setteamcol(columns);
+          setedit(false);
+          console.log("hi")
+    },[]);
+    
+    const history = useHistory();
+    function editemp(a){
+    //    return(<EditEmployeeConfig />)
+        console.log(a)
+        // setedit(true);
+    }
+    return(
+        <>
+            {edit ? <><EditEmployeeConfig /></>:<><div class="row">
+                    <div class="col-sm-5 pad-lzero">
+                        <div class="main-title">TEAM MEMBERS</div>
+                    </div>
+                    <div class="col-sm-7 add-new-btnw">
+                        {/* <a href="#" class="outline-btn">Add New</a> */}
+                    </div>
+                </div>
+
+                <div className="row">
+                            <div className="col-sm-5"></div>
+                            <div className="col-sm-7 add-new-btnw">
+                            <div class="search" style={{marginLeft:0+'px', width:100+'%'}}>
+                                <div class="input-group" style={{display:"block"}}>
+                            <Input.Search
+                                allowClear
+                                placeholder="Search By name"
+                                onSearch={nameSearch =>
+                                    {setteamList(
+                                        searchdata.filter(person =>
+                                        person.name.includes(nameSearch)
+                                        )
+                                    );console.log(nameSearch)}
+                                }
+                                id="input-s"
+                                />
+                                 </div>
+                                </div>
+                            </div>
+                        </div>
+
+                
+
+                <div class="common-table" >
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="data-per-page">Data Per page</div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8">
+                                <div class="data-export">
+                                    
+                                   
+                                    <span class="export">
+                                        <button class="ms-5 outline-btn ">Import</button>
+                                    </span>
+                                    <span class="export" style={{marginRight:0+'px'}}>
+                                        
+                                                <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Export
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-content" href="#">Excel</a>
+                                                    <a class="dropdown-content" href="#">CSV</a>
+                                                    <a class="dropdown-content" href="#">Sheets</a>
+                                                </div>
+                                        
+                                    </span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <Table id="sample" columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
+                </div></>}
+        </>
+    )
+}
+function Roles(props){
+    const [userroles, setuserroles] = useState([]);
+    const [userrolescol, setuserrolescol] = useState([]);
+    useEffect(()=>{
+        var data = [
+            {
+                title:"#",
+                dataIndex:"id",
+                key:"id",
+                width:"5%"
+            },
+            {
+                title:"Role",
+                dataIndex:"role",
+                key:"role",
+                width:"10%"
+            },
+            // {
+            //     title:"Action",
+            //     dataIndex:"action",
+            //     key:"action"
+            // }
+            {
+                title:"",
+                dataIndex:"",
+                key:"",
+                width:"85%"
+            }
+        ]
+        setuserrolescol(data);
+        data = [
+            {
+                key:"1",
+                id:"1",
+                role:"Director",
+                // action:<div><i class="fa fa-trash"></i></div>
+            },
+            {
+                key:"2",
+                id:"2",
+                role:"HR",
+                // action:<div><i class="fa fa-trash"></i></div>
+            },
+            {
+                key:"3",
+                id:"3",
+                role:"Sales",
+                // action:<div><i class="fa fa-trash"></i></div>
+            },
+            {
+                key:"4",
+                id:"4",
+                role:"SEO",
+                // action:<div><i class="fa fa-trash"></i></div>
+            },
+            {
+                key:"5",
+                id:"5",
+                role:"Customers",
+                // action:<div><i class="fa fa-trash"></i></div>
+            }
+        ]
+        setuserroles(data);
+    },[])
+    function addrole(){
+        var a = document.getElementById("role-name").value;
+        console.log(userroles)
+        var allItems = JSON.parse(JSON.stringify(userroles));
+        allItems.push(
+            {
+                key:allItems.length+1,
+                id:allItems.length+1,
+                role:a,
+                // action:<div><i class="fa fa-trash"></i></div>
+            }
+        )
+        console.log(allItems)
+        setuserroles(allItems);
+        document.getElementById("role-name").value="";
+    }
+    return(
+        <>
+            <div className="row common-mb-24">
+                <div className="col-md-1" style={{marginTop:5+'px'}}>Role</div>
+                <div className="col-md-6">
+                    <input type="text" id="role-name" />
+                </div>
+                <div className="col-md-5 add-new-btnw">
+                    <button class="outline-btn" onClick={()=>{addrole()}}>Add</button>
+                </div>
+            </div>
+            <Table id="sample-module-expand" dataSource={userroles} columns={userrolescol} />
+        </>
+    )
+}
+function EditEmployeeConfig(props){
+    const rowSelection = {
+        onChange: (selectedRowKeys, selectedRows) => {
+          console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        },
+      };
+    
+    //   const pieOptions = { pieSliceText: 'perce','colors':['#7bb720', 'red'], fontSize: 17, backgroundColor: 'transparent', legend : {position: 'none', textStyle: { fontSize: 16}}, chartArea:{left:0,top:10,width:'65%',height:'100%'}}
+    const pieOptions = {
+        title: "",
+        slices: [
+          {
+            color: "#2BB673"
+          },
+          {
+            color: "#d91e48"
+          },
+          {
+            color: "#007fad"
+          },
+          {
+            color: "#e9a227"
+          }
+        ],
+        legend: {
+          position: "none",
+        },
+        tooltip: {
+          showColorCode: true
+        },
+        chartArea: {
+          left: 20,
+          top: 100,
+          width: "80%",
+          height: "80%"
+        },
+      };
+    const [show,setshow]= useState(false);
+    function handleModal(){
+        setshow(!show);
+    }
+    const [piedata, setpiedata] = useState([]);
+    const [ProjList, setProjList] = useState([]);
+    const [selectionType, setSelectionType] = useState('checkbox');
+    const [projcol,setprojcol] = useState([]);
+    useEffect(()=>{
+        const a=[
+           ['Task', 'Hours per Day'],
+           ['Utilised', 6],
+           ['Not utilised', 4]
+        ];
+        setpiedata(a);
+        const data = [];
+        var filterclientname=[];
+        data.push({
+           key: 0,
+           projectstatus:"Completed",
+           clientname:"Infi",
+           billingstartdate:"03/05/2020",
+           billingenddate:"03/05/2021",
+           allocation:"20%",
+           billingperiod:"Monthly",
+           projectpoc:"Rahul"
+        });
+        filterclientname.push({
+            text:"Infi",
+            value:"Infi"
+        })
+        for (let i = 1; i < 100; i++) {
+        data.push({
+            key: i,
+            projectstatus:"Active",
+            clientname:`Myntra ${i}`,
+            billingstartdate:"03/05/2020",
+            billingenddate:"03/05/2021",
+            allocation:"20%",
+            billingperiod:"Monthly",
+            projectpoc:"Rahul"
+        });
+        filterclientname.push({
+            text:`Myntra ${i}`,
+            value:`Myntra ${i}`
+        })
+        
+        }
+        filterclientname = [... new Set(filterclientname.map(JSON.stringify))].map(JSON.parse);
+        setProjList(data);
+        const columns = [
+            {
+              title: "Project Status",
+              dataIndex: "projectstatus",
+              key: "projectstatus",
+              filters:[
+                  {
+                      text:"Active",
+                      value:"Active"
+                  },
+                  {
+                      text:"Completed",
+                      value:"Completed"
+                  }
+              ],
+                filterSearch: true,
+                onFilter: (value, record) => record.projectstatus.indexOf(value) === 0
+            },
+            {
+              title: "Client Name",
+              dataIndex: "clientname",
+              key: "clientname",
+              filters:filterclientname,
+                filterSearch: true,
+                onFilter: (value, record) => record.clientname.indexOf(value) === 0
+            },
+            {
+                title:"Billing Start Date",
+                dataIndex:"billingstartdate",
+                key:"billingstartdate",
+            },
+            {
+                title:"Billing End Date",
+                dataIndex:"billingenddate",
+                key:"billingenddate",
+            },
+            {
+                title:"% Allocation",
+                dataIndex:"allocation",
+                key:"allocation",
+            },
+            {
+                title:"Billing Period",
+                dataIndex:"billingperiod",
+                key:"billingperiod"
+            },
+            {
+                title:"Project POC",
+                dataIndex:"projectpoc",
+                key:"projectpoc"
+            },
+          ];
+          setprojcol(columns);
+    },[]);
+    return(
+        <>
+            <div class="row">
+                    <div class="col-sm-5 pad-lzero">
+                        <div class="main-title">PROJECT DETAILS AND UTILIZATION</div>
+                    </div>
+                    <div class="col-sm-7 add-new-btnw">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="common-filter">
+                        <ul class="filter-fields tab-project-list">
+                            <li>
+                                <select>
+                                    <option value="12">Last 12 months</option>
+                                    <option value="1">Jan</option>
+                                    <option value="2">Feb</option>
+                                    <option value="3">Mar</option>
+                                    <option value="4">Apr</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">Aug</option>
+                                    <option value="9">Sept</option>
+                                </select>
+                            </li>
+                            <li style={{marginLeft:24+'px'}}><button class="outline-btn" onClick={()=>handleModal()}>Custom</button></li>
+                        </ul>
+                    </div>
+                </div>
+                
+
+                
+
+                <div class="common-table">
+                    <div className="row">
+                        <div className="col-md-2">
+                            <div id="piechart">
+                            <Chart chartType="PieChart" data={piedata} options={pieOptions} graph_id="PieChart" width={"100%"} height={"400px"} legend_toggle/>
+                            <div>
+                                <div class="rect green"></div>
+                                <div class="pie-content">Utilised</div>
+                            </div>
+                            
+                            <div>
+                                <div class="rect red"></div>
+                                <div class="pie-content">Not Utilised</div>
+                            </div>
+                            </div>
+                        </div>
+                        <div className="col-md-10">
+                        <div class="data-export">   
+                            <button class="outline-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Export
+                                                </button>
+                                                <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                                    <a class=" dropdown-content" href="#">Excel</a>
+                                                    <a class="dropdown-content" href="#">CSV</a>
+                                                    <a class="dropdown-content" href="#">Sheets</a>
+
+                                                </div>
+                               
+                            </div>
+                            <Table id="sample" columns={projcol} dataSource={ProjList} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:[ "bottomRight"]}} />
+                        </div>
+                    </div>
+                </div>
+        
+                <Modal show={show} onHide={()=>handleModal()} className="edit-employee-modal">  
+                    <Modal.Header closeButton>Choose Data Range</Modal.Header>  
+                    <Modal.Body>
+                        <div class="common-wrapper">
+
+                            <div class="common-wcard">
+
+                                <div class="common-form-fields">
+
+                                    <div class="add-user">
+                                        <div class="form-wrappers">
+                                            <label>From Date</label>
+                                            <input type="date" name="" placeholder="" />
+                                        </div>
+
+                                        <div class="form-wrappers">
+                                            <label>To Date</label>
+                                            <input type="date" name="" placeholder="" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </Modal.Body>  
+                    <Modal.Footer>  
+                    <Button onClick={()=>handleModal()}>Close</Button>  
+                    <Button onClick={()=>handleModal()}>Save</Button>  
+                    </Modal.Footer>  
+                </Modal>
+        </>
+
+    )
+}
+function CustomizeDashboard(props){
+    const [contentArray,setContentArray] = useState([{id:1},{id:2},{id:3},{id:4},{id:5},{id:6}])
+    function addContent(){
+        var tempArray = JSON.parse(JSON.stringify(contentArray));
+        // var tempArray=contentArray;
+        tempArray.push({id:tempArray.length+1});
+        console.log(tempArray)
+        setContentArray(tempArray)
+    }
+    return(
+        <>
+            <div className="config-dashboard">
+                <div className="my-3">
+                    <label htmlFor="" style={{marginRight:52+'px'}}>Theme Name</label>
+                    <input type="text" />
+                </div>
+                <div className="my-3">
+                    <div className="row">
+                        <div className="col-lg-1">
+                            <label htmlFor="" style={{marginRight:52+'px'}}>Layout</label>
+                        </div>
+                        <div className="col-lg-3 layout text-center  ">
+                            <div className="d-flex my-2 ms-3 layout layout-row ">
+                                <div className="col-5 layout layout-col">1</div>
+                                <div className="col-1"></div>
+                                <div className="col-5 layout layout-col">2</div>
+                            </div>
+                            <div className="d-flex my-2 ms-3 layout layout-row ">
+                                <div className="col-5 layout layout-col">3</div>
+                                <div className="col-1"></div>
+                                <div className="col-5 layout layout-col">4</div>
+                            </div>
+                            <div className="d-flex my-2 ms-3 layout layout-row ">
+                                <div className="col-5 layout layout-col">5</div>
+                                <div className="col-1"></div>
+                                <div className="col-5 layout layout-col">6</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="my-3">
+                    <table class="table-modules text-center">
+                        <thead class="table-modules-head">
+                            <tr>
+                            <th width="1%"></th>
+                            <th classname="left-right-border" width="25%">Placeholder</th>
+                            <th width="25%" >Chart</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {contentArray.map((item)=>{
+                                        return(
+                                            <tr key={item.id}>
+                                                <td><button onClick={addContent}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16"> <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/></svg></button> </td>
+                                                <td classname="left-right-border">{item.id}</td>
+                                                <td><select name="" id="">
+                                                        <option value="">Key Words chart</option>
+                                                        <option value="">bar chart</option>
+                                                        <option value="">line chart</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="my-3 d-flex justify-content-between">
+                    <button className="outline-btn">Cancel</button>
+                    <button className="outline-btn">Apply & Save</button>
+                    <button className="outline-btn">Save</button>
+                    <div className="col-6"></div>
+                </div>
+            </div>
         </>
     )
 }

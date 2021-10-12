@@ -17,6 +17,7 @@ import {ModuleExpandTickets, SideNavBarCustom, SideNavBarCustomClosed} from './i
 import DatePicker,{ DateObject } from "react-multi-date-picker"
 import { Calendar } from "react-multi-date-picker"
 
+
 const Option = (props) => {
     return (
       <div>
@@ -31,7 +32,20 @@ const Option = (props) => {
       </div>
     );
   };
-
+  const CheckBox = (props) =>{
+    return (
+        <li>
+          <input
+            key={props.id}
+            onChange={props.handleCheckChieldElement}
+            type="checkbox"
+            checked={props.isChecked}
+            value={props.value}
+          />{" "}
+          {props.label}
+        </li>
+      );
+};
 const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -63,7 +77,10 @@ function ModuleExpandKeywordResearch() {
         var multiselectObj = document.getElementById('mtselement').ej2_instances[0];
         console.log(multiselectObj.text);
     }
-    
+    const [showKR,setshowKR]= useState(false);
+  function handleModalKR(){
+      setshowKR(!showKR);
+  }
     
     // function generate(){
     //     teamlist.filter
@@ -681,11 +698,8 @@ function ModuleExpandKeywordResearch() {
                                 <div className="col-lg-3 my-2">
                                     <label htmlFor="" style={{marginRight:52+'px'}}>Data Source</label>
                                     <select>
-                                        <option value="All">All</option>
-                                        <option value="Contains">Contains</option>
-                                        <option>Does not Contain</option>
-                                        <option>Exact match</option>
-                                        <option value="regex">Regex</option>
+                                        <option value="Google">Google</option>
+                                        <option value="Google Sheets">Google Sheets</option>
                                     </select>
                                 </div>
                             </div>
@@ -733,9 +747,10 @@ function ModuleExpandKeywordResearch() {
                                                 <label style={{marginRight:22+'px'}}>Filter</label>
                                                 </div>
                                                 <div className="col-lg-6 ms-sm-5" style={{width:205+'px', marginLeft:0.4+'rem'}}>
-                                                <MultiSelectComponent id="mtselement" popupHeight='200px' fields={fields} dataSource={productData} placeholder="Select  Keywords" mode="CheckBox" enableGroupCheckBox="true" allowFiltering="true" showSelectAll="true" filterBarPlaceholder="Search keywords">
+                                                {/* <MultiSelectComponent id="mtselement" popupHeight='200px' fields={fields} dataSource={productData} placeholder="Select  Keywords" mode="CheckBox" enableGroupCheckBox="true" allowFiltering="true" showSelectAll="true" filterBarPlaceholder="Search keywords">
                                                     <Inject services={[CheckBoxSelection]} />
-                                                </MultiSelectComponent>
+                                                </MultiSelectComponent> */}
+                                                <img src="/static/media/funnel-fill.e44527ec.svg" alt="filter" class="filterimage" onClick={()=>{handleModalKR()}}></img>
                                             </div>
                                             </div>
                                 </div>
@@ -762,21 +777,21 @@ function ModuleExpandKeywordResearch() {
                                                         <div className="col-md-6 my-2">
                                                         <label htmlFor="" className=" me-2">Metric Type</label>
                                                         <select>
-                                                                <option value="All">All</option>
-                                                                <option value="Contains">Bangalore</option>
+                                                                <option value="Keyword">Keyword</option>
+                                                                {/* <option value="Contains">Bangalore</option>
                                                                 <option>Coimbatore</option>
                                                                 <option>Chennai</option>
-                                                                <option value="regex">Mumbai</option>
+                                                                <option value="regex">Mumbai</option> */}
                                                         </select>
                                                         </div>
                                                         <div className="col-md-6 my-2">
                                                         <label htmlFor="" className=" me-2">Expression</label>
                                                         <select>
-                                                                <option value="All">All</option>
-                                                                <option value="Contains">Bangalore</option>
-                                                                <option>Coimbatore</option>
-                                                                <option>Chennai</option>
-                                                                <option value="regex">Mumbai</option>
+                                                            <option value="All">All</option>
+                                                            <option value="Contains">Contains</option>
+                                                            <option>Does not Contain</option>
+                                                            <option>Exact match</option>
+                                                            <option value="regex">Regex</option>
                                                         </select>
                                                         </div>
                                                     </div>
@@ -788,11 +803,8 @@ function ModuleExpandKeywordResearch() {
                                                         <div className="col-md-6 my-2">
                                                         <label htmlFor="" className=" me-2 ">Type of match</label>
                                                         <select>
-                                                                <option value="All">All</option>
-                                                                <option value="Contains">Bangalore</option>
-                                                                <option>Coimbatore</option>
-                                                                <option>Chennai</option>
-                                                                <option value="regex">Mumbai</option>
+                                                            <option value="Exact Match">Exact match</option>
+                                                            <option value="Semantic Matc">Semantic Match</option>
                                                         </select>
                                                         </div>
                                                     </div>
@@ -828,7 +840,7 @@ function ModuleExpandKeywordResearch() {
                                     </Dropdown>
                                 </div>
                                 <div className="row" style={{marginTop:64+'px'}}>
-                                    <div className="col-md-6">
+                                    <div className="col-md-12">
                                         <Chart
                                             className="line-graph mt-5"
                                             
@@ -850,7 +862,7 @@ function ModuleExpandKeywordResearch() {
                                             rootProps={{ 'data-testid': '1' }}
                                         />
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md-12">
                                         {
                                             searched.length===0?<>
                                             
@@ -897,8 +909,14 @@ function ModuleExpandKeywordResearch() {
                             
         </section>
 
+        <Modal show={showKR} onHide={()=>handleModalKR()} className="edit-project modal-KR">  
+            <Modal.Header closeButton>KEYWORD REFINEMENT</Modal.Header>  
+            <Modal.Body>
+                <KeywordRefinement/>
+            </Modal.Body>  
+           
+        </Modal>   
         
-
 
 
 
@@ -906,5 +924,370 @@ function ModuleExpandKeywordResearch() {
         </>
     );
 }
-
+function KeywordRefinement(){
+    const [fruites, setfruites] = useState([
+        { groupId: 1, id: 1, rolename: 1, value: "Non-Brands", isChecked: false },
+        { groupId: 2, id: 1, rolename: 1, value: "nike", isChecked: false },
+        { groupId: 2, id: 2, rolename: 1, value: "adidas", isChecked: false },
+        { groupId: 2, id: 3, rolename: 1, value: "jordans", isChecked: false },
+        { groupId: 2, id: 4, rolename: 1, value: "converse", isChecked: false },
+        { groupId: 2, id: 5, rolename: 1, value: "crocs", isChecked: false },
+        { groupId: 2, id: 6, rolename: 1, value: "skechers", isChecked: false },
+        { groupId: 2, id: 7, rolename: 1, value: "puma", isChecked: false },
+    ]);
+    const [shoes, setshoes] = useState([
+        { groupId: 1, id: 1, rolename: 1, value: "sneakers", isChecked: false },
+        { groupId: 1, id: 2, rolename: 1, value: "nike shoes", isChecked: false },
+        { groupId: 1, id: 3, rolename: 1, value: "adidas shoes", isChecked: false },
+        { groupId: 1, id: 4, rolename: 1, value: "boots", isChecked: false },
+        { groupId: 1, id: 5, rolename: 1, value: "bata shoes", isChecked: false },
+        { groupId: 1, id: 6, rolename: 1, value: "liberty shoes", isChecked: false },
+        { groupId: 1, id: 7, rolename: 1, value: "puma shoes", isChecked: false },
+    ])
+    const [Gender, setGender] = useState([
+        { groupId: 1, id: 1, rolename: 1, value: "male", isChecked: false },
+        { groupId: 1, id: 2, rolename: 1, value: "female", isChecked: false },
+    ])
+    const [Color, setColor] = useState([
+        { groupId: 1, id: 1, rolename: 1, value: "brown", isChecked: false },
+        { groupId: 1, id: 2, rolename: 1, value: "black", isChecked: false },
+        { groupId: 1, id: 3, rolename: 1, value: "pink", isChecked: false },
+        { groupId: 1, id: 4, rolename: 1, value: "green", isChecked: false },
+        { groupId: 1, id: 5, rolename: 1, value: "white", isChecked: false },
+        { groupId: 1, id: 6, rolename: 1, value: "red", isChecked: false },
+        { groupId: 1, id: 7, rolename: 1, value: "yellow", isChecked: false },
+    ])
+    const [Other, setOther] = useState([
+        { groupId: 1, id: 1, rolename: 1, value: "air", isChecked: false },
+        { groupId: 1, id: 2, rolename: 1, value: "water", isChecked: false },
+        { groupId: 1, id: 3, rolename: 1, value: "2020", isChecked: false },
+        { groupId: 1, id: 4, rolename: 1, value: "2021", isChecked: false },
+    ])
+      function handleAllChecked(id,event){
+        let fruiteslocal = JSON.parse(JSON.stringify(fruites));
+        fruiteslocal
+          .filter((f) => f.groupId === id)
+          .forEach((fruite) => {
+            fruite.isChecked = event.target.checked;
+          });
+        setfruites(fruiteslocal)    
+      }
+      function handleCheckChieldElement(event){
+        let fruiteslocal = JSON.parse(JSON.stringify(fruites));
+        fruiteslocal.forEach((fruite) => {
+          if (`${fruite.groupId}-${fruite.id}` === event.target.value)
+            fruite.isChecked = event.target.checked;
+        });
+        setfruites(fruiteslocal)    
+        
+      }
+      function handleAllCheckedShoes(id,event){
+        let fruiteslocal = JSON.parse(JSON.stringify(shoes));
+        fruiteslocal
+          .filter((f) => f.groupId === id)
+          .forEach((fruite) => {
+            fruite.isChecked = event.target.checked;
+          });
+        setshoes(fruiteslocal)    
+      }
+      function handleCheckChieldElementShoes(event){
+        let fruiteslocal = JSON.parse(JSON.stringify(shoes));
+        fruiteslocal.forEach((fruite) => {
+          if (`${fruite.groupId}-${fruite.id}` === event.target.value)
+            fruite.isChecked = event.target.checked;
+        });
+        setshoes(fruiteslocal)    
+        
+      }
+      function handleAllCheckedGender(id,event){
+        let fruiteslocal = JSON.parse(JSON.stringify(Gender));
+        fruiteslocal
+          .filter((f) => f.groupId === id)
+          .forEach((fruite) => {
+            fruite.isChecked = event.target.checked;
+          });
+        setGender(fruiteslocal)    
+      }
+      function handleCheckChieldElementGender(event){
+        let fruiteslocal = JSON.parse(JSON.stringify(Gender));
+        fruiteslocal.forEach((fruite) => {
+          if (`${fruite.groupId}-${fruite.id}` === event.target.value)
+            fruite.isChecked = event.target.checked;
+        });
+        setGender(fruiteslocal)    
+        
+      }
+      function handleAllCheckedColor(id,event){
+        let fruiteslocal = JSON.parse(JSON.stringify(Color));
+        fruiteslocal
+          .filter((f) => f.groupId === id)
+          .forEach((fruite) => {
+            fruite.isChecked = event.target.checked;
+          });
+        setColor(fruiteslocal)    
+      }
+      function handleCheckChieldElementColor(event){
+        let fruiteslocal = JSON.parse(JSON.stringify(Color));
+        fruiteslocal.forEach((fruite) => {
+          if (`${fruite.groupId}-${fruite.id}` === event.target.value)
+            fruite.isChecked = event.target.checked;
+        });
+        setColor(fruiteslocal)    
+        
+      }
+      function handleAllCheckedOther(id,event){
+        let fruiteslocal = JSON.parse(JSON.stringify(Other));
+        fruiteslocal
+          .filter((f) => f.groupId === id)
+          .forEach((fruite) => {
+            fruite.isChecked = event.target.checked;
+          });
+        setOther(fruiteslocal)    
+      }
+      function handleCheckChieldElementOther(event){
+        let fruiteslocal = JSON.parse(JSON.stringify(Other));
+        fruiteslocal.forEach((fruite) => {
+          if (`${fruite.groupId}-${fruite.id}` === event.target.value)
+            fruite.isChecked = event.target.checked;
+        });
+        setOther(fruiteslocal)    
+        
+      }
+    //   function openTab(a,id){
+    //     document.getElementById(a).classList.remove('none');
+    //     var i = 'angle-up-'+id;
+    //     document.getElementById(i).classList.remove('none');
+    //     i = 'angle-'+id;
+    //     document.getElementById(i).classList.add('none');
+    //   }
+    //   function closeTab(a,id){
+    //     document.getElementById(a).classList.add('none');
+    //     var i = 'angle-up-'+id;
+    //     document.getElementById(i).classList.add('none');
+    //     i = 'angle-'+id;
+    //     document.getElementById(i).classList.remove('none');   
+    //   }
+      const [brandMain, setbrandMain] = useState(false);
+      const [ShoeMain, setShoeMain] = useState(false);
+      const [GenderMain, setGenderMain] = useState(false);
+      const [ColorMain, setColorMain] = useState(false);
+      const [OtherMain, setOtherMain] = useState(false);
+    return (
+        <>
+            <div className="kr-list">
+                <div className="kr-list-inner custom-row" onClick = {()=>{setbrandMain(!brandMain)}}>
+                    <div className="custom-column-80">
+                        Brand or Non brand
+                        <p>Non Brands, nike, crocs, adidas</p>
+                    </div>
+                    <div className="custom-column-20">
+                        {
+                            brandMain ? <i className="fa fa-angle-up"></i> : <i className="fa fa-angle-down"></i>
+                        }
+                        {/* <i className="fa fa-angle-down" onClick={()=>{openTab("brand-non-brand",1)}} id="angle-1"></i>
+                        <i className="fa fa-angle-up none" onClick={()=>{closeTab("brand-non-brand",1)}} id="angle-up-1"></i> */}
+                    </div>
+                </div>
+                <div className={`kr-list-inner ${brandMain ? `` : `none`}`} id="brand-non-brand">
+                    {[
+                        { id: 1, name: "Non Brands"},
+                        { id: 2, name: "Brands" }
+                    ].map((item) => (
+                        <div>
+                        <input
+                            type="checkbox"
+                            onChange={(e)=>{handleAllChecked(item.id,e)}}
+                            value="checkedall"
+                        />{" "}
+                        {item.name}
+                        <ul>
+                            {fruites
+                            .filter((fruit) => fruit.groupId === item.id)
+                            .map((fruite, index) => {
+                                return (
+                                <CheckBox
+                                    key={`${item.id}-${fruite.id}`}
+                                    handleCheckChieldElement={handleCheckChieldElement}
+                                    {...fruite}
+                                    value={`${item.id}-${fruite.id}`}
+                                    label={fruite.value}
+                                />
+                                );
+                            })}
+                        </ul>
+                        </div>
+                    ))}
+                </div>
+                <div className="kr-list-inner custom-row" onClick = {()=>{setShoeMain(!ShoeMain)}}>
+                    <div className="custom-column-80">
+                        Shoe
+                        <p>sneakers, nike shoes, adidas, boots</p>
+                    </div>
+                    <div className="custom-column-20">
+                    {
+                            ShoeMain ? <i className="fa fa-angle-up"></i> : <i className="fa fa-angle-down"></i>
+                        }
+                        {/* <i className="fa fa-angle-down" onClick={()=>{openTab("shoe",2)}} id="angle-2"></i>
+                        <i className="fa fa-angle-up none" onClick={()=>{closeTab("shoe",2)}} i id="angle-up-2"></i> */}
+                    </div>
+                </div>
+                <div className={`kr-list-inner ${ShoeMain ? `` : `none`}`} id="shoe">
+                    {[
+                        { id: 1, name: "Shoes"},
+                        ].map((item) => (
+                        <div>
+                            <input
+                                type="checkbox"
+                                onChange={(e)=>{handleAllCheckedShoes(item.id,e)}}
+                                value="checkedall"
+                            />{" "}
+                            {item.name}
+                            <ul>
+                                {shoes
+                                .filter((fruit) => fruit.groupId === item.id)
+                                .map((fruite, index) => {
+                                    return (
+                                    <CheckBox
+                                        key={`${item.id}-${fruite.id}`}
+                                        handleCheckChieldElement={handleCheckChieldElementShoes}
+                                        {...fruite}
+                                        value={`${item.id}-${fruite.id}`}
+                                        label={fruite.value}
+                                    />
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+                <div className="kr-list-inner custom-row" onClick = {()=>{setGenderMain(!GenderMain)}}>
+                    <div className="custom-column-80">
+                        Gender
+                        <p>Women, men</p>
+                    </div>
+                    <div className="custom-column-20">
+                        {
+                            GenderMain ? <i className="fa fa-angle-up"></i> : <i className="fa fa-angle-down"></i>
+                        }
+                        {/* <i className="fa fa-angle-down" onClick={()=>{openTab("gender",3)}} id="angle-3"></i>
+                        <i className="fa fa-angle-up none" onClick={()=>{closeTab("gender",3)}} id="angle-up-3"></i> */}
+                    </div>
+                </div>
+                <div className={`kr-list-inner ${GenderMain ? `` : `none`}`} id="gender">
+                    {[
+                        { id: 1, name: "Gender"},
+                        ].map((item) => (
+                        <div>
+                            <input
+                                type="checkbox"
+                                onChange={(e)=>{handleAllCheckedGender(item.id,e)}}
+                                value="checkedall"
+                            />{" "}
+                            {item.name}
+                            <ul>
+                                {Gender
+                                .filter((fruit) => fruit.groupId === item.id)
+                                .map((fruite, index) => {
+                                    return (
+                                    <CheckBox
+                                        key={`${item.id}-${fruite.id}`}
+                                        handleCheckChieldElement={handleCheckChieldElementGender}
+                                        {...fruite}
+                                        value={`${item.id}-${fruite.id}`}
+                                        label={fruite.value}
+                                    />
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+                <div className="kr-list-inner custom-row" onClick = {()=>{setColorMain(!ColorMain)}}>
+                    <div className="custom-column-80">
+                        Color
+                        <p>black, white, brown, pink</p>
+                    </div>
+                    <div className="custom-column-20">
+                        {
+                            ColorMain ? <i className="fa fa-angle-up"></i> : <i className="fa fa-angle-down"></i>
+                        }
+                        {/* <i className="fa fa-angle-down" onClick={()=>{openTab("color",4)}} id="angle-4"></i>
+                        <i className="fa fa-angle-up none" onClick={()=>{closeTab("color",4)}}  id="angle-up-4"></i> */}
+                    </div>
+                </div>
+                <div className={`kr-list-inner ${ColorMain ? `` : `none`}`} id="color">
+                    {[
+                        { id: 1, name: "Color"},
+                        ].map((item) => (
+                        <div>
+                            <input
+                                type="checkbox"
+                                onChange={(e)=>{handleAllCheckedColor(item.id,e)}}
+                                value="checkedall"
+                            />{" "}
+                            {item.name}
+                            <ul>
+                                {Color
+                                .filter((fruit) => fruit.groupId === item.id)
+                                .map((fruite, index) => {
+                                    return (
+                                    <CheckBox
+                                        key={`${item.id}-${fruite.id}`}
+                                        handleCheckChieldElement={handleCheckChieldElementColor}
+                                        {...fruite}
+                                        value={`${item.id}-${fruite.id}`}
+                                        label={fruite.value}
+                                    />
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+                <div className="kr-list-inner custom-row" onClick = {()=>{setOtherMain(!OtherMain)}}>
+                    <div className="custom-column-80">
+                        Others
+                        <p>air, water, 2020,2021</p>
+                    </div>
+                    <div className="custom-column-20">
+                        {
+                            OtherMain ? <i className="fa fa-angle-up"></i> : <i className="fa fa-angle-down"></i>
+                        }
+                        {/* <i className="fa fa-angle-down" onClick={()=>{openTab("others",5)}} id="angle-5"></i>
+                        <i className="fa fa-angle-up none" onClick={()=>{closeTab("others",5)}} id="angle-up-5"></i> */}
+                    </div>
+                </div>
+            </div>
+            <div className={`kr-list-inner ${OtherMain ? `` : `none`}`} id="others">
+                {[
+                    { id: 1, name: "Other"},
+                    ].map((item) => (
+                    <div>
+                        <input
+                            type="checkbox"
+                            onChange={(e)=>{handleAllCheckedOther(item.id,e)}}
+                            value="checkedall"
+                        />{" "}
+                        {item.name}
+                        <ul>
+                            {Other
+                            .filter((fruit) => fruit.groupId === item.id)
+                            .map((fruite, index) => {
+                                return (
+                                <CheckBox
+                                    key={`${item.id}-${fruite.id}`}
+                                    handleCheckChieldElement={handleCheckChieldElementOther}
+                                    {...fruite}
+                                    value={`${item.id}-${fruite.id}`}
+                                    label={fruite.value}
+                                />
+                                );
+                            })}
+                        </ul>
+                    </div>
+                ))} 
+            </div>
+        </>
+      );
+}
 export default ModuleExpandKeywordResearch;
