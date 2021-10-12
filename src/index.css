@@ -1561,7 +1561,7 @@ a{
   width: 83%;
 }
 .ant-table-cell li::before{
-  content: '✓';
+  /* content: '✓'; */
   color: #027d02;
   font-size: 19px;
     margin-right: 10px;
@@ -3618,7 +3618,8 @@ ul.audit-titles li {
 }
 ul.audit-titles {
   margin-top: 12px;
-  padding-left: 11px;
+  /* padding-left: 11px; */
+  list-style-type: disc;
 }
 .prev-nex i {
   color: white !important;
@@ -3945,6 +3946,13 @@ div#example-collapse-text-calendar {
   width: 40%;
   text-shadow: #262626;
   vertical-align: middle;
+}
+.multiselect-graph-ga .css-yk16xz-control {
+  height: 40px;
+  overflow-y: scroll;
+}
+.multiselect-graph-ga .css-yk16xz-control .css-1hb7zxy-IndicatorsContainer{
+  display: none;
 }
 @media only screen and (max-width: 1024px) {
   .seo-audit .CircularProgressbar {

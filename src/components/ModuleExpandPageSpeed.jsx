@@ -3,7 +3,7 @@ import Chart from "react-google-charts";
 import {useState, useEffect, useRef} from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Button,Modal} from 'react-bootstrap';  
-import { default as ReactSelect } from "react-select";
+import { default as ReactSelect, createFilter } from "react-select";
 import { components } from "react-select";
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col ,Breadcrumb} from "antd";
@@ -33,9 +33,21 @@ const rowSelection = {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
     },
   };
-
+  const filterOption = createFilter({});
 
 function ModuleExpandPageSpeed() {
+
+    const [allOptions, setallOptions] = useState([]);
+    const filterAllOptions = (rawInput) => {
+    const filteredOptions = allOptions.filter((o) => filterOption(o, rawInput));
+
+        if (filteredOptions.length === 0) {
+            filteredOptions.push({ value: rawInput, label: rawInput });
+        }
+
+        setcolor(filteredOptions);
+    };
+
     const u = localStorage.getItem('state');
     const [usertype, setusertype] = useState(u);
     const [optionSelected1, setoptionSelected1] = useState(null);
@@ -179,7 +191,8 @@ function ModuleExpandPageSpeed() {
             { value: "https://www.ezrankings.org/", label: "https://www.ezrankings.org/" },
             { value: "https://www.ezrankings.org/seo-packages.html", label: "https://www.ezrankings.org/seo-packages.html" }
         ];
-        setcolor(color)
+        setcolor(color);
+        setallOptions(color);
         color = [
             {value:"FCP", label:"FCP"},
             {value:"FID", label:"FID"},
@@ -791,6 +804,8 @@ function ModuleExpandPageSpeed() {
                                     onChange={handleChange}
                                     allowSelectAll={true}
                                     value={optionSelected}
+                                    filterOption={() => true}
+                                        onInputChange={(e) => filterAllOptions(e)}
                                 />
                                 <label class=" common-mt-5 common-mr-24">Device Type</label>
                                 <select name="" id="device-type" className="common-mr-24">

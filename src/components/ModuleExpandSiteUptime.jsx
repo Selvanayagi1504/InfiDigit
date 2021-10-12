@@ -3,15 +3,17 @@ import Chart from "react-google-charts";
 import {useState, useEffect, useRef} from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Button,Modal} from 'react-bootstrap';  
-import { default as ReactSelect } from "react-select";
-import { components } from "react-select";
+
 import "antd/dist/antd.css";
 import { Table, Input,  Row,  Col ,Breadcrumb} from "antd";
 import {Dropdown, Card} from 'react-bootstrap'
 import DatePicker,{ DateObject } from "react-multi-date-picker"
 import { Calendar } from "react-multi-date-picker"
 import {ModuleExpandTickets, SideNavBarCustom, SideNavBarCustomClosed} from './index';
-
+import { default as RSelect } from "react-select";
+import { components } from "react-select";
+import makeAnimated from 'react-select/animated'
+import PropTypes from 'prop-types'
 
 const Option = (props) => {
     return (
@@ -27,7 +29,62 @@ const Option = (props) => {
       </div>
     );
   };
-
+  const animatedComponents = makeAnimated()
+  const MultiValue = props => (
+    <components.MultiValue {...props}>
+      <span>{props.data.label}</span>
+    </components.MultiValue>
+  )
+  
+  const ReactSelect = props => {
+    if (props.allowSelectAll) {
+      return (
+        <RSelect
+          {...props}
+          components={{ Option, MultiValue, animatedComponents, ...props.components }}
+          options={[props.allOption, ...props.options]}
+          onChange={(selected, event) => {
+            if (selected !== null && selected.length > 0) {
+              if (selected[selected.length - 1].value === props.allOption.value) {
+                return props.onChange([props.allOption, ...props.options])
+              }
+              let result = []
+              if (selected.length === props.options.length) {
+                if (selected.includes(props.allOption)) {
+                  result = selected.filter(option => option.value !== props.allOption.value)
+                } else if (event.action === 'select-option') {
+                  result = [props.allOption, ...props.options]
+                }
+                return props.onChange(result)
+              }
+            }
+  
+            return props.onChange(selected)
+          }}
+        />
+      )
+    }
+  
+    return <RSelect {...props} />
+  }
+  
+  ReactSelect.propTypes = {
+    options: PropTypes.array,
+    value: PropTypes.any,
+    onChange: PropTypes.func,
+    allowSelectAll: PropTypes.bool,
+    allOption: PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string,
+    }),
+  }
+  
+  ReactSelect.defaultProps = {
+    allOption: {
+      label: 'Select all',
+      value: '',
+    },
+  }
 const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -92,7 +149,7 @@ function ModuleExpandSiteUptime() {
             {value:"NoIndex", label:"NoIndex"},
             {value:"NoFollow", label:"NoFollow"},
             {value:"Redirection", label:"Redirection"},
-            {value:"Status Code", lable:"Status Code"}
+            {value:"Status Code", label:"Status Code"}
         ]
         setcolor1(color);
         setFieldOptionsBottom(color);
@@ -761,6 +818,16 @@ function ModuleExpandSiteUptime() {
                                     allowSelectAll={true}
                                     value={optionSelected}
                                 />
+                                {/* <ExtendedMultiSelect
+                                    key={'key'}
+                                    options={colourOptions} //Check https://react-select.com/home
+                                    isMulti
+                                    closeMenuOnSelect={false}
+                                    hideSelectedOptions={false}
+                                    onChange={handleChange}
+                                    allowSelectAll={true}
+                                    value={optionSelected}
+                                    ></ExtendedMultiSelect> */}
                                 <label htmlFor="" style={{marginRight:24+'px',marginTop:5+'px', marginLeft:24+'px'}}>Select Fields</label>
                                 <ReactSelect
                                     className="da-pa-search"

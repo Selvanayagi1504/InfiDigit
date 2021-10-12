@@ -858,7 +858,7 @@ function ModuleExpandKeywordResearch() {
                                             :
                                             <>
                                             <div>
-                                                <Table id="sample-module-expand" columns={teamcol} dataSource={searched} rowSelection={{type: selectionType,...rowSelection,}} pagination={false} />
+                                                <Table id="sample" columns={teamcol} dataSource={searched} rowSelection={{type: selectionType,...rowSelection,}} pagination={false} />
                                             </div>
                                             </>
                                         } 
@@ -866,14 +866,14 @@ function ModuleExpandKeywordResearch() {
                                         {
                                                 searched.length===0?<>
                                                 <div>
-                                                    <Table id="sample-module-expand"  columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
+                                                    <Table id="sample"  columns={teamcol} dataSource={teamlist} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["topLeft", "bottomRight"]}} />
                                                 </div>
                                                 </>
                                                 :
                                                 <>
                                                 <div>
                                                     
-                                                    <Table id="sample-module-expand-hidden" columns={teamcolHidden} dataSource={teamlistnew} rowSelection={{type: selectionTypenew,...rowSelection,}} pagination={{position:["bottomRight"]}} />
+                                                    <Table id="sample" columns={teamcolHidden} dataSource={teamlistnew} rowSelection={{type: selectionTypenew,...rowSelection,}} pagination={{position:["bottomRight"]}} />
                                                 </div>
                                                 </>
                                         }

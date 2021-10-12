@@ -1074,7 +1074,7 @@ function ConfigurationSEO() {
                     />
                     <ul class="configuration-tab-list">
                         <li>
-                            <a onClick={()=>{openTab('audit',1)}}>Audit</a>
+                            <a onClick={()=>{openTab('audit',1)}}>Audit Checklist</a>
                         </li>
                         <li>
                             <a onClick={()=>{openTab('access-permissions',1)}}>Access Permissions</a>

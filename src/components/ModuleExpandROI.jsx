@@ -885,6 +885,11 @@ function ModuleExpandROI() {
                             </div>
                             <div className="row">
                                 <div className="col-md-6 custom-borrig">
+                                    <div className="da-average-div common-mb-24" style={{marginTop:"unset"}}>
+                                        <h6>Avg. <span style={{textTransform:"uppercase"}}>Paid CPC<br/><br/></span></h6>
+                                        <p>39.2%</p>
+
+                                    </div>
                                     <div class="main-title ">Paid CPC</div>
                                     
                                     <Table id="sample-module-expand" columns={PaidCTCCol} dataSource={PaidCPCTable} rowSelection={{type: selectionType,...rowSelection,}} pagination={{position:["bottomRight"]}} />
@@ -894,12 +899,20 @@ function ModuleExpandROI() {
                                         methodROI == "GSC"
                                         ?
                                             <>
+                                                <div className="da-average-div common-mb-24" style={{marginTop:"unset"}}>
+                                                    <h6>Avg. <span style={{textTransform:"uppercase"}}>Organic CPC - GSC</span></h6>
+                                                    <p>40%</p>
+                                                </div>
                                                 <div class="main-title ">Organic CPC - GSC</div>
                                                 
                                                 <Table id="sample-module-expand" columns={GSCCol} dataSource={GSCTable} rowSelection={{type: selectionTypeGSC,...rowSelection,}} pagination={{position:["bottomRight"]}} />
                                             </>
                                         :
                                             <>
+                                                <div className="da-average-div common-mb-24" style={{marginTop:"unset"}}>
+                                                    <h6>Avg. <span style={{textTransform:"uppercase"}}>Organic CPC - Click Share</span></h6>
+                                                    <p>40%</p>
+                                                </div>
                                                 <div class="main-title ">Organic CPC - Click Share</div>
                                                 
                                                 <Table id="sample-module-expand" columns={ClickShareCol} dataSource={ClickShareTable} rowSelection={{type: selectionTypeClickShare,...rowSelection,}} pagination={{position:["bottomRight"]}} />

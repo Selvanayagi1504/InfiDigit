@@ -45,6 +45,7 @@ function ModuleExpandGoogleAnalytics() {
     const [GraphGASelected, setGraphGASelected] = useState(null);
     function handleChangeGraphGATab(selected){
         setGraphGASelected(selected);
+        changegraphsingle(selected);
     };
     const [GraphGATabOptions, setGraphGATabOptions] = useState([]);
     const [BottomSegmentSelected, setBottomSegmentSelected] = useState(null);
@@ -70,11 +71,12 @@ function ModuleExpandGoogleAnalytics() {
  
     useEffect(()=>{
       var data = [
-        {label:"All users / Desktop", value:"All users / Desktop"},
-        {label:"Traffic/Mobile & Tablet", value:"Traffic/Mobile & Tablet"},
-        {label:"Traffic", value:"Traffic"},
+        {label:"All users", value:"All users"},
+        {label:"Desktop Visits", value:"Desktop Visits"},
+        {label:"Mobile & Tablet Visits", value:"Mobile & Tablet Visits"},
       ]
       setSegmentGATabOptions(data);
+      setBottomSegmentOptions(data);
       var columns = [
         {
             title:"Channel",
@@ -669,7 +671,7 @@ function ModuleExpandGoogleAnalytics() {
             setGATable(data);
         }
     }
-    function changegraphsingle(){
+    function changegraphsingle(GraphData){
         if(daterange2){
             var c = ['#4e73df', '#008000'];
             var l= GraphGASelected.length*2;
@@ -722,7 +724,8 @@ function ModuleExpandGoogleAnalytics() {
         else{
             var b = ['x'];
             var data = [];
-            GraphGASelected.map((i)=>{
+            
+            GraphData.map((i)=>{
                 b.push(i.value);
             })
             data.push(b);
@@ -730,18 +733,19 @@ function ModuleExpandGoogleAnalytics() {
             vaxiz.map((i)=>{
                 var m = [];
                 m.push(i.value);
-                GraphGASelected.map((j, index)=>{
+                GraphData.map((j, index)=>{
                     var total = 0;
                     if((index+1)%2==0){
-                        total = 2;
+                        total = 2*index;
                     }
                     else{
-                        total = 5;
+                        total = 5*index;
                     }
                     m.push(total);
                 })
                 data.push(m);
             })
+            console.log(data)
             setchartdata(data);
         }
     }
@@ -1229,6 +1233,7 @@ function ModuleExpandGoogleAnalytics() {
                                 </div>
                             </div> */}
                             <hr/>
+                            
                             <div className="ga-chart">
                                 <div className="row">
                                     <div className="col-md-8" style={{display:"flex"}}>
@@ -1258,7 +1263,13 @@ function ModuleExpandGoogleAnalytics() {
                                             allowSelectAll={true}
                                             value={BottomSegmentSelected}
                                         />
-                                        <button style={{ height:40+'px'}} class="outline-btn" onClick={()=>changegraphsingle()}>Generate Graph</button>
+                                         <select name="" id="device-type" style={{marginRight:24+'px'}}>
+                                            <option value="Daily">Daily</option>
+                                            <option value="Weekly">Weekly</option>
+                                            <option value="Monthly">Monthly</option>
+                                            <option value="Fornightly">Fornightly</option>
+                                        </select>
+                                        {/* <button style={{ height:40+'px'}} class="outline-btn" onClick={()=>changegraphsingle()}>Generate Graph</button> */}
                                     </div>
                                     <div className="col-md-4">
                                         <div className="score-maintain">
@@ -1316,7 +1327,7 @@ function ModuleExpandGoogleAnalytics() {
                                 :<></>}
                                 <Chart
                                     className="line-graph"
-                                    width={'600px'}
+                                    // width={'600px'}
                                     height={'400px'}
                                     chartType="LineChart"
                                     data={chartdata}

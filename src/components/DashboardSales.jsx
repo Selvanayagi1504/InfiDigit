@@ -341,7 +341,7 @@ function DashboardSales() {
 		yaxis: [
 			{
 				title: {
-					text: "Sales Revenue",
+					text: "Incremental Sales Revenue",
 				}
 			},
 			{
@@ -528,15 +528,8 @@ return (
                 <div class="main-title">{proj}</div>
               </div>
               <div className="col-sm-7 add-new-btnw">
-                <button class="outline-btn">Customize</button>
-              </div>
-            </div>
-            
-            <div className="row">
-              <div className="col-lg-12" id={!ticketmin?"full":""}>
-              <div className="add-new-btnw" style={{marginBottom:64+'px'}}>
-                  
-                    <div ref={ref} class="calendar-main" style={{marginTop:"unset"}}>
+                {/* <button class="outline-btn">Customize</button> */}
+                <div ref={ref} class="calendar-main" style={{marginTop:"unset"}}>
                         <div className="add-new-btnw">
                             <button className="outline-btn-boderless" style={{width:"250px"}} onClick={() => setOpen(!open)} >
                                 {head1}&nbsp;-&nbsp;{head2}&nbsp;&nbsp;
@@ -656,6 +649,14 @@ return (
                         )}
                         
                     </div>
+              </div>
+            </div>
+            
+            <div className="row">
+              <div className="col-lg-12" id={!ticketmin?"full":""}>
+              <div className="add-new-btnw" style={{marginBottom:64+'px'}}>
+                  
+                    
                 </div>
                 {/* <div class={!ticketmin?"charts-flex":""}> */}
                 <div class="charts-flex">
@@ -666,14 +667,14 @@ return (
                           <span><i class="fa fa-user-plus"></i></span>
                           <span>
                             <h2>358</h2>
-                            <p>New Customers | YTQ</p>
+                            <p>New Customers</p>
                           </span>
                         </div>
                         <div className="dashboard-sales-chart1-inner">
                           <span><i class="fa fa-signal" aria-hidden="true"></i></span>
                           <span>
                             <h2>1180 357</h2>
-                            <p>Sales Revenue  | YTQ</p>
+                            <p>Incremental Sales Revenue</p>
                           </span>
                         </div>
                       </div>
@@ -698,7 +699,7 @@ return (
                     <div className="dashboard-sales-legend">
                         <div>
                           <span className="circle-legend"></span>
-                          <span>Sales Revenue</span>
+                          <span>Incremental Sales Revenue</span>
                         </div>
                         <div>
                           <span className="line-legend"></span>

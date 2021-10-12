@@ -78,20 +78,20 @@ function DashboardSEO() {
       {
         projects:"Myntra Shoes",
         comp:"90%",
-        healthscore:"60%",
-        totalscore:<i class="fa fa-star"></i>
+        healthscore:"60",
+        totalscore:"50"
       },
       {
         projects:"Myntra Loafers",
         comp:"90%",
-        healthscore:"75%",
-        totalscore:<i class="fa fa-star"></i>
+        healthscore:"75",
+        totalscore:"70"
       },
       {
         projects:"Amazon Fashion",
         comp:"90%",
-        healthscore:"55%",
-        totalscore:<i class="fa fa-star"></i>
+        healthscore:"55",
+        totalscore:"40"
       }
     ]
     sethealthaudit(data);
@@ -418,34 +418,7 @@ return (
         </div>
       </div>
       <div className="add-new-btnw max-min">
-        {ticketmin?<button class="outline-btn"  onClick={()=>setticketmin(!ticketmin)}>Hide Tickets</button>:<button class="outline-btn"  onClick={()=>setticketmin(!ticketmin)}>Show tickets</button>}
-      </div>
-      <div className="row">
-        <div className="col-lg-7" id={!ticketmin?"full":""}>
-        <div className="add-new-btnw" style={{marginBottom:64+'px'}}>
-            {/* <label htmlFor="" style={{marginRight:24+'px'}}>Date Range</label>
-            <DateRangePicker
-              class="date-range"
-                  showDropdowns
-                  ranges={customRanges}
-                  timePickerIncrement={1}
-              startDate={start}
-              endDate={maxDate}
-                  minDate={minDate}
-                  maxDate={maxDate}
-                  opens="right"
-                  format="DD-MM-YYYY"
-                  autoUpdateInput={true}
-                  alwaysShowCalendars={true}
-                  linkedCalendars={true}
-                  onApply={datePickerHandler}
-                  autoApply={true}
-                  applyClass="btn btn-sm btn-primary btn-raised"
-                  cancelClass="btn btn-sm btn-flat"
-                >
-                  <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
-              </DateRangePicker> */}
-              <div ref={ref} class="calendar-main" style={{marginTop:"unset"}}>
+      <div ref={ref} class="calendar-main">
                         <div className="add-new-btnw">
                             <button className="outline-btn-boderless" style={{width:"250px"}} onClick={() => setOpen(!open)} >
                                 {head1}&nbsp;-&nbsp;{head2}&nbsp;&nbsp;
@@ -565,6 +538,35 @@ return (
                         )}
                         
                     </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-7" id={!ticketmin?"full":""}>
+        <div className="add-new-btnw" style={{marginBottom:64+'px'}}>
+        {ticketmin?<button class="outline-btn"  onClick={()=>setticketmin(!ticketmin)}>Hide Tickets</button>:<button class="outline-btn"  onClick={()=>setticketmin(!ticketmin)}>Show tickets</button>}
+
+            {/* <label htmlFor="" style={{marginRight:24+'px'}}>Date Range</label>
+            <DateRangePicker
+              class="date-range"
+                  showDropdowns
+                  ranges={customRanges}
+                  timePickerIncrement={1}
+              startDate={start}
+              endDate={maxDate}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  opens="right"
+                  format="DD-MM-YYYY"
+                  autoUpdateInput={true}
+                  alwaysShowCalendars={true}
+                  linkedCalendars={true}
+                  onApply={datePickerHandler}
+                  autoApply={true}
+                  applyClass="btn btn-sm btn-primary btn-raised"
+                  cancelClass="btn btn-sm btn-flat"
+                >
+                  <input type="text" autoComplete="off" id="date-picker" placeholder="Choose date range" />
+              </DateRangePicker> */}
+              
           </div>
           
           <div class={!ticketmin?"charts-flex":""}>
