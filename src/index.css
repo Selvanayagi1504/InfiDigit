@@ -4296,3 +4296,24 @@ ul.input-list {
   background-color: #C5C5C5;
   border-radius: 10px;
 }
+.configuration-tab-list li a span {
+  float: right;
+}
+.date-modal .modal-dialog {
+  max-width: 980px;
+}
+.date-modal .calendar-main {
+  margin-top: unset;
+}
+.date-modal .add-new-btnw{
+  text-align: center;
+}
+.date-modal div#example-collapse-text-calendar {
+  max-width: 969px;
+  width: 100%;
+  margin-left: auto;
+  z-index: 3;
+  position: relative;
+  right: unset;
+  margin-right: auto;
+}

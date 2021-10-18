@@ -3698,49 +3698,49 @@ function Configuration() {
                         <a onClick={()=>{openTab('modules',3)}}>Modules</a>
                     </li> */}
                     <li>
-                        <a onClick={()=>{openTab('module-da',3)}}>DA / PA Checker <input type="checkbox" /></a>
+                        <a onClick={()=>{openTab('module-da',3)}}>DA / PA Checker <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('gt',3)}}>Google Trends</a>
+                        <a onClick={()=>{openTab('gt',3)}}>Google Trends <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('page-speed',3)}}>Page Speed</a>
+                        <a onClick={()=>{openTab('page-speed',3)}}>Page Speed <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('Click-share',3)}}>Click Share</a>
+                        <a onClick={()=>{openTab('Click-share',3)}}>Click Share <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('rank-tracking',3)}}>Rank Tracking</a>
+                        <a onClick={()=>{openTab('rank-tracking',3)}}>Rank Tracking <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('SUM',3)}}>Site Uptime Monitor</a>
+                        <a onClick={()=>{openTab('SUM',3)}}>Site Uptime Monitor <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('GSC',3)}}>GSC Data Extractor</a>
+                        <a onClick={()=>{openTab('GSC',3)}}>GSC Data Extractor <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('ORM',3)}}>Organic Research Module</a>
+                        <a onClick={()=>{openTab('ORM',3)}}>Organic Research Module <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('ROI',3)}}>ROI Calculator</a>
+                        <a onClick={()=>{openTab('ROI',3)}}>ROI Calculator <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('CWC',3)}}>Content Word Count on a Page</a>
+                        <a onClick={()=>{openTab('CWC',3)}}>Content Word Count on a Page <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('BL',3)}}>BackLinks</a>
+                        <a onClick={()=>{openTab('BL',3)}}>BackLinks <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('KR',3)}}>Keyword Research</a>
+                        <a onClick={()=>{openTab('KR',3)}}>Keyword Research <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('SEOV',3)}}>SEO Volatality</a>
+                        <a onClick={()=>{openTab('SEOV',3)}}>SEO Volatality <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('GA',3)}}>Google Analytics</a>
+                        <a onClick={()=>{openTab('GA',3)}}>Google Analytics <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
-                        <a onClick={()=>{openTab('SEOA',3)}}>SEO Audit</a>
+                        <a onClick={()=>{openTab('SEOA',3)}}>SEO Audit <span><input type="checkbox" /></span></a>
                     </li>
                     <li>
                         <a onClick={()=>{openTab('url-comp',3)}}>Url, Competitors and Keywords</a>

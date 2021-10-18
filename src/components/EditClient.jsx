@@ -135,10 +135,10 @@ return (
                                     <input type="text" name="" placeholder="10001" disabled />
                                 </div>
 
-                                <div class="form-wrappers">
+                                {/* <div class="form-wrappers">
                                     <label>Organization</label>
                                     <input type="text" name="" placeholder="Myntra" disabled />
-                                </div>
+                                </div> */}
 
                                 <div class="form-wrappers">
                                     <label>Key Point of Contact</label>

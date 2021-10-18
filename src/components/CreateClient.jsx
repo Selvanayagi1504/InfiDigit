@@ -159,10 +159,10 @@ return (
                                     <input type="text" name="" placeholder="Enter Client Code" />
                                 </div>
 
-                                <div class="form-wrappers">
+                                {/* <div class="form-wrappers">
                                     <label>Organization</label>
                                     <input type="text" name="" placeholder="Enter Organization" />
-                                </div>
+                                </div> */}
 
                                 <div class="form-wrappers">
                                     <label>Key Point of Contact</label>

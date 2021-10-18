@@ -1166,7 +1166,7 @@ function ModuleExpandGoogleAnalytics() {
                         <TabPanel>
                             
                             <div className="row google-analytics-top-label">
-                                <div className="col-md-4">
+                                {/* <div className="col-md-4">
                                     <div className="row">
                                         <div className="col-md-2">
                                             <label>URL</label>
@@ -1175,7 +1175,7 @@ function ModuleExpandGoogleAnalytics() {
                                             <input style={{width:93+'%'}} type="text" value="wwww.myntra.com" disabled />
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="col-md-4">
                                     <div className="row">
                                         <div className="col-md-2">
